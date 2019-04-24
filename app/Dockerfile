@@ -6,7 +6,7 @@
 #   -Install the Python dependencies.
 #   -Set the default command for the container to python app.py.
 #
-FROM python:3.4-alpine
+FROM continuumio/anaconda3
 ADD . /code
 WORKDIR /code
 RUN pip install -r requirements.txt
