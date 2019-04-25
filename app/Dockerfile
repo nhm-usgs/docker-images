@@ -1,5 +1,3 @@
-# This tells Docker to:
-#
 #   -Build an image starting with the Python 3.4 image.
 #   -Add the current directory . into the path /code in the image.
 #   -Set the working directory to /code.
@@ -11,3 +9,7 @@ ADD . /code
 WORKDIR /code
 RUN pip install -r requirements.txt
 CMD ["python", "app.py"]
+
+FROM centos
+RUN yum check-update -y
+RUN yum upgrade -y
