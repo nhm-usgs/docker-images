@@ -1,10 +1,5 @@
 version: '2'
 services:
-  web:
+  prms:
     build: .
-    ports:
-     - "5000:5000"
-    volumes:
-     - .:/code
-  redis:
-    image: "redis:alpine"
+
