@@ -1,15 +1,7 @@
-#   -Build an image starting with the Python 3.4 image.
-#   -Add the current directory . into the path /code in the image.
-#   -Set the working directory to /code.
-#   -Install the Python dependencies.
-#   -Set the default command for the container to python app.py.
-#
-FROM continuumio/anaconda3
-ADD . /code
-WORKDIR /code
-RUN pip install -r requirements.txt
-CMD ["python", "app.py"]
-
 FROM centos
-RUN yum check-update -y
+RUN yum check-update; exit 0
 RUN yum upgrade -y
+RUN yum install file gcc gcc-gfortran git make -y
+RUN cd /usr/local/src && git clone https://github.com/nhm-usgs/prms.git
+RUN cd /usr/local/src/prms && make
+CMD ["sleep", "infinity"]
