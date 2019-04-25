@@ -4,7 +4,7 @@ services:
     build: .
     ports:
      - "5000:5000"
-    volumes:
-     - .:/code
-  redis:
-    image: "redis:alpine"
+  prms:
+    image: centos
+    command: bash
+    tty: true
