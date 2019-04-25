@@ -1,10 +1,5 @@
 version: '2'
 services:
-  web:
-    build: .
-    ports:
-     - "5000:5000"
   prms:
-    image: centos
-    command: bash
-    tty: true
+    build: .
+
