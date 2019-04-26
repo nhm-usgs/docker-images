@@ -1,17 +1,19 @@
 # using CentOS as the base image...
 FROM centos
 
-# ...check for any CentOS installed packages updates (while ignoring unreachable HTTP errors; exit cleanly);
+# ...check for any CentOS installed packages updates (while ignoring
+# errors/warnings; exit cleanly for the sake of Docker);
 RUN yum check-update; exit 0
 
 # upgrade any CentOS installed packages updates;
-RUN yum upgrade -y > /dev/null 2>&1; exit 0
+RUN yum upgrade -y
 
-# install Python 3 repo., file, GCC, GFortran, Git, and Make;
-RUN yum install centos-release-scl file gcc gcc-gfortran git make -y > /dev/null 2>&1; exit 0
+# install Python 3 repo. references, file, GCC, GFortran, Git, and
+# Make;
+RUN yum install centos-release-scl file gcc gcc-gfortran git make -y
 
 # install Python 3;
-RUN yum install rh-python36 -y > /dev/null 2>&1; exit 0
+RUN yum install rh-python36 -y
 
 # clone PRMS source;
 RUN cd /usr/local/src && git clone https://github.com/nhm-usgs/prms.git
