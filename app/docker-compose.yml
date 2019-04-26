@@ -2,4 +2,6 @@ version: '2'
 services:
   prms:
     build: .
-
+    image: nhdusgs/prms
+    hostname: prms
+    container_name: prms
