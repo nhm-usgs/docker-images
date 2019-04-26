@@ -8,9 +8,9 @@ RUN yum check-update; exit 0
 # upgrade any CentOS installed packages updates;
 RUN yum upgrade -y
 
-# install Python 3 repo. references, file, GCC, GFortran, Git, and
-# Make;
-RUN yum install centos-release-scl file gcc gcc-gfortran git make -y
+# install Python 3 repo. references, Emacs, file, GCC, GFortran, Git,
+# Make, and which;
+RUN yum install centos-release-scl emacs-nox file gcc gcc-gfortran git make which -y
 
 # install Python 3;
 RUN yum install rh-python36 -y
