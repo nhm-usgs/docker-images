@@ -10,7 +10,10 @@ RUN yum upgrade -y
 
 # install Python 3 repo. references, Emacs, file, GCC, GFortran, Git,
 # Make, and which;
-RUN yum install centos-release-scl emacs-nox file gcc gcc-gfortran git make which -y
+RUN yum install centos-release-scl dos2unix emacs-nox file gcc gcc-c++ gcc-gfortran git make rubygems which -y
+
+# install fUnit
+RUN gem install funit
 
 # install Python 3;
 RUN yum install rh-python36 -y
