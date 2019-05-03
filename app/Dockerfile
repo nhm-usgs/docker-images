@@ -11,6 +11,9 @@ RUN yum upgrade -y
 # install additional development packages
 RUN yum install centos-release-scl dos2unix emacs-nox file gcc gcc-c++ gcc-gfortran git make rubygem-minitest rubygem-rake rubygems unzip which wget -y
 
+# install fUnit
+RUN gem install funit
+
 # install FRUIT
 RUN wget -O /usr/local/src/fruit_3.4.3.zip https://sourceforge.net/projects/fortranxunit/files/latest/download
 RUN cd /usr/local/src && unzip fruit_3.4.3.zip
