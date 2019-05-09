@@ -1,6 +1,8 @@
 # using CentOS as the base image...
 FROM centos
 
+LABEL maintainer="ashalper@usgs.gov"
+
 # Domain: {stable,testing,unstable}; defaults to "stable" below. Run
 # like: 'docker-compose build --build-arg arg=stable' to set.
 ARG release
