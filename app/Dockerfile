@@ -4,7 +4,7 @@ FROM centos
 LABEL maintainer="ashalper@usgs.gov"
 
 # Domain: {stable,testing,unstable}; defaults to "stable" below. Run
-# like: 'docker-compose build --build-arg arg=stable' to set.
+# like: 'docker-compose build --build-arg release=stable' to set.
 ARG release
 
 # ...check for any CentOS installed packages updates; exit cleanly for
