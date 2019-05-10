@@ -50,7 +50,7 @@ fi
 
 # clone PRMS source
 RUN cd /usr/local/src && \
-    git clone -b make-tidy https://github.com/nhm-usgs/prms.git
+    git clone https://github.com/nhm-usgs/prms.git
 
 # "convenience" soft link
 RUN if [ "x$release" = "xunstable" ] ; then \
