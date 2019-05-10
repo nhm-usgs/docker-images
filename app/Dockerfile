@@ -23,7 +23,8 @@ RUN if [ "x$release" = "x" ] ; then \
       export release=stable ; \
     fi
 
-# install custom .bashrc file (maybe; see end of conditional below)
+# install custom .bashrc file (maybe; see end of first conditional
+# block below)
 COPY .bashrc /tmp
 
 # if "unstable" release, install additional development packages and
@@ -50,6 +51,11 @@ fi
 # clone PRMS source
 RUN cd /usr/local/src && \
     git clone -b make-tidy https://github.com/ashalper-usgs/prms.git
+
+# "convenience" soft link
+RUN if [ "x$release" = "xunstable" ] ; then \
+      ln -s /usr/local/src/prms /root/prms ; \
+fi
 
 # ...and remain running
 CMD ["sleep", "infinity"]
