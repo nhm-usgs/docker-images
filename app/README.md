@@ -24,7 +24,7 @@ and you should end up in a bash shell inside the running container as `root`.
 
 # Building a Specific Release
 
-The `Dockerfile` is accepts a `release` parameter, which can be used to build a specific container version. Currently, there are two versions of the container: `stable` (intended for production), and `unstable` (for development). The Docker Compose build defaults to `stable` (if the `release` parameter is not provided in the build). To build the `unstable` release, run:
+The `Dockerfile` accepts a `release` parameter, which can be used to build a specific container version. Currently, there are two versions of the container: `stable` (intended for production), and `unstable` (for development). The Docker Compose build defaults to `stable` (if the `release` parameter is not provided in the build). To build the `unstable` release, run:
 
 ```
 docker-compose build --build-arg release=unstable
