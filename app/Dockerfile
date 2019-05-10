@@ -1,8 +1,10 @@
 # using CentOS as the base image...
 FROM centos
 
+LABEL maintainer="ashalper@usgs.gov"
+
 # Domain: {stable,testing,unstable}; defaults to "stable" below. Run
-# like: 'docker-compose build --build-arg arg=stable' to set.
+# like: 'docker-compose build --build-arg release=stable' to set.
 ARG release
 
 # ...check for any CentOS installed packages updates; exit cleanly for
@@ -21,6 +23,10 @@ RUN if [ "x$release" = "x" ] ; then \
       export release=stable ; \
     fi
 
+# install custom .bashrc file (maybe; see end of first conditional
+# block below)
+COPY .bashrc /tmp
+
 # if "unstable" release, install additional development packages and
 # prerequisites
 RUN if [ "x$release" = "xunstable" ] ; then \
@@ -37,14 +43,19 @@ RUN if [ "x$release" = "xunstable" ] ; then \
       printf '\n# gprof2dot installs in a weird location\n\
 export PATH="/opt/rh/rh-python35/root/usr/bin:$PATH"\n' >> \
 	  /root/.bashrc ; \
+	  mv /tmp/.bashrc /root ; \
+	else \
+	  rm -f /tmp/.bashrc ; \
 fi
 
 # clone PRMS source
 RUN cd /usr/local/src && \
-    git clone https://github.com/nhm-usgs/prms.git
+    git clone -b make-tidy https://github.com/ashalper-usgs/prms.git
 
-# build PRMS
-RUN cd /usr/local/src/prms && make
+# "convenience" soft link
+RUN if [ "x$release" = "xunstable" ] ; then \
+      ln -s /usr/local/src/prms /root/prms ; \
+fi
 
 # ...and remain running
 CMD ["sleep", "infinity"]
