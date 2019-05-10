@@ -43,10 +43,7 @@ fi
 
 # clone PRMS source
 RUN cd /usr/local/src && \
-    git clone https://github.com/nhm-usgs/prms.git
-
-# build PRMS
-RUN cd /usr/local/src/prms && make
+    git clone -b make-tidy https://github.com/ashalper-usgs/prms.git
 
 # ...and remain running
 CMD ["sleep", "infinity"]
