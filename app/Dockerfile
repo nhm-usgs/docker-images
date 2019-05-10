@@ -23,6 +23,9 @@ RUN if [ "x$release" = "x" ] ; then \
       export release=stable ; \
     fi
 
+# install custom .bashrc file (maybe; see end of conditional below)
+COPY .bashrc /tmp
+
 # if "unstable" release, install additional development packages and
 # prerequisites
 RUN if [ "x$release" = "xunstable" ] ; then \
@@ -39,6 +42,9 @@ RUN if [ "x$release" = "xunstable" ] ; then \
       printf '\n# gprof2dot installs in a weird location\n\
 export PATH="/opt/rh/rh-python35/root/usr/bin:$PATH"\n' >> \
 	  /root/.bashrc ; \
+	  mv /tmp/.bashrc /root ; \
+	else \
+	  rm -f /tmp/.bashrc ; \
 fi
 
 # clone PRMS source
