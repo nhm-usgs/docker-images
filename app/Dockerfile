@@ -1,7 +1,7 @@
 # using CentOS as the base image...
 FROM centos
-
 LABEL maintainer="ashalper@usgs.gov"
+WORKDIR /root
 
 # ...check for any CentOS installed packages updates; exit cleanly for
 # the benefit of Docker
