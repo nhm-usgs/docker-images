@@ -50,5 +50,8 @@ RUN cd /usr/local/src/fruit_3.4.3/fruit_processor_gem && \
 # "convenience" soft link
 RUN ln -s /usr/local/src/prms /root/prms
 
+# build PRMS
+RUN cd /usr/local/src/prms && make
+
 # ...and remain running
 CMD ["sleep", "infinity"]
