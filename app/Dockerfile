@@ -12,6 +12,7 @@ RUN yum upgrade -y
 
 # install additional development packages
 RUN yum install -y \
+    automake \
     centos-release-scl \
     dos2unix \
     emacs-nox \
@@ -30,6 +31,7 @@ RUN yum install -y \
     unzip \
     wget \
     which
+# fUnit installs via gem
 RUN gem install funit
       
 # install custom .bashrc file
@@ -37,7 +39,7 @@ COPY .bashrc /root
 
 # clone PRMS 5.x source
 RUN cd /usr/local/src && \
-    git clone -b 5.0.0_rc https://github.com/nhm-usgs/prms.git
+    git clone -b 5.1.0 https://github.com/ashalper-usgs/prms.git
 
 # Fortran unit testing tools
 RUN wget -O /usr/local/src/fruit_3.4.3.zip \
@@ -51,7 +53,9 @@ RUN cd /usr/local/src/fruit_3.4.3/fruit_processor_gem && \
 RUN ln -s /usr/local/src/prms /root/prms
 
 # build PRMS
-RUN cd /usr/local/src/prms && make
+RUN cd /usr/local/src/prms && \
+	./configure CPPFLAGS=-I/usr/local/src/prms/mmf LDFLAGS=-L/usr/local/src/prms/mmf
+RUN cd /usr/local/src/prms && make LIBS=-lmmf
 
 # ...and remain running
 CMD ["sleep", "infinity"]
