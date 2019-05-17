@@ -37,7 +37,7 @@ COPY .bashrc /root
 
 # clone PRMS 5.x source
 RUN cd /usr/local/src && \
-    git clone -b 5.0.0_rc https://github.com/nhm-usgs/prms.git
+    git clone https://github.com/nhm-usgs/prms.git
 
 # Fortran unit testing tools
 RUN wget -O /usr/local/src/fruit_3.4.3.zip \
