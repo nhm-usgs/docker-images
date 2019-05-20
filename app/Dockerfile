@@ -14,6 +14,8 @@ RUN yum upgrade -y
 RUN yum install -y \
     automake \
     centos-release-scl \
+    check \
+    check-devel \
     dos2unix \
     emacs-nox \
     file \
