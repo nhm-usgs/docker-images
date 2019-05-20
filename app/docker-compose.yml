@@ -5,14 +5,8 @@ services:
     image: nhmusgs/prms
     hostname: prms
     container_name: prms
-    volumes:
-     - .:/var/lib/nhm
   onhm-fetcher-parser:
     build: .
     image: nhmusgs/onhm-fetcher-parser
     hostname: onhm-fetcher-parser
     container_name: onhm-fetcher-parser
-    volumes:
-     - .:/var/lib/nhm
-volumes:
-     .:
