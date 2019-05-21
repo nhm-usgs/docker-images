@@ -5,8 +5,8 @@ services:
     image: nhmusgs/prms
     hostname: prms
     container_name: prms
-  onhm-fetcher-parser:
+  ofp:
     build: .
-    image: nhmusgs/onhm-fetcher-parser
-    hostname: onhm-fetcher-parser
-    container_name: onhm-fetcher-parser
+    image: nhmusgs/ofp
+    hostname: ofp
+    container_name: ofp
