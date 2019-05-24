@@ -42,6 +42,15 @@ COPY .bashrc /root
 # clone PRMS 5.x source
 RUN cd /usr/local/src && \
     git clone -b 5.1.0 https://github.com/ashalper-usgs/prms.git
+RUN cd /usr/local/src/prms && git pull
+
+# Git repo. configuration
+# TODO: make this an overridable default
+RUN cd /usr/local/src/prms && \
+	git config --global user.email ashalper@usgs.gov && \
+	git config --global user.name "Andrew Halper"
+RUN cd /usr/local/src/prms && \
+	git config --global push.default simple
 
 # Fortran unit testing tools
 RUN wget -O /usr/local/src/fruit_3.4.3.zip \
@@ -55,9 +64,7 @@ RUN cd /usr/local/src/fruit_3.4.3/fruit_processor_gem && \
 RUN ln -s /usr/local/src/prms /root/prms
 
 # build PRMS
-RUN cd /usr/local/src/prms && \
-	./configure CPPFLAGS=-I/usr/local/src/prms/mmf LDFLAGS=-L/usr/local/src/prms/mmf
-RUN cd /usr/local/src/prms && make LIBS=-lmmf
+RUN cd /usr/local/src/prms && ./configure && make
 
 # ...and remain running
 CMD ["sleep", "infinity"]
