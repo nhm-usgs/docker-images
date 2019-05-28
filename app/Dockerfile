@@ -22,6 +22,7 @@ RUN yum install -y \
     gcc \
     gcc-c++ \
     gcc-gfortran \
+    gdb \
     git \
     graphviz \
     make \
