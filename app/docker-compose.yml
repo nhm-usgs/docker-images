@@ -2,14 +2,14 @@ version: '2'
 services:
   prms:
     build: .
-    image: nhdusgs/prms
+    image: nhmusgs/prms
     hostname: prms
     container_name: prms
     volumes:
      - .:/var/lib/nhm
   ofp:
     build: .
-    image: nhdusgs/ofp
+    image: nhmusgs/ofp
     hostname: ofp
     container_name: ofp
     volumes:

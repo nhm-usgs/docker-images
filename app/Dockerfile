@@ -1,46 +1,41 @@
-# using CentOS as the base image...
-FROM centos
+# using Miniconda 3 as the base image...
+FROM continuumio/miniconda3:latest
 LABEL maintainer="ashalper@usgs.gov"
 WORKDIR /root
 
-# ...check for any CentOS installed packages updates; exit cleanly for
-# the benefit of Docker
-RUN yum check-update; exit 0
+# ...check for any Debian, installed packages updates
+RUN apt-get update
 
 # upgrade any CentOS installed packages updates
-RUN yum upgrade -y
+RUN apt-get -y upgrade
 
 # install additional development packages
-RUN yum install -y \
+RUN apt-get install -y \
     automake \
-    centos-release-scl \
     check \
-    check-devel \
     dos2unix \
     emacs-nox \
     file \
+    g++-6 \
     gcc \
-    gcc-c++ \
-    gcc-gfortran \
     gdb \
+    gfortran \
     git \
     graphviz \
     make \
     python3 \
-    rh-python35-python-pip \
-    rubygem-minitest \
-    rubygem-rake \
+    rake \
+    ruby-minitest \
     rubygems \
     unzip \
-    wget \
-    which
+    wget
 # fUnit installs via gem
 RUN gem install funit
       
 # install custom .bashrc file
 COPY .bashrc /root
 
-# clone PRMS 5.x source
+# clone PRMS source
 RUN cd /usr/local/src && \
     git clone -b 5.1.0 https://github.com/ashalper-usgs/prms.git
 RUN cd /usr/local/src/prms && git pull
@@ -64,8 +59,21 @@ RUN cd /usr/local/src/fruit_3.4.3/fruit_processor_gem && \
 # "convenience" soft link
 RUN ln -s /usr/local/src/prms /root/prms
 
-# build PRMS
-RUN cd /usr/local/src/prms && ./configure && make
+# TODO: build PRMS; but first, in PRMS 5.x, we need to upgrade PRMS
+#       Autotools' scripts:
+#
+# configure: error: in `/usr/local/src/prms/mmf':
+# configure: error: The pkg-config script could not be found or is too
+# old.  Make sure it is in your PATH or set the PKG_CONFIG environment
+# variable to the full path to pkg-config.
+#
+# Alternatively, you may set the environment variables CHECK_CFLAGS
+# and CHECK_LIBS to avoid the need to call pkg-config.  See the
+# pkg-config man page for more details.
+# 
+# To get pkg-config, see <http://pkg-config.freedesktop.org/>.  See
+# `config.log' for more details configure: error: ./configure failed
+# for mmf
 
 # ...and remain running
 CMD ["sleep", "infinity"]
