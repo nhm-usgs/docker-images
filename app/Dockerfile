@@ -43,6 +43,15 @@ COPY .bashrc /root
 # clone PRMS 6.x source
 RUN cd /usr/local/src && \
     git clone https://code.usgs.gov/pnorton/prms6.git
+RUN cd /usr/local/src/prms6 && git pull
+
+# Git repo. configuration
+# TODO: make this an overridable default
+RUN cd /usr/local/src/prms6 && \
+	git config --global user.email ashalper@usgs.gov && \
+	git config --global user.name "Andrew Halper"
+RUN cd /usr/local/src/prms6 && \
+	git config --global push.default simple
 
 # Fortran unit testing tools
 RUN wget -O /usr/local/src/fruit_3.4.3.zip \
