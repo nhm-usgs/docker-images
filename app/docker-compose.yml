@@ -1,4 +1,4 @@
-version: '2.3'
+version: '2'
 services:
   prms:
     build: .
@@ -7,11 +7,11 @@ services:
     container_name: prms
     volumes:
      - .:/var/lib/nhm
-  onhm-fetcher-parser:
+  ofp:
     build: .
-    image: nhdusgs/onhm-fetcher-parser
-    hostname: onhm-fetcher-parser
-    container_name: onhm-fetcher-parser
+    image: nhdusgs/ofp
+    hostname: ofp
+    container_name: ofp
     volumes:
      - .:/var/lib/nhm
 volumes:
