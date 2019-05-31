@@ -10,6 +10,8 @@ To run the app, run:
 docker-compose up --build
 ```
 
+in this directory (the `app` directory). The Jupyter notebook can be found at [http://0.0.0.0:8888/notebooks/Proto_ONHM_runner_python_3.ipynb](http://0.0.0.0:8888/notebooks/Proto_ONHM_runner_python_3.ipynb).
+
 # Logging in to the Container
 
 To login to the running container, run:
