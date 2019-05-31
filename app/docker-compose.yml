@@ -5,6 +5,8 @@ services:
     image: nhmusgs/prms
     hostname: prms
     container_name: prms
+    ports:
+     - "8888:8888"
     volumes:
      - .:/var/lib/nhm
   ofp:
