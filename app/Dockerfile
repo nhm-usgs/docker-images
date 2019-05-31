@@ -9,8 +9,9 @@ RUN apt-get update
 # upgrade any CentOS installed packages updates
 RUN apt-get -y upgrade
 
-# install additional development packages
-RUN apt-get -y install gcc gfortran git make procps unzip wget -y
+# install additional packages
+RUN apt-get -y install gcc gfortran git jupyter-notebook make procps \
+                       unzip wget
 
 # clone PRMS source
 RUN cd /usr/local/src && \
