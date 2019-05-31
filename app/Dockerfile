@@ -35,9 +35,9 @@ RUN gem install funit
 # install custom .bashrc file
 COPY .bashrc /root
 
-# clone PRMS 5.x source
+# clone PRMS 6.x source
 RUN cd /usr/local/src && \
-    git clone -b 5.0.0_rc https://github.com/nhm-usgs/prms.git
+    git clone https://code.usgs.gov/pnorton/prms6.git
 
 # Fortran unit testing tools
 RUN wget -O /usr/local/src/fruit_3.4.3.zip \
@@ -48,10 +48,10 @@ RUN cd /usr/local/src/fruit_3.4.3/fruit_processor_gem && \
   rake install
 
 # "convenience" soft link
-RUN ln -s /usr/local/src/prms /root/prms
+RUN ln -s /usr/local/src/prms6 /root/prms
 
 # build PRMS
-RUN cd /usr/local/src/prms && make
+RUN cd /usr/local/src/prms6 && make
 
 # ...and remain running
 CMD ["sleep", "infinity"]
