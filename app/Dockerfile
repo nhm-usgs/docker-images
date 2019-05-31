@@ -1,19 +1,16 @@
-# using Miniconda 3 as the base image...
-FROM continuumio/miniconda3:latest
+# using Minimal Jupyter Notebook Stack...
+FROM jupyter/minimal-notebook:latest
 LABEL maintainer="ashalper@usgs.gov"
-WORKDIR /root
+USER root
 
 # ...check for any Debian, installed packages updates
 RUN apt-get update
 
-# upgrade any CentOS installed packages updates
+# upgrade any Debian, installed packages updates
 RUN apt-get -y upgrade
 
-# install additional packages
-RUN apt-get -y install dialog gcc gfortran git \
-                       jupyter-nbextension-jupyter-js-widgets \
-                       jupyter-notebook make procps python-notebook \
-                       unzip wget
+# install GFortran
+RUN apt-get -y install gfortran
 
 # clone PRMS source
 RUN cd /usr/local/src && \
