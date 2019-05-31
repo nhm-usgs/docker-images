@@ -1,18 +1,16 @@
-# using CentOS as the base image...
-FROM centos
+# using Miniconda 3 as the base image...
+FROM continuumio/miniconda3:latest
 LABEL maintainer="ashalper@usgs.gov"
 WORKDIR /root
 
-# ...check for any CentOS installed packages updates; exit cleanly for
-# the benefit of Docker
-RUN yum check-update; exit 0
+# ...check for any Debian, installed packages updates
+RUN apt-get update
 
 # upgrade any CentOS installed packages updates
-RUN yum upgrade -y
+RUN apt-get -y upgrade
 
 # install additional development packages
-RUN yum install centos-release-scl gcc gcc-gfortran git make unzip \
-    which wget -y
+RUN apt-get -y install gcc gfortran git make procps unzip wget -y
 
 # clone PRMS source
 RUN cd /usr/local/src && \
