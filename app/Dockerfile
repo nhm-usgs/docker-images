@@ -12,13 +12,17 @@ RUN yum upgrade -y
 
 # install additional development packages
 RUN yum install -y \
+    automake \
     centos-release-scl \
+    check \
+    check-devel \
     dos2unix \
     emacs-nox \
     file \
     gcc \
     gcc-c++ \
     gcc-gfortran \
+    gdb \
     git \
     graphviz \
     make \
@@ -30,6 +34,7 @@ RUN yum install -y \
     unzip \
     wget \
     which
+# fUnit installs via gem
 RUN gem install funit
       
 # install custom .bashrc file
