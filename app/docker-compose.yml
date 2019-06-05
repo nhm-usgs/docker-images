@@ -1,5 +1,12 @@
 version: '2'
 services:
+  ofp:
+    build: .
+    image: nhmusgs/ofp
+    hostname: ofp
+    container_name: ofp
+    volumes:
+     - hru:/var/lib/nhm/hru
   prms:
     build: .
     image: nhmusgs/prms
@@ -8,13 +15,6 @@ services:
     ports:
      - "8888:8888"
     volumes:
-     - .:/var/lib/nhm
-  ofp:
-    build: .
-    image: nhmusgs/ofp
-    hostname: ofp
-    container_name: ofp
-    volumes:
-     - .:/var/lib/nhm
+     - hru:/var/lib/nhm/hru
 volumes:
-     .:
+     hru:
