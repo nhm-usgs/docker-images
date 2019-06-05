@@ -1,4 +1,4 @@
-version: '2'
+version: "3.2"
 services:
   ofp:
     build: .
@@ -6,15 +6,21 @@ services:
     hostname: ofp
     container_name: ofp
     volumes:
-     - hru:/var/lib/nhm/hru
+     - nhm:/var/lib/nhm
   prms:
     build: .
     image: nhmusgs/prms
     hostname: prms
     container_name: prms
-    ports:
-     - "8888:8888"
     volumes:
-     - hru:/var/lib/nhm/hru
+     - nhm:/var/lib/nhm
+
+# See
+# https://forums.docker.com/t/how-to-mount-nfs-drive-in-container-simplest-way/46699
 volumes:
-     hru:
+  nhm:
+    driver: local
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.168.0.10,nolock,soft,rw"
+      device: ":/var/lib/nhm"
