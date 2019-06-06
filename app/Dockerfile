@@ -12,8 +12,18 @@ RUN apt-get -y upgrade
 # install additional packages
 RUN apt-get -y install dialog gcc gfortran git make procps unzip wget
 
+# create the Conda environment
+RUN wget -P /root \
+    https://raw.githubusercontent.com/nhm-usgs/ofp-docker/master/app/environment.yml
+RUN conda update -n base conda -y && conda env update
+RUN rm -f /root/environment.yml
+
 # create ofp shapefiles directory
 RUN mkdir -p /var/lib/nhm/hru
+
+# clone ofp source
+RUN cd /usr/local/src && git clone --depth=1 \
+    https://github.com/nhm-usgs/onhm-fetcher-parser.git ofp
 
 # clone PRMS source
 RUN cd /usr/local/src && \
