@@ -36,5 +36,8 @@ RUN cd /usr/local/src/prms && make
 RUN cd /usr/local/src && \
     git clone -b develop https://github.com/nhm-usgs/onhm-runners.git
 
+# controller script
+ADD nhm /usr/local/bin
+
 # ...and remain running
 CMD ["sleep", "infinity"]
