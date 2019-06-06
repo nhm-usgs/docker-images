@@ -18,8 +18,8 @@ RUN wget -P /root \
 RUN conda update -n base conda -y && conda env update
 RUN rm -f /root/environment.yml
 
-# create ofp shapefiles directory
-RUN mkdir -p /var/lib/nhm/hru
+# create NHM directory under /var/lib
+RUN mkdir -p /var/lib/nhm/ofp
 
 # clone ofp source
 RUN cd /usr/local/src && git clone --depth=1 \
@@ -35,6 +35,9 @@ RUN cd /usr/local/src/prms && make
 # clone onhm-runners source
 RUN cd /usr/local/src && \
     git clone -b develop https://github.com/nhm-usgs/onhm-runners.git
+
+# controller script
+ADD nhm /usr/local/bin
 
 # ...and remain running
 CMD ["sleep", "infinity"]
