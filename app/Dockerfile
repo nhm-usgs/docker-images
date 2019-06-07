@@ -33,9 +33,19 @@ RUN cd /usr/local/src && \
 # build PRMS
 RUN cd /usr/local/src/prms && make
 
-# clone onhm-runners source
+# onhm-runners source
 RUN cd /usr/local/src && \
     git clone -b develop https://github.com/nhm-usgs/onhm-runners.git
+
+# onhm-verify-eval source
+RUN cd /usr/local/src && \
+    git clone https://github.com/nhm-usgs/onhm-verify-eval.git
+
+# convenience soft-links
+RUN ln -s /usr/local/src/onhm-fetcher-parser /root/onhm-fetcher-parser
+RUN ln -s /usr/local/src/prms /root/prms
+RUN ln -s /usr/local/src/onhm-runners /root/onhm-runners
+RUN ln -s /usr/local/src/onhm-verify-eval /root/onhm-verify-eval
 
 # controller script
 ADD nhm /usr/local/bin
