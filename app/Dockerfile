@@ -18,12 +18,13 @@ RUN wget -P /root \
 RUN conda update -n base conda -y && conda env update
 RUN rm -f /root/environment.yml
 
-# create NHM directory under /var/lib
-RUN mkdir -p /var/lib/nhm/ofp
+# create NHM directories under /var/lib
+RUN mkdir -p /var/lib/nhm/ofp/Data
+RUN mkdir -p /var/lib/nhm/ofp/Output
 
 # clone ofp source
-RUN cd /usr/local/src && git clone --depth=1 \
-    https://github.com/nhm-usgs/onhm-fetcher-parser.git ofp
+RUN cd /usr/local/src && git clone -b ashalper --depth=1 \
+    https://github.com/ashalper-usgs/onhm-fetcher-parser.git
 
 # clone PRMS source
 RUN cd /usr/local/src && \
