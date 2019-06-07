@@ -1,18 +1,17 @@
-version: '2'
+version: "3.2"
 services:
-  prms:
-    build: .
-    image: nhmusgs/prms
-    hostname: prms
-    container_name: prms
-    volumes:
-     - .:/var/lib/nhm
   ofp:
     build: .
     image: nhmusgs/ofp
     hostname: ofp
     container_name: ofp
     volumes:
-     - .:/var/lib/nhm
+     - nhm:/var/lib/nhm
+  prms:
+    build: .
+    image: nhmusgs/prms
+    hostname: prms
+    container_name: prms
 volumes:
-     .:
+  nhm:
+    driver: local
