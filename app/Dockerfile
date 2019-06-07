@@ -35,7 +35,7 @@ RUN cd /usr/local/src/prms && make
 
 # onhm-runners source
 RUN cd /usr/local/src && \
-    git clone -b develop https://github.com/nhm-usgs/onhm-runners.git
+    git clone -b develop https://github.com/ashalper-usgs/onhm-runners.git
 
 # onhm-verify-eval source
 RUN cd /usr/local/src && \
