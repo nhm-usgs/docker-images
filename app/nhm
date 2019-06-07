@@ -1,0 +1,39 @@
+#! /bin/sh
+#
+#  File - nhm
+#
+#  Purpose - Controller script for National Hydrologic Model (NHM).
+#
+#  Author - Andrew Halper
+#
+
+update () {
+    for suffix in dbf prj sbn shp shp.xml shx; do
+	if [ ! -f "/var/lib/nhm/ofp/Data/$name.$suffix" ]; then
+	    cd /var/lib/nhm/ofp/Data && curl --compressed --remote-name-all \
+      "ftp://ftpext.usgs.gov/pub/cr/co/lakewood/nhm_hru_shp/Data/$name.$suffix"
+	fi
+    done
+}
+
+# download ofp HRU shapefiles, if not present
+
+i=1
+while [ "$i" -le 9 ]; do
+    name=`printf "nhru_%02d" "$i"`
+    update
+    i=`expr $i + 1`
+done
+
+# irregular file names
+for x in L U; do
+    name="nhru_10$x"
+    update
+done
+
+i=11
+while [ "$i" -le 18 ]; do
+    name=`printf "nhru_%d" "$i"`
+    update
+    i=`expr $i + 1`
+done
