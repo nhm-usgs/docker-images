@@ -46,6 +46,7 @@ RUN ln -s /usr/local/src/onhm-fetcher-parser /root/onhm-fetcher-parser
 RUN ln -s /usr/local/src/prms /root/prms
 RUN ln -s /usr/local/src/onhm-runners /root/onhm-runners
 RUN ln -s /usr/local/src/onhm-verify-eval /root/onhm-verify-eval
+RUN ln -s /var/lib/nhm /root/nhm
 
 # controller script
 ADD nhm /usr/local/bin
