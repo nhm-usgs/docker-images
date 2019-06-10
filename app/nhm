@@ -37,3 +37,6 @@ while [ "$i" -le 18 ]; do
     update
     i=`expr $i + 1`
 done
+
+# TODO: should only be relevant in development
+sleep infinity

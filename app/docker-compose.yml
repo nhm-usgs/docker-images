@@ -7,6 +7,7 @@ services:
     container_name: ofp
     volumes:
      - nhm:/var/lib/nhm
+    entrypoint: /usr/local/bin/nhm
   prms:
     build: .
     image: nhmusgs/prms
