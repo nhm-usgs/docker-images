@@ -38,18 +38,22 @@ while [ "$i" -le 18 ]; do
     i=`expr $i + 1`
 done
 
-conus=\
-"ftp://ftpint.usgs.gov/pub/cr/co/denver/BRR-CR/pub/markstro/NHM-PRMS_CONUS.zip"
-if [ ! -f "$conus" ]; then
+# if PRMS workspace not present...
+if [ ! -d /var/lib/nhm/NHM-PRMS_CONUS ]; then
+    # ...download it
+    conus=\
+'ftp://ftpint.usgs.gov/pub/cr/co/denver/BRR-CR/pub/markstro/NHM-PRMS_CONUS.zip'
     # download this with wget because it's simpler for only one file
-    wget -O "/var/lib/nhm/NHM-PRMS_CONUS.zip" "$conus" &
+    wget -O /var/lib/nhm/NHM-PRMS_CONUS.zip "$conus" &
 fi
 
 wait				# ...for downloads to complete
 
 # if download of the archive succeeded...
-if [ -f "/var/lib/nhm/NHM-PRMS_CONUS.zip" ]; then
-    cd /var/lib/nhm && unzip NHM-PRMS_CONUS # ...uncompress
+file=`file -b /var/lib/nhm/NHM-PRMS_CONUS.zip`
+if [ "$file" = 'Zip archive data, at least v2.0 to extract' ]; then
+    cd /var/lib/nhm && unzip -o NHM-PRMS_CONUS # ...uncompress
+    rm -f /var/lib/nhm/NHM-PRMS_CONUS.zip
 fi
 
 # TODO: should only be relevant in development
