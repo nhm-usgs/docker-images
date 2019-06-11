@@ -50,6 +50,7 @@ RUN ln -s /var/lib/nhm /root/nhm
 
 # controller script
 ADD nhm /usr/local/bin
+RUN chmod 744 /usr/local/bin/nhm
 
 # ...and remain running
 CMD ["sleep", "infinity"]
