@@ -23,8 +23,10 @@ RUN mkdir -p /var/lib/nhm/ofp/Data
 RUN mkdir -p /var/lib/nhm/ofp/Output
 
 # clone ofp source
-RUN cd /usr/local/src && git clone -b ashalper --depth=1 \
-    https://github.com/ashalper-usgs/onhm-fetcher-parser.git
+RUN pwd
+RUN printenv
+RUN cd /usr/local/src && git clone --depth=1 \
+    https://github.com/nhm-usgs/onhm-fetcher-parser.git
 
 # clone PRMS source
 RUN cd /usr/local/src && \
@@ -47,6 +49,11 @@ RUN ln -s /usr/local/src/prms /root/prms
 RUN ln -s /usr/local/src/onhm-runners /root/onhm-runners
 RUN ln -s /usr/local/src/onhm-verify-eval /root/onhm-verify-eval
 RUN ln -s /var/lib/nhm /root/nhm
+
+# ofp script
+RUN printenv
+ADD ofp.sh /usr/local/bin
+RUN chmod 744 /usr/local/bin/ofp.sh
 
 # controller script
 ADD nhm /usr/local/bin

@@ -5,8 +5,10 @@ services:
     image: nhmusgs/ofp
     hostname: ofp
     container_name: ofp
+    environment:
+      - days=60
     volumes:
-     - nhm:/var/lib/nhm
+      - nhm:/var/lib/nhm
     entrypoint: /usr/local/bin/nhm
   prms:
     build: .
