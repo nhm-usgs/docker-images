@@ -19,12 +19,11 @@ RUN conda update -n base conda -y && conda env update
 RUN rm -f /root/environment.yml
 
 # create NHM directories under /var/lib
-RUN mkdir -p /var/lib/nhm/ofp/Data
+#RUN mkdir -p /var/lib/nhm/ofp/Data
 RUN mkdir -p /var/lib/nhm/ofp/Output
 
 # clone ofp source
 RUN pwd
-RUN printenv
 RUN cd /usr/local/src && git clone --depth=1 \
     https://github.com/nhm-usgs/onhm-fetcher-parser.git
 
@@ -52,8 +51,8 @@ RUN ln -s /var/lib/nhm /root/nhm
 
 # ofp script
 RUN printenv
-ADD ofp.sh /usr/local/bin
-RUN chmod 744 /usr/local/bin/ofp.sh
+ADD ofp /usr/local/bin
+RUN chmod 744 /usr/local/bin/ofp
 
 # controller script
 ADD nhm /usr/local/bin

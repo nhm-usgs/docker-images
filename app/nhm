@@ -13,10 +13,8 @@ if [ ! -e /var/lib/nhm/ofp/Data/hru_uofimetdata_weights.csv ]; then
     wget -P /var/lib/nhm/ofp \
       ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/Data_hru_shp.tar.gz
 	cd /var/lib/nhm/ofp && tar -xvzf Data_hru_shp.tar.gz
-    mv nhm_hur_data/*.* Data/.
-    rm nhm_hur_data/
+    mv nhm_hru_data Data
 	rm -f /var/lib/nhm/ofp/Data_hru_shp.tar.gz
-    fi
 fi
 
 # if PRMS workspace is not present...
