@@ -8,13 +8,13 @@
 #
 
 # if ofp, HRU shapefiles are not present...
-if [ ! -d /var/lib/nhm/ofp/Data ]; then
+if [ ! -e /var/lib/nhm/ofp/Data/hru_uofimetdata_weights.csv ]; then
     # ...download them
     wget -P /var/lib/nhm/ofp \
       ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/Data_hru_shp.tar.gz
-
-    if [ ! -d /var/lib/nhm/ofp/Data ]; then
 	cd /var/lib/nhm/ofp && tar -xvzf Data_hru_shp.tar.gz
+    mv nhm_hur_data/*.* Data/.
+    rm nhm_hur_data/
 	rm -f /var/lib/nhm/ofp/Data_hru_shp.tar.gz
     fi
 fi
