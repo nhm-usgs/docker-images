@@ -18,9 +18,8 @@ RUN wget -P /root \
 RUN conda update -n base conda -y && conda env update
 RUN rm -f /root/environment.yml
 
-# create NHM directories under /var/lib
-RUN mkdir -p /var/lib/nhm/ofp/Data
-RUN mkdir -p /var/lib/nhm/ofp/Output
+# create ofp directory under /var/lib
+RUN mkdir -p /var/lib/nhm/ofp
 
 # clone ofp source
 RUN cd /usr/local/src && git clone -b ashalper --depth=1 \
