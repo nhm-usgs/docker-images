@@ -15,6 +15,7 @@ if [ ! -d /var/lib/nhm/ofp/Data ]; then
 
     if [ ! -d /var/lib/nhm/ofp/Data ]; then
 	cd /var/lib/nhm/ofp && tar -xvzf Data_hru_shp.tar.gz
+	rm -f /var/lib/nhm/ofp/Data_hru_shp.tar.gz
     fi
 fi
 
