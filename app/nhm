@@ -7,33 +7,33 @@
 #  Author - Andrew Halper
 #
 
-update () {
-    for suffix in dbf prj sbn shp shp.xml shx; do
-	if [ ! -f "/var/lib/nhm/ofp/Data/$name.$suffix" ]; then
-	    cd /var/lib/nhm/ofp/Data && curl --compressed --remote-name-all \
-      "ftp://ftpext.usgs.gov/pub/cr/co/lakewood/nhm_hru_shp/Data/$name.$suffix"
-	fi
-    done
-}
+# if ofp, HRU shapefiles are not present...
+if [ ! -d /var/lib/nhm/ofp/Data ]; then
+    # ...download them
+    wget -P /var/lib/nhm/ofp \
+      ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/Data_hru_shp.tar.gz
 
-# download ofp HRU shapefiles, if not present
+    if [ ! -d /var/lib/nhm/ofp/Data ]; then
+	cd /var/lib/nhm/ofp && tar -xvzf Data_hru_shp.tar.gz
+	rm -f /var/lib/nhm/ofp/Data_hru_shp.tar.gz
+    fi
+fi
 
-i=1
-while [ "$i" -le 9 ]; do
-    name=`printf "nhru_%02d" "$i"`
-    update
-    i=`expr $i + 1`
-done
+# if PRMS workspace is not present...
+if [ ! -d /var/lib/nhm/NHM-PRMS_CONUS ]; then
+    # ...download it
+    wget -P /var/lib/nhm "$conus" \
+ ftp://ftpint.usgs.gov/pub/cr/co/denver/BRR-CR/pub/markstro/NHM-PRMS_CONUS.zip
 
-# irregular file names
-for x in L U; do
-    name="nhru_10$x"
-    update
-done
+    # if download of the archive succeeded...
+    file=`file -b /var/lib/nhm/NHM-PRMS_CONUS.zip`
+    if [ "$file" = 'Zip archive data, at least v2.0 to extract' ]; then
+	cd /var/lib/nhm && unzip -o NHM-PRMS_CONUS # ...uncompress
+	rm -f /var/lib/nhm/NHM-PRMS_CONUS.zip
+    fi
+fi
 
-i=11
-while [ "$i" -le 18 ]; do
-    name=`printf "nhru_%d" "$i"`
-    update
-    i=`expr $i + 1`
-done
+# TODO: run ofp
+
+# TODO: should only be relevant in development
+sleep infinity

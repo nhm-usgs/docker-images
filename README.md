@@ -5,4 +5,4 @@ Code to build National Hydrologic Model, Docker images.
 The base Docker image is currently [Anaconda](https://hub.docker.com/r/continuumio/anaconda3).
 
 # Source Code Directory
-Source code is installed under `/usr/local/src`. Currently, this is [onhm-fetcher-parser](https://github.com/nhm-usgs/onhm-fetcher-parser), [onhm-runners](https://github.com/nhm-usgs/onhm-runners), and [PRMS](https://github.com/nhm-usgs/prms).
+Source code is installed under `/usr/local/src`. Currently, this is [onhm-fetcher-parser](https://github.com/nhm-usgs/onhm-fetcher-parser), [onhm-runners](https://github.com/nhm-usgs/onhm-runners), [onhm-verify-eval](https://github.com/nhm-usgs/onhm-verify-eval), and [PRMS](https://github.com/nhm-usgs/prms).
