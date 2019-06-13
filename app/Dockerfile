@@ -22,7 +22,6 @@ RUN rm -f /root/environment.yml
 RUN mkdir -p /var/lib/nhm/ofp/Output
 
 # clone ofp source
-RUN pwd
 RUN cd /usr/local/src && git clone --depth=1 \
     https://github.com/nhm-usgs/onhm-fetcher-parser.git
 
@@ -48,9 +47,8 @@ RUN ln -s /usr/local/src/onhm-runners /root/onhm-runners
 RUN ln -s /usr/local/src/onhm-verify-eval /root/onhm-verify-eval
 RUN ln -s /var/lib/nhm /root/nhm
 
-# ofp script
-RUN printenv
-ADD ofp /usr/local/bin
+# ofp scrip
+ADD ofp /usrt/local/bin
 RUN chmod 744 /usr/local/bin/ofp
 
 # controller script

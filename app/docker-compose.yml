@@ -6,7 +6,7 @@ services:
     hostname: ofp
     container_name: ofp
     environment:
-      - DAYS=60
+      - NUMDAYS=60
     volumes:
       - nhm:/var/lib/nhm
     entrypoint: /usr/local/bin/nhm
