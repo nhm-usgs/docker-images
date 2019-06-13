@@ -8,13 +8,18 @@
 #
 
 # if ofp, HRU shapefiles are not present...
-if [ ! -e /var/lib/nhm/ofp/Data/hru_uofimetdata_weights.csv ]; then
-    # ...download them
-    wget -P /var/lib/nhm/ofp \
-      ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/Data_hru_shp.tar.gz
-	cd /var/lib/nhm/ofp && tar -xvzf Data_hru_shp.tar.gz
+
+if [ ! -f /var/lib/nhm/ofp/Data/hru_uofimetdata_weights.csv ]; then
+    pwd=`pwd`
+    cd /var/lib/nhm/ofp
+    # ...download archive
+    wget \
+     ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/Data_hru_shp.tar.gz
+    # uncompress archive
+    tar -xvzf Data_hru_shp.tar.gz
     mv nhm_hru_data Data
-	rm -f /var/lib/nhm/ofp/Data_hru_shp.tar.gz
+    rm -f Data_hru_shp.tar.gz
+    cd "$pwd"
 fi
 
 # if PRMS workspace is not present...
@@ -31,7 +36,10 @@ if [ ! -d /var/lib/nhm/NHM-PRMS_CONUS ]; then
     fi
 fi
 
-# TODO: run ofp
-
-# TODO: should only be relevant in development
-sleep infinity
+if [ -n "$NUMDAYS" ]; then
+    # run ofp
+    python /usr/local/src/onhm-fetcher-parser/pkg/onhm_fp_script.py \
+	   -d "$NUMDAYS"
+else
+    sleep infinity
+fi

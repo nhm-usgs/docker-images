@@ -1,2 +1,5 @@
 #!/opt/conda/bin/python
-python onhm-fetcher-parser/pkg/onhm_fp_script.py -d"$DAYS" -i'/../../../var/lib/nhm/ofp/Data' -o'../Ouput'
+python onhm-fetcher-parser/pkg/onhm_fp_script.py -d"$DAYS" -i'/../../../var/lib/nhm/ofp/Data' -o'../Output'
+
+
+
