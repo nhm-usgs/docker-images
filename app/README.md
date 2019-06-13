@@ -24,5 +24,5 @@ and you should end up in a bash shell inside the running container as `root`.
 # To change the number of days pass the variable to the docker run command as follows
 
 ```bash
-docker run -e DAYS=60
+docker run -e NUMDAYS=60
 ```
