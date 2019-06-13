@@ -10,7 +10,7 @@ RUN apt-get update
 RUN apt-get -y upgrade
 
 # install additional packages
-RUN apt-get -y install dialog file gcc gfortran git make procps unzip wget
+RUN apt-get -y install dialog file gcc gfortran git make procps unzip wget vim
 
 # create the Conda environment
 RUN wget -P /root \
@@ -22,7 +22,6 @@ RUN rm -f /root/environment.yml
 RUN mkdir -p /var/lib/nhm/ofp/Output
 
 # clone ofp source
-RUN pwd
 RUN printenv
 RUN cd /usr/local/src && git clone --depth=1 \
     https://github.com/nhm-usgs/onhm-fetcher-parser.git
@@ -50,9 +49,8 @@ RUN ln -s /usr/local/src/onhm-verify-eval /root/onhm-verify-eval
 RUN ln -s /var/lib/nhm /root/nhm
 
 # ofp script
-RUN printenv
-ADD ofp.sh /usr/local/bin
-RUN chmod 744 /usr/local/bin/ofp.sh
+ADD ofp /usr/local/bin
+RUN chmod 744 /usr/local/bin/ofp
 
 # controller script
 ADD nhm /usr/local/bin

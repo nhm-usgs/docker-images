@@ -8,6 +8,7 @@
 #
 
 # if ofp, HRU shapefiles are not present...
+
 if [ ! -f /var/lib/nhm/ofp/Data/hru_uofimetdata_weights.csv ]; then
     pwd=`pwd`
     cd /var/lib/nhm/ofp
@@ -36,9 +37,8 @@ if [ ! -d /var/lib/nhm/NHM-PRMS_CONUS ]; then
 fi
 
 if [ -n "$NUMDAYS" ]; then
-    # run ofp
-    python /usr/local/src/onhm-fetcher-parser/pkg/onhm_fp_script.py \
-	   -d "$NUMDAYS"
+    cd "$HOME"
+    /usr/local/bin/ofp
 else
     sleep infinity
 fi
