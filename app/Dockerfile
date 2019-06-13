@@ -34,6 +34,7 @@ RUN cd /usr/local/src && \
 RUN cd /usr/local/src/prms && make
 
 # onhm-runners source
+# TODO: switch back to canonical repo. once PR 1 is merged
 RUN cd /usr/local/src && \
     git clone -b develop https://github.com/ashalper-usgs/onhm-runners.git
 
