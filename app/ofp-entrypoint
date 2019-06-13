@@ -1,0 +1,31 @@
+#! /bin/sh
+#
+#  File - ofp-entrypoint
+#
+#  Purpose - Docker entrypoint wrapper script for National Hydrologic
+#            Model (NHM), fetcher-parser.
+#
+#  Author - Andrew Halper
+#
+
+# if ofp, HRU shapefiles are not present...
+if [ ! -f /var/lib/nhm/ofp/Data/hru_uofimetdata_weights.csv ]; then
+    pwd=`pwd`
+    cd /var/lib/nhm/ofp
+    # ...download archive
+    wget \
+     ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/Data_hru_shp.tar.gz
+    # uncompress archive
+    tar -xvzf Data_hru_shp.tar.gz
+    mv nhm_hru_data Data
+    rm -f Data_hru_shp.tar.gz
+    cd "$pwd"
+fi
+
+if [ -n "$DAYS" ]; then
+    # run ofp
+	python /usr/local/src/onhm-fetcher-parser/pkg/onhm_fp_script.py \
+           -d"$DAYS" -i/var/lib/nhm/ofp/Data -o/var/lib/nhm/ofp/Output
+else
+    sleep infinity
+fi

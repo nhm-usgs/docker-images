@@ -9,12 +9,13 @@ services:
       - days=60
     volumes:
       - nhm:/var/lib/nhm
-    entrypoint: /usr/local/bin/nhm
+    entrypoint: /usr/local/bin/ofp-entrypoint
   prms:
     build: .
     image: nhmusgs/prms
     hostname: prms
     container_name: prms
+    entrypoint: /usr/local/bin/prms-entrypoint
 volumes:
   nhm:
     driver: local

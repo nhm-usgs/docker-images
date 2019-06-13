@@ -49,14 +49,10 @@ RUN ln -s /usr/local/src/onhm-runners /root/onhm-runners
 RUN ln -s /usr/local/src/onhm-verify-eval /root/onhm-verify-eval
 RUN ln -s /var/lib/nhm /root/nhm
 
-# ofp script
-RUN printenv
-ADD ofp.sh /usr/local/bin
-RUN chmod 744 /usr/local/bin/ofp.sh
-
-# controller script
-ADD nhm /usr/local/bin
-RUN chmod 744 /usr/local/bin/nhm
+# entrypoint scripts
+ADD ofp-entrypoint /usr/local/bin
+ADD prms-entrypoint /usr/local/bin
+RUN cd /usr/local/bin && chmod 744 ofp-entrypoint prms-entrypoint
 
 # ...and remain running
 CMD ["sleep", "infinity"]

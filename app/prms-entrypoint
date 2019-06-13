@@ -1,0 +1,26 @@
+#! /bin/sh
+#
+#  File - prms-entrypoint
+#
+#  Purpose - Docker entrypoint script for National Hydrologic Model
+#            (NHM), PRMS model.
+#
+#  Author - Andrew Halper
+#
+
+# if PRMS workspace is not present...
+if [ ! -d /var/lib/nhm/NHM-PRMS_CONUS ]; then
+    # ...download it
+    wget -P /var/lib/nhm "$conus" \
+ ftp://ftpint.usgs.gov/pub/cr/co/denver/BRR-CR/pub/markstro/NHM-PRMS_CONUS.zip
+
+    # if download of the archive succeeded...
+    file=`file -b /var/lib/nhm/NHM-PRMS_CONUS.zip`
+    if [ "$file" = 'Zip archive data, at least v2.0 to extract' ]; then
+	cd /var/lib/nhm && unzip -o NHM-PRMS_CONUS # ...uncompress
+	rm -f /var/lib/nhm/NHM-PRMS_CONUS.zip
+    fi
+fi
+
+# TODO: call prms
+sleep infinity
