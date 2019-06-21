@@ -34,8 +34,10 @@ RUN cd /usr/local/src && \
 RUN cd /usr/local/src/prms && make
 
 # onhm-runners source
+RUN pwd  
+RUN pwd
 RUN cd /usr/local/src && \
-    git clone -b develop https://github.com/ashalper-usgs/onhm-runners.git
+    git clone -b master https://github.com/nhm-usgs/onhm-runners.git
 
 # onhm-verify-eval source
 RUN cd /usr/local/src && \
@@ -51,6 +53,10 @@ RUN ln -s /var/lib/nhm /root/nhm
 # ofp script
 ADD ofp /usr/local/bin
 RUN chmod 744 /usr/local/bin/ofp
+
+#cdf2cbh script
+ADD cdf2cbh /usr/local/bin
+RUN chmod 744 /usr/local/bin/cdf2cbh
 
 # controller script
 ADD nhm /usr/local/bin
