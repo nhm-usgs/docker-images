@@ -9,7 +9,6 @@ services:
       - NUMDAYS=60
     volumes:
       - nhm:/var/lib/nhm
-    entrypoint: /usr/local/bin/nhm
   prms:
     build: .
     image: nhmusgs/prms

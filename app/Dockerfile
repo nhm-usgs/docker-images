@@ -34,7 +34,6 @@ RUN cd /usr/local/src && \
 RUN cd /usr/local/src/prms && make
 
 # onhm-runners source
-RUN pwd  
 RUN pwd
 RUN cd /usr/local/src && \
     git clone -b master https://github.com/nhm-usgs/onhm-runners.git
@@ -59,6 +58,7 @@ ADD cdf2cbh /usr/local/bin
 RUN chmod 744 /usr/local/bin/cdf2cbh
 
 # controller script
+RUN pwd
 ADD nhm /usr/local/bin
 RUN chmod 744 /usr/local/bin/nhm
 
