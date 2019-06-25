@@ -14,6 +14,25 @@ services:
     image: nhmusgs/prms
     hostname: prms
     container_name: prms
+    volumes:
+      - nhm:/var/lib/nhm
+    entrypoint: /usr/local/bin/nhm-prms
+  out2ncf:
+    build: .
+    image: nhmusgs/out2ncf
+    hostname: out2ncf
+    container_name: out2ncf
+    volumes:
+      - nhm:/var/lib/nhm
+    entrypoint: /usr/local/bin/out2ncf
+  verifier:
+    build: .
+    image: nhmusgs/verifier
+    hostname: verifier
+    container_name: verifier
+    volumes:
+      - nhm:/var/lib/nhm
+    entrypoint: /usr/local/bin/verifier
 volumes:
   nhm:
     driver: local
