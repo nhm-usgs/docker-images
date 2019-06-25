@@ -28,7 +28,7 @@ RUN cd /usr/local/src && git clone --depth=1 \
 
 # clone PRMS source
 RUN cd /usr/local/src && \
-    git clone https://github.com/nhm-usgs/prms.git
+    git clone https://github.com/nhm-usgs/prms.git --branch 5.0.0 --depth=1
 
 # build PRMS
 RUN cd /usr/local/src/prms && make
@@ -56,6 +56,18 @@ RUN chmod 744 /usr/local/bin/ofp
 #cdf2cbh script
 ADD cdf2cbh /usr/local/bin
 RUN chmod 744 /usr/local/bin/cdf2cbh
+
+# prms script
+ADD nhm-prms /usr/local/bin
+RUN chmod 744 /usr/local/bin/nhm-prms
+
+# prms output to ncf script
+ADD out2ncf /usr/local/bin
+RUN chmod 744 /usr/local/bin/out2ncf
+
+# prms verifier script
+ADD verifier /usr/local/bin
+RUN chmod 744 /usr/local/bin/verifier
 
 # controller script
 RUN pwd
