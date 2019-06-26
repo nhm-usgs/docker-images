@@ -10,7 +10,7 @@ RUN apt-get update
 RUN apt-get -y upgrade
 
 # install additional packages
-RUN apt-get -y install dialog file gcc gfortran git make procps unzip wget vim
+RUN apt-get -y install dialog file gcc gfortran git make procps unzip wget vim unzip
 
 # create the Conda environment
 RUN wget -P /root \
@@ -23,7 +23,7 @@ RUN mkdir -p /var/lib/nhm/ofp/Output
 
 # clone ofp source
 RUN printenv
-RUN cd /usr/local/src && git clone --depth=1 \
+RUN cd /usr/local/src && git clone --depth=1 --branch v0.1.0 \
     https://github.com/nhm-usgs/onhm-fetcher-parser.git
 
 # clone PRMS source
@@ -36,11 +36,11 @@ RUN cd /usr/local/src/prms && make
 # onhm-runners source
 RUN pwd
 RUN cd /usr/local/src && \
-    git clone -b master https://github.com/nhm-usgs/onhm-runners.git
+    git clone -b master https://github.com/nhm-usgs/onhm-runners.git --branch master --depth=1
 
 # onhm-verify-eval source
 RUN cd /usr/local/src && \
-    git clone https://github.com/nhm-usgs/onhm-verify-eval.git
+    git clone https://github.com/nhm-usgs/onhm-verify-eval.git --branch 0.1.0 --depth=1
 
 # convenience soft-links
 RUN ln -s /usr/local/src/onhm-fetcher-parser /root/onhm-fetcher-parser
@@ -54,8 +54,8 @@ ADD ofp /usr/local/bin
 RUN chmod 744 /usr/local/bin/ofp
 
 #cdf2cbh script
-ADD cdf2cbh /usr/local/bin
-RUN chmod 744 /usr/local/bin/cdf2cbh
+ADD ncf2cbh /usr/local/bin
+RUN chmod 744 /usr/local/bin/ncf2cbh
 
 # prms script
 ADD nhm-prms /usr/local/bin

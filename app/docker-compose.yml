@@ -1,5 +1,13 @@
 version: "3.2"
 services:
+  build_volume:
+    build: .
+    image: nhmusgs/build_volume
+    hostname: build_volume
+    container_name: build_volume
+    volumes:
+      - nhm:/var/lib/nhm
+    entrypoint: /usr/local/bin/nhm
   ofp:
     build: .
     image: nhmusgs/ofp
@@ -9,6 +17,15 @@ services:
       - NUMDAYS=60
     volumes:
       - nhm:/var/lib/nhm
+    entrypoint: /usr/local/bin/ofp
+  ncf2cbh:
+    build: .
+    image: nhmusgs/ncf2cbh
+    hostname: ncf2cbh
+    container_name: ncf2cbh
+    volumes:
+      - nhm:/var/lib/nhm
+    entrypoint: /usr/local/bin/ncf2cbh
   prms:
     build: .
     image: nhmusgs/prms
