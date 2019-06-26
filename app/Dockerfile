@@ -36,7 +36,7 @@ RUN cd /usr/local/src/prms && make
 # onhm-runners source
 RUN pwd
 RUN cd /usr/local/src && \
-    git clone -b master https://github.com/nhm-usgs/onhm-runners.git --branch master --depth=1
+    git clone -b master https://github.com/nhm-usgs/onhm-runners.git --branch 0.1.1 --depth=1
 
 # onhm-verify-eval source
 RUN cd /usr/local/src && \

@@ -26,11 +26,11 @@ services:
     volumes:
       - nhm:/var/lib/nhm
     entrypoint: /usr/local/bin/ncf2cbh
-  prms:
+  nhm-prms:
     build: .
-    image: nhmusgs/prms
-    hostname: prms
-    container_name: prms
+    image: nhmusgs/nhm-prms
+    hostname: nhm-prms
+    container_name: nhm-prms
     volumes:
       - nhm:/var/lib/nhm
     entrypoint: /usr/local/bin/nhm-prms

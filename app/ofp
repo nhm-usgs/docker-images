@@ -1,4 +1,4 @@
 #!/bin/bash
-/opt/conda/bin/python onhm-fetcher-parser/pkg/onhm_fp_script.py -d"$NUMDAYS" -i/../var/lib/nhm/ofp/Data -o../Output
+/opt/conda/bin/python onhm-fetcher-parser/pkg/onhm_fp_script.py -d"$NUMDAYS" -i/../var/lib/nhm/ofp/Data -o../Output > ofp.log 2>&1
 
 
