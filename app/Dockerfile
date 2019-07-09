@@ -10,7 +10,7 @@ RUN apt-get update
 RUN apt-get -y upgrade
 
 # install additional packages
-RUN apt-get -y install dialog file gcc gfortran git make procps unzip wget vim
+RUN apt-get -y install dialog emacs-nox file gcc gfortran git make procps unzip wget vim
 
 # create the Conda environment
 RUN wget -P /root \
