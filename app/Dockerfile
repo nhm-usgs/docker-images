@@ -10,7 +10,7 @@ RUN apt-get update
 RUN apt-get -y upgrade
 
 # install additional packages
-RUN apt-get -y install dialog emacs-nox file gcc gfortran git make procps unzip wget vim
+RUN apt-get -y install dialog emacs-nox file gcc gfortran git make procps unzip vim wget
 
 # create the Conda environment
 RUN wget -P /root \
@@ -23,23 +23,24 @@ RUN mkdir -p /var/lib/nhm/ofp/Output
 
 # clone ofp source
 RUN printenv
-RUN cd /usr/local/src && git clone --depth=1 \
+RUN cd /usr/local/src && git clone --depth=1 --branch v0.1.0 \
     https://github.com/nhm-usgs/onhm-fetcher-parser.git
 
 # clone PRMS source
 RUN cd /usr/local/src && \
-    git clone https://github.com/nhm-usgs/prms.git
+    git clone https://github.com/nhm-usgs/prms.git --branch 5.0.0 --depth=1
 
 # build PRMS
 RUN cd /usr/local/src/prms && make
 
 # onhm-runners source
+RUN pwd
 RUN cd /usr/local/src && \
-    git clone -b develop https://github.com/ashalper-usgs/onhm-runners.git
+    git clone https://github.com/nhm-usgs/onhm-runners.git --branch 0.1.1 --depth=1
 
 # onhm-verify-eval source
 RUN cd /usr/local/src && \
-    git clone https://github.com/nhm-usgs/onhm-verify-eval.git
+    git clone https://github.com/nhm-usgs/onhm-verify-eval.git --branch 0.1.0 --depth=1
 
 # convenience soft-links
 RUN ln -s /usr/local/src/onhm-fetcher-parser /root/onhm-fetcher-parser
@@ -52,7 +53,24 @@ RUN ln -s /var/lib/nhm /root/nhm
 ADD ofp /usr/local/bin
 RUN chmod 744 /usr/local/bin/ofp
 
+#cdf2cbh script
+ADD ncf2cbh /usr/local/bin
+RUN chmod 744 /usr/local/bin/ncf2cbh
+
+# prms script
+ADD nhm-prms /usr/local/bin
+RUN chmod 744 /usr/local/bin/nhm-prms
+
+# prms output to ncf script
+ADD out2ncf /usr/local/bin
+RUN chmod 744 /usr/local/bin/out2ncf
+
+# prms verifier script
+ADD verifier /usr/local/bin
+RUN chmod 744 /usr/local/bin/verifier
+
 # controller script
+RUN pwd
 ADD nhm /usr/local/bin
 RUN chmod 744 /usr/local/bin/nhm
 
