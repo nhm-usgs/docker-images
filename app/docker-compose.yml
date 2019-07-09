@@ -1,5 +1,13 @@
 version: "3.2"
 services:
+  build_volume:
+    build: .
+    image: nhmusgs/build_volume
+    hostname: build_volume
+    container_name: build_volume
+    volumes:
+      - nhm:/var/lib/nhm
+    entrypoint: /usr/local/bin/nhm
   ofp:
     build: .
     image: nhmusgs/ofp
@@ -9,12 +17,39 @@ services:
       - NUMDAYS=60
     volumes:
       - nhm:/var/lib/nhm
-    entrypoint: /usr/local/bin/nhm
-  prms:
+    entrypoint: /usr/local/bin/ofp
+  ncf2cbh:
     build: .
-    image: nhmusgs/prms
-    hostname: prms
-    container_name: prms
+    image: nhmusgs/ncf2cbh
+    hostname: ncf2cbh
+    container_name: ncf2cbh
+    volumes:
+      - nhm:/var/lib/nhm
+    entrypoint: /usr/local/bin/ncf2cbh
+  nhm-prms:
+    build: .
+    image: nhmusgs/nhm-prms
+    hostname: nhm-prms
+    container_name: nhm-prms
+    volumes:
+      - nhm:/var/lib/nhm
+    entrypoint: /usr/local/bin/nhm-prms
+  out2ncf:
+    build: .
+    image: nhmusgs/out2ncf
+    hostname: out2ncf
+    container_name: out2ncf
+    volumes:
+      - nhm:/var/lib/nhm
+    entrypoint: /usr/local/bin/out2ncf
+  verifier:
+    build: .
+    image: nhmusgs/verifier
+    hostname: verifier
+    container_name: verifier
+    volumes:
+      - nhm:/var/lib/nhm
+    entrypoint: /usr/local/bin/verifier
 volumes:
   nhm:
     driver: local

@@ -36,9 +36,9 @@ if [ ! -d /var/lib/nhm/NHM-PRMS_CONUS ]; then
     fi
 fi
 
-if [ -n "$NUMDAYS" ]; then
-    cd "$HOME"
-    /usr/local/bin/ofp
-else
-    sleep infinity
-fi
+# if [ -n "$NUMDAYS" ]; then
+#     cd "$HOME"
+#     /usr/local/bin/ofp
+# else
+#leep infinity
+# fi
