@@ -10,15 +10,21 @@ To run the app, run:
 docker-compose up --build
 ```
 
-# Logging in to the Container
+# Logging in to the Containers
 
-To login to the running container, run:
+To login to the running PRMS container, run:
 
 ```
 docker exec -it prms /bin/bash
 ```
 
-and you should end up in a bash shell inside the running container as `root`.
+To login to the running ofp container, run:
+
+```
+docker exec -it ofp /bin/bash
+```
+
+In both cases, you should end up in a bash shell inside the running container as `root`.
 
 # Climate Data Interval
 
