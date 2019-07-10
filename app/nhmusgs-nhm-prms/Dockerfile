@@ -23,4 +23,4 @@ WORKDIR /home/$USER
 RUN ln -s $SOURCE_DIR/prms $HOMEDIR/prms && \
     ln -s /var/lib/nhm $HOMEDIR/nhm
 
-CMD ["/bin/bash", "-c", "/usr/local/bin/nhm-prms"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/nhm-prms"]
