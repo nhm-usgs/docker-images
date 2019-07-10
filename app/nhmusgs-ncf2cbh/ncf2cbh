@@ -1,0 +1,4 @@
+#!/bin/bash
+/opt/conda/bin/python -u onhm-runners/ncf2cbh/ncf2cbh.py
+
+
