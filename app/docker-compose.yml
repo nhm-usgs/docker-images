@@ -8,16 +8,6 @@ services:
     volumes:
       - nhm:/var/lib/nhm
     entrypoint: /usr/local/bin/nhm
-  ofp:
-    build: .
-    image: nhmusgs/ofp
-    hostname: ofp
-    container_name: ofp
-    environment:
-      - NUMDAYS=60
-    volumes:
-      - nhm:/var/lib/nhm
-    entrypoint: /usr/local/bin/ofp
   ncf2cbh:
     build: .
     image: nhmusgs/ncf2cbh
@@ -34,6 +24,16 @@ services:
     volumes:
       - nhm:/var/lib/nhm
     entrypoint: /usr/local/bin/nhm-prms
+  ofp:
+    build: .
+    image: nhmusgs/ofp
+    hostname: ofp
+    container_name: ofp
+    environment:
+      - NUMDAYS=60
+    volumes:
+      - nhm:/var/lib/nhm
+    entrypoint: /usr/local/bin/ofp
   out2ncf:
     build: .
     image: nhmusgs/out2ncf
@@ -42,6 +42,15 @@ services:
     volumes:
       - nhm:/var/lib/nhm
     entrypoint: /usr/local/bin/out2ncf
+  thredds:
+    build: .
+    image: unidata/thredds-docker
+    hostname: thredds
+    container_name: thredds
+    ports:
+      - "127.0.0.1:8080:8080/tcp"
+    volumes:
+      - nhm:/var/lib/nhm
   verifier:
     build: .
     image: nhmusgs/verifier
