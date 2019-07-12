@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /var/lib/nhm/NHM-PRMS_CONUS;$HOMEDIR/prms/prms/prms NHM-PRMS.control
+

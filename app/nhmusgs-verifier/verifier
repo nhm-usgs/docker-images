@@ -1,0 +1,3 @@
+#!/bin/bash
+python -u ~/onhm-verify-eval/src/prms_verifier.py
+

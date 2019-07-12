@@ -1,2 +1,6 @@
 /.project
 /.pydevproject
+/.idea
+app/data/*
+!app/data/.data_files_go_here.txt
+output

@@ -1,3 +1,0 @@
-#!/bin/bash
-cd /var/lib/nhm/NHM-PRMS_CONUS;python /root/onhm-verify-eval/src/prms_verifier.py > verifier.log 2>&1
-
