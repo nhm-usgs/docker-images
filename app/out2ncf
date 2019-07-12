@@ -1,3 +1,0 @@
-#!/bin/bash
-cd /var/lib/nhm/NHM-PRMS_CONUS;python /root/onhm-runners/out2ncf/prms_outputs2_ncf.py > out2ncf.log 2>&1
-
