@@ -1,5 +1,5 @@
 # using Miniconda 3 as the base image...
-FROM continuumio/miniconda3:latest AS base
+FROM continuumio/miniconda3:latest
 
 LABEL maintainer="ashalper@usgs.gov"
 
@@ -7,7 +7,7 @@ LABEL maintainer="ashalper@usgs.gov"
 # additional packages
 RUN apt-get update && apt-get -y upgrade && \
     apt-get -y install dialog file gcc gfortran make procps unzip && \
-    apt-get autoclean && apt-get purge 
+    apt-get autoclean && apt-get purge
 
 # Update Conda
 RUN wget https://raw.githubusercontent.com/nhm-usgs/ofp-docker/master/app/environment.yml && \
