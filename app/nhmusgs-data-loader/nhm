@@ -1,0 +1,36 @@
+#! /bin/bash
+
+set -e
+
+#
+#  File - nhm
+#
+#  Purpose - Controller script for National Hydrologic Model (NHM).
+#
+#  Author - Andrew Halper
+#
+
+# if ofp, HRU shapefiles are not present...
+if [ ! -f /var/lib/nhm/ofp/Data/.complete ]; then
+    cd /var/lib/nhm/ofp
+    # ...download archive
+    wget --waitretry=3 --retry-connrefused "$HRU_SOURCE" -O Data_hru_shp.tar.gz
+    # uncompress archive
+    tar -xvzf Data_hru_shp.tar.gz
+    mv nhm_hru_data Data
+    touch /var/lib/nhm/ofp/Data/.complete
+    rm -f Data_hru_shp.tar.gz
+else
+    echo "HRU Shapefiles already loaded"
+fi
+
+# if PRMS workspace is not present...
+if [ ! -d /var/lib/nhm/NHM-PRMS_CONUS ]; then
+    cd /var/lib/nhm
+    # ...download it
+    wget --waitretry=3 --retry-connrefused "$PRMS_SOURCE" -O NHM-PRMS_CONUS.zip
+    unzip -o NHM-PRMS_CONUS
+    rm -f /var/lib/nhm/NHM-PRMS_CONUS.zip
+else
+    echo "PRMS workspace already loaded"
+fi

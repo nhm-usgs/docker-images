@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/opt/conda/bin/python -u onhm-fetcher-parser/pkg/onhm_fp_script.py -d "$NUMDAYS" -i /var/lib/nhm/ofp/Data -o /var/lib/nhm/ofp/Output

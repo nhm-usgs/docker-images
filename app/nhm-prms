@@ -1,3 +1,0 @@
-#!/bin/bash
-cd /var/lib/nhm/NHM-PRMS_CONUS;/root/prms/prms/prms NHM-PRMS.control > nhm-prms.log 2>&1
-

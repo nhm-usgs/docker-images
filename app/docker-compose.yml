@@ -1,64 +1,92 @@
-version: "3.2"
-services:
-  build_volume:
-    build: .
-    image: nhmusgs/build_volume
-    hostname: build_volume
-    container_name: build_volume
-    volumes:
-      - nhm:/var/lib/nhm
-    entrypoint: /usr/local/bin/nhm
-  ncf2cbh:
-    build: .
-    image: nhmusgs/ncf2cbh
-    hostname: ncf2cbh
-    container_name: ncf2cbh
-    volumes:
-      - nhm:/var/lib/nhm
-    entrypoint: /usr/local/bin/ncf2cbh
-  nhm-prms:
-    build: .
-    image: nhmusgs/nhm-prms
-    hostname: nhm-prms
-    container_name: nhm-prms
-    volumes:
-      - nhm:/var/lib/nhm
-    entrypoint: /usr/local/bin/nhm-prms
-  ofp:
-    build: .
-    image: nhmusgs/ofp
-    hostname: ofp
-    container_name: ofp
-    environment:
-      - NUMDAYS=60
-    volumes:
-      - nhm:/var/lib/nhm
-    entrypoint: /usr/local/bin/ofp
-  out2ncf:
-    build: .
-    image: nhmusgs/out2ncf
-    hostname: out2ncf
-    container_name: out2ncf
-    volumes:
-      - nhm:/var/lib/nhm
-    entrypoint: /usr/local/bin/out2ncf
-  thredds:
-    build: .
-    image: unidata/thredds-docker
-    hostname: thredds
-    container_name: thredds
-    ports:
-      - "127.0.0.1:8080:8080/tcp"
-    volumes:
-      - nhm:/var/lib/nhm
-  verifier:
-    build: .
-    image: nhmusgs/verifier
-    hostname: verifier
-    container_name: verifier
-    volumes:
-      - nhm:/var/lib/nhm
-    entrypoint: /usr/local/bin/verifier
+
+version: "3.7"
+
 volumes:
   nhm:
     driver: local
+
+networks:
+  nhmnet:
+
+services:
+    
+  base_image:
+    build: 
+      context: ./nhmusgs-base
+      labels:
+        - "gov.usgs.nhm.image.docker.application=NHM"
+        - "gov.usgs.nhm.image.docker.type=Base Image"
+    image: nhmusgs/base
+
+  data_loader:
+    build:
+      context: ./nhmusgs-data-loader
+      labels:
+        - "gov.usgs.nhm.image.docker.application=NHM"
+        - "gov.usgs.nhm.image.docker.type=Data Loader"
+    image: nhmusgs/data-loader
+    container_name: data-loader
+    networks:
+      nhmnet:
+    environment:
+      - HRU_SOURCE=ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/Data_hru_shp.tar.gz
+      - PRMS_SOURCE=ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/markstro/NHM-PRMS_CONUS.zip
+    volumes:
+      - nhm:/var/lib/nhm
+
+  ofp:
+    build:
+      context: ./nhmusgs-ofp
+      labels:
+        - "gov.usgs.nhm.image.docker.application=NHM"
+        - "gov.usgs.nhm.image.docker.type=OFP"
+    image: nhmusgs/ofp
+    container_name: ofp
+    environment:
+      - NUMDAYS=2
+    volumes:
+      - nhm:/var/lib/nhm
+
+  ncf2cbh:
+    build:
+      context: ./nhmusgs-ncf2cbh
+      labels:
+        - "gov.usgs.nhm.image.docker.application=NHM"
+        - "gov.usgs.nhm.image.docker.type=NCF2CBH"
+    image: nhmusgs/ncf2cbh
+    container_name: ncf2cbh
+    volumes:
+      - nhm:/var/lib/nhm
+
+  nhm-prms:
+    build:
+      context: ./nhmusgs-nhm-prms
+      labels:
+        - "gov.usgs.nhm.image.docker.application=NHM"
+        - "gov.usgs.nhm.image.docker.type=PRMS"
+    image: nhmusgs/nhm-prms
+    container_name: nhm-prms
+    volumes:
+      - nhm:/var/lib/nhm
+
+  out2ncf:
+    build:
+      context: ./nhmusgs-nhm-out2ncf
+      labels:
+        - "gov.usgs.nhm.image.docker.application=NHM"
+        - "gov.usgs.nhm.image.docker.type=OUT 2 NCF"
+    image: nhmusgs/out2ncf
+    container_name: out2ncf
+    volumes:
+      - nhm:/var/lib/nhm
+
+  verifier:
+    build:
+      context: ./nhmusgs-verifier
+      labels:
+        - "gov.usgs.nhm.image.docker.application=NHM"
+        - "gov.usgs.nhm.image.docker.type=Verifier"
+    image: nhmusgs/verifier
+    container_name: verifier
+    volumes:
+      - nhm:/var/lib/nhm
