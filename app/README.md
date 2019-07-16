@@ -10,16 +10,6 @@ To run the app, run:
 ./compose-test.sh
 ```
 
-# Logging in to the Containers
-
-To login to a running container, run:
-
-```
-docker exec -it <container-name> /bin/bash
-```
-
-You should end up in a Bash shell inside the running container as `root`.
-
 # Climate Data Interval
 
 The climate data interval is specified by the variable `NUMDAYS`. The default value is 60. To change the number of days, pass the variable to the docker `run` command as follows:
