@@ -6,24 +6,31 @@
     </packageImport>
     <packagedElement xmi:type="uml:Component" xmi:id="_DozewKi5Eem6_KQDKu-Gyw" name="ofp">
       <packagedElement xmi:type="uml:Dependency" xmi:id="_qw2VoKjXEem6_KQDKu-Gyw" client="_DozewKi5Eem6_KQDKu-Gyw" supplier="_ayFxsKi9Eem6_KQDKu-Gyw"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_VKpoQKjiEem6_KQDKu-Gyw" client="_DozewKi5Eem6_KQDKu-Gyw" supplier="_79kUkKi8Eem6_KQDKu-Gyw"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_NzJZwKjjEem6_KQDKu-Gyw" client="_DozewKi5Eem6_KQDKu-Gyw" supplier="_IyT9IKjjEem6_KQDKu-Gyw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Component" xmi:id="_FX7TAKi5Eem6_KQDKu-Gyw" name="PRMS">
       <packagedElement xmi:type="uml:Dependency" xmi:id="_FXW6MKjYEem6_KQDKu-Gyw" client="_FX7TAKi5Eem6_KQDKu-Gyw" supplier="_xOY1EKi8Eem6_KQDKu-Gyw"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_b_iccKjiEem6_KQDKu-Gyw" client="_FX7TAKi5Eem6_KQDKu-Gyw" supplier="_ayFxsKi9Eem6_KQDKu-Gyw"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_gT7CwKjiEem6_KQDKu-Gyw" client="_FX7TAKi5Eem6_KQDKu-Gyw" supplier="_79kUkKi8Eem6_KQDKu-Gyw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Component" xmi:id="_imX4QKi7Eem6_KQDKu-Gyw" name="verifier"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_imX4QKi7Eem6_KQDKu-Gyw" name="verifier">
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_7JrBYKjbEem6_KQDKu-Gyw" client="_imX4QKi7Eem6_KQDKu-Gyw" supplier="_H6zioKi9Eem6_KQDKu-Gyw"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:Component" xmi:id="_xOY1EKi8Eem6_KQDKu-Gyw" name="Raw weather data">
       <packagedElement xmi:type="uml:Dependency" xmi:id="_2RJwEKjXEem6_KQDKu-Gyw" client="_xOY1EKi8Eem6_KQDKu-Gyw" supplier="_DozewKi5Eem6_KQDKu-Gyw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Component" xmi:id="_79kUkKi8Eem6_KQDKu-Gyw" name="HRU definition"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_79kUkKi8Eem6_KQDKu-Gyw" name="Data_hru_shp.tar.gz"/>
     <packagedElement xmi:type="uml:Component" xmi:id="_H6zioKi9Eem6_KQDKu-Gyw" name="output variable">
       <packagedElement xmi:type="uml:Dependency" xmi:id="_Jq5AMKi9Eem6_KQDKu-Gyw" client="_H6zioKi9Eem6_KQDKu-Gyw" supplier="_FX7TAKi5Eem6_KQDKu-Gyw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Component" xmi:id="_PrkJMKi9Eem6_KQDKu-Gyw" name="THREDDS">
       <packagedElement xmi:type="uml:Dependency" xmi:id="_Roeh0Ki9Eem6_KQDKu-Gyw" client="_PrkJMKi9Eem6_KQDKu-Gyw" supplier="_H6zioKi9Eem6_KQDKu-Gyw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Component" xmi:id="_ayFxsKi9Eem6_KQDKu-Gyw" name="CONUS shapefile">
-      <packagedElement xmi:type="uml:Dependency" xmi:id="_nD3tkKjXEem6_KQDKu-Gyw" client="_ayFxsKi9Eem6_KQDKu-Gyw" supplier="_79kUkKi8Eem6_KQDKu-Gyw"/>
-    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_ayFxsKi9Eem6_KQDKu-Gyw" name="NHM-PRMS_CONUS.zip'"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_7QqkwKjcEem6_KQDKu-Gyw" name="prms_outputs2_ncf.py"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_CVGQ0KjdEem6_KQDKu-Gyw" name="ncf2cbh.py"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_IyT9IKjjEem6_KQDKu-Gyw" name="gridMet"/>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_1YKAoKjZEem6_KQDKu-Gyw">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_DdGiEKjaEem6_KQDKu-Gyw" source="PapyrusVersion">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_DdGiEajaEem6_KQDKu-Gyw" key="Version" value="0.0.2"/>
