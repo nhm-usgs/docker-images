@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_5LJ7gKi1Eem6_KQDKu-Gyw" name="NHM">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_5ZRQAKi1Eem6_KQDKu-Gyw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Component" xmi:id="_DozewKi5Eem6_KQDKu-Gyw" name="ofp">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_2WZ3wKi8Eem6_KQDKu-Gyw" client="_DozewKi5Eem6_KQDKu-Gyw" supplier="_xOY1EKi8Eem6_KQDKu-Gyw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Component" xmi:id="_FX7TAKi5Eem6_KQDKu-Gyw" name="PRMS"/>
+  <packagedElement xmi:type="uml:Component" xmi:id="_imX4QKi7Eem6_KQDKu-Gyw" name="verifier"/>
+  <packagedElement xmi:type="uml:Component" xmi:id="_xOY1EKi8Eem6_KQDKu-Gyw" name="raw gridded weather info"/>
+  <packagedElement xmi:type="uml:Component" xmi:id="_79kUkKi8Eem6_KQDKu-Gyw" name="HRU">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_-gjOsKi8Eem6_KQDKu-Gyw" client="_79kUkKi8Eem6_KQDKu-Gyw" supplier="_DozewKi5Eem6_KQDKu-Gyw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Component" xmi:id="_H6zioKi9Eem6_KQDKu-Gyw" name="output variable">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_Jq5AMKi9Eem6_KQDKu-Gyw" client="_H6zioKi9Eem6_KQDKu-Gyw" supplier="_FX7TAKi5Eem6_KQDKu-Gyw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Component" xmi:id="_PrkJMKi9Eem6_KQDKu-Gyw" name="THREDDS">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_Roeh0Ki9Eem6_KQDKu-Gyw" client="_PrkJMKi9Eem6_KQDKu-Gyw" supplier="_H6zioKi9Eem6_KQDKu-Gyw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Component" xmi:id="_ayFxsKi9Eem6_KQDKu-Gyw" name="CONUS shapefile"/>
+</uml:Model>
