@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_FUf-AKjZEem6_KQDKu-Gyw" name="nhm" metaclassReference="_Wg5YkKjZEem6_KQDKu-Gyw">
+  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mcJ7YKjZEem6_KQDKu-Gyw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="__0VEkKjZEem6_KQDKu-Gyw" name="nhm" nsURI="http:///schemas/nhm/__0UdgKjZEem6_KQDKu-Gyw/1" nsPrefix="nhm">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__0VElqjZEem6_KQDKu-Gyw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__0VEl6jZEem6_KQDKu-Gyw" key="Version" value="0.0.2"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__0VEmKjZEem6_KQDKu-Gyw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__0VEmajZEem6_KQDKu-Gyw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__0VEmqjZEem6_KQDKu-Gyw" key="Date" value="2019-07-17"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__0VEm6jZEem6_KQDKu-Gyw" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="__0VEkajZEem6_KQDKu-Gyw" name="NetCDF">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__0VEkqjZEem6_KQDKu-Gyw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_X4h54KjZEem6_KQDKu-Gyw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="__0VEk6jZEem6_KQDKu-Gyw" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_mcKicKjZEem6_KQDKu-Gyw" name="nhm" nsURI="http:///schemas/nhm/_mcIGMKjZEem6_KQDKu-Gyw/0" nsPrefix="nhm">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mcLwkKjZEem6_KQDKu-Gyw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mcLwkajZEem6_KQDKu-Gyw" key="Version" value="0.0.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mcLwkqjZEem6_KQDKu-Gyw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mcLwk6jZEem6_KQDKu-Gyw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mcLwlKjZEem6_KQDKu-Gyw" key="Date" value="2019-07-17"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mcLwlajZEem6_KQDKu-Gyw" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_mcKicajZEem6_KQDKu-Gyw" name="NetCDF">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mcKicqjZEem6_KQDKu-Gyw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_X4h54KjZEem6_KQDKu-Gyw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_mcKic6jZEem6_KQDKu-Gyw" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_Wg5YkKjZEem6_KQDKu-Gyw" alias="Component">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Component"/>
+  </elementImport>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_FXyikKjZEem6_KQDKu-Gyw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_FXzJoKjZEem6_KQDKu-Gyw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_X4h54KjZEem6_KQDKu-Gyw" name="NetCDF">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_hcduQKjZEem6_KQDKu-Gyw" name="base_Component" association="_hcaq8KjZEem6_KQDKu-Gyw">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Component"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hcduQajZEem6_KQDKu-Gyw"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_hcaq8KjZEem6_KQDKu-Gyw" name="NetCDF_Component" memberEnd="_hcdHMKjZEem6_KQDKu-Gyw _hcduQKjZEem6_KQDKu-Gyw">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_hcdHMKjZEem6_KQDKu-Gyw" name="extension_NetCDF" type="_X4h54KjZEem6_KQDKu-Gyw" aggregation="composite" association="_hcaq8KjZEem6_KQDKu-Gyw"/>
+  </packagedElement>
+</uml:Profile>
