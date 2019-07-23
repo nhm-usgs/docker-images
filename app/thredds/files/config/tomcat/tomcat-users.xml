@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<tomcat-users xmlns="http://tomcat.apache.org/xml" 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://tomcat.apache.org/xml tomcat-users.xsd" version="1.0">
+
+      <role rolename="tdsConfig" description="can change THREDDS configuration files"/>
+      <role rolename="tdsMonitor" description="can monitor log files with tdsMonitor program"/>
+      <role rolename="tdsTrigger" description="can trigger feature collections, eg from tdm"/>
+
+      <!-- Password here is "admin" -->
+      <!-- https://github.com/Unidata/tomcat-docker#digested-passwords -->
+      <user username="tdm" password="1965b870e26c4f58a46264097f5c25694ced8ad20c791ab81e6dfaba99399528$1$2352140ba20ff2627a0f3ef32d1c7ce7da3da576" roles="tdsTrigger"/>
+      <user username="admin" password="1965b870e26c4f58a46264097f5c25694ced8ad20c791ab81e6dfaba99399528$1$2352140ba20ff2627a0f3ef32d1c7ce7da3da576" roles="tdsConfig,tdsMonitor"/>
+</tomcat-users>
