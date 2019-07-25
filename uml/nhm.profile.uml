@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_FUf-AKjZEem6_KQDKu-Gyw" name="nhm" metaclassReference="_Wg5YkKjZEem6_KQDKu-Gyw">
   <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mcJ7YKjZEem6_KQDKu-Gyw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_uyRr8K8zEem7TvIE3IbnQw" source="PapyrusVersion">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uyRr8a8zEem7TvIE3IbnQw" key="Version" value="0.0.0"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uyRr8q8zEem7TvIE3IbnQw" key="Comment" value="&lt;undefined>"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uyRr868zEem7TvIE3IbnQw" key="Copyright" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uyRr9K8zEem7TvIE3IbnQw" key="Date" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uyRr9a8zEem7TvIE3IbnQw" key="Author" value="&lt;undefined>"/>
+    </eAnnotations>
+    <contents xmi:type="ecore:EPackage" xmi:id="_yOhJUK8zEem7TvIE3IbnQw" name="nhm" nsURI="http:///schemas/nhm/_yOfUIK8zEem7TvIE3IbnQw/2" nsPrefix="nhm">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_yOhwYq8zEem7TvIE3IbnQw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yOhwY68zEem7TvIE3IbnQw" key="Version" value="0.0.3"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yOhwZK8zEem7TvIE3IbnQw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yOhwZa8zEem7TvIE3IbnQw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yOhwZq8zEem7TvIE3IbnQw" key="Date" value="2019-07-25"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yOhwZ68zEem7TvIE3IbnQw" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_yOhJUa8zEem7TvIE3IbnQw" name="NetCDF">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_yOhJUq8zEem7TvIE3IbnQw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_X4h54KjZEem6_KQDKu-Gyw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_yOhJU68zEem7TvIE3IbnQw" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_yOhJVa8zEem7TvIE3IbnQw" name="service">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_yOhJVq8zEem7TvIE3IbnQw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_uyQd0K8zEem7TvIE3IbnQw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_yOhJV68zEem7TvIE3IbnQw" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
     <contents xmi:type="ecore:EPackage" xmi:id="__0VEkKjZEem6_KQDKu-Gyw" name="nhm" nsURI="http:///schemas/nhm/__0UdgKjZEem6_KQDKu-Gyw/1" nsPrefix="nhm">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__0VElqjZEem6_KQDKu-Gyw" source="PapyrusVersion">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__0VEl6jZEem6_KQDKu-Gyw" key="Version" value="0.0.2"/>
@@ -49,5 +77,14 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Extension" xmi:id="_hcaq8KjZEem6_KQDKu-Gyw" name="NetCDF_Component" memberEnd="_hcdHMKjZEem6_KQDKu-Gyw _hcduQKjZEem6_KQDKu-Gyw">
     <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_hcdHMKjZEem6_KQDKu-Gyw" name="extension_NetCDF" type="_X4h54KjZEem6_KQDKu-Gyw" aggregation="composite" association="_hcaq8KjZEem6_KQDKu-Gyw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_uyQd0K8zEem7TvIE3IbnQw" name="service">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_v86TEK8zEem7TvIE3IbnQw" name="base_Component" association="_v8320K8zEem7TvIE3IbnQw">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Component"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_v86TEa8zEem7TvIE3IbnQw"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_v8320K8zEem7TvIE3IbnQw" name="E_service_Component8" memberEnd="_v85sAK8zEem7TvIE3IbnQw _v86TEK8zEem7TvIE3IbnQw">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_v85sAK8zEem7TvIE3IbnQw" name="extension_service" type="_uyQd0K8zEem7TvIE3IbnQw" aggregation="composite" association="_v8320K8zEem7TvIE3IbnQw"/>
   </packagedElement>
 </uml:Profile>
