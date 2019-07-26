@@ -33,15 +33,15 @@ for svc in data_loader ofp ncf2cbh nhm-prms out2ncf verifier; do
 done
 docker-compose $COMPOSE_FILES down
 
-echo "Pipeline has completed. Will copy output files from Docker Volume"
-echo "Output files will show up in the output directory"
+echo "Pipeline has completed. Will copy output files from Docker volume"
+echo "Output files will show up in the \"output\" directory"
 docker build -t nothing - <<EOF
 FROM alpine
 CMD
 EOF
 mkdir output
 docker container create --name dummy -v app_nhm:/test nothing
-docker cp dummy:/test/ofp/Output/ output/
+docker cp dummy:/test/ofp/Output/* output/
 docker rm dummy
 
 echo "If you wish to re-start clean, run the following:"
