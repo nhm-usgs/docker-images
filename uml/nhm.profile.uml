@@ -8,6 +8,517 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uyRr9K8zEem7TvIE3IbnQw" key="Date" value=""/>
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uyRr9a8zEem7TvIE3IbnQw" key="Author" value="&lt;undefined>"/>
     </eAnnotations>
+    <contents xmi:type="ecore:EPackage" xmi:id="_sT3OoLVbEemVzugrDnXZ5w" name="nhm" nsURI="http:///schemas/nhm/_sT0yYLVbEemVzugrDnXZ5w/12" nsPrefix="nhm">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sT5D0rVbEemVzugrDnXZ5w" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sT5D07VbEemVzugrDnXZ5w" key="Version" value="0.0.13"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sT5D1LVbEemVzugrDnXZ5w" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sT5D1bVbEemVzugrDnXZ5w" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sT5D1rVbEemVzugrDnXZ5w" key="Date" value="2019-08-02"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sT5D17VbEemVzugrDnXZ5w" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_sT3OobVbEemVzugrDnXZ5w" name="NetCDF">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sT3OorVbEemVzugrDnXZ5w" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_X4h54KjZEem6_KQDKu-Gyw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_sT3Oo7VbEemVzugrDnXZ5w" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_sT3OpbVbEemVzugrDnXZ5w" name="Service">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sT3OprVbEemVzugrDnXZ5w" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_uyQd0K8zEem7TvIE3IbnQw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_sT3Op7VbEemVzugrDnXZ5w" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_sT3OqbVbEemVzugrDnXZ5w" name="Module">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sT3OqrVbEemVzugrDnXZ5w" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_aU_TcLVJEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_sT3Oq7VbEemVzugrDnXZ5w" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_sT3OrbVbEemVzugrDnXZ5w" name="ModuleType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sT3OrrVbEemVzugrDnXZ5w" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_EDt0ULVKEemD1andvOyxsA"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sT3Or7VbEemVzugrDnXZ5w" name="BasinDefinitionProcess"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sT3OsLVbEemVzugrDnXZ5w" name="CascadingFlowProcess" value="1"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sT3OsbVbEemVzugrDnXZ5w" name="SolarTableProcess" value="2"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sT3OsrVbEemVzugrDnXZ5w" name="TimeSeriesDataProcess" value="3"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sT3Os7VbEemVzugrDnXZ5w" name="TemperatureDistributionProcess" value="4"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sT3OtLVbEemVzugrDnXZ5w" name="PrecipitationDistributionProcess" value="5"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sT3OtbVbEemVzugrDnXZ5w" name="CombinedClimateDistributionProcess" value="6"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sT3OtrVbEemVzugrDnXZ5w" name="SolarRadiationDistributionProcess" value="7"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sT3Ot7VbEemVzugrDnXZ5w" name="TranspirationPeriodProcess" value="8"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sT3OuLVbEemVzugrDnXZ5w" name="PotentialEvapotranspirationProcess" value="9"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sT3OubVbEemVzugrDnXZ5w" name="CanopyInterceptionProcess" value="10"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sT3OurVbEemVzugrDnXZ5w" name="SnowProcess" value="11"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sT3Ou7VbEemVzugrDnXZ5w" name="SurfaceRunoffProcess" value="12"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sT3OvLVbEemVzugrDnXZ5w" name="SoilZoneProcess" value="13"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sT3OvbVbEemVzugrDnXZ5w" name="GroundwaterProcess" value="14"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sT3OvrVbEemVzugrDnXZ5w" name="StreamflowProcess" value="15"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sT3Ov7VbEemVzugrDnXZ5w" name="SummaryProcess" value="16"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_sT3OwLVbEemVzugrDnXZ5w" name="ModuleTypeClass">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sT3OwbVbEemVzugrDnXZ5w" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_-MZQELVTEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_sT3OwrVbEemVzugrDnXZ5w" name="type" ordered="false" lowerBound="1" eType="_sT3OrbVbEemVzugrDnXZ5w"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_sT3OxLVbEemVzugrDnXZ5w" name="description" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_sT3OxrVbEemVzugrDnXZ5w" name="usedInNHM" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_JlTzoLVVEemD1andvOyxsA" name="nhm" nsURI="http:///schemas/nhm/_JlTMkLVVEemD1andvOyxsA/11" nsPrefix="nhm">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JlUas7VVEemD1andvOyxsA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JlUatLVVEemD1andvOyxsA" key="Version" value="0.0.12"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JlUatbVVEemD1andvOyxsA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JlUatrVVEemD1andvOyxsA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JlUat7VVEemD1andvOyxsA" key="Date" value="2019-08-02"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JlUauLVVEemD1andvOyxsA" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_JlTzobVVEemD1andvOyxsA" name="NetCDF">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JlTzorVVEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_X4h54KjZEem6_KQDKu-Gyw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_JlTzo7VVEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_JlTzpbVVEemD1andvOyxsA" name="Service">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JlTzprVVEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_uyQd0K8zEem7TvIE3IbnQw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_JlTzp7VVEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_JlTzqbVVEemD1andvOyxsA" name="Module">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JlTzqrVVEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_aU_TcLVJEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_JlTzq7VVEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_JlTzrbVVEemD1andvOyxsA" name="type" ordered="false" lowerBound="1" upperBound="-1" eType="_JlTzs7VVEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JlTzr7VVEemD1andvOyxsA" name="description" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JlTzsbVVEemD1andvOyxsA" name="usedInNHM" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_JlTzs7VVEemD1andvOyxsA" name="ModuleTypeClass">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JlTztLVVEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_-MZQELVTEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JlTztbVVEemD1andvOyxsA" name="type" ordered="false" lowerBound="1" eType="_JlTzu7VVEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JlTzt7VVEemD1andvOyxsA" name="description" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JlTzubVVEemD1andvOyxsA" name="usedInNHM" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_JlTzu7VVEemD1andvOyxsA" name="ModuleType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JlTzvLVVEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_EDt0ULVKEemD1andvOyxsA"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_JlTzvbVVEemD1andvOyxsA" name="BasinDefinitionProcess"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_JlTzvrVVEemD1andvOyxsA" name="CascadingFlowProcess" value="1"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_JlTzv7VVEemD1andvOyxsA" name="SolarTableProcess" value="2"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_JlTzwLVVEemD1andvOyxsA" name="TimeSeriesDataProcess" value="3"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_JlTzwbVVEemD1andvOyxsA" name="TemperatureDistributionProcess" value="4"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_JlTzwrVVEemD1andvOyxsA" name="PrecipitationDistributionProcess" value="5"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_JlTzw7VVEemD1andvOyxsA" name="CombinedClimateDistributionProcess" value="6"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_JlTzxLVVEemD1andvOyxsA" name="SolarRadiationDistributionProcess" value="7"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_JlTzxbVVEemD1andvOyxsA" name="TranspirationPeriodProcess" value="8"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_JlTzxrVVEemD1andvOyxsA" name="PotentialEvapotranspirationProcess" value="9"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_JlTzx7VVEemD1andvOyxsA" name="CanopyInterceptionProcess" value="10"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_JlTzyLVVEemD1andvOyxsA" name="SnowProcess" value="11"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_JlTzybVVEemD1andvOyxsA" name="SurfaceRunoffProcess" value="12"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_JlTzyrVVEemD1andvOyxsA" name="SoilZoneProcess" value="13"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_JlTzy7VVEemD1andvOyxsA" name="GroundwaterProcess" value="14"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_JlTzzLVVEemD1andvOyxsA" name="StreamflowProcess" value="15"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_JlTzzbVVEemD1andvOyxsA" name="SummaryProcess" value="16"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_sKZDMbVTEemD1andvOyxsA" name="nhm" nsURI="http:///schemas/nhm/_sKZDMLVTEemD1andvOyxsA/10" nsPrefix="nhm">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sKaRUbVTEemD1andvOyxsA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sKaRUrVTEemD1andvOyxsA" key="Version" value="0.0.11"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sKaRU7VTEemD1andvOyxsA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sKaRVLVTEemD1andvOyxsA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sKaRVbVTEemD1andvOyxsA" key="Date" value="2019-08-02"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sKaRVrVTEemD1andvOyxsA" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_sKZDMrVTEemD1andvOyxsA" name="NetCDF">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sKZDM7VTEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_X4h54KjZEem6_KQDKu-Gyw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_sKZDNLVTEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_sKZDNrVTEemD1andvOyxsA" name="Service">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sKZDN7VTEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_uyQd0K8zEem7TvIE3IbnQw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_sKZDOLVTEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_sKZDOrVTEemD1andvOyxsA" name="Module">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sKZDO7VTEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_aU_TcLVJEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_sKZDPLVTEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_sKZDPrVTEemD1andvOyxsA" name="type" ordered="false" lowerBound="1" upperBound="-1" eType="_sKZDRLVTEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_sKZDQLVTEemD1andvOyxsA" name="description" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_sKZDQrVTEemD1andvOyxsA" name="usedInNHM" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_sKZDRLVTEemD1andvOyxsA" name="ModuleType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sKZDRbVTEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_EDt0ULVKEemD1andvOyxsA"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sKZqQLVTEemD1andvOyxsA" name="BasinDefinitionProcess"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sKZqQbVTEemD1andvOyxsA" name="CascadingFlowProcess" value="1"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sKZqQrVTEemD1andvOyxsA" name="SolarTableProcess" value="2"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sKZqQ7VTEemD1andvOyxsA" name="TimeSeriesDataProcess" value="3"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sKZqRLVTEemD1andvOyxsA" name="TemperatureDistributionProcess" value="4"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sKZqRbVTEemD1andvOyxsA" name="PrecipitationDistributionProcess" value="5"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sKZqRrVTEemD1andvOyxsA" name="CombinedClimateDistributionProcess" value="6"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sKZqR7VTEemD1andvOyxsA" name="SolarRadiationDistributionProcess" value="7"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sKZqSLVTEemD1andvOyxsA" name="TranspirationPeriodProcess" value="8"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sKZqSbVTEemD1andvOyxsA" name="PotentialEvapotranspirationProcess" value="9"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sKZqSrVTEemD1andvOyxsA" name="CanopyInterceptionProcess" value="10"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sKZqS7VTEemD1andvOyxsA" name="SnowProcess" value="11"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sKZqTLVTEemD1andvOyxsA" name="SurfaceRunoffProcess" value="12"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sKZqTbVTEemD1andvOyxsA" name="SoilZoneProcess" value="13"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sKZqTrVTEemD1andvOyxsA" name="GroundwaterProcess" value="14"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sKZqT7VTEemD1andvOyxsA" name="StreamflowProcess" value="15"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_sKZqULVTEemD1andvOyxsA" name="SummaryProcess" value="16"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_XioHQLVOEemD1andvOyxsA" name="nhm" nsURI="http:///schemas/nhm/_XingMLVOEemD1andvOyxsA/9" nsPrefix="nhm">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_XiouU7VOEemD1andvOyxsA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_XiouVLVOEemD1andvOyxsA" key="Version" value="0.0.10"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_XiouVbVOEemD1andvOyxsA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_XiouVrVOEemD1andvOyxsA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_XiouV7VOEemD1andvOyxsA" key="Date" value="2019-08-02"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_XiouWLVOEemD1andvOyxsA" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_XioHQbVOEemD1andvOyxsA" name="NetCDF">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_XioHQrVOEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_X4h54KjZEem6_KQDKu-Gyw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_XioHQ7VOEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_XioHRbVOEemD1andvOyxsA" name="Service">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_XioHRrVOEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_uyQd0K8zEem7TvIE3IbnQw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_XioHR7VOEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_XioHSbVOEemD1andvOyxsA" name="Module">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_XioHSrVOEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_aU_TcLVJEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_XioHS7VOEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_XioHTbVOEemD1andvOyxsA" name="type" ordered="false" lowerBound="1" eType="_XioHU7VOEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_XioHT7VOEemD1andvOyxsA" name="description" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_XioHUbVOEemD1andvOyxsA" name="usedInNHM" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_XioHU7VOEemD1andvOyxsA" name="ModuleType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_XioHVLVOEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_EDt0ULVKEemD1andvOyxsA"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_XioHVbVOEemD1andvOyxsA" name="BasinDefinitionProcess"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_XioHVrVOEemD1andvOyxsA" name="CascadingFlowProcess" value="1"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_XioHV7VOEemD1andvOyxsA" name="SolarTableProcess" value="2"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_XioHWLVOEemD1andvOyxsA" name="TimeSeriesDataProcess" value="3"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_XioHWbVOEemD1andvOyxsA" name="TemperatureDistributionProcess" value="4"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_XioHWrVOEemD1andvOyxsA" name="PrecipitationDistributionProcess" value="5"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_XioHW7VOEemD1andvOyxsA" name="CombinedClimateDistributionProcess" value="6"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_XioHXLVOEemD1andvOyxsA" name="SolarRadiationDistributionProcess" value="7"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_XioHXbVOEemD1andvOyxsA" name="TranspirationPeriodProcess" value="8"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_XioHXrVOEemD1andvOyxsA" name="PotentialEvapotranspirationProcess" value="9"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_XioHX7VOEemD1andvOyxsA" name="CanopyInterceptionProcess" value="10"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_XioHYLVOEemD1andvOyxsA" name="SnowProcess" value="11"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_XioHYbVOEemD1andvOyxsA" name="SurfaceRunoffProcess" value="12"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_XioHYrVOEemD1andvOyxsA" name="SoilZoneProcess" value="13"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_XioHY7VOEemD1andvOyxsA" name="GroundwaterProcess" value="14"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_XioHZLVOEemD1andvOyxsA" name="StreamflowProcess" value="15"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_XioHZbVOEemD1andvOyxsA" name="SummaryProcess" value="16"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_gYnF8LVNEemD1andvOyxsA" name="nhm" nsURI="http:///schemas/nhm/_gYme4LVNEemD1andvOyxsA/8" nsPrefix="nhm">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gYntA7VNEemD1andvOyxsA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gYntBLVNEemD1andvOyxsA" key="Version" value="0.0.9"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gYntBbVNEemD1andvOyxsA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gYntBrVNEemD1andvOyxsA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gYntB7VNEemD1andvOyxsA" key="Date" value="2019-08-02"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gYntCLVNEemD1andvOyxsA" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_gYnF8bVNEemD1andvOyxsA" name="NetCDF">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gYnF8rVNEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_X4h54KjZEem6_KQDKu-Gyw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_gYnF87VNEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_gYnF9bVNEemD1andvOyxsA" name="Service">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gYnF9rVNEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_uyQd0K8zEem7TvIE3IbnQw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_gYnF97VNEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_gYnF-bVNEemD1andvOyxsA" name="Module">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gYnF-rVNEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_aU_TcLVJEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_gYnF-7VNEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_gYnF_bVNEemD1andvOyxsA" name="type" ordered="false" lowerBound="1" eType="_gYnGA7VNEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_gYnF_7VNEemD1andvOyxsA" name="description" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_gYnGAbVNEemD1andvOyxsA" name="usedInNHM" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_gYnGA7VNEemD1andvOyxsA" name="ModuleType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gYnGBLVNEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_EDt0ULVKEemD1andvOyxsA"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_gYnGBbVNEemD1andvOyxsA" name="BasinDefinitionProcess"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_gYnGBrVNEemD1andvOyxsA" name="CascadingFlowProcess" value="1"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_gYnGB7VNEemD1andvOyxsA" name="TimeSeriesDataProcess" value="2"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_gYnGCLVNEemD1andvOyxsA" name="TemperatureDistributionProcess" value="3"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_gYnGCbVNEemD1andvOyxsA" name="TempDistributionProcess" value="4"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_gYnGCrVNEemD1andvOyxsA" name="PrecipitationDistributionProcess" value="5"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_gYnGC7VNEemD1andvOyxsA" name="CombinedClimateDistributionProcess" value="6"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_gYnGDLVNEemD1andvOyxsA" name="SolarRadiationDistributionProcess" value="7"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_gYnGDbVNEemD1andvOyxsA" name="TranspirationPeriodProcess" value="8"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_gYnGDrVNEemD1andvOyxsA" name="PotentialEvapotranspirationProcess" value="9"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_gYnGD7VNEemD1andvOyxsA" name="CanopyInterceptionProcess" value="10"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_gYnGELVNEemD1andvOyxsA" name="SnowProcess" value="11"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_gYnGEbVNEemD1andvOyxsA" name="SurfaceRunoffProcess" value="12"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_gYnGErVNEemD1andvOyxsA" name="SoilZoneProcess" value="13"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_gYnGE7VNEemD1andvOyxsA" name="GroundwaterProcess" value="14"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_gYnGFLVNEemD1andvOyxsA" name="StreamflowProcess" value="15"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_gYnGFbVNEemD1andvOyxsA" name="SummaryProcess" value="16"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_asAvgLVNEemD1andvOyxsA" name="nhm" nsURI="http:///schemas/nhm/_asAIcLVNEemD1andvOyxsA/7" nsPrefix="nhm">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_asBWkrVNEemD1andvOyxsA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_asBWk7VNEemD1andvOyxsA" key="Version" value="0.0.8"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_asBWlLVNEemD1andvOyxsA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_asBWlbVNEemD1andvOyxsA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_asBWlrVNEemD1andvOyxsA" key="Date" value="2019-08-02"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_asBWl7VNEemD1andvOyxsA" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_asAvgbVNEemD1andvOyxsA" name="NetCDF">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_asAvgrVNEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_X4h54KjZEem6_KQDKu-Gyw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_asAvg7VNEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_asAvhbVNEemD1andvOyxsA" name="Service">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_asAvhrVNEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_uyQd0K8zEem7TvIE3IbnQw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_asAvh7VNEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_asAvibVNEemD1andvOyxsA" name="Module">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_asAvirVNEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_aU_TcLVJEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_asAvi7VNEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_asAvjbVNEemD1andvOyxsA" name="type" ordered="false" lowerBound="1" eType="_asAvk7VNEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_asAvj7VNEemD1andvOyxsA" name="description" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_asAvkbVNEemD1andvOyxsA" name="usedInNHM" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_asAvk7VNEemD1andvOyxsA" name="ModuleType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_asAvlLVNEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_EDt0ULVKEemD1andvOyxsA"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_asAvlbVNEemD1andvOyxsA" name="BasinDefinitionProcess"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_asAvlrVNEemD1andvOyxsA" name="CascadingFlowProcess" value="1"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_asAvl7VNEemD1andvOyxsA" name="TimeSeriesDataProcess" value="2"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_asAvmLVNEemD1andvOyxsA" name="TemperatureDistributionProcess" value="3"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_asAvmbVNEemD1andvOyxsA" name="PrecipitationDistributionProcess" value="4"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_asAvmrVNEemD1andvOyxsA" name="CombinedClimateDistributionProcess" value="5"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_asAvm7VNEemD1andvOyxsA" name="SolarRadiationDistributionProcess" value="6"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_asAvnLVNEemD1andvOyxsA" name="TranspirationPeriodProcess" value="7"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_asAvnbVNEemD1andvOyxsA" name="PotentialEvapotranspirationProcess" value="8"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_asAvnrVNEemD1andvOyxsA" name="CanopyInterceptionProcess" value="9"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_asAvn7VNEemD1andvOyxsA" name="SnowProcess" value="10"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_asAvoLVNEemD1andvOyxsA" name="SurfaceRunoffProcess" value="11"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_asAvobVNEemD1andvOyxsA" name="SoilZoneProcess" value="12"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_asAvorVNEemD1andvOyxsA" name="GroundwaterProcess" value="13"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_asAvo7VNEemD1andvOyxsA" name="StreamflowProcess" value="14"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_asAvpLVNEemD1andvOyxsA" name="SummaryProcess" value="15"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_asAvpbVNEemD1andvOyxsA" name="TempDistributionProcess" value="16"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_RQkIwLVNEemD1andvOyxsA" name="nhm" nsURI="http:///schemas/nhm/_RQjhsLVNEemD1andvOyxsA/6" nsPrefix="nhm">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RQkv0rVNEemD1andvOyxsA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RQkv07VNEemD1andvOyxsA" key="Version" value="0.0.7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RQkv1LVNEemD1andvOyxsA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RQkv1bVNEemD1andvOyxsA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RQkv1rVNEemD1andvOyxsA" key="Date" value="2019-08-02"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RQkv17VNEemD1andvOyxsA" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_RQkIwbVNEemD1andvOyxsA" name="NetCDF">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RQkIwrVNEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_X4h54KjZEem6_KQDKu-Gyw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_RQkIw7VNEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_RQkIxbVNEemD1andvOyxsA" name="Service">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RQkIxrVNEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_uyQd0K8zEem7TvIE3IbnQw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_RQkIx7VNEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_RQkIybVNEemD1andvOyxsA" name="Module">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RQkIyrVNEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_aU_TcLVJEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_RQkIy7VNEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_RQkIzbVNEemD1andvOyxsA" name="type" ordered="false" lowerBound="1" eType="_RQkI07VNEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_RQkIz7VNEemD1andvOyxsA" name="description" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_RQkI0bVNEemD1andvOyxsA" name="usedInNHM" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_RQkI07VNEemD1andvOyxsA" name="ModuleType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RQkI1LVNEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_EDt0ULVKEemD1andvOyxsA"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_RQkI1bVNEemD1andvOyxsA" name="BasinDefinitionProcess"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_RQkI1rVNEemD1andvOyxsA" name="CascadingFlowProcess" value="1"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_RQkI17VNEemD1andvOyxsA" name="TimeSeriesDataProcess" value="2"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_RQkI2LVNEemD1andvOyxsA" name="TemperatureDistributionProcess" value="3"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_RQkI2bVNEemD1andvOyxsA" name="PrecipitationDistributionProcess" value="4"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_RQkI2rVNEemD1andvOyxsA" name="CombinedClimateDistributionProcess" value="5"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_RQkI27VNEemD1andvOyxsA" name="SolarRadiationDistributionProcess" value="6"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_RQkI3LVNEemD1andvOyxsA" name="TranspirationPeriodProcess" value="7"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_RQkI3bVNEemD1andvOyxsA" name="PotentialEvapotranspirationProcess" value="8"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_RQkI3rVNEemD1andvOyxsA" name="CanopyInterceptionProcess" value="9"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_RQkI37VNEemD1andvOyxsA" name="SnowProcess" value="10"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_RQkI4LVNEemD1andvOyxsA" name="SurfaceRunoffProcess" value="11"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_RQkI4bVNEemD1andvOyxsA" name="SoilZoneProcess" value="12"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_RQkI4rVNEemD1andvOyxsA" name="GroundwaterProcess" value="13"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_RQkI47VNEemD1andvOyxsA" name="StreamflowProcess" value="14"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_RQkI5LVNEemD1andvOyxsA" name="SummaryProcess" value="15"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_L9V7oLVNEemD1andvOyxsA" name="nhm" nsURI="http:///schemas/nhm/_L9VUkLVNEemD1andvOyxsA/5" nsPrefix="nhm">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_L9Wis7VNEemD1andvOyxsA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_L9WitLVNEemD1andvOyxsA" key="Version" value="0.0.6"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_L9WitbVNEemD1andvOyxsA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_L9WitrVNEemD1andvOyxsA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_L9Wit7VNEemD1andvOyxsA" key="Date" value="2019-08-02"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_L9WiuLVNEemD1andvOyxsA" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_L9V7obVNEemD1andvOyxsA" name="NetCDF">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_L9V7orVNEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_X4h54KjZEem6_KQDKu-Gyw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_L9V7o7VNEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_L9V7pbVNEemD1andvOyxsA" name="Service">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_L9V7prVNEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_uyQd0K8zEem7TvIE3IbnQw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_L9V7p7VNEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_L9V7qbVNEemD1andvOyxsA" name="Module">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_L9V7qrVNEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_aU_TcLVJEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_L9V7q7VNEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_L9V7rbVNEemD1andvOyxsA" name="type" ordered="false" lowerBound="1" eType="_L9V7s7VNEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_L9V7r7VNEemD1andvOyxsA" name="description" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_L9V7sbVNEemD1andvOyxsA" name="usedInNHM" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_L9V7s7VNEemD1andvOyxsA" name="ModuleType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_L9V7tLVNEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_EDt0ULVKEemD1andvOyxsA"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_L9V7tbVNEemD1andvOyxsA" name="BasinDefinitionProcess"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_L9V7trVNEemD1andvOyxsA" name="CascadingFlowProcess" value="1"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_L9V7t7VNEemD1andvOyxsA" name="TimeSeriesDataProcess" value="2"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_L9V7uLVNEemD1andvOyxsA" name="TemperatureDistributionProcess" value="3"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_L9V7ubVNEemD1andvOyxsA" name="TempDistributionProcess" value="4"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_L9V7urVNEemD1andvOyxsA" name="PrecipitationDistributionProcess" value="5"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_L9V7u7VNEemD1andvOyxsA" name="CombinedClimateDistributionProcess" value="6"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_L9V7vLVNEemD1andvOyxsA" name="SolarRadiationDistributionProcess" value="7"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_L9V7vbVNEemD1andvOyxsA" name="TranspirationPeriodProcess" value="8"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_L9V7vrVNEemD1andvOyxsA" name="PotentialEvapotranspirationProcess" value="9"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_L9V7v7VNEemD1andvOyxsA" name="CanopyInterceptionProcess" value="10"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_L9V7wLVNEemD1andvOyxsA" name="SnowProcess" value="11"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_L9V7wbVNEemD1andvOyxsA" name="SurfaceRunoffProcess" value="12"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_L9V7wrVNEemD1andvOyxsA" name="SoilZoneProcess" value="13"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_L9V7w7VNEemD1andvOyxsA" name="GroundwaterProcess" value="14"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_L9V7xLVNEemD1andvOyxsA" name="StreamflowProcess" value="15"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_L9V7xbVNEemD1andvOyxsA" name="SummaryProcess" value="16"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_F9Bp4LVLEemD1andvOyxsA" name="nhm" nsURI="http:///schemas/nhm/_F8_0sLVLEemD1andvOyxsA/4" nsPrefix="nhm">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_F9C4ALVLEemD1andvOyxsA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_F9C4AbVLEemD1andvOyxsA" key="Version" value="0.0.5"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_F9C4ArVLEemD1andvOyxsA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_F9C4A7VLEemD1andvOyxsA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_F9C4BLVLEemD1andvOyxsA" key="Date" value="2019-08-02"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_F9C4BbVLEemD1andvOyxsA" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_F9Bp4bVLEemD1andvOyxsA" name="NetCDF">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_F9Bp4rVLEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_X4h54KjZEem6_KQDKu-Gyw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_F9Bp47VLEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_F9Bp5bVLEemD1andvOyxsA" name="Service">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_F9Bp5rVLEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_uyQd0K8zEem7TvIE3IbnQw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_F9Bp57VLEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_F9Bp6bVLEemD1andvOyxsA" name="Module">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_F9Bp6rVLEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_aU_TcLVJEemD1andvOyxsA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_F9Bp67VLEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_F9Bp7bVLEemD1andvOyxsA" name="type" ordered="false" lowerBound="1" eType="_F9Bp87VLEemD1andvOyxsA" changeable="false"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_F9Bp77VLEemD1andvOyxsA" name="description" ordered="false" lowerBound="1" changeable="false">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_F9Bp8bVLEemD1andvOyxsA" name="usedInNHM" ordered="false" lowerBound="1" changeable="false">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_F9Bp87VLEemD1andvOyxsA" name="ModuleType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_F9Bp9LVLEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_EDt0ULVKEemD1andvOyxsA"/>
+        <eLiterals xmi:type="ecore:EEnumLiteral" xmi:id="_F9Bp9bVLEemD1andvOyxsA" name="BasinDefinitionProcess"/>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_tBzX4LVJEemD1andvOyxsA" name="nhm" nsURI="http:///schemas/nhm/_tBvGcLVJEemD1andvOyxsA/3" nsPrefix="nhm">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tB1NErVJEemD1andvOyxsA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tB1NE7VJEemD1andvOyxsA" key="Version" value="0.0.4"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tB1NFLVJEemD1andvOyxsA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tB1NFbVJEemD1andvOyxsA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tB1NFrVJEemD1andvOyxsA" key="Date" value="2019-08-02"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tB1NF7VJEemD1andvOyxsA" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_tBzX4bVJEemD1andvOyxsA" name="NetCDF">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tBzX4rVJEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_X4h54KjZEem6_KQDKu-Gyw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_tBzX47VJEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_tBzX5bVJEemD1andvOyxsA" name="Service">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tBzX5rVJEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_uyQd0K8zEem7TvIE3IbnQw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_tBzX57VJEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_tBzX6bVJEemD1andvOyxsA" name="ModuleType">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tBzX6rVJEemD1andvOyxsA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_aU_TcLVJEemD1andvOyxsA">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tBzX67VJEemD1andvOyxsA" key="originalName" value="Module Type"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_tBzX7LVJEemD1andvOyxsA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
     <contents xmi:type="ecore:EPackage" xmi:id="_yOhJUK8zEem7TvIE3IbnQw" name="nhm" nsURI="http:///schemas/nhm/_yOfUIK8zEem7TvIE3IbnQw/2" nsPrefix="nhm">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_yOhwYq8zEem7TvIE3IbnQw" source="PapyrusVersion">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yOhwY68zEem7TvIE3IbnQw" key="Version" value="0.0.3"/>
@@ -78,13 +589,57 @@
   <packagedElement xmi:type="uml:Extension" xmi:id="_hcaq8KjZEem6_KQDKu-Gyw" name="NetCDF_Component" memberEnd="_hcdHMKjZEem6_KQDKu-Gyw _hcduQKjZEem6_KQDKu-Gyw">
     <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_hcdHMKjZEem6_KQDKu-Gyw" name="extension_NetCDF" type="_X4h54KjZEem6_KQDKu-Gyw" aggregation="composite" association="_hcaq8KjZEem6_KQDKu-Gyw"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Stereotype" xmi:id="_uyQd0K8zEem7TvIE3IbnQw" name="service">
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_uyQd0K8zEem7TvIE3IbnQw" name="Service">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_v86TEK8zEem7TvIE3IbnQw" name="base_Component" association="_v8320K8zEem7TvIE3IbnQw">
       <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Component"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_v86TEa8zEem7TvIE3IbnQw"/>
     </ownedAttribute>
   </packagedElement>
-  <packagedElement xmi:type="uml:Extension" xmi:id="_v8320K8zEem7TvIE3IbnQw" name="E_service_Component8" memberEnd="_v85sAK8zEem7TvIE3IbnQw _v86TEK8zEem7TvIE3IbnQw">
-    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_v85sAK8zEem7TvIE3IbnQw" name="extension_service" type="_uyQd0K8zEem7TvIE3IbnQw" aggregation="composite" association="_v8320K8zEem7TvIE3IbnQw"/>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_v8320K8zEem7TvIE3IbnQw" name="Service_Component" memberEnd="_v85sAK8zEem7TvIE3IbnQw _v86TEK8zEem7TvIE3IbnQw">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_v85sAK8zEem7TvIE3IbnQw" name="extension_Service" type="_uyQd0K8zEem7TvIE3IbnQw" aggregation="composite" association="_v8320K8zEem7TvIE3IbnQw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_aU_TcLVJEemD1andvOyxsA" name="Module">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_nLcogLVJEemD1andvOyxsA" name="base_Component" association="_nLYXELVJEemD1andvOyxsA">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Component"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nLcogbVJEemD1andvOyxsA"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_nLYXELVJEemD1andvOyxsA" name="E_Module_Component1" memberEnd="_nLazULVJEemD1andvOyxsA _nLcogLVJEemD1andvOyxsA">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_nLazULVJEemD1andvOyxsA" name="extension_Module" type="_aU_TcLVJEemD1andvOyxsA" aggregation="composite" association="_nLYXELVJEemD1andvOyxsA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_EDt0ULVKEemD1andvOyxsA" name="ModuleType">
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_LxuB0LVKEemD1andvOyxsA" name="BasinDefinitionProcess"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_e2ZXMLVLEemD1andvOyxsA" name="CascadingFlowProcess"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_iS6hYLVLEemD1andvOyxsA" name="SolarTableProcess"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_mUm1MLVLEemD1andvOyxsA" name="TimeSeriesDataProcess"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_SRc-ALVNEemD1andvOyxsA" name="TemperatureDistributionProcess"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="__Y8cYLVLEemD1andvOyxsA" name="PrecipitationDistributionProcess"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_DzLzELVMEemD1andvOyxsA" name="CombinedClimateDistributionProcess"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_KZ5BULVMEemD1andvOyxsA" name="SolarRadiationDistributionProcess"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_Plm4QLVMEemD1andvOyxsA" name="TranspirationPeriodProcess"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_WBLNgLVMEemD1andvOyxsA" name="PotentialEvapotranspirationProcess"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_aMpIYLVMEemD1andvOyxsA" name="CanopyInterceptionProcess"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_dNQZsLVMEemD1andvOyxsA" name="SnowProcess"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_nbRF0LVMEemD1andvOyxsA" name="SurfaceRunoffProcess"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_vDUcULVMEemD1andvOyxsA" name="SoilZoneProcess"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_0l4tALVMEemD1andvOyxsA" name="GroundwaterProcess"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_3rFjYLVMEemD1andvOyxsA" name="StreamflowProcess"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_71BNMLVMEemD1andvOyxsA" name="SummaryProcess"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_-MZQELVTEemD1andvOyxsA" name="ModuleTypeClass">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_OgRHMLVUEemD1andvOyxsA" name="type" type="_EDt0ULVKEemD1andvOyxsA"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Qjx3ELVUEemD1andvOyxsA" name="description">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_SIUL8LVUEemD1andvOyxsA" name="usedInNHM">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_5Ul-MLVUEemD1andvOyxsA" memberEnd="_5UnMUbVUEemD1andvOyxsA _5UnzYLVUEemD1andvOyxsA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_5UmlQLVUEemD1andvOyxsA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_5UnMULVUEemD1andvOyxsA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_5UnMUbVUEemD1andvOyxsA" name="moduletype" type="_EDt0ULVKEemD1andvOyxsA" association="_5Ul-MLVUEemD1andvOyxsA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_5UnzYLVUEemD1andvOyxsA" name="moduletypeclass" type="_-MZQELVTEemD1andvOyxsA" association="_5Ul-MLVUEemD1andvOyxsA"/>
   </packagedElement>
 </uml:Profile>

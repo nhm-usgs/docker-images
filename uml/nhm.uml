@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:nhm="http:///schemas/nhm/_yOfUIK8zEem7TvIE3IbnQw/2" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/nhm/_yOfUIK8zEem7TvIE3IbnQw/2 nhm.profile.uml#_yOhJUK8zEem7TvIE3IbnQw">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:nhm="http:///schemas/nhm/_sT0yYLVbEemVzugrDnXZ5w/12" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/nhm/_sT0yYLVbEemVzugrDnXZ5w/12 nhm.profile.uml#_sT3OoLVbEemVzugrDnXZ5w">
   <uml:Model xmi:id="_5LJ7gKi1Eem6_KQDKu-Gyw" name="Model">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_5ZRQAKi1Eem6_KQDKu-Gyw">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -29,6 +29,23 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Component" xmi:id="_FX7TAKi5Eem6_KQDKu-Gyw" name="nhm-prms">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_GI2NAKmSEemqRdDV4iLGPg" client="_FX7TAKi5Eem6_KQDKu-Gyw" supplier="_CVGQ0KjdEem6_KQDKu-Gyw"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_4_ZnwLVIEemD1andvOyxsA" name="basin"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_6WD4sLVIEemD1andvOyxsA" name="cascade"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_8S0gULVIEemD1andvOyxsA" name="soltab"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="__3PpULVIEemD1andvOyxsA" name="obs"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_rzVAULVOEemD1andvOyxsA" name="dynamic_param_read"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="__DFZwLVOEemD1andvOyxsA" name="water_use_read"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_ZUuhkLVPEemD1andvOyxsA" name="temp_1sta"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_mn5AwLVPEemD1andvOyxsA" name="temp_laps"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_12WH8LVPEemD1andvOyxsA" name="temp_dist2"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_EhvlYLVQEemD1andvOyxsA" name="climate_hru"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_v4ia0LVREemD1andvOyxsA" name="precip_1sta"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_ATB3ULVSEemD1andvOyxsA" name="precip_laps"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_S312ULVSEemD1andvOyxsA" name="precip_dist2"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_qdVg8LVSEemD1andvOyxsA" name="ide_dist"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_2NSg8LVSEemD1andvOyxsA" name="xyz_dist"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_H-IsYLVTEemD1andvOyxsA" name="ddsolrad"/>
+        <packagedElement xmi:type="uml:Component" xmi:id="_VLzAgLVTEemD1andvOyxsA" name="ccsolrad"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Component" xmi:id="_gAwxsK8uEem7TvIE3IbnQw" name="base_image">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_lui-cK8vEem7TvIE3IbnQw" client="_gAwxsK8uEem7TvIE3IbnQw" supplier="_iNc2QK8vEem7TvIE3IbnQw"/>
@@ -50,29 +67,57 @@
       <packagedElement xmi:type="uml:Component" xmi:id="_ayFxsKi9Eem6_KQDKu-Gyw" name="NHM-PRMS_CONUS.zip">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_ynR8sK81Eem7TvIE3IbnQw" client="_ayFxsKi9Eem6_KQDKu-Gyw" supplier="_8BB-gK8uEem7TvIE3IbnQw"/>
       </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_V-J9cLVGEemD1andvOyxsA" name="NhmParamDb"/>
+      <packagedElement xmi:type="uml:Component" xmi:id="_sxi1sLVGEemD1andvOyxsA" name="GF">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_3KkfALVGEemD1andvOyxsA">
+          <body>USGS Geospatial Fabric for National Hydrologic Modeling.</body>
+        </ownedComment>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Component" xmi:id="_FQ9x8LVHEemD1andvOyxsA" name="NHDPlus" visibility="package">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_adMfILVHEemD1andvOyxsA">
+        <body>http://www.horizon-systems.com/NHDPlus/NHDPlusV1_home.php</body>
+      </ownedComment>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_1YKAoKjZEem6_KQDKu-Gyw">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0WoFUK8zEem7TvIE3IbnQw" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0WoFUa8zEem7TvIE3IbnQw" key="Version" value="0.0.3"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0WoFUq8zEem7TvIE3IbnQw" key="Comment" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0WoFU68zEem7TvIE3IbnQw" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0WoFVK8zEem7TvIE3IbnQw" key="Date" value="2019-07-25"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0WoFVa8zEem7TvIE3IbnQw" key="Author" value=""/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_uBJ24LVbEemVzugrDnXZ5w" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uBJ24bVbEemVzugrDnXZ5w" key="Version" value="0.0.13"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uBJ24rVbEemVzugrDnXZ5w" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uBJ247VbEemVzugrDnXZ5w" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uBJ25LVbEemVzugrDnXZ5w" key="Date" value="2019-08-02"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uBJ25bVbEemVzugrDnXZ5w" key="Author" value=""/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1YMc4KjZEem6_KQDKu-Gyw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="nhm.profile.uml#_yOhJUK8zEem7TvIE3IbnQw"/>
+        <references xmi:type="ecore:EPackage" href="nhm.profile.uml#_sT3OoLVbEemVzugrDnXZ5w"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="nhm.profile.uml#_FUf-AKjZEem6_KQDKu-Gyw"/>
     </profileApplication>
   </uml:Model>
   <nhm:NetCDF xmi:id="_X8mFEKjaEem6_KQDKu-Gyw" base_Component="_xOY1EKi8Eem6_KQDKu-Gyw"/>
   <nhm:NetCDF xmi:id="_Zr5fgKjaEem6_KQDKu-Gyw" base_Component="_H6zioKi9Eem6_KQDKu-Gyw"/>
-  <nhm:service xmi:id="_8GYmUK8zEem7TvIE3IbnQw" base_Component="_gAwxsK8uEem7TvIE3IbnQw"/>
-  <nhm:service xmi:id="__NMmQK8zEem7TvIE3IbnQw" base_Component="_8BB-gK8uEem7TvIE3IbnQw"/>
-  <nhm:service xmi:id="_FiCBYK80Eem7TvIE3IbnQw" base_Component="_PrkJMKi9Eem6_KQDKu-Gyw"/>
-  <nhm:service xmi:id="_H_oFMK80Eem7TvIE3IbnQw" base_Component="_imX4QKi7Eem6_KQDKu-Gyw"/>
-  <nhm:service xmi:id="_Lfbz8K80Eem7TvIE3IbnQw" base_Component="_7QqkwKjcEem6_KQDKu-Gyw"/>
-  <nhm:service xmi:id="_PNxt8K80Eem7TvIE3IbnQw" base_Component="_FX7TAKi5Eem6_KQDKu-Gyw"/>
-  <nhm:service xmi:id="_Sd5a4K80Eem7TvIE3IbnQw" base_Component="_CVGQ0KjdEem6_KQDKu-Gyw"/>
-  <nhm:service xmi:id="_WdmxsK80Eem7TvIE3IbnQw" base_Component="_DozewKi5Eem6_KQDKu-Gyw"/>
+  <nhm:Service xmi:id="_8GYmUK8zEem7TvIE3IbnQw" base_Component="_gAwxsK8uEem7TvIE3IbnQw"/>
+  <nhm:Service xmi:id="__NMmQK8zEem7TvIE3IbnQw" base_Component="_8BB-gK8uEem7TvIE3IbnQw"/>
+  <nhm:Service xmi:id="_FiCBYK80Eem7TvIE3IbnQw" base_Component="_PrkJMKi9Eem6_KQDKu-Gyw"/>
+  <nhm:Service xmi:id="_H_oFMK80Eem7TvIE3IbnQw" base_Component="_imX4QKi7Eem6_KQDKu-Gyw"/>
+  <nhm:Service xmi:id="_Lfbz8K80Eem7TvIE3IbnQw" base_Component="_7QqkwKjcEem6_KQDKu-Gyw"/>
+  <nhm:Service xmi:id="_PNxt8K80Eem7TvIE3IbnQw" base_Component="_FX7TAKi5Eem6_KQDKu-Gyw"/>
+  <nhm:Service xmi:id="_Sd5a4K80Eem7TvIE3IbnQw" base_Component="_CVGQ0KjdEem6_KQDKu-Gyw"/>
+  <nhm:Service xmi:id="_WdmxsK80Eem7TvIE3IbnQw" base_Component="_DozewKi5Eem6_KQDKu-Gyw"/>
+  <nhm:Module xmi:id="_3b4xILVJEemD1andvOyxsA" base_Component="_4_ZnwLVIEemD1andvOyxsA"/>
+  <nhm:Module xmi:id="_vM5ZoLVNEemD1andvOyxsA" base_Component="_6WD4sLVIEemD1andvOyxsA"/>
+  <nhm:Module xmi:id="_wGn28LVNEemD1andvOyxsA" base_Component="_8S0gULVIEemD1andvOyxsA"/>
+  <nhm:Module xmi:id="_w3pEMLVNEemD1andvOyxsA" base_Component="__3PpULVIEemD1andvOyxsA"/>
+  <nhm:Module xmi:id="_tovp0LVOEemD1andvOyxsA" base_Component="_rzVAULVOEemD1andvOyxsA"/>
+  <nhm:Module xmi:id="_DIw1sLVPEemD1andvOyxsA" base_Component="__DFZwLVOEemD1andvOyxsA"/>
+  <nhm:Module xmi:id="_awk0gLVPEemD1andvOyxsA" base_Component="_ZUuhkLVPEemD1andvOyxsA"/>
+  <nhm:Module xmi:id="_r0SNILVPEemD1andvOyxsA" base_Component="_mn5AwLVPEemD1andvOyxsA"/>
+  <nhm:Module xmi:id="_4LeMQLVPEemD1andvOyxsA" base_Component="_12WH8LVPEemD1andvOyxsA"/>
+  <nhm:Module xmi:id="_06yMsLVREemD1andvOyxsA" base_Component="_v4ia0LVREemD1andvOyxsA"/>
+  <nhm:Module xmi:id="_DHlCkLVSEemD1andvOyxsA" base_Component="_ATB3ULVSEemD1andvOyxsA"/>
+  <nhm:Module xmi:id="_UQfEQLVSEemD1andvOyxsA" base_Component="_S312ULVSEemD1andvOyxsA"/>
+  <nhm:Module xmi:id="_rpZEYLVSEemD1andvOyxsA" base_Component="_qdVg8LVSEemD1andvOyxsA"/>
+  <nhm:Module xmi:id="_6RsxkLVSEemD1andvOyxsA" base_Component="_2NSg8LVSEemD1andvOyxsA"/>
+  <nhm:Module xmi:id="_Jp0yILVTEemD1andvOyxsA" base_Component="_H-IsYLVTEemD1andvOyxsA"/>
+  <nhm:Module xmi:id="_YqAMwLVTEemD1andvOyxsA" base_Component="_VLzAgLVTEemD1andvOyxsA"/>
+  <nhm:Module xmi:id="_sC8FcLVVEemTTs06KLcAxg" base_Component="_EhvlYLVQEemD1andvOyxsA"/>
 </xmi:XMI>
