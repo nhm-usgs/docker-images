@@ -16,7 +16,9 @@ RUN wget https://raw.githubusercontent.com/nhm-usgs/ofp-docker/master/app/enviro
 
 ENV SOURCE_DIR=/usr/local/src
 
-RUN git clone https://github.com/nhm-usgs/onhm-runners.git --branch 0.1.1 --depth=1 $SOURCE_DIR/onhm-runners && \
+ARG VERSION_ONHM_RUNNERS=0.1.1
+
+RUN git clone https://github.com/nhm-usgs/onhm-runners.git --branch $VERSION_ONHM_RUNNERS --depth=1 $SOURCE_DIR/onhm-runners && \
     cd $SOURCE_DIR/onhm-runners && \
     rm -rf .git || true && \
     rm .gitignore || true

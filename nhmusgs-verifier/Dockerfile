@@ -2,6 +2,8 @@ FROM nhmusgs/base
 
 LABEL maintainer="ashalper@usgs.gov"
 
+ARG VERSION_TAG_VERIFY=0.1.0
+
 RUN git clone https://github.com/nhm-usgs/onhm-verify-eval.git --branch 0.1.0 --depth=1 $SOURCE_DIR/onhm-verify-eval && \
     cd $SOURCE_DIR/onhm-verify-eval && \
     rm -rf .git || true && \
