@@ -1,0 +1,15 @@
+#! /bin/sh
+#
+#  File - system
+#
+#  Purpose - System test script for NHM "base" container.
+#
+#  Author - Andrew Halper <ashalper@usgs.gov>
+#
+
+dpkg_query_tmp=$(mktemp /tmp/dpkg-query.XXX)
+docker run nhmusgs/base /usr/bin/dpkg-query -W -f='${Status} ${Package}\n' > $dpkg_query_tmp
+diff dpkg-query.txt $dpkg_query_tmp
+status=$?
+rm -f $dpkg_query_tmp
+exit $status
