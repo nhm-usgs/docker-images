@@ -7,6 +7,9 @@
 #  Author - Andrew Halper <ashalper@usgs.gov>
 #
 
+# these tests all fall under the category of "sanity checks", and
+# some/all predicates might be too strong
+
 # create temp. file path for package listing
 dpkg_query_tmp=$(mktemp /tmp/dpkg-query.XXX)
 
@@ -26,10 +29,37 @@ if [ $status != 0 ]; then
     exit $status
 fi
 
+# check Conda installation
+if [ "`docker run nhmusgs/base /opt/conda/bin/conda --version`" != \
+     "conda 4.7.10" ]; then
+    echo 'Conda installation check failed'
+    exit 1
+fi
+
 # if the onhm-runners source is not present...
 if [ `docker run nhmusgs/base ls -d /usr/local/src/onhm-runners` != \
     /usr/local/src/onhm-runners ]; then
     # ...fail
     echo 'onhm-runners source check failed'
+    exit 1
+fi
+
+# /var/lib/nhm/ofp/Output directory check
+if [ `docker run nhmusgs/base ls -d /var/lib/nhm/ofp/Output` != \
+     /var/lib/nhm/ofp/Output ]; then
+    echo '/var/lib/nhm/ofp/Output existence check failed'
+    exit 1
+fi
+
+# check for nhm user
+if [ `docker run nhmusgs/base getent passwd | grep nhm | cut -s -d: -f1,7` != \
+     nhm:/bin/bash ]; then
+    echo 'nhm user not found in nhmusgs/base'
+    exit 1
+fi
+
+# check for /var/lib/nhm ownership
+if [ `docker run nhmusgs/base ls -ld /var/lib/nhm | cut -d' ' -f3` != nhm ]; then
+    echo 'nhm ownership of /var/lib/nhm test failed'
     exit 1
 fi
