@@ -7,6 +7,18 @@
 #  Author - Andrew Halper <ashalper@usgs.gov>
 #
 
+if [ 0 -lt "$#" -a "$1" != -c ]; then
+    echo "`basename $0`: invalid option -- '$1'"
+    echo "Usage: `basename $0` [-c]"
+    exit 1
+fi
+
+if [ "$1" = -c ]; then
+    prefix=""
+else
+    prefix="docker run nhmusgs/base"
+fi
+
 # these tests all fall under the category of "sanity checks", and
 # some/all predicates might be too strong
 
@@ -14,7 +26,7 @@
 dpkg_query_tmp=$(mktemp /tmp/dpkg-query.XXX)
 
 # query package database on container, and save list to temp. file
-docker run nhmusgs/base /usr/bin/dpkg-query -W -f='${Status} ${Package}\n' > $dpkg_query_tmp
+$prefix /usr/bin/dpkg-query -W -f='${Status} ${Package}\n' > $dpkg_query_tmp
 
 # compare expected package list with actual package list
 diff dpkg-query.txt $dpkg_query_tmp > /dev/null 2>&1
@@ -30,14 +42,14 @@ if [ $status != 0 ]; then
 fi
 
 # check Conda installation
-if [ "`docker run nhmusgs/base /opt/conda/bin/conda --version`" != \
+if [ "`$prefix /opt/conda/bin/conda --version`" != \
      "conda 4.7.10" ]; then
     echo 'Conda installation check failed'
     exit 1
 fi
 
 # if the onhm-runners source is not present...
-if [ `docker run nhmusgs/base ls -d /usr/local/src/onhm-runners` != \
+if [ "`$prefix ls -d /usr/local/src/onhm-runners`" != \
     /usr/local/src/onhm-runners ]; then
     # ...fail
     echo 'onhm-runners source check failed'
@@ -45,21 +57,21 @@ if [ `docker run nhmusgs/base ls -d /usr/local/src/onhm-runners` != \
 fi
 
 # /var/lib/nhm/ofp/Output directory check
-if [ `docker run nhmusgs/base ls -d /var/lib/nhm/ofp/Output` != \
+if [ "`$prefix ls -d /var/lib/nhm/ofp/Output`" != \
      /var/lib/nhm/ofp/Output ]; then
     echo '/var/lib/nhm/ofp/Output existence check failed'
     exit 1
 fi
 
 # check for nhm user
-if [ `docker run nhmusgs/base getent passwd | grep nhm | cut -s -d: -f1,7` != \
+if [ "`$prefix getent passwd | grep nhm | cut -s -d: -f1,7`" != \
      nhm:/bin/bash ]; then
     echo 'nhm user not found in nhmusgs/base'
     exit 1
 fi
 
 # check for /var/lib/nhm ownership
-if [ `docker run nhmusgs/base ls -ld /var/lib/nhm | cut -d' ' -f3` != nhm ]; then
+if [ `$prefix ls -ld /var/lib/nhm | cut -d' ' -f3` != nhm ]; then
     echo 'nhm ownership of /var/lib/nhm test failed'
     exit 1
 fi
