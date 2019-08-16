@@ -22,18 +22,30 @@ fi
 # these tests all fall under the category of "sanity checks", and
 # some/all predicates might be too strong
 
-# create temp. file path for package listing
-dpkg_query_tmp=$(mktemp /tmp/dpkg-query.XXX)
+# create expected additional packages listing
+expected=$(mktemp /tmp/expected.XXX)
+cat <<EOF > $expected
+install ok installed dialog
+install ok installed file
+install ok installed gcc
+install ok installed gfortran
+install ok installed make
+install ok installed procps
+install ok installed unzip
+EOF
 
-# query package database on container, and save list to temp. file
-$prefix /usr/bin/dpkg-query -W -f='${Status} ${Package}\n' > $dpkg_query_tmp
+# create actual additional packages listing (derived from expected
+# additional packages listing)
+actual=$(mktemp /tmp/actual.XXX)
+$prefix /usr/bin/dpkg-query -W -f='${Status} ${Package}\n' \
+`awk '{ printf $4 " " }' < $expected` > $actual
 
 # compare expected package list with actual package list
-diff dpkg-query.txt $dpkg_query_tmp > /dev/null 2>&1
+diff $expected $actual > /dev/null 2>&1
 
 status=$?			# preserve "diff" exit status
 
-rm -f $dpkg_query_tmp		# remove temp. file
+rm -f $expected $actual		# remove temp. files
 
 # check package list comparison success/failure
 if [ $status != 0 ]; then
