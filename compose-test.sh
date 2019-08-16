@@ -41,7 +41,7 @@ CMD
 EOF
 mkdir output
 docker container create --name dummy -v app_nhm:/test nothing
-docker cp dummy:/test/ofp/Output/* output/
+docker cp dummy:/test/ofp/Output .
 docker rm dummy
 
 echo "If you wish to re-start clean, run the following:"
