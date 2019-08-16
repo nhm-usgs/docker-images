@@ -1,23 +1,12 @@
 #! /bin/sh
 #
-#  File - system
+#  File - guest
 #
-#  Purpose - System test script for NHM "base" container.
+#  Purpose - System test script for NHM "base" container. Designed to
+#            run in the container.
 #
 #  Author - Andrew Halper <ashalper@usgs.gov>
 #
-
-if [ 0 -lt "$#" -a "$1" != -c ]; then
-    echo "`basename $0`: invalid option -- '$1'"
-    echo "Usage: `basename $0` [-c]"
-    exit 1
-fi
-
-if [ "$1" = -c ]; then
-    prefix=""
-else
-    prefix="docker run nhmusgs/base"
-fi
 
 # these tests all fall under the category of "sanity checks", and
 # some/all predicates might be too strong
@@ -37,7 +26,7 @@ EOF
 # create actual additional packages listing (derived from expected
 # additional packages listing)
 actual=$(mktemp /tmp/actual.XXX)
-$prefix /usr/bin/dpkg-query -W -f='${Status} ${Package}\n' \
+/usr/bin/dpkg-query -W -f='${Status} ${Package}\n' \
 `awk '{ printf $4 " " }' < $expected` > $actual
 
 # compare expected package list with actual package list
@@ -54,36 +43,32 @@ if [ $status != 0 ]; then
 fi
 
 # check Conda installation
-if [ "`$prefix /opt/conda/bin/conda --version`" != \
-     "conda 4.7.10" ]; then
+if [ ! -x /opt/conda/bin/conda ]; then
     echo 'Conda installation check failed'
     exit 1
 fi
 
 # if the onhm-runners source is not present...
-if [ "`$prefix ls -d /usr/local/src/onhm-runners`" != \
-    /usr/local/src/onhm-runners ]; then
+if [ ! -d /usr/local/src/onhm-runners ]; then
     # ...fail
     echo 'onhm-runners source check failed'
     exit 1
 fi
 
 # /var/lib/nhm/ofp/Output directory check
-if [ "`$prefix ls -d /var/lib/nhm/ofp/Output`" != \
-     /var/lib/nhm/ofp/Output ]; then
+if [ ! -d /var/lib/nhm/ofp/Output ]; then
     echo '/var/lib/nhm/ofp/Output existence check failed'
     exit 1
 fi
 
 # check for nhm user
-if [ "`$prefix getent passwd | grep nhm | cut -s -d: -f1,7`" != \
-     nhm:/bin/bash ]; then
+if [ "`getent passwd | grep nhm | cut -s -d: -f1,7`" != nhm:/bin/bash ]; then
     echo 'nhm user not found in nhmusgs/base'
     exit 1
 fi
 
 # check for /var/lib/nhm ownership
-if [ `$prefix ls -ld /var/lib/nhm | cut -d' ' -f3` != nhm ]; then
+if [ `ls -ld /var/lib/nhm | cut -d' ' -f3` != nhm ]; then
     echo 'nhm ownership of /var/lib/nhm test failed'
     exit 1
 fi
