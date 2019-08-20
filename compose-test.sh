@@ -39,7 +39,7 @@ docker build -t nothing - <<EOF
 FROM alpine
 CMD
 EOF
-mkdir output
+
 docker container create --name dummy -v app_nhm:/test nothing
 docker cp dummy:/test/ofp/Output .
 docker rm dummy
