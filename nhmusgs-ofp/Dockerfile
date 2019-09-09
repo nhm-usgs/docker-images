@@ -2,7 +2,7 @@ FROM nhmusgs/base
 
 LABEL maintainer="ashalper@usgs.gov"
 
-ARG VERSION_TAG_OFP=v0.1.1
+ARG VERSION_TAG_OFP=v0.1.2
 
 # Build ONHM Fetcher Parser
 RUN git clone --depth=1 --branch $VERSION_TAG_OFP \
@@ -24,6 +24,9 @@ USER $USER
 WORKDIR /home/$USER
 
 ENV NUMDAYS=60
+ENV START_DATE = 2019_01_01
+ENV END_DATE = 2019_01_02
+
 
 # convenience soft-links
 RUN ln -s $SOURCE_DIR/onhm-fetcher-parser $HOMEDIR/onhm-fetcher-parser && \
