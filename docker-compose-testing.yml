@@ -23,7 +23,7 @@ services:
 
   data_loader:
     environment:
-      - HRU_SOURCE=ftp://nhmusgsftp/Data_hru_shp.tar_v2.gz
+      - HRU_SOURCE=ftp://nhmusgsftp/Data_hru_shp_v2.tar.gz
       - PRMS_SOURCE=ftp://nhmusgsftp/NHM-PRMS_CONUS.zip
     depends_on:
       - anon_ftp
