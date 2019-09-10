@@ -43,8 +43,8 @@ services:
     container_name: ofp
     environment:
       - NUMDAYS=${NUMDAYS-60}
-      - START_DATE = 2019_01_01
-      - END_DATE = 2019_01_02
+      - START_DATE=${START_DATE-2019-01-01}
+      - END_DATE=${END_DATE-2019-01-02}
     volumes:
       - nhm:/var/lib/nhm
 
