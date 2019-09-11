@@ -1,0 +1,74 @@
+#! /bin/sh
+#
+#  File - guest
+#
+#  Purpose - System test script for NHM "base" container. Designed to
+#            run in the container.
+#
+#  Author - Andrew Halper <ashalper@usgs.gov>
+#
+
+# these tests all fall under the category of "sanity checks", and
+# some/all predicates might be too strong
+
+# create expected additional packages listing
+expected=$(mktemp /tmp/expected.XXX)
+cat <<EOF > $expected
+install ok installed dialog
+install ok installed file
+install ok installed gcc
+install ok installed gfortran
+install ok installed make
+install ok installed procps
+install ok installed unzip
+EOF
+
+# create actual additional packages listing (derived from expected
+# additional packages listing)
+actual=$(mktemp /tmp/actual.XXX)
+/usr/bin/dpkg-query -W -f='${Status} ${Package}\n' \
+`awk '{ printf $4 " " }' < $expected` > $actual
+
+# compare expected package list with actual package list
+diff $expected $actual > /dev/null 2>&1
+
+status=$?			# preserve "diff" exit status
+
+rm -f $expected $actual		# remove temp. files
+
+# check package list comparison success/failure
+if [ $status != 0 ]; then
+    echo 'dpkg package verificaton failed'
+    exit $status
+fi
+
+# check Conda installation
+if [ ! -x /opt/conda/bin/conda ]; then
+    echo 'Conda installation check failed'
+    exit 1
+fi
+
+# if the onhm-runners source is not present...
+if [ ! -d /usr/local/src/onhm-runners ]; then
+    # ...fail
+    echo 'onhm-runners source check failed'
+    exit 1
+fi
+
+# /var/lib/nhm/ofp/Output directory check
+if [ ! -d /var/lib/nhm/ofp/Output ]; then
+    echo '/var/lib/nhm/ofp/Output existence check failed'
+    exit 1
+fi
+
+# check for nhm user
+if [ "`getent passwd | grep nhm | cut -s -d: -f1,7`" != nhm:/bin/bash ]; then
+    echo 'nhm user not found in nhmusgs/base'
+    exit 1
+fi
+
+# check for /var/lib/nhm ownership
+if [ `ls -ld /var/lib/nhm | cut -d' ' -f3` != nhm ]; then
+    echo 'nhm ownership of /var/lib/nhm test failed'
+    exit 1
+fi
