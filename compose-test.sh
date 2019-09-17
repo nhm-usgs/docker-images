@@ -9,7 +9,7 @@ docker-compose build --parallel
 HRU_DATA_PKG="Data_hru_shp.tar.gz"
 PRMS_DATA_PKG="NHM-PRMS_CONUS.zip"
 PRMS_SOURCE=ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/markstro/NHM-PRMS_CONUS.zip
-HRU_SOURCE=ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/Data_hru_shp.tar.gz
+HRU_SOURCE=ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/Data_hru_shp_v2.tar.gz
 
 echo "Checking if HRU data is downloaded..."
 if [[ ! -f "data/${HRU_DATA_PKG}" ]]; then
