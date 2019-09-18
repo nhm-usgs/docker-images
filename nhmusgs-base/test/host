@@ -1,0 +1,11 @@
+#! /bin/sh
+#
+#  File - host
+#
+#  Purpose - System test script for NHM "base" container. Designed to
+#            run on the host.
+#
+#  Author - Andrew Halper <ashalper@usgs.gov>
+#
+
+docker run --rm -v $(pwd)/guest:/tmp/guest nhmusgs/base /bin/sh /tmp/guest

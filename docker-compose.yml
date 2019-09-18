@@ -28,7 +28,7 @@ services:
     networks:
       nhmnet:
     environment:
-      - HRU_SOURCE=ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/Data_hru_shp.tar.gz
+      - HRU_SOURCE=ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/Data_hru_shp_v2.tar.gz
       - PRMS_SOURCE=ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/markstro/NHM-PRMS_CONUS.zip
     volumes:
       - nhm:/var/lib/nhm
@@ -43,6 +43,8 @@ services:
     container_name: ofp
     environment:
       - NUMDAYS=${NUMDAYS-60}
+      - START_DATE=${START_DATE-2019-01-01}
+      - END_DATE=${END_DATE-2019-01-02}
     volumes:
       - nhm:/var/lib/nhm
 

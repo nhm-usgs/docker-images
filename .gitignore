@@ -3,10 +3,11 @@
 /.idea
 data/*
 !data/.data_files_go_here.txt
-output
+Output
 thredds/files/config/tomcat/*.crt
 thredds/files/config/tomcat/*.key
 thredds/files/contents/thredds/cache/*
 thredds/files/logs/thredds/*
 thredds/files/logs/tomcat/*
 !**/*/.keepme
+*.code-workspace
