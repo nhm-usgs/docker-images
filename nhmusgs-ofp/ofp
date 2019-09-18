@@ -1,3 +1,97 @@
-#!/bin/bash
+#! /bin/bash
+#
+# U.S. Geological Survey
+#
+# File - ofp
+#
+# Purpose - Docker entry-point for NHM ofp container.
+#
+# Authors - Ivan Suftin, Richard McDonald, Steven Markstrom,
+#           Andrew Halper
+#
 
-/opt/conda/bin/python -u onhm-fetcher-parser/pkg/climate_etl.py -t date -p "$START_DATE" "$END_DATE"  -i /var/lib/nhm/ofp/Data -o /var/lib/nhm/ofp/Output -w /var/lib/nhm/ofp/Data/weights.csv
+restart_dir_name='restart/'
+gridmet_provisional_days='59'
+
+# if there is one and only one argument
+if [ "$#" -eq 1 ]; then
+   dir="$1"
+else
+   dir='/var/lib/nhm/NHM-PRMS_CONUS/'
+fi
+
+# Determine the date for the last simulation by finding the last
+# restart file.
+last_simulation_date=`ls $dir$restart_dir_name*.restart | \
+                      sed 's/^.*\///;s/\.restart$//' | sort | tail -1`
+if [ "$?" -ne 0 ]; then
+  # there was a problem; any error message should be in
+  # last_simulation_date
+  echo "$last_simulation_date"
+  exit
+fi
+
+# restart date is last simulation date + 1 day
+restart_date=`date --date "$last_simulation_date +1 days" --rfc-3339='date'`
+if [ "$?" -ne 0 ]; then
+   echo "$restart_date"
+   exit
+fi
+
+# TODO: is this still relevant? Ask Steve.
+#
+#    # Determine the last date of the CBH files
+#    csd, ced, cfc = last_date_of_cbh_files(dir)
+#    if csd:
+#        print('last date in CBH files ', ced.strftime('%Y-%m-%d'))
+#        print('feature count in CBH files ', cfc)
+#
+#    else:
+#        print('log message: last_date_of_cbh failed.')
+        
+# Determine the dates for the data pull.
+today=`date --rfc-3339='date'`
+yesterday=`date --date "$today -1 days" --rfc-3339='date'`
+pull_date=`date --date "$yesterday -$gridmet_provisional_days days" \
+           --rfc-3339='date'`
+    
+# if the restart date is earlier than the pull date...
+if [ $(date -d "$restart_date" +%s) -lt $(date -d "$pull_date" +%s) ]; then
+  pull_date="$restart_date"	# ...reset the pull date
+fi
+
+# TODO: ask Steve if this is still relevant.
+#
+#    # if the end date of the CBH files is earlier than the pull date,
+#    # reset the pull date. Assume that the last 60 days of the CBH need to be
+#    # repulled.
+#    if ced:
+#        cbh_repull_date = ced - datetime.timedelta(days=GRIDMET_PROVISIONAL_DAYS)
+#        if cbh_repull_date < pull_date:
+#            pull_date = cbh_repull_date
+#            print('log message: pull_date reset to CBH repull date')
+
+# Run the Fetcher/Parser to pull available data.
+#
+# RMCD: Not sure this works, I imagine this would be the call to make
+# overriding the START_DATE and END_DATE ENV variables setup in the
+# nhmusgs-ofp Dockerfile.
+#
+# The code below is one method to run ofp through
+# nhumusgs/docker-images commented-out.
+#
+# START_DATE and END_DATE are ENV variables in nhmusgs-ofp Docker file
+# we override with -e option.
+#
+# ofp_docker_cmd = f"docker run ofp -e START_DATE={str_start_pull_date} END_DATE={str_end_pull_date}"
+# with open("ofp_log.log", "a") as output:
+#     subprocess.call(ofp_docker_cmd, stdout=output, stderr=output)
+#
+# Code below call fetch-parser thorough; assumes hru*.shp are in
+# INDIR; will output to OUTDIR.
+
+/opt/conda/bin/python -u onhm-fetcher-parser/pkg/climate_etl.py \
+		      -t date -p "$start_pull_date" "$end_pull_date" \
+		      -i /var/lib/nhm/ofp/Data \
+		      -o /var/lib/nhm/ofp/Output \
+		      -w /var/lib/nhm/ofp/Data/weights.csv
