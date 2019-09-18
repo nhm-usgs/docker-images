@@ -9,7 +9,7 @@ docker-compose build --parallel
 HRU_DATA_PKG="Data_hru_shp.tar.gz"
 PRMS_DATA_PKG="NHM-PRMS_CONUS.zip"
 PRMS_SOURCE=ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/markstro/NHM-PRMS_CONUS.zip
-HRU_SOURCE=ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/Data_hru_shp.tar.gz
+HRU_SOURCE=ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/Data_hru_shp_v2.tar.gz
 
 echo "Checking if HRU data is downloaded..."
 if [[ ! -f "data/${HRU_DATA_PKG}" ]]; then
@@ -29,7 +29,7 @@ echo "docker-compose $COMPOSE_FILES down"
 for svc in data_loader ofp ncf2cbh nhm-prms out2ncf verifier; do
     echo ""
     echo "Running ${svc}..."
-    docker-compose $COMPOSE_FILES run --rm $svc
+    docker-compose $COMPOSE_FILES -p nhm run --rm $svc
 done
 docker-compose $COMPOSE_FILES down
 
@@ -40,7 +40,7 @@ FROM alpine
 CMD
 EOF
 
-docker container create --name dummy -v app_nhm:/test nothing
+docker container create --name dummy -v nhm_nhm:/test nothing
 docker cp dummy:/test/ofp/Output .
 docker rm dummy
 

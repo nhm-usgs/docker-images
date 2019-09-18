@@ -10,3 +10,4 @@ thredds/files/contents/thredds/cache/*
 thredds/files/logs/thredds/*
 thredds/files/logs/tomcat/*
 !**/*/.keepme
+*.code-workspace
