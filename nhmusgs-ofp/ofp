@@ -17,7 +17,7 @@ else
    dir='/var/lib/nhm/NHM-PRMS_CONUS/'
 fi
 
-. /usr/local/share/nhm/nhm.sh	# NHM shell functions library
+. /usr/local/share/nhm/nhm.sh	# use NHM shell functions library
 
 # calculate restart interval
 i=restart_interval $dir 'restart/' '59'
