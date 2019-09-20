@@ -59,16 +59,16 @@ restart_dir='restart/'
 
 . /usr/local/share/nhm/nhm.sh	# NHM shell functions library
 
-i=restart_interval $dir 'restart/' '59'
-start_date=interval_start $i
-end_date=interval_end $i
+i=$(restart_interval $dir 'restart/' '59')
+start_date=$(interval_start $i)
+end_date=$(interval_end $i)
 
 # Remove the verification file before running PRMS.
 rm -f "$dirPRMS_VERIFIED_*"
 
 # find last simulation date
 # TODO: need to find how this is used in PRMS. See onhm.py.
-t=last_simulation_date $dir $restart_dir
+t=$(last_simulation_date $dir $restart_dir)
 
 # Run PRMS for the prescribed period.
 run $start_date $end_date $HOMEDIR/prms/prms/prms $dir 1 0 \
