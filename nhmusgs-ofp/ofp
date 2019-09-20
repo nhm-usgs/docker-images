@@ -1,3 +1,32 @@
-#!/bin/bash
+#! /bin/bash
+#
+# U.S. Geological Survey
+#
+# File - ofp
+#
+# Purpose - Docker entry-point for NHM ofp container.
+#
+# Authors - Ivan Suftin, Richard McDonald, Steven Markstrom,
+#           Andrew Halper
+#
 
-/opt/conda/bin/python -u onhm-fetcher-parser/pkg/climate_etl.py -t date -p "$START_DATE" "$END_DATE"  -i /var/lib/nhm/ofp/Data -o /var/lib/nhm/ofp/Output -w /var/lib/nhm/ofp/Data/weights.csv
+# if there is one and only one argument
+if [ "$#" -eq 1 ]; then
+   dir="$1"
+else
+   dir='/var/lib/nhm/NHM-PRMS_CONUS/'
+fi
+
+. /usr/local/share/nhm/nhm.sh	# use NHM shell functions library
+
+# calculate restart interval
+i=$(restart_interval $dir 'restart/' '59')
+
+start_date=$(interval_start $i)
+end_date=$(interval_end $i)
+
+/opt/conda/bin/python -u onhm-fetcher-parser/pkg/climate_etl.py \
+		      -t date -p "$start_date" "$end_date" \
+		      -i /var/lib/nhm/ofp/Data \
+		      -o /var/lib/nhm/ofp/Output \
+		      -w /var/lib/nhm/ofp/Data/weights.csv
