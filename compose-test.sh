@@ -11,14 +11,11 @@
 
 set -e
 
+. ./nhm.env			# environment variables file
+
 echo "Building necessary Docker images"
 docker-compose build base_image
 docker-compose build --parallel
-
-HRU_DATA_PKG="Data_hru_shp_v2.tar.gz"
-PRMS_DATA_PKG="NHM-PRMS_CONUS.zip"
-PRMS_SOURCE="ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/markstro/$PRMS_DATA_PKG"
-HRU_SOURCE="ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/$HRU_DATA_PKG"
 
 echo "Checking if HRU data is downloaded..."
 if [ ! -d data ]; then
