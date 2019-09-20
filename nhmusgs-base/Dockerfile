@@ -23,11 +23,6 @@ RUN git clone https://github.com/nhm-usgs/onhm-runners.git --branch $VERSION_ONH
     rm -rf .git || true && \
     rm .gitignore || true
 
-# shell functions used by more than one entry-point script
-RUN mkdir -p /usr/local/share/nhm
-COPY --chown=nhm nhm.sh /usr/local/share/nhm
-RUN chmod 744 /usr/local/share/nhm/nhm.sh
-
 RUN mkdir -p /var/lib/nhm/ofp/Output
 
 ENV USER=nhm
@@ -35,6 +30,12 @@ ENV USER=nhm
 RUN useradd -ms /bin/bash $USER
 
 RUN chown -R $USER /var/lib/nhm
+
+# shell functions used by more than one entry-point script
+RUN mkdir -p /usr/local/share/nhm
+RUN chown -R $USER /usr/local/share/nhm
+COPY --chown=$USER nhm.sh /usr/local/share/nhm
+RUN chmod 744 /usr/local/share/nhm/nhm.sh
 
 ENV HOMEDIR=/home/$USER
 
