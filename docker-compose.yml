@@ -27,11 +27,8 @@ services:
     container_name: data-loader
     networks:
       nhmnet:
-    environment:
-      - HRU_DATA_PKG="Data_hru_shp_v2.tar.gz"
-      - PRMS_DATA_PKG="NHM-PRMS_CONUS.zip"
-      - HRU_SOURCE=ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/$HRU_DATA_PKG
-      - PRMS_SOURCE=ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/markstro/$PRMS_DATA_PKG
+    env_file:
+      - nhm.env
     volumes:
       - nhm:/var/lib/nhm
 
