@@ -22,9 +22,8 @@ last_simulation_date () {
 
   # Determine the date for the last simulation by finding the last
   # restart file.
-  last_simulation_date=`echo $restart_files | \
-                      sed 's/^.*\///;s/\.restart$//' | sort | tail -1`
-  return 0
+  echo $restart_files | sed 's/^.*\///;s/\.restart$//' | sort | tail -1
+
 } # last_simulation_date
 
 restart_interval () {
@@ -32,7 +31,7 @@ restart_interval () {
   restart_dir=$2
   gridmet_provisional_days=$3
   
-  t=last_simulation_date $dir $restart_dir
+  t=$(last_simulation_date $dir $restart_dir)
   
   # restart date is last simulation date + 1 day
   restart_date=`date --date "$t +1 days" --rfc-3339='date'`
@@ -63,7 +62,9 @@ restart_interval () {
     pull_date="$restart_date"	# ...reset the pull date
   fi
 
-  return 0
+  # return restart interval in ISO 8601 format
+  echo "$pull_date/$yesterday"
+
 } # restart_interval 
 
 # start date of ISO 8601 interval
