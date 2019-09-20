@@ -20,10 +20,10 @@ fi
 . /usr/local/share/nhm/nhm.sh	# use NHM shell functions library
 
 # calculate restart interval
-i=restart_interval $dir 'restart/' '59'
+i=$(restart_interval $dir 'restart/' '59')
 
-start_date=interval_start $i
-end_date=interval_end $i
+start_date=$(interval_start $i)
+end_date=$(interval_end $i)
 
 /opt/conda/bin/python -u onhm-fetcher-parser/pkg/climate_etl.py \
 		      -t date -p "$start_date" "$end_date" \
