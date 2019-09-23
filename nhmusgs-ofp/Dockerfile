@@ -2,7 +2,7 @@ FROM nhmusgs/base
 
 LABEL maintainer="ashalper@usgs.gov"
 
-ARG VERSION_TAG_OFP=v0.1.3
+ARG VERSION_TAG_OFP=v0.1.4
 
 # Build ONHM Fetcher Parser
 RUN git clone --depth=1 --branch $VERSION_TAG_OFP \
