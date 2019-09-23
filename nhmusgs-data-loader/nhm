@@ -10,8 +10,8 @@
 set -e
 
 # if ofp, HRU shapefiles are not present...
-if [ ! -d /var/lib/nhm/ofp/Data/nhm_hru_data ]; then
-    cd /var/lib/nhm/ofp/Data
+if [ ! -d /var/lib/nhm/ofp/nhm_hru_data ]; then
+    cd /var/lib/nhm/ofp
     # ...download archive
     wget --waitretry=3 --retry-connrefused "$HRU_SOURCE"
     # uncompress archive
