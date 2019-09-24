@@ -39,8 +39,8 @@ run() {
     save_vars_to_file=' -set save_vars_to_file 1'
     var_save_file=" -set var_save_file $save_file"
   else
-    save_vars_to_file = ' -set save_vars_to_file 0'
-    var_save_file = ''
+    save_vars_to_file=' -set save_vars_to_file 0'
+    var_save_file=''
   fi
   
   control_arg=" -C $control_file"
