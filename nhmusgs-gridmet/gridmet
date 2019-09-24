@@ -1,0 +1,12 @@
+#! /bin/bash
+#
+# U.S. Geological Survey
+#
+# File - gridmet
+#
+# Purpose - Docker entry-point for NHM Gridmet container.
+#
+# Authors - Andrew Halper
+#
+
+/opt/conda/bin/python -u onhm-fetcher-parser/pkg/Gridmet_current.py
