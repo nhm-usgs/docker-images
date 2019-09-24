@@ -24,5 +24,4 @@ USER $USER
 
 WORKDIR /home/$USER
 
-# ...and remain running
 ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/gridmet"]
