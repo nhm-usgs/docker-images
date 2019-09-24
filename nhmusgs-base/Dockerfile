@@ -9,10 +9,26 @@ RUN apt-get update && apt-get -y upgrade && \
     apt-get -y install dialog file gcc gfortran make procps unzip && \
     apt-get autoclean && apt-get purge
 
-# Update Conda
-RUN wget https://raw.githubusercontent.com/nhm-usgs/ofp-docker/master/app/environment.yml && \
-    conda update -n base conda -y && conda env update && conda clean -a && \
-    rm -f environment.yml
+# Update/upgrade Conda
+RUN conda update -n base conda -y 
+RUN conda install -n base -c defaults -c conda-forge \
+    python=3.6 \
+    bottleneck \
+    cartopy \
+    dask \
+    geopandas \
+    jupyter \
+    matplotlib \
+    netcdf4 \
+    notebook=5.7.4 \
+    numpy \
+    pandas \
+    rasterio \
+    rasterstats \
+    scipy \
+    xarray \
+    xmltodict
+RUN conda clean -a
 
 ENV SOURCE_DIR=/usr/local/src
 
