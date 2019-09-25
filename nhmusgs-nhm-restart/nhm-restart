@@ -70,23 +70,11 @@ yesterday=`date --date "$today -1 days" --rfc-3339='date'`
 end_date_restart=`date --date "$yesterday -$gridmet_provisional_days days" \
            --rfc-3339='date'`
 
-# Remove the verification file before running PRMS.
-#rm -f "$dirPRMS_VERIFIED_*"
-
 # find last simulation date used for the init restart file
 t=$(last_simulation_date $dir $restart_dir)
 
 # Run PRMS to make the updated restart file
 restart_fn = end_date_restart.strftime('%Y-%m-%d') + '.restart'
 
-#  st="$1"; shift
-#  et="$1"; shift
-#  prms_path="$1"; shift
-#  work_dir="$1"; shift
-#  init_flag="$1"; shift
-#  save_flag="$1"; shift
-#  control_file="$1"; shift
-#  init_file="$1"; shift
-#  save_file="$1"; shift
 run $start_date_restart $end_date_restart $HOMEDIR/prms/prms/prms $dir 1 1 \
-    './NHM-PRMS.control' "$restart_dir$t.restart" $restart_fn 
+    './NHM-PRMS.control' "$restart_dir$t.restart" $restart_fn ''
