@@ -32,6 +32,15 @@ services:
     volumes:
       - nhm:/var/lib/nhm
 
+  gridmet:
+    build:
+      context: ./nhmusgs-gridmet
+      labels:
+        - "gov.usgs.nhm.image.docker.application=NHM"
+        - "gov.usgs.nhm.image.docker.type=Gridmet Query"
+    image: nhmusgs/gridmet
+    container_name: gridmet
+      
   ofp:
     build:
       context: ./nhmusgs-ofp
