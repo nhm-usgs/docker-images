@@ -78,6 +78,17 @@ services:
     volumes:
       - nhm:/var/lib/nhm
 
+  nhm-restart:
+    build:
+      context: ./nhmusgs-nhm-restart
+      labels:
+        - "gov.usgs.nhm.image.docker.application=NHM"
+        - "gov.usgs.nhm.image.docker.type=RESTART"
+    image: nhmusgs/nhm-restart
+    container_name: nhm-restart
+    volumes:
+      - nhm:/var/lib/nhm
+
   out2ncf:
     build:
       context: ./nhmusgs-nhm-out2ncf
