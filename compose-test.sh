@@ -37,7 +37,7 @@ fi
 COMPOSE_FILES="-f docker-compose.yml -f docker-compose-testing.yml"
 echo "Beginning run. If this fails at any point, run the following command:"
 echo "docker-compose $COMPOSE_FILES down"
-for svc in data_loader ofp ncf2cbh nhm-prms out2ncf verifier; do
+for svc in data_loader ofp ncf2cbh nhm-prms out2ncf verifier nhm-restart; do
     echo ""
     echo "Running ${svc}..."
     docker-compose $COMPOSE_FILES -p nhm run --rm $svc
