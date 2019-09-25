@@ -4,9 +4,12 @@
 #
 # File - nhm-prms
 #
-# Purpose - Docker entry-point for nhm-prms container.
+# Purpose - Docker entry-point for nhm-restart container.
 #
 # Authors - Andrew Halper, Steven Markstrom
+#
+# DANGER: there is a lot of code copied directly from
+#         docker-images/nhmusgs-nhm-prms/nhm-prms
 
 . /usr/local/share/nhm/nhm.sh	# use NHM shell functions library
 
@@ -60,16 +63,18 @@ restart_dir='restart/'
 . /usr/local/share/nhm/nhm.sh	# NHM shell functions library
 
 i=$(restart_interval $dir 'restart/' '59')
-start_date=$(interval_start $i)
-end_date=$(interval_end $i)
+start_date_restart=$(interval_start $i)
 
-# Remove the verification file before running PRMS.
-rm -f "$dirPRMS_VERIFIED_*"
+# This code similar to code in nhm.sh.
+yesterday=`date --date "$today -1 days" --rfc-3339='date'`
+end_date_restart=`date --date "$yesterday -$gridmet_provisional_days days" \
+           --rfc-3339='date'`
 
-# find last simulation date
-# TODO: need to find how this is used in PRMS. See onhm.py.
+# find last simulation date used for the init restart file
 t=$(last_simulation_date $dir $restart_dir)
 
-# Run PRMS for the prescribed period.
-run $start_date $end_date $HOMEDIR/prms/prms/prms $dir 1 0 \
-    './NHM-PRMS.control' "$restart_dir$t.restart" '' ''
+# Run PRMS to make the updated restart file
+restart_fn = end_date_restart.strftime('%Y-%m-%d') + '.restart'
+
+run $start_date_restart $end_date_restart $HOMEDIR/prms/prms/prms $dir 1 1 \
+    './NHM-PRMS.control' "$restart_dir$t.restart" $restart_fn ''

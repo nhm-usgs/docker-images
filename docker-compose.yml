@@ -32,6 +32,15 @@ services:
     volumes:
       - nhm:/var/lib/nhm
 
+  gridmet:
+    build:
+      context: ./nhmusgs-gridmet
+      labels:
+        - "gov.usgs.nhm.image.docker.application=NHM"
+        - "gov.usgs.nhm.image.docker.type=Gridmet Query"
+    image: nhmusgs/gridmet
+    container_name: gridmet
+      
   ofp:
     build:
       context: ./nhmusgs-ofp
@@ -66,6 +75,17 @@ services:
         - "gov.usgs.nhm.image.docker.type=PRMS"
     image: nhmusgs/nhm-prms
     container_name: nhm-prms
+    volumes:
+      - nhm:/var/lib/nhm
+
+  nhm-restart:
+    build:
+      context: ./nhmusgs-nhm-restart
+      labels:
+        - "gov.usgs.nhm.image.docker.application=NHM"
+        - "gov.usgs.nhm.image.docker.type=RESTART"
+    image: nhmusgs/nhm-restart
+    container_name: nhm-restart
     volumes:
       - nhm:/var/lib/nhm
 
