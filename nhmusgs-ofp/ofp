@@ -28,5 +28,5 @@ end_date=$(interval_end $i)
 /opt/conda/bin/python -u onhm-fetcher-parser/pkg/climate_etl.py \
 		      -t date -p "$start_date" "$end_date" \
 		      -i /var/lib/nhm/ofp/nhm_hru_data \
-		      -o /var/lib/nhm/ofp/Output \
+		      -o /var/lib/nhm/NHM-PRMS_CONUS/input \
 		      -w /var/lib/nhm/ofp/nhm_hru_data/weights.csv
