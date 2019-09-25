@@ -4,7 +4,7 @@
 #
 # File - nhm-prms
 #
-# Purpose - Docker entry-point for nhm-prms container.
+# Purpose - Docker entry-point for nhm-restart container.
 #
 # Authors - Andrew Halper, Steven Markstrom
 #
