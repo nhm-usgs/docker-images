@@ -46,6 +46,7 @@ ENV USER=nhm
 RUN useradd -ms /bin/bash $USER
 
 RUN chown -R $USER /var/lib/nhm
+RUN chgrp -R $USER /var/lib/nhm
 
 # shell functions used by more than one entry-point script
 RUN mkdir -p /usr/local/share/nhm
