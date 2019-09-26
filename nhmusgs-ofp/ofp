@@ -24,7 +24,7 @@ i=$(restart_interval $dir 'restart/' '59')
 
 start_date=$(interval_start $i)
 end_date=$(interval_end $i)
-
+end_date=2019-07-15
 /opt/conda/bin/python -u $SOURCE_DIR/onhm-fetcher-parser/pkg/climate_etl.py \
 		      -t date -p "$start_date" "$end_date" \
 		      -i /var/lib/nhm/ofp/nhm_hru_data \
