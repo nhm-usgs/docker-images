@@ -18,7 +18,4 @@ USER $USER
 
 WORKDIR /home/$USER
 
-RUN ln -s $SOURCE_DIR/onhm-verify-eval $HOMEDIR/onhm-verify-eval && \
-    ln -s /var/lib/nhm $HOMEDIR/nhm
-
 ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/verifier"]

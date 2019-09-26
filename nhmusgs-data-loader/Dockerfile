@@ -12,7 +12,4 @@ WORKDIR /home/$USER
 
 ENV NUMDAYS=60
 
-RUN ln -s $SOURCE_DIR/onhm-fetcher-parser $HOMEDIR/onhm-fetcher-parser && \
-    ln -s /var/lib/nhm $HOMEDIR/nhm
-
 ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/nhm"]
