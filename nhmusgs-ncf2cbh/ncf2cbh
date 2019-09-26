@@ -1,4 +1,4 @@
 #!/bin/bash
-/opt/conda/bin/python -u onhm-runners/ncf2cbh/ncf2cbh.py
+/opt/conda/bin/python -u $SOURCE_DIR/onhm-runners/ncf2cbh/ncf2cbh.py
 
 
