@@ -32,7 +32,7 @@ RUN conda clean -a
 
 ENV SOURCE_DIR=/usr/local/src
 
-ARG VERSION_ONHM_RUNNERS=0.1.2
+ARG VERSION_ONHM_RUNNERS=0.1.3
 
 RUN git clone https://github.com/nhm-usgs/onhm-runners.git --branch $VERSION_ONHM_RUNNERS --depth=1 $SOURCE_DIR/onhm-runners && \
     cd $SOURCE_DIR/onhm-runners && \

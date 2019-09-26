@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash -x
 #
 # U.S. Geological Survey
 #
@@ -46,10 +46,11 @@ run() {
   control_arg="-C $control_file"
   #control_arg="$control_file"
   cd $work_dir && \
-  pwd && \
-  ls && \
-  $($prms_path $start_args $end_args $init_vars_from_file $var_save_file $var_init_file $save_vars_to_file $control_arg)
-  #cd $work_dir && $("$prms_path $control_arg")
+	$prms_path $start_args $end_args $init_vars_from_file \
+    		  $var_save_file $var_init_file $save_vars_to_file \
+		  $control_arg
+
+
   # TODO: send output to $log_file_name? See onhm.py.
   
 } # run
@@ -72,4 +73,4 @@ t=$(last_simulation_date $dir $restart_dir)
 
 # Run PRMS for the prescribed period.
 run $start_date $end_date $SOURCE_DIR/prms/prms/prms $dir 1 0 \
-    './NHM-PRMS.control' "$restart_dir$t.restart" '' ''
+    'NHM-PRMS.control' "$restart_dir$t.restart" '' ''

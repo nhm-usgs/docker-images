@@ -59,7 +59,7 @@ fi
 #for svc in ofp ncf2cbh nhm-prms out2ncf verifier nhm-restart; do
 #    run "$svc"
 #done
-for svc in nhm-prms out2ncf verifier nhm-restart; do
+for svc in out2ncf verifier nhm-restart; do
     run "$svc"
 done
 docker-compose $COMPOSE_FILES down
