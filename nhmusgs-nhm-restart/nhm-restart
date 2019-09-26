@@ -74,7 +74,7 @@ end_date_restart=`date --date "$yesterday -$gridmet_provisional_days days" \
 t=$(last_simulation_date $dir $restart_dir)
 
 # Run PRMS to make the updated restart file
-restart_fn = end_date_restart.strftime('%Y-%m-%d') + '.restart'
+restart_fn="$end_date_restart.restart"
 
 run $start_date_restart $end_date_restart $HOMEDIR/prms/prms/prms $dir 1 1 \
     './NHM-PRMS.control' "$restart_dir$t.restart" $restart_fn ''
