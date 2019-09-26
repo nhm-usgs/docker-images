@@ -27,10 +27,5 @@ ENV NUMDAYS=60
 ENV START_DATE=2019-01-01
 ENV END_DATE=2019-01-02
 
-
-# convenience soft-links
-RUN ln -s $SOURCE_DIR/onhm-fetcher-parser $HOMEDIR/onhm-fetcher-parser && \
-    ln -s /var/lib/nhm $HOMEDIR/nhm
-
 # ...and remain running
 ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/ofp"]

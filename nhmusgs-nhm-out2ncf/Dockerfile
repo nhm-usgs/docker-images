@@ -12,7 +12,4 @@ WORKDIR /home/$USER
 
 ENV NUMDAYS=60
 
-RUN ln -s $SOURCE_DIR/onhm-runners $HOMEDIR/onhm-runners && \
-    ln -s /var/lib/nhm $HOMEDIR/nhm
-
 ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/out2ncf"]

@@ -71,5 +71,5 @@ rm -f "$dirPRMS_VERIFIED_*"
 t=$(last_simulation_date $dir $restart_dir)
 
 # Run PRMS for the prescribed period.
-run $start_date $end_date $HOMEDIR/prms/prms/prms $dir 1 0 \
+run $start_date $end_date $SOURCE_DIR/prms/prms/prms $dir 1 0 \
     './NHM-PRMS.control' "$restart_dir$t.restart" '' ''
