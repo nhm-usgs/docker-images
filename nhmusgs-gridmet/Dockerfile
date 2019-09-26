@@ -1,12 +1,3 @@
-# U.S. Geological Survey
-#
-# File - Dockerfile
-#
-# Purpose - Dockerfile for NHM Gridmet container.
-#
-# Author - Andrew Halper
-#
-
 FROM nhmusgs/base
 
 LABEL maintainer="ashalper@usgs.gov"
