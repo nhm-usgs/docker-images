@@ -11,3 +11,6 @@ thredds/files/logs/thredds/*
 thredds/files/logs/tomcat/*
 !**/*/.keepme
 *.code-workspace
+/input
+/output
+/test
