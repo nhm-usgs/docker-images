@@ -49,19 +49,19 @@ echo "docker-compose $COMPOSE_FILES down"
 
 # call run() function above
 run data_loader
-#run gridmet
+run gridmet
 
 if [ $? != 0 ]; then
     echo 'Gridmet data is not available - process exiting'
     exit 1
 fi
 
-#for svc in ofp ncf2cbh nhm-prms out2ncf verifier nhm-restart; do
-#    run "$svc"
-#done
-for svc in out2ncf verifier nhm-restart; do
+for svc in ofp ncf2cbh nhm-prms out2ncf verifier nhm-restart; do
     run "$svc"
 done
+#for svc in out2ncf verifier nhm-restart; do
+#    run "$svc"
+#done
 docker-compose $COMPOSE_FILES down
 
 # copy PRMS output from Docker volume to directory on host

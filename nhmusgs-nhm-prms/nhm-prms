@@ -63,7 +63,7 @@ restart_dir='restart/'
 i=$(restart_interval $dir 'restart/' '59')
 start_date=$(interval_start $i)
 end_date=$(interval_end $i)
-end_date=2019-07-15
+#end_date=2019-07-15
 # Remove the verification file before running PRMS.
 rm -f "$dirPRMS_VERIFIED_*"
 
