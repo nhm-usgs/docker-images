@@ -13,13 +13,13 @@ RUN git clone https://github.com/nhm-usgs/prms.git --branch $VERSION_TAG_PRMS --
     rm Makefile || true && \
     rm makelist || true
 
-COPY --chown=nhm nhm-prms /usr/local/bin
+COPY --chown=nhm prms /usr/local/bin
 
-RUN chmod 744 /usr/local/bin/nhm-prms && \
+RUN chmod 744 /usr/local/bin/prms && \
     chown -R $USER $SOURCE_DIR/prms
 
 USER $USER
 
 WORKDIR /home/$USER
 
-ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/nhm-prms"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/prms", "$RESTART"]

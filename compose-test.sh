@@ -56,9 +56,14 @@ if [ $? != 0 ]; then
     exit 1
 fi
 
-for svc in ofp ncf2cbh nhm-prms out2ncf verifier nhm-restart; do
+for svc in ofp ncf2cbh nhm-prms out2ncf verifier; do
     run "$svc"
 done
+
+# run PRMS container again in restart mode
+export RESTART='-r'
+run nhm-prms
+
 docker-compose $COMPOSE_FILES down
 
 # copy PRMS output from Docker volume to directory on host
