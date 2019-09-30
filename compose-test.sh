@@ -77,7 +77,8 @@ for svc in out2ncf verifier; do
 done
 
 # run PRMS service again in restart mode
-run nhm-prms --env RESTART=true
+export RESTART=true
+run nhm-prms
 
 docker-compose $COMPOSE_FILES down
 

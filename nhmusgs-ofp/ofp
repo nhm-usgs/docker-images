@@ -25,7 +25,7 @@ i=$(restart_interval $dir 'restart/' '59')
 start_date=$(interval_start $i)
 
 # if END_DATE is set (for debugging purposes)...
-if [ -n "$END_DATE"]; then
+if [ -n "$END_DATE" ]; then
     # ...use it
     end_date=$END_DATE
 else
