@@ -16,10 +16,11 @@ set -e
 # encapsulate some container running boiler-plate
 run () {
     svc=$1
+    shift
 
     echo ""
     echo "Running $svc..."
-    docker-compose $COMPOSE_FILES -p nhm run --rm $svc
+    docker-compose $COMPOSE_FILES -p nhm run --rm $svc $*
 } # run
 
 echo "Building necessary Docker images"
@@ -49,22 +50,29 @@ echo "docker-compose $COMPOSE_FILES down"
 
 # call run() function above
 run data_loader
-#run gridmet
 
-if [ $? != 0 ]; then
-    echo 'Gridmet data is not available - process exiting'
-    exit 1
+# if we want to run the Gridmet service...
+if [ "$GRIDMET_DISABLE" != true ]; then
+    # ...do that
+    run gridmet
+    if [ $? != 0 ]; then
+	echo 'Gridmet data is not available - process exiting'
+	exit 1
+    fi
 fi
 
-# for svc in ofp ncf2cbh nhm-prms out2ncf verifier; do
-#     run "$svc"
-# done
-# for svc in nhm-prms out2ncf verifier; do
-#     run "$svc"
-# done
-# run PRMS container again in restart mode
-export RESTART=1
-run nhm-prms -e RESTART
+# if we want to run the ofp service...
+if [ "$OFP_DISABLE" != true ]; then
+    run ofp
+fi
+
+# run these four services
+for svc in ncf2cbh nhm-prms out2ncf verifier; do
+    run "$svc"
+done
+
+# run PRMS service again in restart mode
+run nhm-prms --env RESTART=true
 
 docker-compose $COMPOSE_FILES down
 
