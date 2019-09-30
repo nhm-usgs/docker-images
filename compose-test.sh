@@ -66,8 +66,13 @@ if [ "$OFP_DISABLE" != true ]; then
     run ofp
 fi
 
-# run these four services
-for svc in ncf2cbh nhm-prms out2ncf verifier; do
+run ncf2cbh
+
+# PRMS
+run nhm-prms --env END_DATE="$END_DATE"
+
+# run these two services
+for svc in out2ncf verifier; do
     run "$svc"
 done
 
