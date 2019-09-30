@@ -1,4 +1,4 @@
-# /bin/bash
+# /bin/bash -x
 #
 # U.S. Geological Survey
 #

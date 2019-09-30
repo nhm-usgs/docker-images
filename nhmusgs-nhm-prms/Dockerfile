@@ -20,6 +20,8 @@ RUN chmod 744 /usr/local/bin/prms && \
 
 USER $USER
 
+ENV RESTART=0
+
 WORKDIR /home/$USER
 
 ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/prms", "$RESTART"]

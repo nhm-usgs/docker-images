@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash -x
 #
 # U.S. Geological Survey
 #
@@ -24,6 +24,8 @@ fi
 # are in here:
 . /usr/local/share/nhm/nhm.sh
 
+dir='/var/lib/nhm/NHM-PRMS_CONUS/'
+restart_dir='restart/'
 gridmet_provisional_days=59
 i=$(restart_interval $dir 'restart/' $gridmet_provisional_days)
 start_date=$(interval_start $i)
@@ -35,6 +37,7 @@ if [ "$1" = -r ]; then
     	      --rfc-3339='date'`
 else
     end_date=$(interval_end $i)
+    end_date=2019-07-15
 fi
 
 # Remove the verification file before running PRMS.
@@ -51,19 +54,21 @@ init_vars_from_file=' -set init_vars_from_file 1'
 var_init_file=" -set var_init_file $restart_dir$t.restart"
 
 save_vars_to_file=' -set save_vars_to_file 0'
+vars_save_file=$end_date'.restart'
 
 # TODO: SOURCE_DIR should ultimately be changed to the permanent PRMS
 # install location prefix; likely /usr/local/bin
 
 cd $dir
 # if in restart mode
-if [ "$1" = -r ]; then
+if [ "$RESTART" = 1 ]; then
     # run PRMS to make the updated restart file
+    init_vars_from_file=' -set init_vars_from_file 1'
+    save_vars_to_file=' -set save_vars_to_file 1'
     $SOURCE_DIR/prms/prms/prms $start_date $end_date \
-			       $SOURCE_DIR/prms/prms/prms $dir 1 1 \
-			       -C ./NHM-PRMS.control \
-			       "$restart_dir$t.restart" \
-			       "$end_date.restart"
+			        $init_vars_from_file $var_init_file \
+			        $save_vars_to_file $vars_save_file\
+			       -C ./NHM-PRMS.control
 else
     # run PRMS for the prescribed period
     $SOURCE_DIR/prms/prms/prms $start_args $end_args \
