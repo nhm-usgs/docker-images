@@ -23,7 +23,14 @@ fi
 i=$(restart_interval $dir 'restart/' '59')
 
 start_date=$(interval_start $i)
-end_date=$(interval_end $i)
+
+# if END_DATE is set (for debugging purposes)...
+if [ -n "$END_DATE"]; then
+    # ...use it
+    end_date=$END_DATE
+else
+    end_date=$(interval_end $i)
+fi
 
 /opt/conda/bin/python -u $SOURCE_DIR/onhm-fetcher-parser/pkg/climate_etl.py \
 		      -t date -p "$start_date" "$end_date" \
