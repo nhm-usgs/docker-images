@@ -10,10 +10,6 @@ RUN git clone https://github.com/nhm-usgs/onhm-verify-eval.git --branch $VERSION
     rm .gitignore || true && \
     rm Dockerfile || true
 
-COPY --chown=nhm verifier /usr/local/bin
-
-RUN chmod 744 /usr/local/bin/verifier
-
 USER $USER
 
 WORKDIR /home/$USER
