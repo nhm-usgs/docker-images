@@ -18,4 +18,5 @@ USER $USER
 
 WORKDIR /home/$USER
 
-ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/verifier"]
+ENTRYPOINT \
+  ["/opt/conda/bin/python", "-u", "/usr/local/src/onhm-verify-eval/src/prms_verifier.py"]
