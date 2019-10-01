@@ -1,3 +1,0 @@
-#!/bin/bash
-/opt/conda/bin/python -u  $SOURCE_DIR/onhm-runners/out2ncf/prms_outputs2_ncf.py
-
