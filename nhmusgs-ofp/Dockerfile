@@ -1,4 +1,4 @@
-FROM nhmusgs/base
+FROM nhmusgs/base:latest
 
 LABEL maintainer="ashalper@usgs.gov"
 
@@ -9,15 +9,12 @@ RUN git clone --depth=1 --branch $VERSION_TAG_OFP \
     https://github.com/nhm-usgs/onhm-fetcher-parser.git $SOURCE_DIR/onhm-fetcher-parser && \
     cd $SOURCE_DIR/onhm-fetcher-parser && \
     rm -rf .git || true && \
-    rm -rf .idea || true && \
     rm .gitignore || true
 
-# ofp script
-COPY --chown=nhm ofp /usr/local/bin
+COPY ofp /usr/local/bin
 
-RUN mkdir -p /var/lib/nhm/ofp/Output
-
-RUN chmod 744 /usr/local/bin/ofp
+RUN chown $USER:$USER /usr/local/bin/ofp && \
+  chmod 744 /usr/local/bin/ofp
 
 USER $USER
 
@@ -27,5 +24,4 @@ ENV NUMDAYS=60
 ENV START_DATE=2019-01-01
 ENV END_DATE=2019-01-02
 
-# ...and remain running
 ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/ofp"]
