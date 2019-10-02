@@ -1,4 +1,4 @@
-FROM nhmusgs/base
+FROM nhmusgs/base:latest
 
 LABEL maintainer="ashalper@usgs.gov"
 
@@ -13,10 +13,10 @@ RUN git clone https://github.com/nhm-usgs/prms.git --branch $VERSION_TAG_PRMS --
     rm Makefile || true && \
     rm makelist || true
 
-COPY --chown=nhm prms /usr/local/bin
+COPY prms /usr/local/bin
 
-RUN chmod 744 /usr/local/bin/prms && \
-    chown -R $USER $SOURCE_DIR/prms
+RUN chown -R $USER:$USER $SOURCE_DIR/prms && \
+  chmod 744 /usr/local/bin/prms
 
 USER $USER
 
