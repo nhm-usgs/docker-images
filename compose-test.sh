@@ -90,7 +90,9 @@ FROM alpine
 CMD
 EOF
 docker container create --name dummy -v nhm_nhm:/test nothing
-docker cp dummy:/test/ofp/Output .
+docker cp dummy:/test/NHM-PRMS_CONUS/output .
+docker cp dummy:/test/NHM-PRMS_CONUS/input .
+docker cp dummy:/test/NHM-PRMS_CONUS/restart .
 docker rm dummy
 
 echo "If you wish to re-start clean, run the following:"
