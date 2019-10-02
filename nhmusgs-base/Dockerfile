@@ -37,13 +37,13 @@ RUN git clone https://github.com/nhm-usgs/onhm-runners.git --branch $VERSION_ONH
     rm -rf .git || true && \
     rm .gitignore || true
 
+VOLUME ["/var/lib/nhm"]
+
 RUN mkdir -p /var/lib/nhm/ofp/Output
 
 ENV USER=nhm
 
 RUN useradd -ms /bin/bash $USER
-
-VOLUME ["/var/lib/nhm"]
 
 RUN chown -R $USER:$USER /var/lib/nhm
 
