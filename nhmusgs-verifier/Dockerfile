@@ -1,4 +1,4 @@
-FROM nhmusgs/base
+FROM nhmusgs/base:latest
 
 LABEL maintainer="ashalper@usgs.gov"
 
@@ -10,9 +10,10 @@ RUN git clone https://github.com/nhm-usgs/onhm-verify-eval.git --branch $VERSION
     rm .gitignore || true && \
     rm Dockerfile || true
 
-COPY --chown=nhm verifier /usr/local/bin
+COPY verifier /usr/local/bin
 
-RUN chmod 744 /usr/local/bin/verifier
+RUN chown $USER:$USER /usr/local/bin/verifier && \
+  chmod 744 /usr/local/bin/verifier
 
 USER $USER
 
