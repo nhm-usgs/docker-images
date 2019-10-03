@@ -37,8 +37,6 @@ RUN git clone https://github.com/nhm-usgs/onhm-runners.git --branch $VERSION_ONH
     rm -rf .git || true && \
     rm .gitignore || true
 
-VOLUME ["/var/lib/nhm"]
-
 RUN mkdir -p /var/lib/nhm/ofp/Output
 
 ENV USER=nhm
@@ -54,3 +52,5 @@ RUN chown -R $USER:$USER /usr/local/share/nhm
 RUN chmod 744 /usr/local/share/nhm/nhm.sh
 
 ENV HOMEDIR=/home/$USER
+
+VOLUME ["/var/lib/nhm"]
