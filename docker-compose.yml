@@ -8,9 +8,9 @@ networks:
   nhmnet:
 
 services:
-    
+
   base_image:
-    build: 
+    build:
       context: ./nhmusgs-base
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
@@ -40,7 +40,7 @@ services:
         - "gov.usgs.nhm.image.docker.type=Gridmet Query"
     image: nhmusgs/gridmet
     container_name: gridmet
-      
+
   ofp:
     build:
       context: ./nhmusgs-ofp
@@ -50,7 +50,6 @@ services:
     image: nhmusgs/ofp
     container_name: ofp
     environment:
-      - NUMDAYS=${NUMDAYS-60}
       - START_DATE=${START_DATE-2019-01-01}
       - END_DATE=${END_DATE-2019-01-02}
     volumes:
