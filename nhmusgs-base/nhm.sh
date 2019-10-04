@@ -14,7 +14,7 @@ last_simulation_date () {
   restart_dir=$2
 
   # list restart files
-  restart_files=`ls $dir$restart_dir*.restart`
+  ls $dir$restart_dir*.restart
   if [ "$?" -ne 0 ]; then
     # there was a problem
     return 1
@@ -22,7 +22,8 @@ last_simulation_date () {
 
   # Determine the date for the last simulation by finding the last
   # restart file.
-  echo $restart_files | sed 's/^.*\///;s/\.restart$//' | sort | tail -1
+  ls $dir$restart_dir*.restart | sed 's/^.*\///;s/\.restart$//' | \
+      sort | tail -1  
 
 } # last_simulation_date
 
