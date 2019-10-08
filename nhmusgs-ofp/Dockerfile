@@ -23,9 +23,4 @@ USER $USER
 
 WORKDIR /home/$USER
 
-ENV NUMDAYS=60
-ENV START_DATE=2019-01-01
-ENV END_DATE=2019-01-02
-
-# ...and remain running
 ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/ofp"]
