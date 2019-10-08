@@ -1,4 +1,4 @@
-#! /bin/bash -x
+#! /bin/bash
 # U.S. Geological Survey
 #
 # File - ofp
@@ -9,31 +9,15 @@
 #           Andrew Halper
 #
 
-# if there is one and only one argument
-if [ "$#" -eq 1 ]; then
-   dir="$1"
-else
-   dir='/var/lib/nhm/NHM-PRMS_CONUS/'
-fi
+dir='/var/lib/nhm/NHM-PRMS_CONUS/'
 
 . /usr/local/share/nhm/nhm.sh	# use NHM shell functions library
 
 # calculate restart interval
 i=$(restart_interval $dir 'restart/' '59')
 
-start_date=$(interval_start $i)
-
-# if END_DATE is set (for debugging purposes)...
-# if [ -n "$END_DATE" ]; then
-#     # ...use it
-#     end_date=$END_DATE
-# 	echo 'using end date override'
-# else
-    end_date=$(interval_end $i)
-# fi
-
 /opt/conda/bin/python -u $SOURCE_DIR/onhm-fetcher-parser/pkg/climate_etl.py \
-		      -t date -p "$start_date" "$end_date" \
+		      -t date -p `echo $i | sed 's/\// /'` \
 		      -i /var/lib/nhm/ofp/nhm_hru_data \
-		      -o /var/lib/nhm/NHM-PRMS_CONUS/input \
+		      -o $dir/input \
 		      -w /var/lib/nhm/ofp/nhm_hru_data/weights.csv
