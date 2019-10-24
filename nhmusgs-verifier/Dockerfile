@@ -4,7 +4,7 @@ LABEL maintainer="ashalper@usgs.gov"
 
 ARG VERSION_TAG_VERIFY=0.1.1
 
-RUN git clone https://github.com/nhm-usgs/onhm-verify-eval.git --branch $VERSION_TAG_VERIFY --depth=1 $SOURCE_DIR/onhm-verify-eval -c http.sslVerify=false && \
+RUN git clone https://github.com/nhm-usgs/onhm-verify-eval.git --branch $VERSION_TAG_VERIFY --depth=1 $SOURCE_DIR/onhm-verify-eval && \
     cd $SOURCE_DIR/onhm-verify-eval && \
     rm -rf .git || true && \
     rm .gitignore || true && \
