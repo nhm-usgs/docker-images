@@ -11,8 +11,8 @@ RUN apt-get update && \
 # Update/upgrade Conda
 COPY spec-file.txt .
 RUN conda update -n base conda -y && \
-    conda install -n base -c defaults -c conda-forge --file spec-file.txt
-#RUN conda clean -a
+    conda install -n base -c defaults -c conda-forge --file spec-file.txt && \
+    conda clean -a
 
 ENV SOURCE_DIR=/usr/local/src
 
