@@ -9,25 +9,10 @@ RUN apt-get update && \
     apt-get autoclean && apt-get purge
 
 # Update/upgrade Conda
+COPY spec-file.txt .
 RUN conda update -n base conda -y && \
-  conda install -n base -c defaults -c conda-forge \
-    python=3.6 \
-    bottleneck \
-    cartopy \
-    dask \
-    geopandas \
-    jupyter \
-    matplotlib \
-    netcdf4 \
-    notebook=5.7.4 \
-    numpy \
-    pandas \
-    rasterio \
-    rasterstats \
-    scipy \
-    xarray \
-    xmltodict && \
-  conda clean -a
+    conda install -n base -c defaults -c conda-forge --file spec-file.txt
+#RUN conda clean -a
 
 ENV SOURCE_DIR=/usr/local/src
 
