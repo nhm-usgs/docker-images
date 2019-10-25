@@ -11,23 +11,13 @@ RUN apt-get update && \
 # Update/upgrade Conda
 RUN conda update -n base conda -y && \
     conda install -n base -c defaults -c conda-forge \
-    rasterstats=0.13.1 \
-    jupyter=1.0.0 \
-    notebook=6.0.1 \
-    cartopy=0.17.0 \
-    python=3.7 \
-    matplotlib=3.1.1 \
-    rasterio=1.0.21 \
-    cipy=1.3.1 \
-    docker-py=4.0.2 \
-    xarray=0.13.0 \
-    geopandas=0.4.1 \
-    xmltodict=0.12.0 \
-    numpy=1.17.2 \
-    dask=2.6.0 \
-    netcdf4=1.4.2 \
-    bottleneck=1.2.1 \
-    pandas=0.25.2 && \
+    python=3 \
+    netcdf4=1.5.3
+    xarray=0.14.0
+    pandas=0.25.2
+    rasterio=1.1.0
+    geopandas=0.6.1
+    requests=2.22.0 && \
     conda clean -a
 
 ENV SOURCE_DIR=/usr/local/src
