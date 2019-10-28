@@ -12,11 +12,11 @@ RUN apt-get update && \
 RUN conda update -n base conda -y && \
     conda install -n base -c defaults -c conda-forge \
     python=3 \
-    netcdf4=1.5.3
-    xarray=0.14.0
-    pandas=0.25.2
-    rasterio=1.1.0
-    geopandas=0.6.1
+    netcdf4=1.5.3 \
+    xarray=0.14.0 \
+    pandas=0.25.2 \
+    rasterio=1.1.0 \
+    geopandas=0.6.1 \
     requests=2.22.0 && \
     conda clean -a
 
