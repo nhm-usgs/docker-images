@@ -34,3 +34,13 @@ if [ ! -f "data/${PRMS_DATA_PKG}" ]; then
 fi
 
 $run nhmusgs/data-loader
+
+# if we want to run the Gridmet service...
+if [ "$GRIDMET_DISABLE" != true ]; then
+    # ...do that
+    $run nhmusgs/gridmet
+    if [ $? != 0 ]; then
+        echo 'Gridmet data is not available - process exiting'
+        exit 1
+    fi
+fi
