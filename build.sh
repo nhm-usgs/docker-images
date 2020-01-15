@@ -12,6 +12,6 @@
 docker-compose build base_image
 docker-compose build -f docker-compose.yml \
 	       -f docker-compose-testing.yml data_loader
-for svc in gridmet ofp ncf2cbh nhm-prms out2ncf verifier; do
+for svc in data-loader gridmet ofp ncf2cbh nhm-prms out2ncf verifier; do
     docker-compose build "$svc"
 done
