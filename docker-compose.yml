@@ -28,10 +28,10 @@ services:
     networks:
       nhmnet:
     environment:
-      - HRU_DATA_PKG=Data_hru_shp_v2.tar.gz
-      - PRMS_DATA_PKG=NHM-PRMS_CONUS.zip
-      - HRU_SOURCE="ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/${HRU_DATA_PKG}"
-      - PRMS_SOURCE="ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/markstro/${PRMS_DATA_PKG}"
+      - HRU_DATA_PKG="Data_hru_shp_v2.tar.gz"
+      - PRMS_DATA_PKG="NHM-PRMS_CONUS.zip"
+      - HRU_SOURCE="ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/Data_hru_shp_v2.tar.gz"
+      - PRMS_SOURCE="ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/markstro/NHM-PRMS_CONUS.zip"
     volumes:
       - nhm:/var/lib/nhm
 
