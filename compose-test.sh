@@ -23,13 +23,12 @@ run () {
     # if running a Shifter image on MPI...
     if [ "$SHIFTER" = true ]; then
 	# ...fix much naming inconsistency in this directory...
-	sl=\
-	  `echo $svc | \
+	dir=`echo $svc | \
 	   sed 's/data_loader/nhmusgs-data-loader/;\
 	        s/nhm-prms/nhmusgs-nhm-prms/;\
 	        s/out2ncf/nhmusgs-nhm-out2ncf/'`
 	# ...and submit as Slurm batch script.
-	sbatch -W $sl
+	sbatch -W ./$dir/submit.sl
     else
 	docker-compose $COMPOSE_FILES -p nhm run --rm $svc $*
     fi
