@@ -15,19 +15,34 @@ To run the app, run:
 ./compose-test.sh
 ```
 
-# Running on Windows
+## Running on Windows
 
 We have not had success running the app on the Windows version of Docker. Whether this is due to the global network security configuration of Windows within .usgs.gov, or specific to Docker on Windows itself (or both), we are unsure.
 
 If running the app on Windows within .usgs.gov, we recommend running Docker Compose on [Oracle VM VirtualBox](https://www.virtualbox.org/) (see below).
 
-# Running on Oracle VM VirtualBox
+## Running on Oracle VM VirtualBox
 
 1. install Oracle VM VirtualBox;
 2. create a Linux virtual machine managed by Oracle VM VirtualBox using the installation image of distro. of your choice (we use [CentOS 7](https://www.centos.org/), but this is not required);
 3. install Git, Docker Compose and wget on the Linux virtual machine;
 4. clone the docker-images repo. on the virtual machine;
 5. run the `compose-test.sh` script as described under **Running** above.
+
+## Running on MPI Architecture
+
+Use [shifterimg](https://docs.nersc.gov/programming/shifter/how-to-use/) to pull and convert Docker images to Shifter images:
+
+```
+shifterimg pull nhmusgs/data-loader:latest
+```
+
+And the [remaining required images](https://hub.docker.com/orgs/nhmusgs/repositories). Then:
+
+
+```
+SHIFTER=true ./compose-test.sh
+```
 
 # Debugging
 
