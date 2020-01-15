@@ -20,12 +20,26 @@ run () {
 
     echo ""
     echo "Running $svc..."
-    docker-compose $COMPOSE_FILES -p nhm run --rm $svc $*
+    # if running a Shifter image on MPI...
+    if [ "$SHIFTER" = true ]; then
+	# ...fix much naming inconsistency in this directory...
+	sl=\
+	  `echo $svc | \
+	   sed 's/data_loader/nhmusgs-data-loader/;\
+	        s/nhm-prms/nhmusgs-nhm-prms/;\
+	        s/out2ncf/nhmusgs-nhm-out2ncf/'`
+	# ...and submit as Slurm batch script.
+	sbatch -W $sl
+    else
+	docker-compose $COMPOSE_FILES -p nhm run --rm $svc $*
+    fi
 } # run
 
-echo "Building necessary Docker images"
-docker-compose build base_image
-docker-compose build --parallel
+if [ "$SHIFTER" != true ]; then
+    echo "Building necessary Docker images"
+    docker-compose build base_image
+    docker-compose build --parallel
+fi
 
 echo "Checking if HRU data is downloaded..."
 if [ ! -d data ]; then
@@ -44,9 +58,12 @@ if [ ! -f "data/${PRMS_DATA_PKG}" ]; then
 	-O "data/${PRMS_DATA_PKG}"
 fi
 
-COMPOSE_FILES="-f docker-compose.yml -f docker-compose-testing.yml"
-echo "Beginning run. If this fails at any point, run the following command:"
-echo "docker-compose $COMPOSE_FILES down"
+echo "Beginning run."
+if [ "$SHIFTER" != true ]; then
+    COMPOSE_FILES="-f docker-compose.yml -f docker-compose-testing.yml"
+    echo "If this fails at any point, run the following command:"
+    echo "docker-compose $COMPOSE_FILES down"
+fi
 
 # call run() function above
 run data_loader
@@ -80,19 +97,25 @@ done
 export RESTART=true
 run nhm-prms
 
-docker-compose $COMPOSE_FILES down
+if [ "$SHIFTER" != true ]; then
+    docker-compose $COMPOSE_FILES down
+fi
 
-# copy PRMS output from Docker volume to directory on host
-echo "Pipeline has completed. Will copy output files from Docker volume"
-echo "Output files will show up in the \"output\" directory"
-docker build -t nothing - <<EOF
+# TODO: need something that will run on Shifter/MPI here.
+if [ "$SHIFTER" != true ]; then
+    # copy PRMS output from Docker volume to directory on host
+    echo "Pipeline has completed. Will copy output files from Docker volume"
+    echo "Output files will show up in the \"output\" directory"
+
+    docker build -t nothing - <<EOF
 FROM alpine
 CMD
 EOF
-docker container create --name dummy -v nhm_nhm:/test nothing
-docker cp dummy:/test/ofp/Output .
-docker rm dummy
+    docker container create --name dummy -v nhm_nhm:/test nothing
+    docker cp dummy:/test/ofp/Output .
+    docker rm dummy
 
-echo "If you wish to re-start clean, run the following:"
-echo "docker system prune -f"
-echo "docker network prune -f"
+    echo "If you wish to re-start clean, run the following:"
+    echo "docker system prune -f"
+    echo "docker network prune -f"
+fi
