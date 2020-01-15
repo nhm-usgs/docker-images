@@ -25,7 +25,7 @@ run () {
 	# ...fix much naming inconsistency in this directory...
 	dir=`echo $svc | \
 	   sed 's/data_loader/nhmusgs-data-loader/;\
-	        s/nhm-prms/nhmusgs-nhm-prms/;\
+	        s/\(gridmet\|nhm-prms\)/nhmusgs-\1/;\
 	        s/out2ncf/nhmusgs-nhm-out2ncf/'`
 	# ...and submit as a Slurm batch script.
 	sbatch -W ./$dir/submit.sl
