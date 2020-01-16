@@ -13,6 +13,14 @@ set -e
 
 . ./nhm.env			# environment variables file
 
+# if we want to run on Shifter...
+if [ "$1" = -s ]; then
+    # Caution: the environment variable SHIFTER is used by Shifter to
+    # specify the image to run.
+    shifter=true
+    shift
+fi
+
 # encapsulate some container running boiler-plate
 run () {
     svc=$1
@@ -21,11 +29,11 @@ run () {
     echo ""
     echo "Running $svc..."
     # if running a Shifter image on MPI...
-    if [ "$SHIFTER" = true ]; then
+    if [ "$shifter" = true ]; then
 	# ...fix much naming inconsistency in this directory...
 	dir=`echo $svc | \
 	   sed 's/data_loader/nhmusgs-data-loader/;\
-	        s/\(gridmet\|nhm-prms\)/nhmusgs-\1/;\
+	        s/\(gridmet\|ofp\|nhm-prms\)/nhmusgs-\1/;\
 	        s/out2ncf/nhmusgs-nhm-out2ncf/'`
 	# ...and submit as a Slurm batch script.
 	sbatch -W ./$dir/submit.sl
@@ -34,7 +42,7 @@ run () {
     fi
 } # run
 
-if [ "$SHIFTER" != true ]; then
+if [ "$shifter" != true ]; then
     echo "Building necessary Docker images"
     docker-compose build base_image
     docker-compose build --parallel
@@ -58,7 +66,7 @@ if [ ! -f "data/${PRMS_DATA_PKG}" ]; then
 fi
 
 echo "Beginning run."
-if [ "$SHIFTER" != true ]; then
+if [ "$shifter" != true ]; then
     COMPOSE_FILES="-f docker-compose.yml -f docker-compose-testing.yml"
     echo "If this fails at any point, run the following command:"
     echo "docker-compose $COMPOSE_FILES down"
@@ -96,12 +104,12 @@ done
 export RESTART=true
 run nhm-prms
 
-if [ "$SHIFTER" != true ]; then
+if [ "$shifter" != true ]; then
     docker-compose $COMPOSE_FILES down
 fi
 
 # TODO: need something that will run on Shifter/MPI here.
-if [ "$SHIFTER" != true ]; then
+if [ "$shifter" != true ]; then
     # copy PRMS output from Docker volume to directory on host
     echo "Pipeline has completed. Will copy output files from Docker volume"
     echo "Output files will show up in the \"output\" directory"
