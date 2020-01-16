@@ -41,7 +41,7 @@ And the [remaining required images](https://hub.docker.com/orgs/nhmusgs/reposito
 
 
 ```
-SHIFTER=true ./compose-test.sh
+./compose-test.sh -s
 ```
 
 # Debugging
