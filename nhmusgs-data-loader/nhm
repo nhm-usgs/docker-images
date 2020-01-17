@@ -10,8 +10,8 @@
 set -e
 
 # if ofp, HRU shapefiles are not present...
-if [ ! -d /var/lib/nhm/ofp/nhm_hru_data ]; then
-    cd /var/lib/nhm/ofp
+if [ ! -d /nhm/ofp/nhm_hru_data ]; then
+    cd /nhm/ofp
     # ...download archive
     wget --waitretry=3 --retry-connrefused "$HRU_SOURCE"
     # uncompress archive
@@ -22,8 +22,8 @@ else
 fi
 
 # if PRMS workspace is not present...
-if [ ! -d /var/lib/nhm/NHM-PRMS_CONUS ]; then
-    cd /var/lib/nhm
+if [ ! -d /nhm/NHM-PRMS_CONUS ]; then
+    cd /nhm
     # ...download it
     wget --waitretry=3 --retry-connrefused "$PRMS_SOURCE"
     unzip -o `basename $PRMS_DATA_PKG .zip`
