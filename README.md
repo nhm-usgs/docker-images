@@ -33,7 +33,7 @@ If running the app on Windows within .usgs.gov, we recommend running Docker Comp
 
 The `compose-test.sh` references environment variables that can be set to affect its execution for debugging purposes. They are:
 
-* `GRIDMET_DISABLE`: set `true` to skip running gridmet service;
+* `GRIDMET_DISABLE`: set `true` to skip running [gridMET](http://www.climatologylab.org/gridmet.html) service;
 * `OFP_DISABLE`: set `true` to skip running ofp service;
 * `END_DATE`: set to an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format date string to override calculation of run interval end date.
 
