@@ -9,7 +9,7 @@
 #           Andrew Halper
 #
 
-dir='/var/lib/nhm/NHM-PRMS_CONUS/'
+dir='/nhm/NHM-PRMS_CONUS/'
 
 . /usr/local/share/nhm/nhm.sh	# use NHM shell functions library
 
@@ -18,6 +18,6 @@ i=$(restart_interval $dir 'restart/' '59')
 
 /opt/conda/bin/python -u $SOURCE_DIR/onhm-fetcher-parser/pkg/climate_etl.py \
 		      -t date -p `echo $i | sed 's/\// /'` \
-		      -i /var/lib/nhm/ofp/nhm_hru_data \
+		      -i /nhm/ofp/nhm_hru_data \
 		      -o $dir/input \
-		      -w /var/lib/nhm/ofp/nhm_hru_data/weights.csv
+		      -w /nhm/ofp/nhm_hru_data/weights.csv
