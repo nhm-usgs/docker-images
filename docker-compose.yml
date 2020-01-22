@@ -33,7 +33,7 @@ services:
       - HRU_SOURCE="ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/Data_hru_shp_v2.tar.gz"
       - PRMS_SOURCE="ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/markstro/NHM-PRMS_CONUS.zip"
     volumes:
-      - nhm:/var/lib/nhm
+      - nhm:/nhm
 
   gridmet:
     build:
@@ -57,7 +57,7 @@ services:
       - START_DATE=${START_DATE-2019-01-01}
       - END_DATE=${END_DATE-2019-01-02}
     volumes:
-      - nhm:/var/lib/nhm
+      - nhm:/nhm
 
   ncf2cbh:
     build:
@@ -68,7 +68,7 @@ services:
     image: nhmusgs/ncf2cbh
     container_name: ncf2cbh
     volumes:
-      - nhm:/var/lib/nhm
+      - nhm:/nhm
 
   nhm-prms:
     build:
@@ -81,7 +81,7 @@ services:
     environment:
       - RESTART=${RESTART-false}
     volumes:
-      - nhm:/var/lib/nhm
+      - nhm:/nhm
 
   out2ncf:
     build:
@@ -92,7 +92,7 @@ services:
     image: nhmusgs/out2ncf
     container_name: out2ncf
     volumes:
-      - nhm:/var/lib/nhm
+      - nhm:/nhm
 
   verifier:
     build:
@@ -103,7 +103,7 @@ services:
     image: nhmusgs/verifier
     container_name: verifier
     volumes:
-      - nhm:/var/lib/nhm
+      - nhm:/nhm
 
   thredds:
     image: unidata/thredds-docker:4.6.13
