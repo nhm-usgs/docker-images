@@ -16,7 +16,7 @@ set -e
 # if we want to run on Shifter...
 if [ "$1" = -s ]; then
     # Caution: the environment variable SHIFTER is used by Shifter to
-    # specify the image to run.
+    # specify the Shifter image to run.
     shifter=true
     shift
 fi
