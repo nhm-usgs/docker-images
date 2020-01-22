@@ -4,7 +4,7 @@ LABEL maintainer="ashalper@usgs.gov"
 
 COPY --chown=nhm nhm /usr/local/bin
 
-RUN chmod 744 /usr/local/bin/nhm
+RUN chmod 744 /usr/local/bin/data-loader
 
 USER $USER
 
@@ -12,4 +12,4 @@ WORKDIR /home/$USER
 
 ENV NUMDAYS=60
 
-ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/nhm"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/data-loader"]

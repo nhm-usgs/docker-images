@@ -4,4 +4,4 @@
 #SBATCH --image=nhmusgs/data-loader:latest
 #SBATCH --volume=/tmp/nhm:/nhm
 
-srun -n 1 shifter /usr/local/bin/nhm
+srun -n 1 shifter /usr/local/bin/data-loader
