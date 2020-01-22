@@ -17,7 +17,7 @@ services:
         aliases:
           - nhmusgsftp
     volumes:
-      - ./data:/var/ftp:ro
+      - ./data:/nhm:ro
     environment:
       - ANON_MAX_RATE=0
 
