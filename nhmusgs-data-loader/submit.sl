@@ -3,4 +3,4 @@
 #SBATCH -A wbeep
 #SBATCH --image=nhmusgs/data-loader:latest
 
-srun -n 1 shifter --volume=/caldera/projects/usgs/water/impd/nhm:/nhm /usr/local/bin/nhm
+srun -n 1 shifter --volume=/caldera/projects/usgs/water/impd/nhm:/nhm /usr/local/bin/data-loader
