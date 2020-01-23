@@ -2,7 +2,7 @@ FROM nhmusgs/base
 
 LABEL maintainer="ashalper@usgs.gov"
 
-COPY --chown=nhm nhm /usr/local/bin
+COPY --chown=nhm data-loader /usr/local/bin
 
 RUN chmod 744 /usr/local/bin/data-loader
 
