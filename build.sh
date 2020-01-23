@@ -13,5 +13,9 @@ docker-compose build base_image
 docker-compose build -f docker-compose.yml \
 	       -f docker-compose-testing.yml data_loader
 for svc in data_loader gridmet ofp ncf2cbh nhm-prms out2ncf verifier; do
-    docker-compose build "$svc"
+  docker-compose build "$svc"
+done
+
+for image in `grep 'image: nhmusgs' docker-compose.yml | cut -d ' ' -f6`; do
+  docker push $image
 done
