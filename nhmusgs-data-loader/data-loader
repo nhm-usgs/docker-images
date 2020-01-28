@@ -1,11 +1,22 @@
 #! /bin/bash
 #
-#  File - nhm
+#  U.S. Geological Survey
+#
+#  File - data-loader
 #
 #  Purpose - Docker entry-point for data-loader container.
 #
 #  Author - Andrew Halper
 #
+
+if [ "$NHM_DRY_RUN" = true ]; then
+	echo "data_loader service entry-point in dry-run mode:"
+	echo
+	echo "   NHM_DATA_DIR: $NHM_DATA_DIR"
+	echo "   USER: $USER"
+	echo "   HRU_SOURCE: $HRU_SOURCE"
+	exit 0
+fi
 
 set -e
 
