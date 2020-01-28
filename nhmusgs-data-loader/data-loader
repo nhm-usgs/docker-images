@@ -9,6 +9,16 @@
 
 set -e
 
+if [ -z "$NHM_DATA_DIR" ]; then
+    echo "NHM_DATA_DIR not set"
+    exit 1
+fi
+
+# if the data directory does not exist
+if [ ! -d "$NHM_DATA_DIR" ]; then
+    mkdir -p $NHM_DATA_DIR/ofp
+fi
+
 # if ofp, HRU shapefiles are not present...
 if [ ! -d /nhm/ofp/nhm_hru_data ]; then
     cd /nhm/ofp
