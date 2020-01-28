@@ -1,4 +1,5 @@
 #! /bin/bash
+#
 # U.S. Geological Survey
 #
 # File - ofp
@@ -8,6 +9,17 @@
 # Authors - Ivan Suftin, Richard McDonald, Steven Markstrom,
 #           Andrew Halper
 #
+
+if [ "$NHM_DRY_RUN" = true ]; then
+  echo "ofp service entry-point in dry-run mode:"
+  echo
+  echo "   NHM_DATA_DIR: $NHM_DATA_DIR"
+  echo "   SOURCE_DIR: $SOURCE_DIR"
+  echo "   NUMDAYS: $NUMDAYS"
+  echo "   START_DATE: $START_DATE"
+  echo "   END_DATE: $END_DATE"
+  exit 0
+fi
 
 dir="$NHM_DATA_DIR/NHM-PRMS_CONUS/"
 
