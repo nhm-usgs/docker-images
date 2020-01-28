@@ -3,4 +3,4 @@
 #SBATCH -A wbeep
 #SBATCH --image=nhmusgs/out2ncf:latest
 
-srun -n 1 shifter --volume=/caldera/projects/usgs/water/impd/nhm:/nhm /opt/conda/bin/python -u /usr/local/src/onhm-runners/out2ncf/prms_outputs2_ncf.py
+srun -n 1 shifter --volume=/caldera/projects/usgs/water/impd/nhm:$NHM_DATA_DIR /opt/conda/bin/python -u /usr/local/src/onhm-runners/out2ncf/prms_outputs2_ncf.py
