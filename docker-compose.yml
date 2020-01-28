@@ -28,12 +28,13 @@ services:
     networks:
       nhmnet:
     environment:
+      - NHM_DATA_DIR="/var/lib/nhm"
       - HRU_DATA_PKG="Data_hru_shp_v2.tar.gz"
       - PRMS_DATA_PKG="NHM-PRMS_CONUS.zip"
       - HRU_SOURCE="ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/Data_hru_shp_v2.tar.gz"
       - PRMS_SOURCE="ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/markstro/NHM-PRMS_CONUS.zip"
     volumes:
-      - nhm:/nhm
+      - nhm:${NHM_DATA_DIR}
 
   gridmet:
     build:
