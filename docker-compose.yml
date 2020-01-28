@@ -16,6 +16,8 @@ services:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=Base Image"
     image: nhmusgs/base
+    environment:
+      - NHM_DATA_DIR="/var/lib/nhm"
 
   data_loader:
     build:
@@ -44,7 +46,7 @@ services:
         - "gov.usgs.nhm.image.docker.type=Gridmet Query"
     image: nhmusgs/gridmet
     container_name: gridmet
-      
+
   ofp:
     build:
       context: ./nhmusgs-ofp
@@ -54,11 +56,10 @@ services:
     image: nhmusgs/ofp
     container_name: ofp
     environment:
+      - NHM_DATA_DIR="/var/lib/nhm"
       - NUMDAYS=${NUMDAYS-60}
       - START_DATE=${START_DATE-2019-01-01}
       - END_DATE=${END_DATE-2019-01-02}
-    volumes:
-      - nhm:/nhm
 
   ncf2cbh:
     build:
@@ -68,8 +69,6 @@ services:
         - "gov.usgs.nhm.image.docker.type=NCF2CBH"
     image: nhmusgs/ncf2cbh
     container_name: ncf2cbh
-    volumes:
-      - nhm:/nhm
 
   nhm-prms:
     build:
@@ -80,9 +79,8 @@ services:
     image: nhmusgs/nhm-prms
     container_name: nhm-prms
     environment:
+      - NHM_DATA_DIR="/var/lib/nhm"
       - RESTART=${RESTART-false}
-    volumes:
-      - nhm:/nhm
 
   out2ncf:
     build:
@@ -92,8 +90,6 @@ services:
         - "gov.usgs.nhm.image.docker.type=OUT 2 NCF"
     image: nhmusgs/out2ncf
     container_name: out2ncf
-    volumes:
-      - nhm:/nhm
 
   verifier:
     build:
@@ -103,8 +99,6 @@ services:
         - "gov.usgs.nhm.image.docker.type=Verifier"
     image: nhmusgs/verifier
     container_name: verifier
-    volumes:
-      - nhm:/nhm
 
   thredds:
     image: unidata/thredds-docker:4.6.13
@@ -125,3 +119,6 @@ services:
       - ./output/Output/:/usr/local/tomcat/content/thredds/nhmdata/
     env_file:
       - "./thredds/compose.env"
+
+volumes:
+  nhm:
