@@ -38,8 +38,6 @@ RUN git clone https://github.com/nhm-usgs/onhm-runners.git --branch $VERSION_ONH
     rm -rf .git && \
     rm .gitignore README.md .project .pydevproject
 
-RUN mkdir -p /nhm/ofp/Output
-
 ENV USER=nhm
 
 RUN useradd -ms /bin/bash $USER
