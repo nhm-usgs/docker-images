@@ -7,6 +7,18 @@
 # Purpose - Docker entry-point for nhm-prms container.
 #
 # Authors - Andrew Halper, Steven Markstrom
+#
+
+if [ "$NHM_DRY_RUN" = true ]; then
+	echo "nhm-prms service entry-point in dry-run mode:"
+	echo
+	echo "   RESTART: $RESTART"
+	echo "   NHM_DATA_DIR: $NHM_DATA_DIR"
+	echo "   END_DATE: $END_DATE"
+	echo "   SOURCE_DIR: $SOURCE_DIR"
+	echo "   USER: $USER"
+	exit 0
+fi
 
 pgm=`basename $0`
 if [ 1 -lt $# ]; then
@@ -19,7 +31,7 @@ if [ "$1" = -h -o "$1" = --help ]; then
     echo "  -r                           run container in restart mode"
     exit
 fi
-echo "RESTART = $RESTART"
+
 # restart_interval(), interval_start(), and interval_end() functions
 # are in here:
 . /usr/local/share/nhm/nhm.sh
@@ -81,5 +93,3 @@ else
     			       $save_vars_to_file \
 			       -C ./NHM-PRMS.control
 fi
-
-# TODO: (optionally?) send output to log file? See onhm.py.
