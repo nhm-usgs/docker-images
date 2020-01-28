@@ -15,8 +15,6 @@ RUN git clone --depth=1 --branch $VERSION_TAG_OFP \
 # ofp script
 COPY --chown=nhm ofp /usr/local/bin
 
-RUN mkdir -p /nhm/ofp/Output
-
 RUN chmod 744 /usr/local/bin/ofp
 
 USER $USER
