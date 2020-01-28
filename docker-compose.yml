@@ -17,7 +17,7 @@ services:
         - "gov.usgs.nhm.image.docker.type=Base Image"
     image: nhmusgs/base
     environment:
-      - NHM_DATA_DIR="/var/lib/nhm"
+      - NHM_DATA_DIR=/var/lib/nhm
 
   data_loader:
     build:
@@ -30,13 +30,12 @@ services:
     networks:
       nhmnet:
     environment:
-      - NHM_DATA_DIR="/var/lib/nhm"
+      - NHM_DATA_DIR=/var/lib/nhm
       - HRU_DATA_PKG="Data_hru_shp_v2.tar.gz"
       - PRMS_DATA_PKG="NHM-PRMS_CONUS.zip"
       - HRU_SOURCE="ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/Data_hru_shp_v2.tar.gz"
       - PRMS_SOURCE="ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/markstro/NHM-PRMS_CONUS.zip"
-    volumes:
-      - nhm:${NHM_DATA_DIR}
+      - NHM_DRY_RUN
 
   gridmet:
     build:
@@ -46,7 +45,9 @@ services:
         - "gov.usgs.nhm.image.docker.type=Gridmet Query"
     image: nhmusgs/gridmet
     container_name: gridmet
-
+    environment:
+      - NHM_DRY_RUN
+      
   ofp:
     build:
       context: ./nhmusgs-ofp
@@ -56,7 +57,8 @@ services:
     image: nhmusgs/ofp
     container_name: ofp
     environment:
-      - NHM_DATA_DIR="/var/lib/nhm"
+      - NHM_DRY_RUN
+      - NHM_DATA_DIR=/var/lib/nhm
       - NUMDAYS=${NUMDAYS-60}
       - START_DATE=${START_DATE-2019-01-01}
       - END_DATE=${END_DATE-2019-01-02}
@@ -69,6 +71,8 @@ services:
         - "gov.usgs.nhm.image.docker.type=NCF2CBH"
     image: nhmusgs/ncf2cbh
     container_name: ncf2cbh
+    environment:
+      - NHM_DRY_RUN
 
   nhm-prms:
     build:
@@ -79,7 +83,8 @@ services:
     image: nhmusgs/nhm-prms
     container_name: nhm-prms
     environment:
-      - NHM_DATA_DIR="/var/lib/nhm"
+      - NHM_DRY_RUN
+      - NHM_DATA_DIR=/var/lib/nhm
       - RESTART=${RESTART-false}
 
   out2ncf:
@@ -90,6 +95,8 @@ services:
         - "gov.usgs.nhm.image.docker.type=OUT 2 NCF"
     image: nhmusgs/out2ncf
     container_name: out2ncf
+    environment:
+      - NHM_DRY_RUN
 
   verifier:
     build:
@@ -99,6 +106,8 @@ services:
         - "gov.usgs.nhm.image.docker.type=Verifier"
     image: nhmusgs/verifier
     container_name: verifier
+    environment:
+      - NHM_DRY_RUN
 
   thredds:
     image: unidata/thredds-docker:4.6.13
