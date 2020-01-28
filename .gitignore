@@ -16,3 +16,4 @@ thredds/files/logs/tomcat/*
 /output
 /test
 /restart
+/.env
