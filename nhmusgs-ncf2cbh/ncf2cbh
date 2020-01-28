@@ -1,0 +1,19 @@
+#! /bin/bash
+#
+#  U.S. Geological Survey
+#
+#  File - ncf2cbh
+#
+#  Purpose - Docker entry-point for Gridmet container.
+#
+#  Author - Andrew Halper
+#
+
+if [ "$NHM_DRY_RUN" = true ]; then
+	echo "ncf2cbh service entry-point in dry-run mode:"
+	echo
+	echo "   USER: $USER"
+	exit 0
+fi
+
+/opt/conda/bin/python -u /usr/local/src/onhm-runners/ncf2cbh/ncf2cbh.py

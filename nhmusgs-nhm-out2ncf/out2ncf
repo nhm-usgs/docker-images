@@ -1,0 +1,20 @@
+#! /bin/bash
+#
+#  U.S. Geological Survey
+#
+#  File - out2ncf
+#
+#  Purpose - Docker entry-point for out2ncf service.
+#
+#  Author - Andrew Halper
+#
+
+if [ "$NHM_DRY_RUN" = true ]; then
+  echo "out2ncf service entry-point in dry-run mode:"
+  echo
+  echo "   USER: $USER"
+  exit 0
+fi
+
+/opt/conda/bin/python -u \
+		      /usr/local/src/onhm-runners/out2ncf/prms_outputs2_ncf.py
