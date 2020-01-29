@@ -33,13 +33,20 @@ ENV SOURCE_DIR=/usr/local/src
 
 ARG VERSION_ONHM_RUNNERS=0.1.4
 
+# TODO: see https://www.edureka.co/community/5295/if-conditional-in-docker-file
+
+# see
+# https://stackoverflow.com/questions/9072376/configure-git-to-accept-a-particular-self-signed-server-certificate-for-a-partic
+RUN wget http://sslhelp.doi.net/docs/DOIRootCA2.cer
+RUN git config --global http.sslCAInfo DOIRootCA2.cer
+
 RUN git clone https://github.com/nhm-usgs/onhm-runners.git --branch $VERSION_ONHM_RUNNERS --depth=1 $SOURCE_DIR/onhm-runners && \
     cd $SOURCE_DIR/onhm-runners && \
     rm -rf .git && \
     rm .gitignore README.md .project .pydevproject
 
+# create nhm user
 ENV USER=nhm
-
 RUN useradd -ms /bin/bash $USER
 
 # shell functions used by more than one entry-point script
