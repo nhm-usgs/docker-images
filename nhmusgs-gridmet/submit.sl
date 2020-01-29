@@ -3,4 +3,4 @@
 #SBATCH -A wbeep
 #SBATCH --image=nhmusgs/gridmet:latest
 
-srun -n 1 shifter /opt/conda/bin/python -u /usr/local/src/onhm-fetcher-parser/pkg/Gridmet_current.py
+srun -n 1 shifter /bin/bash -c /usr/local/bin/gridmet
