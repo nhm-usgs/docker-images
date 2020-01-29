@@ -12,8 +12,9 @@
 if [ "$NHM_DRY_RUN" = true ]; then
 	echo "gridmet service entry-point in dry-run mode:"
 	echo
+	echo "   SOURCE_DIR: $SOURCE_DIR"
 	echo "   USER: $USER"
 	exit 0
 fi
 
-/opt/conda/bin/python -u onhm-fetcher-parser/pkg/Gridmet_current.py
+/opt/conda/bin/python -u $SOURCE_DIR/onhm-fetcher-parser/pkg/Gridmet_current.py
