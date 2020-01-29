@@ -10,5 +10,6 @@
 #
 
 for image in `grep 'image: nhmusgs' docker-compose.yml | cut -d ' ' -f6`; do
-  docker push $image
+  docker push $image &
 done
+wait
