@@ -33,7 +33,7 @@ run () {
 	# ...fix much naming inconsistency in this directory...
 	dir=`echo $svc | \
 	   sed 's/data_loader/nhmusgs-data-loader/;\
-	        s/\(gridmet\|ofp\|ncf2cbh\|nhm-prms\)/nhmusgs-\1/;\
+	        s/\(gridmet\|ofp\|ncf2cbh\|nhm-prms\|verifier\)/nhmusgs-\1/;\
 	        s/out2ncf/nhmusgs-nhm-out2ncf/'`
 	# ...and submit as a Slurm batch script.
 	sbatch -W ./$dir/submit.sl
