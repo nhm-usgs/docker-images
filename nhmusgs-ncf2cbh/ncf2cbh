@@ -19,4 +19,4 @@ fi
 
 /opt/conda/bin/python -u \
 		      /usr/local/src/onhm-runners/ncf2cbh/ncf2cbh.py \
-		      $NHM_DATA_DIR
+		      "$NHM_DATA_DIR/"
