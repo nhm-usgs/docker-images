@@ -12,6 +12,7 @@
 if [ "$NHM_DRY_RUN" = true ]; then
 	echo "ncf2cbh service entry-point in dry-run mode:"
 	echo
+	echo "   NHM_DATA_DIR: $NHM_DATA_DIR"
 	echo "   USER: $USER"
 	exit 0
 fi
