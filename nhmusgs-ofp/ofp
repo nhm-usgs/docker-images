@@ -25,8 +25,13 @@ dir="$NHM_DATA_DIR/NHM-PRMS_CONUS/"
 
 . /usr/local/share/nhm/nhm.sh	# use NHM shell functions library
 
-# calculate restart interval
-i=$(restart_interval $dir 'restart/' '59')
+# if either start-date or end-date are omitted...
+if [ -z "$START_DATE" -o -z "$END_DATE" ]; then
+    # ...calculate restart interval
+    i=$(restart_interval $dir 'restart/' '59')
+else
+    i="$START_DATE/$END_DATE"
+fi
 
 /opt/conda/bin/python -u $SOURCE_DIR/onhm-fetcher-parser/pkg/climate_etl.py \
 		      -t date -p `echo $i | sed 's/\// /'` \
