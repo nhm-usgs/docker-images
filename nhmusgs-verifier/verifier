@@ -17,4 +17,5 @@ if [ "$NHM_DRY_RUN" = true ]; then
 fi
 
 /opt/conda/bin/python -u \
-		      /usr/local/src/onhm-verify-eval/src/prms_verifier.py
+		      /usr/local/src/onhm-verify-eval/src/prms_verifier.py \
+		      "$NHM_DATA_DIR/NHM-PRMS_CONUS/"
