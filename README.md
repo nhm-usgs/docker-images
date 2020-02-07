@@ -37,7 +37,14 @@ then be run via Slurm on HPC.
 First, check to see if the necessary Shifter images are already present, with the command `shifterimg images`:
 
 ```
-shifterimg images
+~> shifterimg images
+denali-login2 docker     READY    40398d7101   2020-01-30T17:09:32 nhmusgs/data-loader:latest
+denali-login2 docker     READY    b66260f62d   2020-02-07T12:19:13 nhmusgs/gridmet:latest
+denali-login2 docker     READY    aba388047b   2020-02-04T18:06:03 nhmusgs/ncf2cbh:latest
+denali-login2 docker     READY    c4fe4c3533   2020-01-29T15:19:05 nhmusgs/nhm-prms:latest
+denali-login2 docker     READY    a57c28ccc1   2020-02-07T14:25:16 nhmusgs/ofp:latest
+denali-login2 docker     READY    ecbd9618b4   2020-02-06T14:56:24 nhmusgs/out2ncf:latest
+denali-login2 docker     READY    062f3a14dc   2020-02-06T16:35:08 nhmusgs/verifier:latest
 ```
 
 And the [remaining required images](https://hub.docker.com/orgs/nhmusgs/repositories). Then:
