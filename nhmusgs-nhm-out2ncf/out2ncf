@@ -13,7 +13,6 @@ if [ "$NHM_DRY_RUN" = true ]; then
   echo "out2ncf service entry-point in dry-run mode:"
   echo
   echo "   USER: $USER"
-  ls -ld $NHM_DATA_DIR/NHM-PRMS_CONUS/.//output
   exit 0
 fi
 
