@@ -29,12 +29,15 @@ If running the app on Windows within .usgs.gov, we recommend running Docker Comp
 4. clone the docker-images repo. on the virtual machine;
 5. run the `compose-test.sh` script as described under **Running** above.
 
-## Running on MPI Architecture
+## Running on HPC Architecture
 
-Use [shifterimg](https://docs.nersc.gov/programming/shifter/how-to-use/) to pull and convert Docker images to Shifter images:
+Use [shifterimg](https://docs.nersc.gov/programming/shifter/how-to-use/) to pull and convert Docker images to Shifter images, which can
+then be run via Slurm on HPC.
+
+First, check to see if the necessary Shifter images are already present, with the command `shifterimg images`:
 
 ```
-shifterimg pull nhmusgs/data-loader:latest
+shifterimg images
 ```
 
 And the [remaining required images](https://hub.docker.com/orgs/nhmusgs/repositories). Then:
