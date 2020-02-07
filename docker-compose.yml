@@ -60,8 +60,6 @@ services:
       - NHM_DRY_RUN
       - NHM_DATA_DIR=/var/lib/nhm
       - NUMDAYS=${NUMDAYS-60}
-      - START_DATE=${START_DATE-2019-01-01}
-      - END_DATE=${END_DATE-2019-01-02}
 
   ncf2cbh:
     build:
