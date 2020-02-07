@@ -31,7 +31,7 @@ RUN conda update -n base conda -y && \
 
 ENV SOURCE_DIR=/usr/local/src
 
-ARG VERSION_ONHM_RUNNERS=0.1.4
+ARG VERSION_ONHM_RUNNERS=master
 
 # see
 # https://stackoverflow.com/questions/9072376/configure-git-to-accept-a-particular-self-signed-server-certificate-for-a-partic
