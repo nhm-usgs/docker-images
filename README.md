@@ -34,7 +34,7 @@ If running the app on Windows within .usgs.gov, we recommend running Docker Comp
 Use [shifterimg](https://docs.nersc.gov/programming/shifter/how-to-use/) to pull and convert Docker images to Shifter images, which can
 then be run via Slurm on HPC.
 
-First, check to see if the necessary Shifter images are already present, with the command `shifterimg images`:
+First, check to see if the necessary Shifter images are already present:
 
 ```
 ~> shifterimg images
@@ -47,12 +47,24 @@ denali-login2 docker     READY    ecbd9618b4   2020-02-06T14:56:24 nhmusgs/out2n
 denali-login2 docker     READY    062f3a14dc   2020-02-06T16:35:08 nhmusgs/verifier:latest
 ```
 
-And the [remaining required images](https://hub.docker.com/orgs/nhmusgs/repositories). Then:
+If any of the Shifter images listed above are missing, you can try "pulling" them by running the `pull.sh`.
+Be aware that at this time, Shifter pull errors are common, so don't be surprised by `FAIL` messages
+from `shifterimg` in the output of this script. We are working with the Shifter team to debug this
+now.
+
+When the required Shifter images are present, run the pipeline with the command:
 
 
 ```
 ./compose-test.sh -s
 ```
+
+The script will submit each container run to Slurm, and `stdout` from the Slurm jobs will be directed to files
+in the current directory with a `.out` suffix. Logs and error messages from each container run should be saved
+in these files.
+
+The `nhm.env` file (in this directory) contains environment variable defaults that may need to be changed for
+testing purposes. Comments in this file explain the function of each environment variable.
 
 # Debugging
 
