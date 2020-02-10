@@ -5,4 +5,4 @@
 #SBATCH -o verifier.%j.out
 #SBATCH --image=nhmusgs/verifier:latest
 
-srun -n 1 shifter --volume=/caldera/projects/usgs/water/impd/nhm:$NHM_DATA_DIR /bin/bash -c /usr/local/bin/verifier
+srun -n 1 shifter --volume=/caldera/projects/usgs/water/impd/$USER:$NHM_DATA_DIR /bin/bash -c /usr/local/bin/verifier
