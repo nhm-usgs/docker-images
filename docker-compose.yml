@@ -73,10 +73,8 @@ services:
         - "gov.usgs.nhm.image.docker.type=PRMS"
     image: nhmusgs/nhm-prms
     container_name: nhm-prms
-    environment:
-      - NHM_DRY_RUN
-      - NHM_DATA_DIR=/var/lib/nhm
-      - RESTART=${RESTART-false}
+    env_file:
+      - nhm.env
 
   out2ncf:
     build:
@@ -86,8 +84,8 @@ services:
         - "gov.usgs.nhm.image.docker.type=OUT 2 NCF"
     image: nhmusgs/out2ncf
     container_name: out2ncf
-    environment:
-      - NHM_DRY_RUN
+    env_file:
+      - nhm.env
 
   verifier:
     build:
@@ -97,8 +95,8 @@ services:
         - "gov.usgs.nhm.image.docker.type=Verifier"
     image: nhmusgs/verifier
     container_name: verifier
-    environment:
-      - NHM_DRY_RUN
+    env_file:
+      - nhm.env
 
   thredds:
     image: unidata/thredds-docker:4.6.13
