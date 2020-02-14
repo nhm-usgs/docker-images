@@ -44,8 +44,8 @@ run () {
 
 if [ "$shifter" != true ]; then
     echo "Building necessary Docker images"
-    docker-compose build base_image
-    docker-compose build --parallel
+    docker-compose build --build-arg NHM_DATA_DIR=$NHM_DATA_DIR \
+		   --parallel base_image
 fi
 
 echo "Checking if HRU data is downloaded..."
