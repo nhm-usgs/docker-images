@@ -42,9 +42,15 @@ RUN git -c advice.detachedHead=false clone https://github.com/nhm-usgs/onhm-runn
     rm -rf .git && \
     rm .gitignore README.md .project .pydevproject
 
-# create nhm user
+ARG NHM_DATA_DIR=/var/lib/nhm
+
+RUN mkdir -p $NHM_DATA_DIR/ofp/Output
+
 ENV USER=nhm
 RUN useradd -ms /bin/bash $USER
+
+RUN chown -R $USER $NHM_DATA_DIR
+RUN chgrp -R $USER $NHM_DATA_DIR
 
 # shell functions used by more than one entry-point script
 RUN mkdir -p /usr/local/share/nhm
