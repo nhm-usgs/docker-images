@@ -15,7 +15,6 @@ if [ "$NHM_DRY_RUN" = true ]; then
   echo
   echo "   NHM_DATA_DIR: $NHM_DATA_DIR"
   echo "   SOURCE_DIR: $SOURCE_DIR"
-  echo "   NUMDAYS: $NUMDAYS"
   echo "   NHM_INTERVAL: $NHM_INTERVAL"
   exit 0
 fi

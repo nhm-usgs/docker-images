@@ -14,7 +14,6 @@ if [ "$NHM_DRY_RUN" = true ]; then
 	echo
 	echo "   RESTART: $RESTART"
 	echo "   NHM_DATA_DIR: $NHM_DATA_DIR"
-	echo "   END_DATE: $END_DATE"
 	echo "   SOURCE_DIR: $SOURCE_DIR"
 	echo "   USER: $USER"
 	exit 0
