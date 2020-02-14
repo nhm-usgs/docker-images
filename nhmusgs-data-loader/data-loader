@@ -14,7 +14,10 @@ if [ "$NHM_DRY_RUN" = true ]; then
 	echo
 	echo "   NHM_DATA_DIR: $NHM_DATA_DIR"
 	echo "   USER: $USER"
+	echo "   HRU_DATA_PKG: $HRU_DATA_PKG"
 	echo "   HRU_SOURCE: $HRU_SOURCE"
+	echo "   PRMS_DATA_PKG: $PRMS_DATA_PKG"
+	echo "   PRMS_SOURCE: $PRMS_SOURCE"
 	exit 0
 fi
 
