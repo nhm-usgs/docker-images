@@ -16,6 +16,8 @@ services:
       nhmnet:
         aliases:
           - nhmusgsftp
+    volumes:
+      - ./data:/var/ftp:ro
     environment:
       - ANON_MAX_RATE=0
 
@@ -25,6 +27,3 @@ services:
       - PRMS_SOURCE=ftp://nhmusgsftp/NHM-PRMS_CONUS.zip
     depends_on:
       - anon_ftp
-
-volumes:
-  data:
