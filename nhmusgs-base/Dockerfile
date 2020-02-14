@@ -60,4 +60,4 @@ RUN chmod 744 /usr/local/share/nhm/nhm.sh
 
 ENV HOMEDIR=/home/$USER
 
-VOLUME [$NHM_DATA_DIR]
+VOLUME ["/var/lib/nhm"]
