@@ -31,6 +31,8 @@ services:
       nhmnet:
     env_file:
       - nhm.env
+    volumes:
+      - nhm:/var/lib/nhm
 
   gridmet:
     build:
@@ -53,6 +55,8 @@ services:
     container_name: ofp
     env_file:
       - nhm.env
+    volumes:
+      - nhm:/var/lib/nhm
 
   ncf2cbh:
     build:
@@ -64,6 +68,8 @@ services:
     container_name: ncf2cbh
     env_file:
       - nhm.env
+    volumes:
+      - nhm:/var/lib/nhm
 
   nhm-prms:
     build:
@@ -86,6 +92,8 @@ services:
     container_name: out2ncf
     env_file:
       - nhm.env
+    volumes:
+      - nhm:/var/lib/nhm
 
   verifier:
     build:
@@ -97,6 +105,8 @@ services:
     container_name: verifier
     env_file:
       - nhm.env
+    volumes:
+      - nhm:/var/lib/nhm
 
   thredds:
     image: unidata/thredds-docker:4.6.13
@@ -117,6 +127,3 @@ services:
       - ./output/Output/:/usr/local/tomcat/content/thredds/nhmdata/
     env_file:
       - "./thredds/compose.env"
-
-volumes:
-  nhm:
