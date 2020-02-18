@@ -17,4 +17,4 @@ USER $USER
 
 WORKDIR $SOURCE_DIR
 
-ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/gridmet"]
+ENTRYPOINT ["/usr/local/bin/gridmet"]
