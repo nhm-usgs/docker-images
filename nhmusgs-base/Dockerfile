@@ -31,8 +31,6 @@ RUN conda update -n base conda -y && \
 
 ENV SOURCE_DIR=/usr/local/src
 
-ARG VERSION_ONHM_RUNNERS=master
-
 # see
 # https://stackoverflow.com/questions/9072376/configure-git-to-accept-a-particular-self-signed-server-certificate-for-a-partic
 RUN if false; then \
@@ -41,8 +39,8 @@ RUN if false; then \
     fi
 
 RUN git -c advice.detachedHead=false clone \
-    https://github.com/nhm-usgs/onhm-runners.git --branch \
-    0$VERSION_ONHM_RUNNERS --depth=1 $SOURCE_DIR/onhm-runners && \
+    https://github.com/nhm-usgs/onhm-runners.git \
+    --branch master --depth=1 $SOURCE_DIR/onhm-runners && \
     cd $SOURCE_DIR/onhm-runners && \
     rm -rf .git && \
     rm .gitignore README.md .project .pydevproject
