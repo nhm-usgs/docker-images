@@ -35,9 +35,14 @@ ARG VERSION_ONHM_RUNNERS=master
 
 # see
 # https://stackoverflow.com/questions/9072376/configure-git-to-accept-a-particular-self-signed-server-certificate-for-a-partic
-RUN if [ "$BUILDING_IN_USGS_GOV" = true ]; then wget http://sslhelp.doi.net/docs/DOIRootCA2.cer && git config --global http.sslCAInfo DOIRootCA2.cer ; fi
+RUN if false; then \
+       wget http://sslhelp.doi.net/docs/DOIRootCA2.cer && \
+       git config --global http.sslCAInfo DOIRootCA2.cer ; \
+    fi
 
-RUN git -c advice.detachedHead=false clone https://github.com/nhm-usgs/onhm-runners.git --branch $VERSION_ONHM_RUNNERS --depth=1 $SOURCE_DIR/onhm-runners && \
+RUN git -c advice.detachedHead=false clone \
+    https://github.com/nhm-usgs/onhm-runners.git --branch \
+    0$VERSION_ONHM_RUNNERS --depth=1 $SOURCE_DIR/onhm-runners && \
     cd $SOURCE_DIR/onhm-runners && \
     rm -rf .git && \
     rm .gitignore README.md .project .pydevproject
