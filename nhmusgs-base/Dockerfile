@@ -45,15 +45,13 @@ RUN git -c advice.detachedHead=false clone \
     rm -rf .git && \
     rm .gitignore README.md .project .pydevproject
 
-ARG NHM_DATA_DIR=/var/lib/nhm
-
-RUN mkdir -p $NHM_DATA_DIR/ofp/Output
+RUN mkdir -p /var/lib/nhm/ofp/Output
 
 ENV USER=nhm
 RUN useradd -ms /bin/bash $USER
 
-RUN chown -R $USER $NHM_DATA_DIR
-RUN chgrp -R $USER $NHM_DATA_DIR
+RUN chown -R $USER /var/lib/nhm
+RUN chgrp -R $USER /var/lib/nhm
 
 # shell functions used by more than one entry-point script
 RUN mkdir -p /usr/local/share/nhm
