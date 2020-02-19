@@ -81,6 +81,8 @@ services:
     container_name: nhm-prms
     env_file:
       - nhm.env
+    volumes:
+      - nhm:/var/lib/nhm
 
   out2ncf:
     build:
