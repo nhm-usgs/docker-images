@@ -12,4 +12,4 @@ WORKDIR /home/$USER
 
 ENV NUMDAYS=60
 
-ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/out2ncf"]
+ENTRYPOINT ["/usr/local/bin/out2ncf"]
