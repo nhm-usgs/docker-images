@@ -19,4 +19,4 @@ fi
 
 /opt/conda/bin/python -u \
 		      /usr/local/src/onhm-runners/out2ncf/prms_outputs2_ncf.py \
-		      "$NHM_DATA_DIR/NHM-PRMS_CONUS/"
+		      $NHM_DATA_DIR/NHM-PRMS_CONUS/

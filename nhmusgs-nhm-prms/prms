@@ -35,7 +35,7 @@ fi
 # are in here:
 . /usr/local/share/nhm/nhm.sh
 
-dir="$NHM_DATA_DIR/NHM-PRMS_CONUS/"
+dir=$NHM_DATA_DIR/NHM-PRMS_CONUS/
 restart_dir='restart/'
 gridmet_provisional_days=59
 i=$(restart_interval $dir 'restart/' $gridmet_provisional_days)
