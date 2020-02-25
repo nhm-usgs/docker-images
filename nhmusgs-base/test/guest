@@ -55,8 +55,20 @@ if [ ! -d /usr/local/src/onhm-runners ]; then
     exit 1
 fi
 
+# /var/lib/nhm/ofp/Output directory check
+if [ ! -d /var/lib/nhm/ofp/Output ]; then
+    echo '/var/lib/nhm/ofp/Output existence check failed'
+    exit 1
+fi
+
 # check for nhm user
 if [ "`getent passwd | grep nhm | cut -s -d: -f1,7`" != nhm:/bin/bash ]; then
     echo 'nhm user not found in nhmusgs/base'
+    exit 1
+fi
+
+# check for /var/lib/nhm ownership
+if [ `ls -ld /var/lib/nhm | cut -d' ' -f3` != nhm ]; then
+    echo 'nhm ownership of /var/lib/nhm test failed'
     exit 1
 fi
