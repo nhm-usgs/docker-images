@@ -8,8 +8,9 @@ RUN apt-get update && \
     apt-get -y install dialog file gcc gfortran make procps unzip && \
     apt-get autoclean && apt-get purge
 
-# if we can download the DOI root certificate...
-RUN if wget http://sslhelp.doi.net/docs/DOIRootCA2.cer; then \
+# set to "true" if building within .usgs.gov
+RUN if false; then \
+       wget http://sslhelp.doi.net/docs/DOIRootCA2.cer ; \
        # see
        # https://stackoverflow.com/questions/33699577/conda-update-failed-ssl-error-ssl-certificate-verify-failed-certificate-ver
        conda config --set ssl_verify DOIRootCA2.cer ; \
@@ -24,7 +25,7 @@ RUN if wget http://sslhelp.doi.net/docs/DOIRootCA2.cer; then \
 
 # Update/upgrade Conda
 RUN conda update -n base conda -y
-RUN conda install -n base -c defaults -c conda-forge -k \
+RUN conda install -n base -c defaults -c conda-forge $insecure \
       python=3.6 \
       bottleneck=1.2.1 \
       cartopy=0.17.0 \
