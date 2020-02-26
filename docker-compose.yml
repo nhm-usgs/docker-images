@@ -31,6 +31,8 @@ services:
       nhmnet:
     env_file:
       - nhm.env
+    volumes:
+      - nhm:/var/lib/nhm
 
   gridmet:
     build:
@@ -53,6 +55,8 @@ services:
     container_name: ofp
     env_file:
       - nhm.env
+    volumes:
+      - nhm:/var/lib/nhm
 
   ncf2cbh:
     build:
@@ -62,8 +66,8 @@ services:
         - "gov.usgs.nhm.image.docker.type=NCF2CBH"
     image: nhmusgs/ncf2cbh
     container_name: ncf2cbh
-    env_file:
-      - nhm.env
+    volumes:
+      - nhm:/var/lib/nhm
 
   nhm-prms:
     build:
@@ -75,6 +79,8 @@ services:
     container_name: nhm-prms
     env_file:
       - nhm.env
+    volumes:
+      - nhm:/var/lib/nhm
 
   out2ncf:
     build:
@@ -84,8 +90,8 @@ services:
         - "gov.usgs.nhm.image.docker.type=OUT 2 NCF"
     image: nhmusgs/out2ncf
     container_name: out2ncf
-    env_file:
-      - nhm.env
+    volumes:
+      - nhm:/var/lib/nhm
 
   verifier:
     build:
@@ -97,6 +103,8 @@ services:
     container_name: verifier
     env_file:
       - nhm.env
+    volumes:
+      - nhm:/var/lib/nhm
 
   thredds:
     image: unidata/thredds-docker:4.6.13
