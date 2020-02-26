@@ -29,7 +29,7 @@ if [ -z "$NHM_DATA_DIR" ]; then
 fi
 
 # if the data directory does not exist...
-if [ ! -d "$NHM_DATA_DIR" ]; then
+if [ ! -e "$NHM_DATA_DIR" ]; then
   # ...create it, as well as ofp/
   mkdir -p $NHM_DATA_DIR/ofp
   chown -R $USER $NHM_DATA_DIR
@@ -37,7 +37,7 @@ if [ ! -d "$NHM_DATA_DIR" ]; then
 fi
 
 # if ofp, HRU shapefiles are not present...
-if [ ! -d $NHM_DATA_DIR/ofp/nhm_hru_data ]; then
+if [ ! -e $NHM_DATA_DIR/ofp/nhm_hru_data ]; then
   cd $NHM_DATA_DIR/ofp
   # ...download archive
   wget --waitretry=3 --retry-connrefused "$HRU_SOURCE"
@@ -49,7 +49,7 @@ else
 fi
 
 # if PRMS workspace is not present...
-if [ ! -d $NHM_DATA_DIR/NHM-PRMS_CONUS ]; then
+if [ ! -e $NHM_DATA_DIR/NHM-PRMS_CONUS ]; then
   cd $NHM_DATA_DIR
   # ...download it
   wget --waitretry=3 --retry-connrefused "$PRMS_SOURCE"

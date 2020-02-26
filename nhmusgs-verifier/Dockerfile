@@ -18,4 +18,4 @@ USER $USER
 
 WORKDIR /home/$USER
 
-ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/verifier"]
+ENTRYPOINT ["/usr/local/bin/verifier"]

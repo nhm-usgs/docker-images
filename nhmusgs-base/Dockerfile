@@ -31,29 +31,22 @@ RUN conda update -n base conda -y && \
 
 ENV SOURCE_DIR=/usr/local/src
 
-# see
-# https://stackoverflow.com/questions/9072376/configure-git-to-accept-a-particular-self-signed-server-certificate-for-a-partic
-RUN if false; then \
-       wget http://sslhelp.doi.net/docs/DOIRootCA2.cer && \
-       git config --global http.sslCAInfo DOIRootCA2.cer ; \
-    fi
+ARG VERSION_ONHM_RUNNERS=master
 
 RUN git -c advice.detachedHead=false clone \
     https://github.com/nhm-usgs/onhm-runners.git \
-    --branch master --depth=1 $SOURCE_DIR/onhm-runners && \
+    --branch $VERSION_ONHM_RUNNERS --depth=1 $SOURCE_DIR/onhm-runners && \
     cd $SOURCE_DIR/onhm-runners && \
     rm -rf .git && \
     rm .gitignore README.md .project .pydevproject
 
-ARG NHM_DATA_DIR=/var/lib/nhm
-
-RUN mkdir -p $NHM_DATA_DIR/ofp/Output
+RUN mkdir -p /var/lib/nhm/ofp/Output
 
 ENV USER=nhm
 RUN useradd -ms /bin/bash $USER
 
-RUN chown -R $USER $NHM_DATA_DIR
-RUN chgrp -R $USER $NHM_DATA_DIR
+RUN chown -R $USER /var/lib/nhm
+RUN chgrp -R $USER /var/lib/nhm
 
 # shell functions used by more than one entry-point script
 RUN mkdir -p /usr/local/share/nhm
