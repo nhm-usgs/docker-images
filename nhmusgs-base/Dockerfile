@@ -8,9 +8,23 @@ RUN apt-get update && \
     apt-get -y install dialog file gcc gfortran make procps unzip && \
     apt-get autoclean && apt-get purge
 
+# if we can download the DOI root certificate...
+RUN if wget http://sslhelp.doi.net/docs/DOIRootCA2.cer; then \
+       # see
+       # https://stackoverflow.com/questions/33699577/conda-update-failed-ssl-error-ssl-certificate-verify-failed-certificate-ver
+       conda config --set ssl_verify DOIRootCA2.cer ; \
+       # this shouldn't be necessary, but for reasons unknown,
+       # "conda install ..." (below) appears to be unaffected by the
+       # "conda config ..." command above
+       insecure=-k ; \
+       # see
+       # https://stackoverflow.com/questions/9072376/configure-git-to-accept-a-particular-self-signed-server-certificate-for-a-partic
+       git config --global http.sslCAInfo DOIRootCA2.cer ; \
+    fi
+
 # Update/upgrade Conda
 RUN conda update -n base conda -y && \
-    conda install -n base -c defaults -c conda-forge \
+    conda install -n base -c defaults -c conda-forge $insecure \
       python=3.6 \
       bottleneck=1.2.1 \
       cartopy=0.17.0 \
@@ -30,13 +44,6 @@ RUN conda update -n base conda -y && \
     conda clean -a
 
 ENV SOURCE_DIR=/usr/local/src
-
-# see
-# https://stackoverflow.com/questions/9072376/configure-git-to-accept-a-particular-self-signed-server-certificate-for-a-partic
-RUN if false; then \
-       wget http://sslhelp.doi.net/docs/DOIRootCA2.cer && \
-       git config --global http.sslCAInfo DOIRootCA2.cer ; \
-    fi
 
 RUN git -c advice.detachedHead=false clone \
     https://github.com/nhm-usgs/onhm-runners.git \
