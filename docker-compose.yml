@@ -13,6 +13,7 @@ services:
     build: 
       context: ./nhmusgs-base
       args:
+        datadir: "/var/lib/nhm"
         insecure: "-k"
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
