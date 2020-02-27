@@ -13,7 +13,7 @@ services:
     build: 
       context: ./nhmusgs-base
       args:
-        doi_root_cert: "false"
+        insecure: "-k"
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=Base Image"
