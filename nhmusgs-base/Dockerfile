@@ -52,13 +52,14 @@ RUN git -c advice.detachedHead=false clone \
     rm -rf .git && \
     rm .gitignore README.md .project .pydevproject
 
-RUN mkdir -p /var/lib/nhm/ofp/Output
+ARG datadir
+RUN mkdir -p $datadir/ofp/Output
 
 ENV USER=nhm
 RUN useradd -ms /bin/bash $USER
 
-RUN chown -R $USER /var/lib/nhm
-RUN chgrp -R $USER /var/lib/nhm
+RUN chown -R $USER $datadir
+RUN chgrp -R $USER $datadir
 
 # shell functions used by more than one entry-point script
 RUN mkdir -p /usr/local/share/nhm
@@ -68,4 +69,4 @@ RUN chmod 744 /usr/local/share/nhm/nhm.sh
 
 ENV HOMEDIR=/home/$USER
 
-VOLUME ["/var/lib/nhm"]
+VOLUME $datadir
