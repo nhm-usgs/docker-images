@@ -8,8 +8,8 @@ RUN apt-get update && \
     apt-get -y install dialog file gcc gfortran make procps unzip && \
     apt-get autoclean && apt-get purge
 
-# set to "true" if building within .usgs.gov
-RUN if false; then \
+ARG doi_root_cert
+RUN if test $doi_root_cert = true ; then \
        wget http://sslhelp.doi.net/docs/DOIRootCA2.cer ; \
        # see
        # https://stackoverflow.com/questions/33699577/conda-update-failed-ssl-error-ssl-certificate-verify-failed-certificate-ver
