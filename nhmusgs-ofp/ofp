@@ -10,7 +10,7 @@
 #           Andrew Halper
 #
 
-dir='/var/lib/nhm/NHM-PRMS_CONUS/'
+dir='/nhm/NHM-PRMS_CONUS/'
 
 . /usr/local/share/nhm/nhm.sh	# use NHM shell functions library
 
