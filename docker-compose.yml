@@ -12,10 +12,14 @@ services:
   base_image:
     build: 
       context: ./nhmusgs-base
+      args:
+        insecure: ""
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=Base Image"
     image: nhmusgs/base
+    env_file:
+      - nhm.env
 
   data_loader:
     build:
@@ -40,6 +44,8 @@ services:
         - "gov.usgs.nhm.image.docker.type=Gridmet Query"
     image: nhmusgs/gridmet
     container_name: gridmet
+    env_file:
+      - nhm.env
       
   ofp:
     build:
@@ -49,10 +55,8 @@ services:
         - "gov.usgs.nhm.image.docker.type=OFP"
     image: nhmusgs/ofp
     container_name: ofp
-    environment:
-      - NUMDAYS=${NUMDAYS-60}
-      - START_DATE=${START_DATE-2019-01-01}
-      - END_DATE=${END_DATE-2019-01-02}
+    env_file:
+      - nhm.env
     volumes:
       - nhm:/var/lib/nhm
 
@@ -64,6 +68,8 @@ services:
         - "gov.usgs.nhm.image.docker.type=NCF2CBH"
     image: nhmusgs/ncf2cbh
     container_name: ncf2cbh
+    env_file:
+      - nhm.env
     volumes:
       - nhm:/var/lib/nhm
 
@@ -75,8 +81,8 @@ services:
         - "gov.usgs.nhm.image.docker.type=PRMS"
     image: nhmusgs/nhm-prms
     container_name: nhm-prms
-    environment:
-      - RESTART=${RESTART-false}
+    env_file:
+      - nhm.env
     volumes:
       - nhm:/var/lib/nhm
 
@@ -88,6 +94,8 @@ services:
         - "gov.usgs.nhm.image.docker.type=OUT 2 NCF"
     image: nhmusgs/out2ncf
     container_name: out2ncf
+    env_file:
+      - nhm.env
     volumes:
       - nhm:/var/lib/nhm
 
@@ -99,6 +107,8 @@ services:
         - "gov.usgs.nhm.image.docker.type=Verifier"
     image: nhmusgs/verifier
     container_name: verifier
+    env_file:
+      - nhm.env
     volumes:
       - nhm:/var/lib/nhm
 

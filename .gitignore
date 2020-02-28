@@ -1,3 +1,4 @@
+*~
 /.project
 /.pydevproject
 /.idea
@@ -15,3 +16,4 @@ thredds/files/logs/tomcat/*
 /output
 /test
 /restart
+/.env

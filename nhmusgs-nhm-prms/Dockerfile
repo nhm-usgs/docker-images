@@ -5,7 +5,9 @@ LABEL maintainer="ashalper@usgs.gov"
 ARG VERSION_TAG_PRMS=5.0.0
 
 # Build PRMS
-RUN git clone https://github.com/nhm-usgs/prms.git --branch $VERSION_TAG_PRMS --depth=1 $SOURCE_DIR/prms && \
+RUN git -c advice.detachedHead=false clone \
+    https://github.com/nhm-usgs/prms.git --branch $VERSION_TAG_PRMS \
+    --depth=1 $SOURCE_DIR/prms && \
     cd $SOURCE_DIR/prms && \
     make && \
     rm -rf .git || true && \

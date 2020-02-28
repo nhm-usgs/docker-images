@@ -1,4 +1,5 @@
 #! /bin/bash
+#
 # U.S. Geological Survey
 #
 # File - ofp
@@ -13,11 +14,16 @@ dir='/var/lib/nhm/NHM-PRMS_CONUS/'
 
 . /usr/local/share/nhm/nhm.sh	# use NHM shell functions library
 
-# calculate restart interval
-i=$(restart_interval $dir 'restart/' '59')
+# if simulation interval is not specified...
+if [ -z "$NHM_INTERVAL" ]; then
+    # ...calculate restart interval
+    i=$(restart_interval $dir 'restart/' '59')
+else
+    i=$NHM_INTERVAL
+fi
 
 /opt/conda/bin/python -u $SOURCE_DIR/onhm-fetcher-parser/pkg/climate_etl.py \
 		      -t date -p `echo $i | sed 's/\// /'` \
-		      -i /var/lib/nhm/ofp/nhm_hru_data \
-		      -o $dir/input \
-		      -w /var/lib/nhm/ofp/nhm_hru_data/weights.csv
+		      -i /nhm/ofp/nhm_hru_data \
+		      -o $dir\input \
+		      -w /nhm/ofp/nhm_hru_data/weights.csv

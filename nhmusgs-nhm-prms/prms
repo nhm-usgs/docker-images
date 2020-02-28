@@ -24,7 +24,7 @@ echo "RESTART = $RESTART"
 # are in here:
 . /usr/local/share/nhm/nhm.sh
 
-dir='/var/lib/nhm/NHM-PRMS_CONUS/'
+dir='/nhm/NHM-PRMS_CONUS/'
 restart_dir='restart/'
 gridmet_provisional_days=59
 i=$(restart_interval $dir 'restart/' $gridmet_provisional_days)
@@ -81,5 +81,3 @@ else
     			       $save_vars_to_file \
 			       -C ./NHM-PRMS.control
 fi
-
-# TODO: (optionally?) send output to log file? See onhm.py.
