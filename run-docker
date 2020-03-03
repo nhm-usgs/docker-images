@@ -2,9 +2,9 @@
 #
 # U.S. Geological Survey
 #
-# File - compose-test.sh
+# File - run-docker
 #
-# Purpose - Simulate NHM run, as might be done by Jenkins.
+# Purpose - Simulate NHM run on Docker, as might be done by Jenkins.
 #
 # Authors - Ivan Suftin, Richard McDonald, Andrew Halper
 #
