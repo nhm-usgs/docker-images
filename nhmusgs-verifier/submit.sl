@@ -5,4 +5,4 @@
 #SBATCH -o verifier.%j.out
 #SBATCH --image=nhmusgs/verifier:latest
 
-srun -n 1 shifter --volume=/caldera/projects/usgs/water/impd/$USER:$NHM_DATA_DIR /opt/conda/bin/python -u /usr/local/src/onhm-verify-eval/src/prms_verifier.py /nhm/NHM-PRMS_CONUS/
+srun -n 1 shifter --volume=/caldera/projects/usgs/water/impd/$USER:/nhm /opt/conda/bin/python -u $NHM_SOURCE_DIR/onhm-verify-eval/src/prms_verifier.py /nhm/NHM-PRMS_CONUS/
