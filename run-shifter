@@ -11,16 +11,24 @@
 
 set -e
 
+# Docker Compose can't cope with .env files containing the shell's
+# "export ..." syntax, so this is necessary to work around that.
+set -a
+
 . ./nhm.env			# environment variables file
 
 # encapsulate some container running boiler-plate
 run () {
     svc=$1
     shift
-
+    
     echo ""
     echo "Running $svc..."
-    docker-compose $COMPOSE_FILES -p nhm run --rm $svc $*
+
+    # the "yq" command below is here to map service names in
+    # docker-compose.yml to sub-directory names; unfortunately they
+    # don't have the same names
+    sbatch -W "`yq r docker-compose.yml services.$svc.build.context`/submit.sl"
 } # run
 
 echo "Checking if HRU data is downloaded..."
@@ -76,15 +84,6 @@ done
 export RESTART=true
 run nhm-prms
 
-docker-compose $COMPOSE_FILES down
-
-# copy PRMS output from Docker volume to directory on host
 echo "Pipeline has completed. Will copy output files from Docker volume"
 echo "Output files will show up in the \"output\" directory"
-docker build -t nothing - <<EOF
-FROM alpine
-CMD
-EOF
-docker container create --name dummy -v nhm_nhm:/test nothing
-docker cp dummy:/test/ofp/Output .
-docker rm dummy
+cp /caldera/projects/usgs/water/impd/$USER/test/ofp/Output .
