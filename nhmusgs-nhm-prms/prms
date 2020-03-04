@@ -60,7 +60,7 @@ var_init_file=" -set var_init_file $restart_dir$t.restart"
 save_vars_to_file=' -set save_vars_to_file 0'
 vars_save_file='restart/'$end_date'.restart'
 
-# TODO: SOURCE_DIR should ultimately be changed to the permanent PRMS
+# TODO: NHM_SOURCE_DIR should ultimately be changed to the permanent PRMS
 # install location prefix; likely /usr/local/bin
 
 cd $dir
@@ -70,13 +70,13 @@ if [ "$RESTART" = true ]; then
     init_vars_from_file=' -set init_vars_from_file 1'
     save_vars_to_file=' -set save_vars_to_file 1'
     var_save_file=" -set var_save_file $vars_save_file"
-    $SOURCE_DIR/prms/prms/prms $start_args $end_args \
+    $NHM_SOURCE_DIR/prms/prms/prms $start_args $end_args \
 			        $init_vars_from_file $var_init_file \
 			        $save_vars_to_file $var_save_file\
 			       -C ./NHM-PRMS.control
 else
     # run PRMS for the prescribed period
-    $SOURCE_DIR/prms/prms/prms $start_args $end_args \
+    $NHM_SOURCE_DIR/prms/prms/prms $start_args $end_args \
     			       $init_vars_from_file $var_init_file \
     			       $save_vars_to_file \
 			       -C ./NHM-PRMS.control
