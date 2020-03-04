@@ -41,14 +41,14 @@ RUN conda install -n base -c defaults -c conda-forge $insecure \
       xmltodict=0.12.0
 RUN conda clean -a
 
-ENV SOURCE_DIR=/usr/local/src
+ENV NHM_SOURCE_DIR=/usr/local/src
 
 ARG VERSION_ONHM_RUNNERS=master
 
 RUN git -c advice.detachedHead=false clone \
     https://github.com/nhm-usgs/onhm-runners.git \
-    --branch $VERSION_ONHM_RUNNERS --depth=1 $SOURCE_DIR/onhm-runners && \
-    cd $SOURCE_DIR/onhm-runners && \
+    --branch $VERSION_ONHM_RUNNERS --depth=1 $NHM_SOURCE_DIR/onhm-runners && \
+    cd $NHM_SOURCE_DIR/onhm-runners && \
     rm -rf .git && \
     rm .gitignore README.md .project .pydevproject
 
