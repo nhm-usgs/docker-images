@@ -7,8 +7,8 @@ ARG VERSION_TAG_PRMS=5.0.0
 # Build PRMS
 RUN git -c advice.detachedHead=false clone \
     https://github.com/nhm-usgs/prms.git --branch $VERSION_TAG_PRMS \
-    --depth=1 $SOURCE_DIR/prms && \
-    cd $SOURCE_DIR/prms && \
+    --depth=1 $NHM_SOURCE_DIR/prms && \
+    cd $NHM_SOURCE_DIR/prms && \
     make && \
     rm -rf .git || true && \
     rm .gitignore || true && \
@@ -18,7 +18,7 @@ RUN git -c advice.detachedHead=false clone \
 COPY --chown=nhm prms /usr/local/bin
 
 RUN chmod 744 /usr/local/bin/prms && \
-    chown -R $USER $SOURCE_DIR/prms
+    chown -R $USER $NHM_SOURCE_DIR/prms
 
 USER $USER
 

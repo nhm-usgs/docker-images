@@ -5,4 +5,4 @@
 #SBATCH -o data-loader.%j.out
 #SBATCH --image=nhmusgs/data-loader:latest
 
-srun -n 1 shifter --volume=/caldera/projects/usgs/water/impd/$USER:$NHM_DATA_DIR /usr/local/bin/data-loader
+srun -n 1 shifter --volume=/caldera/projects/usgs/water/impd/$USER:/nhm /usr/local/bin/nhm

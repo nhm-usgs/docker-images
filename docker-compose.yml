@@ -13,7 +13,10 @@ services:
     build: 
       context: ./nhmusgs-base
       args:
+<<<<<<< HEAD
         datadir: "/var/lib/nhm"
+=======
+>>>>>>> refs/remotes/ashalper-usgs/shifter_v0
         insecure: ""
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
@@ -35,7 +38,7 @@ services:
     env_file:
       - nhm.env
     volumes:
-      - nhm:/var/lib/nhm
+      - nhm:/nhm
 
   gridmet:
     build:
@@ -59,7 +62,7 @@ services:
     env_file:
       - nhm.env
     volumes:
-      - nhm:/var/lib/nhm
+      - nhm:/nhm
 
   ncf2cbh:
     build:
@@ -72,7 +75,7 @@ services:
     env_file:
       - nhm.env
     volumes:
-      - nhm:/var/lib/nhm
+      - nhm:/nhm
 
   nhm-prms:
     build:
@@ -85,7 +88,7 @@ services:
     env_file:
       - nhm.env
     volumes:
-      - nhm:/var/lib/nhm
+      - nhm:/nhm
 
   out2ncf:
     build:
@@ -98,7 +101,7 @@ services:
     env_file:
       - nhm.env
     volumes:
-      - nhm:/var/lib/nhm
+      - nhm:/nhm
 
   verifier:
     build:
@@ -111,7 +114,7 @@ services:
     env_file:
       - nhm.env
     volumes:
-      - nhm:/var/lib/nhm
+      - nhm:/nhm
 
   thredds:
     image: unidata/thredds-docker:4.6.13

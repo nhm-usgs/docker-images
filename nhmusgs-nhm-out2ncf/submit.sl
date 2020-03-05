@@ -5,4 +5,4 @@
 #SBATCH -o out2ncf.%j.out
 #SBATCH --image=nhmusgs/out2ncf:latest
 
-srun -n 1 shifter --volume=/caldera/projects/usgs/water/impd/$USER:$NHM_DATA_DIR /usr/local/bin/out2ncf
+srun -n 1 shifter --volume=/caldera/projects/usgs/water/impd/$USER:/nhm /opt/conda/bin/python -u $NHM_SOURCE_DIR/onhm-runners/out2ncf/prms_outputs2_ncf.py /nhm/NHM-PRMS_CONUS/

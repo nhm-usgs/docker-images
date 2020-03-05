@@ -1,0 +1,89 @@
+#! /bin/bash
+#
+# U.S. Geological Survey
+#
+# File - compose-test.sh
+#
+# Purpose - Simulate NHM run on Shifter, as might be done by Jenkins.
+#
+# Authors - Ivan Suftin, Richard McDonald, Andrew Halper
+#
+
+set -e
+
+# Docker Compose can't cope with .env files containing the shell's
+# "export ..." syntax, so this is necessary to work around that.
+set -a
+
+. ./nhm.env			# environment variables file
+
+# encapsulate some container running boiler-plate
+run () {
+    svc=$1
+    shift
+    
+    echo ""
+    echo "Running $svc..."
+
+    # the "yq" command below is here to map service names in
+    # docker-compose.yml to sub-directory names; unfortunately they
+    # don't have the same names
+    sbatch -W "`yq r docker-compose.yml services.$svc.build.context`/submit.sl"
+} # run
+
+echo "Checking if HRU data is downloaded..."
+if [ ! -d data ]; then
+    mkdir data
+fi
+if [ ! -f "data/${HRU_DATA_PKG}" ]; then
+    echo "HRU data needs to be downloaded"
+    wget --waitretry=3 --retry-connrefused "${HRU_SOURCE}" \
+	-O "data/${HRU_DATA_PKG}"
+fi
+
+echo "Checking if PRMS data is downloaded..."
+if [ ! -f "data/${PRMS_DATA_PKG}" ]; then
+    echo "PRMS data needs to be downloaded"
+    wget --waitretry=3 --retry-connrefused "${PRMS_SOURCE}" \
+	-O "data/${PRMS_DATA_PKG}"
+fi
+
+COMPOSE_FILES="-f docker-compose.yml -f docker-compose-testing.yml"
+echo "Beginning run. If this fails at any point, run the following command:"
+echo "docker-compose $COMPOSE_FILES down"
+
+# call run() function above
+run data_loader
+
+# if we want to run the Gridmet service...
+if [ "$GRIDMET_DISABLE" != true ]; then
+    # ...do that
+    run gridmet
+    if [ $? != 0 ]; then
+	echo 'Gridmet data is not available - process exiting'
+	exit 1
+    fi
+fi
+
+# if we want to run the ofp service...
+if [ "$OFP_DISABLE" != true ]; then
+    run ofp
+fi
+
+run ncf2cbh
+
+# PRMS
+run nhm-prms --env END_DATE="$END_DATE"
+
+# run these two services
+for svc in out2ncf verifier; do
+    run "$svc"
+done
+
+# run PRMS service again in restart mode
+export RESTART=true
+run nhm-prms
+
+echo "Pipeline has completed. Will copy output files from Docker volume"
+echo "Output files will show up in the \"output\" directory"
+cp /caldera/projects/usgs/water/impd/$USER/test/ofp/Output .

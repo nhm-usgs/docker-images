@@ -12,4 +12,5 @@ WORKDIR /home/$USER
 
 ENV NUMDAYS=60
 
-ENTRYPOINT ["/usr/local/bin/out2ncf"]
+ENTRYPOINT \
+  ["/opt/conda/bin/python", "-u", "/usr/local/src/onhm-runners/out2ncf/prms_outputs2_ncf.py", "/nhm/NHM-PRMS_CONUS/"]
