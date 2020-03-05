@@ -13,10 +13,6 @@ services:
     build: 
       context: ./nhmusgs-base
       args:
-<<<<<<< HEAD
-        datadir: "/var/lib/nhm"
-=======
->>>>>>> refs/remotes/ashalper-usgs/shifter_v0
         insecure: ""
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"

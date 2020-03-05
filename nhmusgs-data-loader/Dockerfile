@@ -2,9 +2,9 @@ FROM nhmusgs/base
 
 LABEL maintainer="ashalper@usgs.gov"
 
-COPY --chown=nhm data-loader /usr/local/bin
+COPY --chown=nhm nhm /usr/local/bin
 
-RUN chmod 744 /usr/local/bin/data-loader
+RUN chmod 744 /usr/local/bin/nhm
 
 USER $USER
 
@@ -12,4 +12,4 @@ WORKDIR /home/$USER
 
 ENV NUMDAYS=60
 
-ENTRYPOINT ["/usr/local/bin/data-loader"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/nhm"]

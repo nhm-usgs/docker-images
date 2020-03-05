@@ -21,4 +21,4 @@ USER $USER
 
 WORKDIR /home/$USER
 
-ENTRYPOINT ["/usr/local/bin/ofp"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/ofp"]

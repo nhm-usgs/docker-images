@@ -26,4 +26,4 @@ WORKDIR /home/$USER
 
 ENV RESTART=false
 
-ENTRYPOINT ["/usr/local/bin/prms"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/prms"]

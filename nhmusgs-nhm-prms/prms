@@ -9,16 +9,6 @@
 # Authors - Andrew Halper, Steven Markstrom
 #
 
-if [ "$NHM_DRY_RUN" = true ]; then
-	echo "nhm-prms service entry-point in dry-run mode:"
-	echo
-	echo "   RESTART: $RESTART"
-	echo "   NHM_DATA_DIR: $NHM_DATA_DIR"
-	echo "   SOURCE_DIR: $SOURCE_DIR"
-	echo "   USER: $USER"
-	exit 0
-fi
-
 pgm=`basename $0`
 if [ 1 -lt $# ]; then
     echo "$pgm: too many operands"

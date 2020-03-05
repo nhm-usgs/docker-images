@@ -10,7 +10,7 @@
 #
 
 last_simulation_date () {
-  dir=$1			# path prefix to PRMS restart directory
+  dir=$1
   restart_dir=$2
 
   # list restart files
@@ -28,7 +28,7 @@ last_simulation_date () {
 } # last_simulation_date
 
 restart_interval () {
-  dir=$1			# path prefix to PRMS restart directory
+  dir=$1
   restart_dir=$2
   gridmet_provisional_days=$3
   
