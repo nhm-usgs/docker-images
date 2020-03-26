@@ -86,4 +86,6 @@ run nhm-prms
 
 echo "Pipeline has completed. Will copy output files from Docker volume"
 echo "Output files will show up in the \"output\" directory"
-cp /caldera/projects/usgs/water/impd/$USER/test/ofp/Output .
+
+prefix="/caldera/projects/usgs/water/impd/$USER/ofp/nhm_hru_data"
+cp `ls -t $prefix/{ppt,rhmax,rhmin,tmax,tmin,ws}*.nc | head -6` Output
