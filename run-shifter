@@ -87,5 +87,13 @@ run nhm-prms
 echo "Pipeline has completed. Will copy output files from Docker volume"
 echo "Output files will show up in the \"output\" directory"
 
-prefix="/caldera/projects/usgs/water/impd/$USER/ofp/nhm_hru_data"
-cp `ls -t $prefix/{ppt,rhmax,rhmin,tmax,tmin,ws}*.nc | head -6` Output
+if [ ! -e output ]; then
+    mkdir output
+fi
+if [ -d output ]; then
+    prefix="/caldera/projects/usgs/water/impd/$USER/ofp/nhm_hru_data"
+    cp `ls -t $prefix/{ppt,rhmax,rhmin,tmax,tmin,ws}*.nc | head -6` output
+else
+    echo '"output" is not a directory'
+    exit 1
+fi
