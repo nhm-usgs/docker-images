@@ -50,7 +50,7 @@ broadband connection.
 Login to your HPC machine, and either clone the `docker-images` repo.:
 
 ```
-git clone -b shifter https://github.com/ashalper-usgs/docker-images.git
+git clone -b shifter https://github.com/nhm-usgs/docker-images.git
 ```
 
 or run `git pull` to update your existing repo.:
