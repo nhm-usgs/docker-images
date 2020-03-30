@@ -14,11 +14,7 @@ Source code is installed under `/usr/local/src`. Currently, this is
 
 # Running
 
-To run the app, run:
-
-```
-./compose-test.sh
-```
+To run the app, run `compose-test.sh`.
 
 ## Running on Windows
 
@@ -38,43 +34,42 @@ Docker Compose on [Oracle VM VirtualBox](https://www.virtualbox.org/)
 using the installation image of distro. of your choice (we use
 [CentOS 7](https://www.centos.org/), but this is not required);
 3. install Git, Docker Compose and wget on the Linux virtual machine;
-4. clone the docker-images repo. on the virtual machine;
+4. clone the `docker-images` repo. on the virtual machine;
 5. run the `compose-test.sh` script as described under **Running** above.
 
 ## Running on HPC Architecture
 
-Use
-[shifterimg](https://docs.nersc.gov/programming/shifter/how-to-use/)
-to pull and convert Docker images to Shifter images, which can then be
-run via Slurm on HPC.
+To build the Docker images in preparation for upload to
+[Docker Hub](https://hub.docker.com/), run the script `build.sh`.
 
-First, check to see if the necessary Shifter images are already
-present:
+To upload the Docker images to Docker Hub, run the script `push.sh`.
 
+This might take a while, especially if you are running it via a home
+broadband connection.
+
+Login to your HPC machine, and either clone the `docker-images` repo.:
 
 ```
-~> shifterimg images
-denali-login2 docker     READY    40398d7101   2020-01-30T17:09:32 nhmusgs/data-loader:latest
-denali-login2 docker     READY    b66260f62d   2020-02-07T12:19:13 nhmusgs/gridmet:latest
-denali-login2 docker     READY    aba388047b   2020-02-04T18:06:03 nhmusgs/ncf2cbh:latest
-denali-login2 docker     READY    c4fe4c3533   2020-01-29T15:19:05 nhmusgs/nhm-prms:latest
-denali-login2 docker     READY    a57c28ccc1   2020-02-07T14:25:16 nhmusgs/ofp:latest
-denali-login2 docker     READY    ecbd9618b4   2020-02-06T14:56:24 nhmusgs/out2ncf:latest
-denali-login2 docker     READY    062f3a14dc   2020-02-06T16:35:08 nhmusgs/verifier:latest
+git clone -b shifter https://github.com/ashalper-usgs/docker-images.git
 ```
 
-If any of the Shifter images listed above are missing, you can try
-"pulling" them by running the `pull.sh`.  Be aware that at this time,
-Shifter pull errors are quite common, so don't be surprised by `FAIL`
-messages from `shifterimg pull ...` in the output of this script. We
-are awaiting a new revision of Shifter to solve this problem.
+or run `git pull` to update your existing repo.:
+
+```
+cd docker-images
+git pull
+```
+
+Now run the `pull.sh` script, to download and convert the Docker
+images to Shifter images.
+
+Be aware that at this time, Shifter pull errors are quite common, so
+don't be surprised by `FAIL` messages from the `pull.sh` script. If
+this happens, run the script again, and Shifter should pick up where
+it left off. A new revision of Shifter promises to solve this problem.
 
 When the required Shifter images are present, run the pipeline with
-the command:
-
-```
-./compose-test.sh -s
-```
+the command `run-shifter`.
 
 The script will submit each container run to Slurm, and `stdout` from
 the Slurm jobs will be directed to files in the current directory with
