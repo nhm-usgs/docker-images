@@ -2,7 +2,7 @@
 #
 # U.S. Geological Survey
 #
-# File - compose-test.sh
+# File - run-shifter
 #
 # Purpose - Simulate NHM run on Shifter, as might be done by Jenkins.
 #
@@ -11,8 +11,9 @@
 
 set -e
 
-# Docker Compose can't cope with .env files containing the shell's
-# "export ..." syntax, so this is necessary to work around that.
+# Docker Compose (which also references nhm.env) can't cope with .env
+# files containing the shell's "export ..." syntax, so this is
+# necessary to work around that.
 set -a
 
 . ./nhm.env			# environment variables file
@@ -49,8 +50,12 @@ if [ ! -f "data/${PRMS_DATA_PKG}" ]; then
 fi
 
 COMPOSE_FILES="-f docker-compose.yml -f docker-compose-testing.yml"
-echo "Beginning run. If this fails at any point, run the following command:"
-echo "docker-compose $COMPOSE_FILES down"
+
+# check for Shifter module
+if ! module list |& grep ' shifter/'; then
+    echo "Loading Shifter module..."
+    module load shifter
+fi
 
 # call run() function above
 run data_loader
