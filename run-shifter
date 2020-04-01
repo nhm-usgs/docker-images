@@ -52,7 +52,7 @@ fi
 COMPOSE_FILES="-f docker-compose.yml -f docker-compose-testing.yml"
 
 # check for Shifter module
-if ! module list |& grep ' shifter/'; then
+if ! module list |& grep ' shifter/' > /dev/null 2>&1 ; then
     echo "Loading Shifter module..."
     module load shifter
 fi
