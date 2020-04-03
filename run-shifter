@@ -18,33 +18,43 @@ set -a
 
 . ./nhm.env			# environment variables file
 
+log () {
+  if [ "$logging" = true ]; then
+    echo "$1"
+  fi
+} # log
+
 # encapsulate some container running boiler-plate
 run () {
     svc=$1
     shift
-    
-    echo ""
-    echo "Running $svc..."
 
+    log ""
+    log "Running $svc..."
+    
     # the "yq" command below is here to map service names in
     # docker-compose.yml to sub-directory names; unfortunately they
     # don't have the same names
     sbatch -W "`yq r docker-compose.yml services.$svc.build.context`/submit.sl"
 } # run
 
-echo "Checking if HRU data is downloaded..."
-if [ ! -d data ]; then
+if [ "$1" = -l ]; then
+  logging=true
+fi
+
+log "Checking if HRU data is downloaded..."
+if [ ! -e data ]; then
     mkdir data
 fi
 if [ ! -f "data/${HRU_DATA_PKG}" ]; then
-    echo "HRU data needs to be downloaded"
+    log "HRU data needs to be downloaded"
     wget --waitretry=3 --retry-connrefused "${HRU_SOURCE}" \
 	-O "data/${HRU_DATA_PKG}"
 fi
 
-echo "Checking if PRMS data is downloaded..."
+log "Checking if PRMS data is downloaded..."
 if [ ! -f "data/${PRMS_DATA_PKG}" ]; then
-    echo "PRMS data needs to be downloaded"
+    log "PRMS data needs to be downloaded"
     wget --waitretry=3 --retry-connrefused "${PRMS_SOURCE}" \
 	-O "data/${PRMS_DATA_PKG}"
 fi
@@ -53,7 +63,7 @@ COMPOSE_FILES="-f docker-compose.yml -f docker-compose-testing.yml"
 
 # check for Shifter module
 if ! module list |& grep ' shifter/' > /dev/null 2>&1 ; then
-    echo "Loading Shifter module..."
+    log "Loading Shifter module..."
     module load shifter
 fi
 
@@ -65,7 +75,7 @@ if [ "$GRIDMET_DISABLE" != true ]; then
     # ...do that
     run gridmet
     if [ $? != 0 ]; then
-	echo 'Gridmet data is not available - process exiting'
+	log 'Gridmet data is not available - process exiting'
 	exit 1
     fi
 fi
@@ -89,8 +99,8 @@ done
 export RESTART=true
 run nhm-prms
 
-echo "Pipeline has completed. Will copy output files from Docker volume"
-echo "Output files will show up in the \"output\" directory"
+log "Pipeline has completed. Will copy output files from Docker volume"
+log "Output files will show up in the \"output\" directory"
 
 if [ ! -e output ]; then
     mkdir output
@@ -99,6 +109,6 @@ if [ -d output ]; then
     prefix="/caldera/projects/usgs/water/impd/$USER/ofp/nhm_hru_data"
     cp `ls -t $prefix/{ppt,rhmax,rhmin,tmax,tmin,ws}*.nc | head -6` output
 else
-    echo '"output" is not a directory'
+    log '"output" is not a directory'
     exit 1
 fi
