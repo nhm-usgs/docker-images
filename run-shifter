@@ -35,7 +35,21 @@ run () {
     # the "yq" command below is here to map service names in
     # docker-compose.yml to sub-directory names; unfortunately they
     # don't have the same names
-    sbatch -W "`yq r docker-compose.yml services.$svc.build.context`/submit.sl"
+
+    # if this is the first job...
+    if [ -z "$previous_jobid" ]
+    then
+	# ...start job with no dependency
+	jobid=$(sbatch --parsable "`yq r docker-compose.yml services.$svc.build.context`/submit.sl")
+    else
+    # ...start job with the requirement that the previous job
+    # completed successfully (exit code 0)
+	jobid=$(sbatch --parsable --dependency=afterok:$previous_jobid "`yq r docker-compose.yml services.$svc.build.context`/submit.sl")
+    fi
+
+    # set current jobid to previous_jobid to be used as a dependency
+    # by the next job
+    previous_jobid=$jobid
 } # run
 
 if [ "$1" = -l ]; then
@@ -99,7 +113,7 @@ done
 export RESTART=true
 run nhm-prms
 
-log "Pipeline has completed. Will copy output files from Docker volume"
+log "Slurm jobs scheduled. Will copy output files from Docker volume"
 log "Output files will show up in the \"output\" directory"
 
 if [ ! -e output ]; then
