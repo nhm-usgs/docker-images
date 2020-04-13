@@ -6,3 +6,4 @@
 #SBATCH --image=nhmusgs/ofp:latest
 
 srun -n 1 shifter --volume=/caldera/projects/usgs/water/impd/$USER:/nhm /bin/bash -c /usr/local/bin/ofp
+echo "ofp exit status was $?"

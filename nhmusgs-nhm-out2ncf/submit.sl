@@ -6,3 +6,4 @@
 #SBATCH --image=nhmusgs/out2ncf:latest
 
 srun -n 1 shifter --volume=/caldera/projects/usgs/water/impd/$USER:/nhm /opt/conda/bin/python -u $NHM_SOURCE_DIR/onhm-runners/out2ncf/prms_outputs2_ncf.py /nhm/NHM-PRMS_CONUS/
+echo "out2ncf exit status was $?"
