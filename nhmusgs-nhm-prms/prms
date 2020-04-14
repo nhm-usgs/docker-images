@@ -26,10 +26,9 @@ fi
 . /usr/local/share/nhm/nhm.sh
 
 dir='/nhm/NHM-PRMS_CONUS/'
-restart_dir='restart/'
 gridmet_provisional_days=59
-i=$(restart_interval $dir 'restart/' $gridmet_provisional_days)
-start_date=$(interval_start $i)
+
+i=$(simulation_interval $dir 'restart/' $gridmet_provisional_days)
 
 # if in restart mode
 if [ "$RESTART" = true ]; then
@@ -40,18 +39,15 @@ else
     end_date=$(interval_end $i)
 fi
 
-# if END_DATE variable is set (for debugging purposes)
-if [ -n "$END_DATE" ]; then
-    end_date="$END_DATE"	# override end_date
-fi
-
 # Remove the verification file before running PRMS.
 rm -f "$dirPRMS_VERIFIED_*"
 
 # find last simulation date
 # TODO: need to find how this is used in PRMS. See onhm.py.
+restart_dir='restart/'
 t=$(last_simulation_date $dir $restart_dir)
 
+start_date=$(interval_start $i)
 start_args=" -set start_time `echo $start_date | sed 's/-/,/g'`,0,0,0"
 end_args=" -set end_time `echo $end_date | sed 's/-/,/g'`,0,0,0"
 
