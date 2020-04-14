@@ -68,6 +68,20 @@ restart_interval () {
 
 } # restart_interval 
 
+simulation_interval () {
+  dir=$1
+  restart_dir=$2
+  gridmet_provisional_days=$3
+
+  # if simulation interval is not specified...
+  if [ -z "$NHM_INTERVAL" ]; then
+    # ...calculate restart interval
+    echo $(restart_interval $dir 'restart/' '59')
+  else
+    echo $NHM_INTERVAL
+  fi
+}
+
 # start date of ISO 8601 interval
 interval_start () {
   echo $1 | cut -d/ -f1
