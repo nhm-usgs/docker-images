@@ -73,10 +73,10 @@ simulation_interval () {
   restart_dir=$2
   gridmet_provisional_days=$3
 
-  # if simulation interval is not specified...
+  # if simulation interval is not explicitly specified...
   if [ -z "$NHM_INTERVAL" ]; then
     # ...calculate restart interval
-    echo $(restart_interval $dir 'restart/' '59')
+    echo $(restart_interval $dir 'restart/' $gridmet_provisional_days)
   else
     echo $NHM_INTERVAL
   fi
