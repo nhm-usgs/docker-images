@@ -30,7 +30,8 @@ last_simulation_date () {
 restart_interval () {
   dir=$1
   restart_dir=$2
-  gridmet_provisional_days=$3
+  yesterday=$3
+  gridmet_provisional_days=$4
   
   t=$(last_simulation_date $dir $restart_dir)
   
@@ -54,7 +55,6 @@ restart_interval () {
   
   # Determine the dates for the data pull.
   today=`date --rfc-3339='date'`
-  yesterday=`date --date "$today -1 days" --rfc-3339='date'`
   pull_date=`date --date "$yesterday -$gridmet_provisional_days days" \
            --rfc-3339='date'`
   
@@ -71,12 +71,13 @@ restart_interval () {
 simulation_interval () {
   dir=$1
   restart_dir=$2
-  gridmet_provisional_days=$3
+  yesterday=$3
+  gridmet_provisional_days=$4
 
-  # if simulation interval is not specified...
+  # if simulation interval is not explicitly specified...
   if [ -z "$NHM_INTERVAL" ]; then
     # ...calculate restart interval
-    echo $(restart_interval $dir 'restart/' '59')
+    echo $(restart_interval $dir 'restart/' $yesterday $gridmet_provisional_days)
   else
     echo $NHM_INTERVAL
   fi
