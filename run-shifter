@@ -97,6 +97,9 @@ fi
 
 # set simulation interval
 yesterday=`date --date "$today -1 days" --rfc-3339='date'`
+# unfortunately this variable referenced in both global and (function
+# argument) local scopes right now:
+dir='/nhm/NHM-PRMS_CONUS/'
 NHM_INTERVAL=$(simulation_interval $dir 'restart/' $yesterday '59')
 
 # if we want to run the ofp service...
