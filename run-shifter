@@ -17,6 +17,7 @@ set -e
 set -a
 
 . ./nhm.env			# environment variables file
+. ./nhmusgs-base/nhm.sh		# shell functions
 
 log () {
   if [ "$logging" = true ]; then
