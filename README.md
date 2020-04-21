@@ -94,5 +94,5 @@ to affect its execution for debugging purposes. They are:
 For example:
 
 ```
-GRIDMET_DISABLE=true OFP_DISABLE=true END_DATE=2019-08-21/2019-08-22 ./compose-test.sh
+GRIDMET_DISABLE=true OFP_DISABLE=true NHM_INTERVAL=2019-08-21/2019-08-22 ./compose-test.sh
 ```
