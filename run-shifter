@@ -100,7 +100,8 @@ yesterday=`date --date "$today -1 days" --rfc-3339='date'`
 # unfortunately this variable referenced in both global and (function
 # argument) local scopes right now:
 dir='/nhm/NHM-PRMS_CONUS/'
-NHM_INTERVAL=$(simulation_interval $dir 'restart/' $yesterday '59')
+restart_dir='restart/'
+NHM_INTERVAL=$(simulation_interval $dir $restart_dir $yesterday '59')
 
 # if we want to run the ofp service...
 if [ "$OFP_DISABLE" != true ]; then
@@ -110,7 +111,6 @@ fi
 run ncf2cbh
 
 # PRMS
-END_DATE=$(interval_end $NHM_INTERVAL)
 run nhm-prms
 
 # run these two services
@@ -120,7 +120,7 @@ done
 
 # run PRMS service again in restart mode
 RESTART=true
-END_DATE=`date --date "$yesterday -59 days" --rfc-3339='date'`
+NHM_INTERVAL=$(last_simulation_date $dir $restart_dir)/`date --date "$yesterday -59 days" --rfc-3339='date'`
 run nhm-prms
 
 log "Slurm jobs scheduled. Will copy output files from Docker volume"
