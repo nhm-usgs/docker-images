@@ -69,7 +69,7 @@ fi
 run ncf2cbh
 
 # PRMS
-run nhm-prms --env END_DATE="$END_DATE"
+run nhm-prms
 
 # run these two services
 for svc in out2ncf verifier; do
