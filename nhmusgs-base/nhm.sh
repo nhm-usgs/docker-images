@@ -84,6 +84,7 @@ simulation_interval () {
 }
 
 # start date of ISO 8601 interval
+# (https://en.wikipedia.org/wiki/ISO_8601#Time_intervals)
 interval_start () {
   echo $1 | cut -d/ -f1
 }
