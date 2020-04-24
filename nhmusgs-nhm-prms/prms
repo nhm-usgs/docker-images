@@ -24,8 +24,6 @@ fi
 # interval_start(), and interval_end() functions are in here:
 . /usr/local/share/nhm/nhm.sh
 
-dir='/nhm/NHM-PRMS_CONUS/'
-
 # Remove the verification file before running PRMS.
 rm -f "$dirPRMS_VERIFIED_*"
 
