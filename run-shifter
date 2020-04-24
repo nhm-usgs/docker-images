@@ -98,7 +98,7 @@ fi
 yesterday=`date --date "$today -1 days" --rfc-3339='date'`
 
 # volume that gets mounted on /nhm in Shifter containers
-dir=/caldera/projects/usgs/water/impd/$USER
+dir=/caldera/projects/usgs/water/impd/$USER/NHM-PRMS_CONUS/
 
 # PRMS restart directory
 restart_dir=restart/
@@ -133,7 +133,7 @@ if [ ! -e output ]; then
     mkdir output
 fi
 if [ -d output ]; then
-    prefix="$dir/ofp/nhm_hru_data"
+    prefix=/caldera/projects/usgs/water/impd/$USER/ofp/nhm_hru_data
     cp `ls -t $prefix/{ppt,rhmax,rhmin,tmax,tmin,ws}*.nc | head -6` output
 else
     log '"output" is not a directory'
