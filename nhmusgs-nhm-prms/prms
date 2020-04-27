@@ -33,7 +33,7 @@ start_args="-set start_time `echo $start_date | sed 's/-/,/g'`,0,0,0"
 end_date=$(interval_end $NHM_INTERVAL)
 end_args="-set end_time `echo $end_date | sed 's/-/,/g'`,0,0,0"
 
-var_init_file=" -set var_init_file $restart_dir$start_date.restart"
+var_init_file=" -set var_init_file /nhm/NHM-PRMS_CONUS/restart/$start_date.restart"
 
 cd $dir
 # if in restart mode...
