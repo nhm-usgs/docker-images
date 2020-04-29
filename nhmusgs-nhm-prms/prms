@@ -9,45 +9,4 @@
 # Authors - Andrew Halper, Steven Markstrom
 #
 
-pgm=`basename $0`
-if [ 1 -lt $# ]; then
-    echo "$pgm: too many operands"
-    echo "Try '$pgm --help' for more information."
-    exit 1
-fi
-if [ "$1" = -h -o "$1" = --help ]; then
-    echo "Usage: $pgm [-r]"
-    echo "  -r                           run container in restart mode"
-    exit
-fi
-
-# interval_start(), and interval_end() functions are in here:
-. /usr/local/share/nhm/nhm.sh
-
-# Remove the verification file before running PRMS.
-rm -f "$dirPRMS_VERIFIED_*"
-
-# make start/end dates formats digestible for PRMS
-start_date=$(interval_start $NHM_INTERVAL)
-start_args="-set start_time `echo $start_date | sed 's/-/,/g'`,0,0,0"
-end_date=$(interval_end $NHM_INTERVAL)
-end_args="-set end_time `echo $end_date | sed 's/-/,/g'`,0,0,0"
-
-var_init_file=" -set var_init_file /nhm/NHM-PRMS_CONUS/restart/$start_date.restart"
-
-cd $dir
-# if in restart mode...
-if [ "$RESTART" = true ]; then
-  # ...run PRMS to make the updated restart file
-  var_save_file=" -set var_save_file 'restart/'$end_date'.restart'"
-  $NHM_SOURCE_DIR/prms/prms/prms $start_args $end_args \
-			         -set init_vars_from_file 1 $var_init_file \
-			         -set save_vars_to_file 1 $var_save_file\
-				 -C ./NHM-PRMS.control
-else
-  # ...run PRMS for the prescribed period
-  $NHM_SOURCE_DIR/prms/prms/prms $start_args $end_args \
-    				 -set init_vars_from_file 1 $var_init_file \
-    				 -set save_vars_to_file 0 \
-				 -C ./NHM-PRMS.control
-fi
+$NHM_SOURCE_DIR/prms/prms/prms $*
