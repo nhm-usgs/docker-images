@@ -160,10 +160,11 @@ run ncf2cbh
 restart_date=`ls $DIR/restart/*.restart | sed 's/^.*\///;s/\.restart$//' | \
 	      sort | tail -1`
 # end date is yesterday
-END_DATE=`date --date "`date --rfc-3339='date'` -1 days" --rfc-3339='date'`
+yesterday=`date --date=yesterday +%Y-%m-%d`
+END_DATE=$yesterday
 
 # if the most recent restart date is less than yesterday - 59 days...
-START_DATE=`date --date "$yesterday -59 days" --rfc-3339='date'`
+START_DATE=`date --date "$yesterday -59 days" +%Y-%m-%d`
 if [ $(date -d "$restart_date" +%s) -lt $(date -d "$START_DATE" +%s) ]; then
   # ...run PRMS from the most recent restart date
   START_DATE="$restart_date"
@@ -190,6 +191,7 @@ run nhm-prms -e ARGV=\
 
 echo "Slurm jobs scheduled. Will copy output files from Docker volume"
 echo "Output files will show up in the \"output\" directory"
+exit 0
 
 # TODO: this part needs to be run in a container for scheduling
 # purposes
