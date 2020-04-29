@@ -60,12 +60,6 @@ RUN useradd -ms /bin/bash $USER
 RUN chown -R $USER /nhm
 RUN chgrp -R $USER /nhm
 
-# shell functions used by more than one entry-point script
-RUN mkdir -p /usr/local/share/nhm
-COPY nhm.sh /usr/local/share/nhm
-RUN chown -R $USER /usr/local/share/nhm
-RUN chmod 744 /usr/local/share/nhm/nhm.sh
-
 ENV HOMEDIR=/home/$USER
 
 VOLUME ["/nhm"]
