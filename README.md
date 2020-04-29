@@ -79,20 +79,3 @@ should be saved in these files.
 The `nhm.env` file (in this directory) contains environment variable
 defaults that may need to be changed for testing purposes. Comments in
 this file explain the function of each environment variable.
-
-# Debugging
-
-The `nhm.env` script references environment variables that can be set
-to affect its execution for debugging purposes. They are:
-
-* `GRIDMET_DISABLE`: set `true` to skip running gridmet service;
-* `OFP_DISABLE`: set `true` to skip running ofp service;
-* `NHM_INTERVAL`: set to an [ISO
-  8601](https://en.wikipedia.org/wiki/ISO_8601) interval to override
-  automatic calculation of the model simulation interval.
-
-For example:
-
-```
-GRIDMET_DISABLE=true OFP_DISABLE=true NHM_INTERVAL=2019-08-21/2019-08-22 ./compose-test.sh
-```
