@@ -55,6 +55,10 @@ services:
         - "gov.usgs.nhm.image.docker.type=OFP"
     image: nhmusgs/ofp
     container_name: ofp
+    environment:
+      - START_DATE
+      - END_DATE
+      - DIR
     env_file:
       - nhm.env
     volumes:
