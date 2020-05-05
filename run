@@ -14,6 +14,9 @@
 # necessary to work around that.
 set -a
 
+# environment variables file
+. ./nhm.env
+
 # encapsulate some container running boiler-plate
 run () {
     svc=$1
@@ -155,13 +158,20 @@ restart_date=`ls $DIR/restart/*.restart | sed 's/^.*\///;s/\.restart$//' | \
 	      sort | tail -1`
 # end date is yesterday
 yesterday=`date --date=yesterday +%Y-%m-%d`
-END_DATE=$yesterday
 
-# if the most recent restart date is less than yesterday - 59 days...
-START_DATE=`date --date "$yesterday -59 days" +%Y-%m-%d`
-if [ $(date -d "$restart_date" +%s) -lt $(date -d "$START_DATE" +%s) ]; then
-  # ...run PRMS from the most recent restart date
-  START_DATE="$restart_date"
+# if END_DATE is not set already
+if [ "$END_DATE" = "" ]; then
+    END_DATE=$yesterday
+fi
+
+# if START_DATE is not set already
+if [ "$START_DATE" = "" ]; then
+    # if the most recent restart date is less than yesterday - 59 days...
+    START_DATE=`date --date "$yesterday -59 days" +%Y-%m-%d`
+    if [ $(date -d "$restart_date" +%s) -lt $(date -d "$START_DATE" +%s) ]; then
+	# ...run PRMS from the most recent restart date
+	START_DATE="$restart_date"
+    fi
 fi
 
 run ofp
