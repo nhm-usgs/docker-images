@@ -150,12 +150,6 @@ run data_loader
 # volume that gets mounted on /nhm in Shifter containers
 DIR=/caldera/projects/usgs/water/impd/$USER/NHM-PRMS_CONUS
 
-run ofp
-
-run ncf2cbh
-
-# PRMS
-
 # start date is the base name of the last restart file
 restart_date=`ls $DIR/restart/*.restart | sed 's/^.*\///;s/\.restart$//' | \
 	      sort | tail -1`
@@ -170,6 +164,11 @@ if [ $(date -d "$restart_date" +%s) -lt $(date -d "$START_DATE" +%s) ]; then
   START_DATE="$restart_date"
 fi
 
+run ofp
+
+run ncf2cbh
+
+# PRMS
 run nhm-prms -e ARGV=\
    "-set start_time `echo $START_DATE | sed 's/-/,/g'`,0,0,0 \
     -set end_time `echo $END_DATE | sed 's/-/,/g'`,0,0,0 \
