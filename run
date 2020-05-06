@@ -184,7 +184,7 @@ run nhm-prms -e ARGV=\
     -set end_time `echo $END_DATE | sed 's/-/,/g'`,0,0,0 \
     -set init_vars_from_file 1 \
     -set var_init_file /nhm/NHM-PRMS_CONUS/restart/$START_DATE.restart \
-    -set save_vars_to_file 0 -C ./NHM-PRMS.control"
+    -set save_vars_to_file 0 -C /nhm/NHM-PRMS_CONUS/NHM-PRMS.control"
 
 # run these two services
 for svc in out2ncf verifier; do
