@@ -9,4 +9,4 @@
 # Authors - Andrew Halper, Steven Markstrom
 #
 
-$NHM_SOURCE_DIR/prms/prms/prms $*
+$NHM_SOURCE_DIR/prms/prms/prms $ARGV
