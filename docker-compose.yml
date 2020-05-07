@@ -86,10 +86,8 @@ services:
     image: nhmusgs/nhm-prms
     container_name: nhm-prms
     environment:
+      - ARGV
       - NHM_SOURCE_DIR
-      - START_DATE
-      - START_TIME
-      - END_TIME
     env_file:
       - nhm.env
     volumes:
