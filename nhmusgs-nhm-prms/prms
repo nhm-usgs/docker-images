@@ -13,6 +13,9 @@ if [ "$NHM_DRY_RUN" = true ]; then
 	echo "nhm-prms service entry-point in dry-run mode:"
 	echo
 	echo "   ARGV: $ARGV"
+	echo "   DIR: $DIR"
+	echo "   START_DATE: $START_DATE"
+	echo "   END_DATE: $END_DATE"
 	exit 0
 fi
 
