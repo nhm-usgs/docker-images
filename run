@@ -179,12 +179,12 @@ run ofp
 run ncf2cbh
 
 # PRMS
-run nhm-prms -e ARGV=\
-   "-set start_time `echo $START_DATE | sed 's/-/,/g'`,0,0,0 \
-    -set end_time `echo $END_DATE | sed 's/-/,/g'`,0,0,0 \
-    -set init_vars_from_file 1 \
-    -set var_init_file /nhm/NHM-PRMS_CONUS/restart/$START_DATE.restart \
-    -set save_vars_to_file 0 -C /nhm/NHM-PRMS_CONUS/NHM-PRMS.control"
+ARGV="-set start_time `echo $START_DATE | sed 's/-/,/g'`,0,0,0 \
+      -set end_time `echo $END_DATE | sed 's/-/,/g'`,0,0,0 \
+      -set init_vars_from_file 1 \
+      -set var_init_file /nhm/NHM-PRMS_CONUS/restart/$START_DATE.restart \
+      -set save_vars_to_file 0 -C /nhm/NHM-PRMS_CONUS/NHM-PRMS.control"
+run nhm-prms
 
 # run these two services
 for svc in out2ncf verifier; do
@@ -192,11 +192,12 @@ for svc in out2ncf verifier; do
 done
 
 # run PRMS service again in restart mode
-run nhm-prms -e ARGV=\
-    "$start_args $end_args \
-    -set init_vars_from_file 1 \
-    -set var_save_file restart/$END_DATE.restart \
-    -set save_vars_to_file 1 $var_save_file -C ./NHM-PRMS.control"
+ARGV="-set start_time `echo $START_DATE | sed 's/-/,/g'`,0,0,0 \
+      -set end_time `echo $END_DATE | sed 's/-/,/g'`,0,0,0 \
+      -set init_vars_from_file 1 \
+      -set var_save_file restart/$END_DATE.restart \
+      -set save_vars_to_file 1 $var_save_file -C ./NHM-PRMS.control"
+run nhm-prms
 
 echo "Slurm jobs scheduled. Will copy output files from Docker volume"
 echo "Output files will show up in the \"output\" directory"
