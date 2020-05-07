@@ -12,11 +12,15 @@
 if [ "$NHM_DRY_RUN" = true ]; then
 	echo "nhm-prms service entry-point in dry-run mode:"
 	echo
-	echo "   ARGV: $ARGV"
-	echo "   DIR: $DIR"
+	echo "   NHM_SOURCE_DIR: $NHM_SOURCE_DIR"
 	echo "   START_DATE: $START_DATE"
-	echo "   END_DATE: $END_DATE"
+	echo "   START_TIME: $START_TIME"
+	echo "   END_TIME: $END_TIME"
 	exit 0
 fi
 
-$NHM_SOURCE_DIR/prms/prms/prms $ARGV
+$NHM_SOURCE_DIR/prms/prms/prms \
+  -set start_time $START_TIME -set end_time $END_TIME \
+  -set init_vars_from_file 1 \
+  -set var_init_file /nhm/NHM-PRMS_CONUS/restart/$START_DATE.restart \
+  -set save_vars_to_file 0 -C /nhm/NHM-PRMS_CONUS/NHM-PRMS.control
