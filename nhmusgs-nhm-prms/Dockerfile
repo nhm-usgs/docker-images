@@ -24,6 +24,4 @@ USER $USER
 
 WORKDIR /home/$USER
 
-ENV ARGV=""
-
-ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/prms", "$ARGV"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/prms"]
