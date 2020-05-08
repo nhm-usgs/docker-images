@@ -195,20 +195,3 @@ run nhm-prms
 
 echo "Slurm jobs scheduled. Will copy output files from Docker volume"
 echo "Output files will show up in the \"output\" directory"
-exit 0
-
-# TODO: this part needs to be run in a container for scheduling
-# purposes
-
-if [ ! -e output ]; then
-    mkdir output
-fi
-if [ -d output ]; then
-    prefix=
-    cp \
-    `ls -t $DIR/ofp/nhm_hru_data/{ppt,rhmax,rhmin,tmax,tmin,ws}*.nc | head -6` \
-      output
-else
-    echo '"output" is not a directory'
-    exit 1
-fi
