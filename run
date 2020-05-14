@@ -191,7 +191,14 @@ done
 
 # run PRMS service again in restart mode
 SAVE_VARS_TO_FILE=1
-VAR_SAVE_FILE="-set var_save_file restart/$END_DATE.restart"
+
+# Determine the date for the last simulation by finding the last
+# restart file.
+p=`ls $DIR/restart/*.restart | sed 's/^.*\///;s/\.restart$//' | \
+      sort | tail -1`
+
+VAR_SAVE_FILE="-set var_save_file restart/$p.restart"
+
 run nhm-prms
 
 echo "Slurm jobs scheduled. Will copy output files from Docker volume"
