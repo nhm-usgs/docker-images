@@ -174,8 +174,8 @@ if [ "$START_DATE" = "" ]; then
     fi
 fi
 
+run gridmet
 run ofp
-
 run ncf2cbh
 
 # PRMS
