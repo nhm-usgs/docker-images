@@ -157,7 +157,7 @@ DIR=/caldera/projects/usgs/water/impd/$USER/NHM-PRMS_CONUS
 restart_date=`ls $DIR/restart/*.restart | sed 's/^.*\///;s/\.restart$//' | \
 	      sort | tail -1`
 # end date is yesterday
-yesterday=`date --date=yesterday +%Y-%m-%d`
+yesterday=`date --date yesterday --rfc-3339='date'`
 
 # if END_DATE is not set already
 if [ "$END_DATE" = "" ]; then
@@ -168,7 +168,7 @@ fi
 if [ "$START_DATE" = "" ]; then
     # if the most recent restart date is less than yesterday - 59 days...
     START_DATE=`date --date "$yesterday -59 days" +%Y-%m-%d`
-    if [ $(date -d "$restart_date" +%s) -lt $(date -d "$START_DATE" +%s) ]; then
+    if [[ $restart_date < $START_DATE ]]; then
 	# ...run PRMS from the most recent restart date
 	START_DATE="$restart_date"
     fi
@@ -182,9 +182,10 @@ fi
 run ofp
 run ncf2cbh
 
-# PRMS
-START_TIME="`echo $START_DATE | sed 's/-/,/g'`,0,0,0"
-END_TIME="`echo $END_DATE | sed 's/-/,/g'`,0,0,0"
+# PRMS in restart mode
+START_TIME=`date --date $START_DATE +%Y,%m,%d,00,00,00`
+# end time is start date + 1 day
+END_TIME=`date --date "$START_DATE +1 day" +%Y,%m,%d,00,00,00`
 SAVE_VARS_TO_FILE=0
 run nhm-prms
 
@@ -196,12 +197,7 @@ done
 # run PRMS service again in restart mode
 SAVE_VARS_TO_FILE=1
 
-# Determine the date for the last simulation by finding the last
-# restart file.
-p=`ls $DIR/restart/*.restart | sed 's/^.*\///;s/\.restart$//' | \
-      sort | tail -1`
-
-VAR_SAVE_FILE="-set var_save_file restart/$p.restart"
+VAR_SAVE_FILE="-set var_save_file $DIR/restart/$restart_date.restart"
 
 run nhm-prms
 
