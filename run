@@ -154,7 +154,7 @@ run data_loader
 DIR=/caldera/projects/usgs/water/impd/$USER/NHM-PRMS_CONUS
 
 # start date is the base name of the last restart file
-restart_date=`ls $DIR/restart/*.restart | sed 's/^.*\///;s/\.restart$//' | \
+RESTART_DATE=`ls $DIR/restart/*.restart | sed 's/^.*\///;s/\.restart$//' | \
 	      sort | tail -1`
 # end date is yesterday
 yesterday=`date --date yesterday --rfc-3339='date'`
@@ -166,7 +166,7 @@ fi
 
 # if START_DATE is not set already
 if [ "$START_DATE" = "" ]; then
-    START_DATE=`date --date "$restart_date +1 day" --rfc-3339='date'`
+    START_DATE=`date --date "$RESTART_DATE +1 day" --rfc-3339='date'`
 fi
 
 # if we want to run the Gridmet service...
