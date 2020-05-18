@@ -2,7 +2,7 @@
 #
 # U.S. Geological Survey
 #
-# File - run-shifter
+# File - run
 #
 # Purpose - Simulate NHM run on Shifter, as might be done by Jenkins.
 #
@@ -167,7 +167,7 @@ fi
 # if START_DATE is not set already
 if [ "$START_DATE" = "" ]; then
     # if the most recent restart date is less than yesterday - 59 days...
-    START_DATE=`date --date "$yesterday -59 days" +%Y-%m-%d`
+    START_DATE=`date --date "$yesterday -59 days" --rfc-3339='date'`
     if [[ $restart_date < $START_DATE ]]; then
 	# ...run PRMS from the most recent restart date
 	START_DATE="$restart_date"
@@ -183,10 +183,14 @@ run ofp
 run ncf2cbh
 
 # PRMS in restart mode
+
+# start time is $START_DATE in PRMS start_date datetime format
 START_TIME=`date --date $START_DATE +%Y,%m,%d,00,00,00`
-# end time is start date + 1 day
+# end time is start date + 1 day in PRMS end_date datetime format
 END_TIME=`date --date "$START_DATE +1 day" +%Y,%m,%d,00,00,00`
+
 SAVE_VARS_TO_FILE=0
+
 run nhm-prms
 
 # run these two services
