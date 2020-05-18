@@ -195,7 +195,7 @@ done
 # end time is start date + 1 day in PRMS end_date datetime format
 END_TIME=`date --date $START_DATE +%Y,%m,%d,00,00,00`
 SAVE_VARS_TO_FILE=1
-VAR_SAVE_FILE="-set var_save_file $DIR/restart/$restart_date.restart"
+VAR_SAVE_FILE="-set var_save_file $DIR/restart/$START_DATE.restart"
 
 run nhm-prms
 
