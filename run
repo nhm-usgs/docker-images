@@ -181,6 +181,8 @@ run ncf2cbh
 
 # start time is $START_DATE in PRMS start_date datetime format
 START_TIME=`date --date $START_DATE +%Y,%m,%d,00,00,00`
+# end time is start date + 1 day in PRMS end_date datetime format
+END_TIME=`date --date $END_DATE +%Y,%m,%d,00,00,00`
 SAVE_VARS_TO_FILE=0
 
 run nhm-prms
@@ -193,7 +195,7 @@ done
 # PRMS service in restart mode
 
 # end time is start date + 1 day in PRMS end_date datetime format
-END_TIME=`date --date $START_DATE +%Y,%m,%d,00,00,00`
+END_TIME=`date --date "$yesterday -59 days" +%Y,%m,%d,00,00,00`
 SAVE_VARS_TO_FILE=1
 VAR_SAVE_FILE="-set var_save_file $DIR/restart/$START_DATE.restart"
 
