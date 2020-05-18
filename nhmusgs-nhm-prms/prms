@@ -17,6 +17,7 @@ if [ "$NHM_DRY_RUN" = true ]; then
 	echo "   SAVE_VARS_TO_FILE: $SAVE_VARS_TO_FILE"
 	echo "   START_DATE: $START_DATE"
 	echo "   START_TIME: $START_TIME"
+	echo "   VAR_SAVE_FILE: $VAR_SAVE_FILE"
 	exit 0
 fi
 
