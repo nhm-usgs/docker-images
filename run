@@ -183,15 +183,9 @@ run ofp
 run ncf2cbh
 
 # PRMS
-
-# re-format $START_DATE/$END_DATE from ISO 8601
-# (https://en.wikipedia.org/wiki/ISO_8601) format to PRMS
-# YYYY,MM,DD,hh,mm,ss format
 START_TIME="`echo $START_DATE | sed 's/-/,/g'`,0,0,0"
 END_TIME="`echo $END_DATE | sed 's/-/,/g'`,0,0,0"
-
-SAVE_VARS_TO_FILE=0		# don't save variables to a file
-
+SAVE_VARS_TO_FILE=0
 run nhm-prms
 
 # run these two services
@@ -200,30 +194,14 @@ for svc in out2ncf verifier; do
 done
 
 # run PRMS service again in restart mode
+SAVE_VARS_TO_FILE=1
 
-SAVE_VARS_TO_FILE=1		# save variables to a file
-
-# date (point) of the last simulation is the basename of the last
-# restart file
-p0=`ls $DIR/restart/*.restart | sed 's/^.*\///;s/\.restart$//' | \
+# Determine the date for the last simulation by finding the last
+# restart file.
+p=`ls $DIR/restart/*.restart | sed 's/^.*\///;s/\.restart$//' | \
       sort | tail -1`
 
-p1=`date --date "$END_DATE" -59 days" --rfc-3339='date'`
-# if the restart point precedes ($END_DATE - 59 days) ...
-if [[ $p0 < $p1 ]];
-then
-    # ... base case: start time is p0 (in PRMS start_time format)
-    START_TIME=`date --date $p0 +%Y,%m,%d,00,00,00`
-else
-    # ... model must have been run previously: start time is p1
-    START_TIME=$p1
-fi
-
-# end time is yesterday
-END_TIME=`date --date yesterday +%Y,%m,%d,00,00,00`
-
-# new restart file path, with basename ($END_DATE - 59 days)
-VAR_SAVE_FILE="-set var_save_file $DIR/restart/$p1.restart"
+VAR_SAVE_FILE="-set var_save_file restart/$p.restart"
 
 run nhm-prms
 
