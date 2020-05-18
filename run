@@ -2,7 +2,7 @@
 #
 # U.S. Geological Survey
 #
-# File - run-shifter
+# File - run
 #
 # Purpose - Simulate NHM run on Shifter, as might be done by Jenkins.
 #
@@ -154,10 +154,10 @@ run data_loader
 DIR=/caldera/projects/usgs/water/impd/$USER/NHM-PRMS_CONUS
 
 # start date is the base name of the last restart file
-restart_date=`ls $DIR/restart/*.restart | sed 's/^.*\///;s/\.restart$//' | \
+RESTART_DATE=`ls $DIR/restart/*.restart | sed 's/^.*\///;s/\.restart$//' | \
 	      sort | tail -1`
 # end date is yesterday
-yesterday=`date --date=yesterday +%Y-%m-%d`
+yesterday=`date --date yesterday --rfc-3339='date'`
 
 # if END_DATE is not set already
 if [ "$END_DATE" = "" ]; then
@@ -166,12 +166,7 @@ fi
 
 # if START_DATE is not set already
 if [ "$START_DATE" = "" ]; then
-    # if the most recent restart date is less than yesterday - 59 days...
-    START_DATE=`date --date "$yesterday -59 days" +%Y-%m-%d`
-    if [ $(date -d "$restart_date" +%s) -lt $(date -d "$START_DATE" +%s) ]; then
-	# ...run PRMS from the most recent restart date
-	START_DATE="$restart_date"
-    fi
+    START_DATE=`date --date "$RESTART_DATE +1 day" --rfc-3339='date'`
 fi
 
 # if we want to run the Gridmet service...
@@ -183,9 +178,13 @@ run ofp
 run ncf2cbh
 
 # PRMS
-START_TIME="`echo $START_DATE | sed 's/-/,/g'`,0,0,0"
-END_TIME="`echo $END_DATE | sed 's/-/,/g'`,0,0,0"
+
+# start time is $START_DATE in PRMS start_date datetime format
+START_TIME=`date --date $START_DATE +%Y,%m,%d,00,00,00`
+# end time is start date + 1 day in PRMS end_date datetime format
+END_TIME=`date --date $END_DATE +%Y,%m,%d,00,00,00`
 SAVE_VARS_TO_FILE=0
+
 run nhm-prms
 
 # run these two services
@@ -193,15 +192,12 @@ for svc in out2ncf verifier; do
     run "$svc"
 done
 
-# run PRMS service again in restart mode
+# PRMS service in restart mode
+
+# end time is start date + 1 day in PRMS end_date datetime format
+END_TIME=`date --date "$yesterday -59 days" +%Y,%m,%d,00,00,00`
 SAVE_VARS_TO_FILE=1
-
-# Determine the date for the last simulation by finding the last
-# restart file.
-p=`ls $DIR/restart/*.restart | sed 's/^.*\///;s/\.restart$//' | \
-      sort | tail -1`
-
-VAR_SAVE_FILE="-set var_save_file restart/$p.restart"
+VAR_SAVE_FILE="-set var_save_file $DIR/restart/$START_DATE.restart"
 
 run nhm-prms
 
