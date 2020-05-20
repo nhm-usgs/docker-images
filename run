@@ -201,5 +201,4 @@ VAR_SAVE_FILE="-set var_save_file $DIR/restart/$START_DATE.restart"
 
 run nhm-prms
 
-echo "Slurm jobs scheduled. Will copy output files from Docker volume"
-echo "Output files will show up in the \"output\" directory"
+echo "Slurm jobs scheduled."
