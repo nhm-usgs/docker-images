@@ -169,6 +169,10 @@ if [ "$START_DATE" = "" ]; then
     START_DATE=`date --date "$RESTART_DATE +1 day" --rfc-3339='date'`
 fi
 
+if [ "$SAVE_RESTART_DATE" = ""]; then
+    SAVE_RESTART_DATE=`date --date "$yesterday -59 days" --rfc-3339='date'`
+fi
+
 # if we want to run the Gridmet service...
 if [ "$GRIDMET_DISABLE" != true ]; then
   run gridmet
@@ -197,7 +201,7 @@ done
 # end time is start date + 1 day in PRMS end_date datetime format
 END_TIME=`date --date "$yesterday -59 days" +%Y,%m,%d,00,00,00`
 SAVE_VARS_TO_FILE=1
-VAR_SAVE_FILE="-set var_save_file $DIR/restart/$END_TIME.restart"
+VAR_SAVE_FILE="-set var_save_file $DIR/restart/$SAVE_RESART_DATE.restart"
 
 run nhm-prms
 
