@@ -150,8 +150,8 @@ run data_loader
 # initialize the run. This is the restart file that should have been
 # created from the second run on the day before.
 
-# volume that gets mounted on /nhm in Shifter containers
-DIR=/caldera/projects/usgs/water/impd/$USER/NHM-PRMS_CONUS
+# PRMS data directory
+DIR=$SOURCE/NHM-PRMS_CONUS
 
 # start date is the base name of the last restart file
 RESTART_DATE=`ls $DIR/restart/*.restart | sed 's/^.*\///;s/\.restart$//' | \
