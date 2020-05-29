@@ -169,7 +169,7 @@ if [ "$START_DATE" = "" ]; then
     START_DATE=`date --date "$RESTART_DATE +1 day" --rfc-3339='date'`
 fi
 
-if [ "$SAVE_RESTART_DATE" = ""]; then
+if [ "$SAVE_RESTART_DATE" = "" ]; then
     SAVE_RESTART_DATE=`date --date "$yesterday -59 days" --rfc-3339='date'`
 fi
 
