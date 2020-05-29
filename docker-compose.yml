@@ -56,7 +56,6 @@ services:
     image: nhmusgs/ofp
     container_name: ofp
     environment:
-      - DIR
       - START_DATE
       - END_DATE
     env_file:
