@@ -75,86 +75,9 @@ fi
 # call run() function above
 run data_loader
 
-# TODO:
-#
-# [8:27 AM] McDonald, Richard R
-# HI Andy,
-#
-# It looks like last nights run crashed on the first PRMS run. It was
-# looking for the wrong restart file:
-#
-#   ERROR opening input file: /nhm/NHM-PRMS_CONUS/restart/2019-08-21.restart
-#   check to be sure the input file exists file specified by control
-#   parameter: var_init_file
-#
-# should have found 2019-08-20.restart
-#
-# Also Markstrom, Steven L should pipe in on this one but I think it
-# would have failed on the second PRMS run as well:
-#
-#   Control variable start_time set to 2019,08,20,0,0,0.
-#
-#   Control variable end_time set to 2020,02,28,0,0,0.
-#
-#   Control variable init_vars_from_file set to 1.
-#
-#   Control variable var_init_file set to
-#   /nhm/NHM-PRMS_CONUS/restart/2019-08-20.restart.
-#
-#   Control variable save_vars_to_file set to 0.
-#
-# Here everything looks correct (it has the correct restart file)
-# except that for the last mesage should read save_vars_to_file set to
-# 1. Is that right Steve? That saves the new restart file?
-#
-# [9:04 AM] Markstrom, Steven L
-#
-# Every day there should be two runs of PRMS. The first one uses the
-# restart file that was created on the previous day's run. This run
-# does not create a restart file, rather it run for 60 days and it
-# creates the output (ie the csv files that subsequently get generated
-# into the netcdf files that go to the viz team). After all of that
-# happens, there is another run of PRMS that it's only purpose is to
-# create a restart file. This run is for normally one day, but would
-# be longer if there were more days to catch up from the data
-# pull. This run does not create any csv output, but just the restart
-# file. This restart file should be dated (ie named) according to the
-# day before of the first run that will be made on the next day.
-#
-# The first run should have "init_vars_from_file" set to "1", and
-# var_init_file set to the name of the restart file that was created by
-# the second run on the day before.
-#
-# The first run should also have "save_vars_to_file" set to 0.
-#
-# The second run should have "init_vars_from_file" and "var_init_file"
-# set to the same as the first run (because it needs to be initialized
-# the same way), but it should also have "save_vars_to_file" set to
-# 1. In addition, it should have "var_save_file" set to
-# XXXX-XX-XX.restart, where XXXX-XX-XX is the last date that was run
-# in the second run.
-#
-# The idea is that this restart file, created by the second run on the
-# previous day, is one day before the first run that needs to be made
-# today.
-#
-# When "init_vars_from_file" is set to 1, then "var_init_file" needs
-# to be specified with the name of a file to use for the restart. And
-# a file is created as specified by the name set by the
-# "var_init_file" argument. If "init_vars_from_file" is set to 0, then
-# it doesn't matter what "var_init_file" is set to, or if it is set,
-# because it is not used and no file will be created.
-#
-# When "save_vars_to_file" is set to 1, then the file specified by
-# "var_save_file" must exist because it will be read and used to
-# initialize the run. This is the restart file that should have been
-# created from the second run on the day before.
-
-# volume that gets mounted on /nhm in Shifter containers
-DIR=/caldera/projects/usgs/water/impd/$USER/NHM-PRMS_CONUS
-
 # start date is the base name of the last restart file
-RESTART_DATE=`ls $DIR/restart/*.restart | sed 's/^.*\///;s/\.restart$//' | \
+RESTART_DATE=`ls $SOURCE/NHM-PRMS_CONUS/restart/*.restart | \
+	      sed 's/^.*\///;s/\.restart$//' | \
 	      sort | tail -1`
 # end date is yesterday
 yesterday=`date --date yesterday --rfc-3339='date'`
@@ -201,7 +124,7 @@ done
 # end time is start date + 1 day in PRMS end_date datetime format
 END_TIME=`date --date "$yesterday -59 days" +%Y,%m,%d,00,00,00`
 SAVE_VARS_TO_FILE=1
-VAR_SAVE_FILE="-set var_save_file $DIR/restart/$SAVE_RESTART_DATE.restart"
+VAR_SAVE_FILE="-set var_save_file /nhm/NHM-PRMS_CONUS/restart/$SAVE_RESTART_DATE.restart"
 
 run nhm-prms
 
