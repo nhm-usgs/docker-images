@@ -48,17 +48,14 @@ run () {
 } # run
 
 echo "Checking if HRU data is downloaded..."
-if [ ! -e data ]; then
-    mkdir data
-fi
-if [ ! -f "data/${HRU_DATA_PKG}" ]; then
+if [ ! -d $HRU_DATA_PREFIX/nhm_hru_data ]; then
     echo "HRU data needs to be downloaded"
     wget --waitretry=3 --retry-connrefused "${HRU_SOURCE}" \
 	-O "data/${HRU_DATA_PKG}"
 fi
 
 echo "Checking if PRMS data is downloaded..."
-if [ ! -f "data/${PRMS_DATA_PKG}" ]; then
+if [ ! -d $PRMS_DATA_PREFIX/NHM-PRMS_CONUS ]; then
     echo "PRMS data needs to be downloaded"
     wget --waitretry=3 --retry-connrefused "${PRMS_SOURCE}" \
 	-O "data/${PRMS_DATA_PKG}"
