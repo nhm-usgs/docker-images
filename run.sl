@@ -1,8 +1,12 @@
-#! /bin/bash
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH -A wbeep
+#SBATCH -t 1-0:00
+#SBATCH -o run.%j.out
 #
 # U.S. Geological Survey
 #
-# File - run
+# File - run.sl
 #
 # Purpose - Simulate NHM run on Shifter, as might be done by Jenkins.
 #
@@ -110,13 +114,10 @@ END_TIME=`date --date $END_DATE +%Y,%m,%d,00,00,00`
 SAVE_VARS_TO_FILE=0
 
 run nhm-prms
+run out2ncf
+run verifier
 
-# run these two services
-for svc in out2ncf verifier; do
-    run "$svc"
-done
-
-# PRMS service in restart mode
+# run PRMS service in restart mode
 
 # end time is start date + 1 day in PRMS end_date datetime format
 END_TIME=`date --date "$yesterday -59 days" +%Y,%m,%d,00,00,00`
