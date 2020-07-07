@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 #SBATCH -N 1
 #SBATCH -A wbeep
 #SBATCH -t 1-0:00
@@ -37,13 +37,15 @@ run () {
     if [ -z "$previous_jobid" ]
     then
 	# ...start job with no dependency
-      jobid=$(sbatch --parsable \
+      jobid=$(sbatch --parsable --job-name=$svc \
 	      "`yq r docker-compose.yml services.$svc.build.context`/submit.sl")
     else
     # ...start job with the requirement that the previous job
     # completed successfully (exit code 0)
-      jobid=$(sbatch --parsable --dependency=afterok:$previous_jobid \
-	      "`yq r docker-compose.yml services.$svc.build.context`/submit.sl")
+	jobid=$(sbatch --parsable --job-name=$svc \
+		       --dependency=afterok:$previous_jobid \
+		       --kill-on-invalid-dep=yes \
+		       "`yq r docker-compose.yml services.$svc.build.context`/submit.sl")
     fi
 
     # set current jobid to previous_jobid to be used as a dependency
@@ -99,7 +101,9 @@ fi
 
 # if we want to run the Gridmet service...
 if [ "$GRIDMET_DISABLE" != true ]; then
-  run gridmet
+    # TODO: if the gridmet service fails, we need to abort the
+    # scheduling of the remaining containers
+    run gridmet
 fi
 
 run ofp
@@ -125,5 +129,9 @@ SAVE_VARS_TO_FILE=1
 VAR_SAVE_FILE="-set var_save_file /nhm/NHM-PRMS_CONUS/restart/$SAVE_RESTART_DATE.restart"
 
 run nhm-prms
+
+# Recurring job: see
+# https://www.sherlock.stanford.edu/docs/user-guide/running-jobs/#recurring-jobs
+sbatch --job-name=nhm --dependency=singleton --begin=`date --date=tomorrow +%Y-%m-%dT16:00:00` $0
 
 echo "Slurm jobs scheduled."
