@@ -42,8 +42,10 @@ run () {
     else
     # ...start job with the requirement that the previous job
     # completed successfully (exit code 0)
-      jobid=$(sbatch --parsable --job-name=$svc --dependency=afterok:$previous_jobid \
-	      "`yq r docker-compose.yml services.$svc.build.context`/submit.sl")
+	jobid=$(sbatch --parsable --job-name=$svc \
+		       --dependency=afterok:$previous_jobid \
+		       --kill-on-invalid-dep=yes \
+		       "`yq r docker-compose.yml services.$svc.build.context`/submit.sl")
     fi
 
     # set current jobid to previous_jobid to be used as a dependency
