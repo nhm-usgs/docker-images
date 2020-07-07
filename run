@@ -12,5 +12,8 @@
 # if on HPC ...
 if uname -r | grep cray > /dev/null 2>&1 ; then
     # ... run as Slurm batch job
-    sbatch --parsable --job-name=nhm run.sl
+    # TODO: need some logic here to figure out which side of 2:00
+    # p.m. we're on ...
+    sbatch --parsable --job-name=nhm --begin=`date +%Y-%m-%dT16:00:00` \
+	   run.sl
 fi
