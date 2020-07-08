@@ -21,6 +21,10 @@ set -a
 # environment variables file
 . ./nhm.env
 
+# are we on HPC?
+uname -r | grep cray > /dev/null 2>&1
+hpc=$?
+
 # encapsulate some container running boiler-plate
 run () {
     svc=$1
@@ -33,24 +37,28 @@ run () {
     # docker-compose.yml to sub-directory names; unfortunately they
     # don't have the same names
 
-    # if this is the first job...
-    if [ -z "$previous_jobid" ]
-    then
+    # if on HPC ...
+    if [ $hpc = 0 ]; then		# ... run on Shifter
+      # if this is the first job...
+      if [ -z "$previous_jobid" ]; then
 	# ...start job with no dependency
-      jobid=$(sbatch --parsable --job-name=$svc \
+	jobid=$(sbatch --parsable --job-name=$svc \
 	      "`yq r docker-compose.yml services.$svc.build.context`/submit.sl")
-    else
-    # ...start job with the requirement that the previous job
-    # completed successfully (exit code 0)
+      else
+	# ...start job with the requirement that the previous job
+	# completed successfully (exit code 0)
 	jobid=$(sbatch --parsable --job-name=$svc \
 		       --dependency=afterok:$previous_jobid \
 		       --kill-on-invalid-dep=yes \
-		       "`yq r docker-compose.yml services.$svc.build.context`/submit.sl")
+	      "`yq r docker-compose.yml services.$svc.build.context`/submit.sl")
+	
+	# set current jobid to previous_jobid to be used as a dependency
+	# by the next job
+	previous_jobid=$jobid
+      fi
+    else			# ... run on Docker
+      docker-compose $COMPOSE_FILES -p nhm run --rm $svc $*	
     fi
-
-    # set current jobid to previous_jobid to be used as a dependency
-    # by the next job
-    previous_jobid=$jobid
 } # run
 
 echo "Checking if HRU data is downloaded..."
@@ -69,19 +77,34 @@ fi
 
 COMPOSE_FILES="-f docker-compose.yml -f docker-compose-testing.yml"
 
-# check for Shifter module
-if ! module list |& grep ' shifter/' > /dev/null 2>&1 ; then
+if [ $hpc = 0 ]; then
+  # check for Shifter module
+  if ! module list |& grep ' shifter/' > /dev/null 2>&1 ; then
     echo "Loading Shifter module..."
     module load shifter
+  fi
 fi
 
 # call run() function above
 run data_loader
 
-# start date is the base name of the last restart file
-RESTART_DATE=`ls $SOURCE/NHM-PRMS_CONUS/restart/*.restart | \
-	      sed 's/^.*\///;s/\.restart$//' | \
-	      sort | tail -1`
+# start date is the base name of the last restart file;
+# if on HPC ...
+if [ $hpc = 0 ]; then
+  # ... at the moment, it's easier to get at the Shifter volume by
+  # looking in the mount source directory
+  RESTART_DATE=`ls $SOURCE/NHM-PRMS_CONUS/restart/*.restart | \
+  	        sed 's/^.*\///;s/\.restart$//' | \
+	   	sort | tail -1`
+else
+  # ... use minimal Docker container to mount the Docker volume and
+  # examine its contents
+  RESTART_DATE=`docker run -it -v nhm_nhm:/nhm \
+  		       -w /nhm/NHM-PRMS_CONUS/restart \
+		       alpine sh -c 'ls *.restart' | \
+  	        sed 's/^.*\///;s/\.restart$//' | \
+	   	sort | tail -1`
+fi
 # end date is yesterday
 yesterday=`date --date yesterday --rfc-3339='date'`
 
@@ -130,8 +153,10 @@ VAR_SAVE_FILE="-set var_save_file /nhm/NHM-PRMS_CONUS/restart/$SAVE_RESTART_DATE
 
 run nhm-prms
 
-# Recurring job: see
-# https://www.sherlock.stanford.edu/docs/user-guide/running-jobs/#recurring-jobs
-sbatch --job-name=nhm --dependency=singleton --begin=`date --date=tomorrow +%Y-%m-%dT16:00:00` $0
-
-echo "Slurm jobs scheduled."
+# if on HPC ...
+if [ $hpc = 0 ]; then
+  # ... set as recurring daily job: see
+  # https://www.sherlock.stanford.edu/docs/user-guide/running-jobs/#recurring-jobs
+  sbatch --job-name=nhm --dependency=singleton \
+	 --begin=`date --date=tomorrow +%Y-%m-%dT16:00:00` $0
+fi
