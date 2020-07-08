@@ -11,9 +11,14 @@
 
 # if on HPC ...
 if uname -r | grep cray > /dev/null 2>&1 ; then
-    # ... run as Slurm batch job
-    # TODO: need some logic here to figure out which side of 2:00
-    # p.m. we're on ...
-    sbatch --parsable --job-name=nhm --begin=`date +%Y-%m-%dT16:00:00` \
-	   run.sl
+  # ... run as Slurm batch job
+  # TODO: need some logic here to figure out which side of 2:00
+  # p.m. we're on ...
+  sbatch --parsable --job-name=nhm --begin=`date +%Y-%m-%dT16:00:00` \
+	 run.sl
+else
+  # Run on Docker; even though run.sl is a Slurm script, it is also a
+  # Bash script, so we take advantage of this by using it to run on
+  # both platforms.
+  bash run.sl
 fi
