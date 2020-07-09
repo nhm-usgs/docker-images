@@ -62,17 +62,28 @@ run () {
 } # run
 
 echo "Checking if HRU data is downloaded..."
-if [ ! -d $HRU_DATA_PREFIX/nhm_hru_data ]; then
+# if the HRU shapefiles have not been downloaded yet ...
+# TODO: there are probably terminal problems associated with this
+# method (see also TODO in restart code below); we may need to either
+# figure out a way to return this in exit status, or pipe to a file,
+# then copy the file from container to host
+if [ `docker run -it -v nhm_nhm:/nhm nhmusgs/base \
+      sh -c 'test -e /nhm/ofp/nhm_hru_data ; echo $?'` = 1 ]; then
     echo "HRU data needs to be downloaded"
-    wget --waitretry=3 --retry-connrefused "${HRU_SOURCE}" \
-	-O "data/${HRU_DATA_PKG}"
+    docker run -it -v nhm_nhm:/nhm -w /nhm -w /nhm/ofp nhmusgs/base \
+	   sh -c "wget --waitretry=3 --retry-connrefused $HRU_SOURCE"
+    # TODO: uncompress it on Docker volume
 fi
 
 echo "Checking if PRMS data is downloaded..."
-if [ ! -d $PRMS_DATA_PREFIX/NHM-PRMS_CONUS ]; then
-    echo "PRMS data needs to be downloaded"
-    wget --waitretry=3 --retry-connrefused "${PRMS_SOURCE}" \
-	-O "data/${PRMS_DATA_PKG}"
+# if the PRMS data is not on the Docker volume yet ...
+if [ `docker run -it -v nhm_nhm:/nhm nhmusgs/base \
+      sh -c 'test -e /nhm/NHM-PRMS_CONUS ; echo $?'` = 1 ]; then
+  # ... download it
+  echo "PRMS data needs to be downloaded"
+  docker run -it -v nhm_nhm:/nhm -w /nhm nhmusgs/base \
+	 sh -c "wget --waitretry=3 --retry-connrefused $PRMS_SOURCE"
+  # TODO: uncompress it on Docker volume
 fi
 
 COMPOSE_FILES="-f docker-compose.yml -f docker-compose-testing.yml"
@@ -99,6 +110,8 @@ if [ $hpc = 0 ]; then
 else
   # ... use minimal Docker container to mount the Docker volume and
   # examine its contents
+
+  # TODO: there are terminal I/O problems with this right now
   RESTART_DATE=`docker run -it -v nhm_nhm:/nhm \
   		       -w /nhm/NHM-PRMS_CONUS/restart \
 		       alpine sh -c 'ls *.restart' | \
