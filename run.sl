@@ -63,27 +63,23 @@ run () {
 
 echo "Checking if HRU data is downloaded..."
 # if the HRU shapefiles have not been downloaded yet ...
-# TODO: there are probably terminal problems associated with this
-# method (see also TODO in restart code below); we may need to either
-# figure out a way to return this in exit status, or pipe to a file,
-# then copy the file from container to host
-if [ `docker run -it -v nhm_nhm:/nhm nhmusgs/base \
+if [ `docker run -it -v nhm_nhm:/nhm nhmusgs/base -e TERM=dumb \
       sh -c 'test -e /nhm/ofp/nhm_hru_data ; echo $?'` = 1 ]; then
     echo "HRU data needs to be downloaded"
     docker run -it -v nhm_nhm:/nhm -w /nhm -w /nhm/ofp nhmusgs/base \
-	   sh -c "wget --waitretry=3 --retry-connrefused $HRU_SOURCE"
-    # TODO: uncompress it on Docker volume
+	   sh -c "wget --waitretry=3 --retry-connrefused $HRU_SOURCE ; \
+	         gunzip $HRU_DATA_PKG"
 fi
 
 echo "Checking if PRMS data is downloaded..."
 # if the PRMS data is not on the Docker volume yet ...
-if [ `docker run -it -v nhm_nhm:/nhm nhmusgs/base \
+if [ `docker run -it -v nhm_nhm:/nhm nhmusgs/base -e TERM=dumb \
       sh -c 'test -e /nhm/NHM-PRMS_CONUS ; echo $?'` = 1 ]; then
   # ... download it
   echo "PRMS data needs to be downloaded"
   docker run -it -v nhm_nhm:/nhm -w /nhm nhmusgs/base \
-	 sh -c "wget --waitretry=3 --retry-connrefused $PRMS_SOURCE"
-  # TODO: uncompress it on Docker volume
+	 sh -c "wget --waitretry=3 --retry-connrefused $PRMS_SOURCE ; \
+	        unzip $PRMS_DATA_PKG"
 fi
 
 COMPOSE_FILES="-f docker-compose.yml -f docker-compose-testing.yml"
@@ -110,9 +106,7 @@ if [ $hpc = 0 ]; then
 else
   # ... use minimal Docker container to mount the Docker volume and
   # examine its contents
-
-  # TODO: there are terminal I/O problems with this right now
-  RESTART_DATE=`docker run -it -v nhm_nhm:/nhm \
+  RESTART_DATE=`docker run -it -v nhm_nhm:/nhm -e TERM=dumb \
   		       -w /nhm/NHM-PRMS_CONUS/restart \
 		       alpine sh -c 'ls *.restart' | \
   	        sed 's/^.*\///;s/\.restart$//' | \
@@ -137,8 +131,6 @@ fi
 
 # if we want to run the Gridmet service...
 if [ "$GRIDMET_DISABLE" != true ]; then
-    # TODO: if the gridmet service fails, we need to abort the
-    # scheduling of the remaining containers
     run gridmet
 fi
 
