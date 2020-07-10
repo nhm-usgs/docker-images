@@ -63,7 +63,7 @@ run () {
 
 echo "Checking if HRU data is downloaded..."
 # if the HRU shapefiles have not been downloaded yet ...
-if [ `docker run -it -v nhm_nhm:/nhm nhmusgs/base -e TERM=dumb \
+if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
       sh -c 'test -e /nhm/ofp/nhm_hru_data ; echo $?'` = 1 ]; then
     echo "HRU data needs to be downloaded"
     docker run -it -v nhm_nhm:/nhm -w /nhm -w /nhm/ofp nhmusgs/base \
@@ -73,7 +73,7 @@ fi
 
 echo "Checking if PRMS data is downloaded..."
 # if the PRMS data is not on the Docker volume yet ...
-if [ `docker run -it -v nhm_nhm:/nhm nhmusgs/base -e TERM=dumb \
+if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
       sh -c 'test -e /nhm/NHM-PRMS_CONUS ; echo $?'` = 1 ]; then
   # ... download it
   echo "PRMS data needs to be downloaded"
@@ -106,11 +106,11 @@ if [ $hpc = 0 ]; then
 else
   # ... use minimal Docker container to mount the Docker volume and
   # examine its contents
-  RESTART_DATE=`docker run -it -v nhm_nhm:/nhm -e TERM=dumb \
+  RESTART_DATE=`docker run -it -v nhm_nhm:/nhm \
   		       -w /nhm/NHM-PRMS_CONUS/restart \
-		       alpine sh -c 'ls *.restart' | \
-  	        sed 's/^.*\///;s/\.restart$//' | \
-	   	sort | tail -1`
+                       -e TERM=dumb \
+		       nhmusgs/base bash -c 'ls *.restart' | \
+	   	sort | tail -1 | cut -f1 -d .`
 fi
 # end date is yesterday
 yesterday=`date --date yesterday --rfc-3339='date'`
