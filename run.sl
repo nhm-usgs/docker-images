@@ -62,17 +62,24 @@ run () {
 } # run
 
 echo "Checking if HRU data is downloaded..."
-if [ ! -d $HRU_DATA_PREFIX/nhm_hru_data ]; then
+# if the HRU shapefiles have not been downloaded yet ...
+if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
+      sh -c 'test -e /nhm/ofp/nhm_hru_data ; echo $?'` = 1 ]; then
     echo "HRU data needs to be downloaded"
-    wget --waitretry=3 --retry-connrefused "${HRU_SOURCE}" \
-	-O "data/${HRU_DATA_PKG}"
+    docker run -it -v nhm_nhm:/nhm -w /nhm -w /nhm/ofp nhmusgs/base \
+	   sh -c "wget --waitretry=3 --retry-connrefused $HRU_SOURCE ; \
+	         gunzip $HRU_DATA_PKG"
 fi
 
 echo "Checking if PRMS data is downloaded..."
-if [ ! -d $PRMS_DATA_PREFIX/NHM-PRMS_CONUS ]; then
-    echo "PRMS data needs to be downloaded"
-    wget --waitretry=3 --retry-connrefused "${PRMS_SOURCE}" \
-	-O "data/${PRMS_DATA_PKG}"
+# if the PRMS data is not on the Docker volume yet ...
+if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
+      sh -c 'test -e /nhm/NHM-PRMS_CONUS ; echo $?'` = 1 ]; then
+  # ... download it
+  echo "PRMS data needs to be downloaded"
+  docker run -it -v nhm_nhm:/nhm -w /nhm nhmusgs/base \
+	 sh -c "wget --waitretry=3 --retry-connrefused $PRMS_SOURCE ; \
+	        unzip $PRMS_DATA_PKG"
 fi
 
 COMPOSE_FILES="-f docker-compose.yml -f docker-compose-testing.yml"
@@ -101,9 +108,9 @@ else
   # examine its contents
   RESTART_DATE=`docker run -it -v nhm_nhm:/nhm \
   		       -w /nhm/NHM-PRMS_CONUS/restart \
-		       alpine sh -c 'ls *.restart' | \
-  	        sed 's/^.*\///;s/\.restart$//' | \
-	   	sort | tail -1`
+                       -e TERM=dumb \
+		       nhmusgs/base bash -c 'ls *.restart' | \
+	   	sort | tail -1 | cut -f1 -d .`
 fi
 # end date is yesterday
 yesterday=`date --date yesterday --rfc-3339='date'`
@@ -124,8 +131,6 @@ fi
 
 # if we want to run the Gridmet service...
 if [ "$GRIDMET_DISABLE" != true ]; then
-    # TODO: if the gridmet service fails, we need to abort the
-    # scheduling of the remaining containers
     run gridmet
 fi
 
