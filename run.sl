@@ -112,6 +112,7 @@ else
 		       nhmusgs/base bash -c 'ls *.restart' | \
 	   	sort | tail -1 | cut -f1 -d .`
 fi
+echo "$RESTART_DATE"
 # end date is yesterday
 yesterday=`date --date yesterday --rfc-3339='date'`
 
@@ -152,7 +153,9 @@ run verifier
 # run PRMS service in restart mode
 
 # end time is start date + 1 day in PRMS end_date datetime format
-END_TIME=`date --date "$yesterday -59 days" +%Y,%m,%d,00,00,00`
+if [ "$GRIDMET_DISABLE" != true ]; then #otherwise it's debug and use END_DATE specified in nhm.env
+  END_TIME=`date --date "$yesterday -59 days" +%Y,%m,%d,00,00,00`
+fi
 SAVE_VARS_TO_FILE=1
 VAR_SAVE_FILE="-set var_save_file /nhm/NHM-PRMS_CONUS/restart/$SAVE_RESTART_DATE.restart"
 
