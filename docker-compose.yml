@@ -4,9 +4,6 @@ volumes:
   nhm:
     driver: local
 
-networks:
-  nhmnet:
-
 services:
     
   base_image:
@@ -20,21 +17,6 @@ services:
     image: nhmusgs/base
     env_file:
       - nhm.env
-
-  data_loader:
-    build:
-      context: ./nhmusgs-data-loader
-      labels:
-        - "gov.usgs.nhm.image.docker.application=NHM"
-        - "gov.usgs.nhm.image.docker.type=Data Loader"
-    image: nhmusgs/data-loader
-    container_name: data-loader
-    networks:
-      nhmnet:
-    env_file:
-      - nhm.env
-    volumes:
-      - nhm:/nhm
 
   gridmet:
     build:
