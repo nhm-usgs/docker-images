@@ -64,23 +64,33 @@ run () {
 echo "Checking if HRU data is downloaded..."
 # if the HRU shapefiles have not been downloaded yet ...
 if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
-      sh -c 'test -e /nhm/ofp/nhm_hru_data ; printf $?'` = 1 ]; then
+      sh -c 'test -e /nhm/gridmetetl/nhm_hru_data_gfv11 ; printf $?'` = 1 ]; then
     echo "HRU data needs to be downloaded"
-    docker run -it -v nhm_nhm:/nhm -w /nhm -w /nhm/ofp nhmusgs/base \
+    docker run -it -v nhm_nhm:/nhm -w /nhm -w /nhm/gridmetetl nhmusgs/base \
 	   sh -c "wget --waitretry=3 --retry-connrefused $HRU_SOURCE ; \
-	         tar -xzf $HRU_DATA_PKG"
+	         unzip $HRU_DATA_PKG ; \
+           chown -R nhm /nhm/gridmetetl ; \
+           chmod -R 766 /nhm/gridmetetl"
+
 fi
+
+echo "User is $USER"
+
+
 
 echo "Checking if PRMS data is downloaded..."
 # if the PRMS data is not on the Docker volume yet ...
 if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
-      sh -c 'test -e /nhm/NHM-PRMS_CONUS ; printf $?'` = 1 ]; then
+      sh -c 'test -e /nhm/NHM-PRMS_CONUS_GF_1_1 ; printf $?'` = 1 ]; then
   # ... download it
   echo "PRMS data needs to be downloaded"
   docker run -it -v nhm_nhm:/nhm -w /nhm nhmusgs/base \
 	 sh -c "wget --waitretry=3 --retry-connrefused $PRMS_SOURCE ; \
-	        unzip $PRMS_DATA_PKG"
+	        tar -xzf $PRMS_DATA_PKG ; \
+          chown -R nhm /nhm/NHM-PRMS_CONUS_GF_1_1 ; \
+          chmod -R 766 /nhm/NHM-PRMS_CONUS_GF_1_1"
 fi
+
 
 COMPOSE_FILES="-f docker-compose.yml"
 
@@ -97,14 +107,14 @@ fi
 if [ $hpc = 0 ]; then
   # ... at the moment, it's easier to get at the Shifter volume by
   # looking in the mount source directory
-  RESTART_DATE=`ls $SOURCE/NHM-PRMS_CONUS/restart/*.restart | \
+  RESTART_DATE=`ls $SOURCE/NHM-PRMS_CONUS_GF_1_1/restart/*.restart | \
   	        sed 's/^.*\///;s/\.restart$//' | \
 	   	sort | tail -1`
 else
   # ... use minimal Docker container to mount the Docker volume and
   # examine its contents
   RESTART_DATE=`docker run -it -v nhm_nhm:/nhm \
-  		       -w /nhm/NHM-PRMS_CONUS/restart \
+  		       -w /nhm/NHM-PRMS_CONUS_GF_1_1/restart \
                        -e TERM=dumb \
 		       nhmusgs/base bash -c 'ls *.restart' | \
 	   	sort | tail -1 | cut -f1 -d .`
@@ -157,7 +167,7 @@ if [ "$GRIDMET_DISABLE" != true ]; then
 fi
 
 SAVE_VARS_TO_FILE=1
-VAR_SAVE_FILE="-set var_save_file /nhm/NHM-PRMS_CONUS/restart/$SAVE_RESTART_DATE.restart"
+VAR_SAVE_FILE="-set var_save_file /nhm/NHM-PRMS_CONUS_GF_1_1/restart/$SAVE_RESTART_DATE.restart"
 
 run nhm-prms
 

@@ -10,7 +10,7 @@ services:
     build: 
       context: ./nhmusgs-base
       args:
-        insecure: ""
+        insecure: "-k"
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=Base Image"
@@ -40,6 +40,7 @@ services:
     environment:
       - START_DATE
       - END_DATE
+      - NHM_SOURCE_DIR
     env_file:
       - nhm.env
     volumes:

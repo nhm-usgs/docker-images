@@ -11,8 +11,9 @@
 #
 
 /opt/conda/bin/python \
-  -u $NHM_SOURCE_DIR/onhm-fetcher-parser/pkg/climate_etl.py \
+  -u $NHM_SOURCE_DIR/gridmetetl/gridmetetl/gridmet_etl.py \
      -t date -p $START_DATE $END_DATE \
-     -i /nhm/ofp/nhm_hru_data \
-     -o /nhm/NHM-PRMS_CONUS/input \
-     -w /nhm/ofp/nhm_hru_data/weights.csv
+     -i /nhm/gridmetetl/nhm_hru_data_gfv11 \
+     -o /nhm/NHM-PRMS_CONUS_GF_1_1/input \
+     -w /nhm/gridmetetl/nhm_hru_data_gfv11/tmp_Gridmet_weights_hru_v1_1e.csv \
+     --partial=true
