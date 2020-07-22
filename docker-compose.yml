@@ -59,6 +59,22 @@ services:
     volumes:
       - nhm:/nhm
 
+  cbhfiller:
+    build:
+      context: ./nhmusgs-cbhfiller
+      labels:
+        - "gov.usgs.nhm.image.docker.application=NHM"
+        - "gov.usgs.nhm.image.docker.type=CBHFILLER"
+    image: nhmusgs/cbhfiller
+    container_name: cbhfiller
+    environment:
+        - CBH_IDIR
+        - CBH_ODIR
+    env_file:
+      - nhm.env
+    volumes:
+      - nhm:/nhm
+
   nhm-prms:
     build:
       context: ./nhmusgs-nhm-prms

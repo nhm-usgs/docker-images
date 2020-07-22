@@ -86,7 +86,7 @@ if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
   echo "PRMS data needs to be downloaded"
   docker run -it -v nhm_nhm:/nhm -w /nhm nhmusgs/base \
 	 sh -c "wget --waitretry=3 --retry-connrefused $PRMS_SOURCE ; \
-	        tar -xzf $PRMS_DATA_PKG ; \
+	        unzip $PRMS_DATA_PKG ; \
           chown -R nhm /nhm/NHM-PRMS_CONUS_GF_1_1 ; \
           chmod -R 766 /nhm/NHM-PRMS_CONUS_GF_1_1"
 fi
@@ -146,6 +146,10 @@ fi
 
 run ofp
 run ncf2cbh
+
+#cbhfiller
+run cbhfiller
+
 
 # PRMS
 
