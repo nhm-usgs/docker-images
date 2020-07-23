@@ -69,9 +69,9 @@ if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
     docker run -it -v nhm_nhm:/nhm -u root -w /nhm/gridmetetl nhmusgs/base \
 	   sh -c "wget --waitretry=3 --retry-connrefused $HRU_SOURCE ; \
 	         unzip $HRU_DATA_PKG ; \
-           chown -R nhm gridmetetl ; \
-           chgrp -R nhm gridmetetl ; \
-           chmod -R 766 gridmetetl"
+           chown -R nhm nhm_hru_data_gfv11 ; \
+           chgrp -R nhm nhm_hru_data_gfv11 ; \
+           chmod -R 766 nhm_hru_data_gfv11"
 fi
 
 echo "User is $USER"
