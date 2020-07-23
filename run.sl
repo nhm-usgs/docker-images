@@ -66,11 +66,12 @@ echo "Checking if HRU data is downloaded..."
 if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
       sh -c 'test -e /nhm/gridmetetl/nhm_hru_data_gfv11 ; printf $?'` = 1 ]; then
     echo "HRU data needs to be downloaded"
-    docker run -it -v nhm_nhm:/nhm -w /nhm -w /nhm/gridmetetl nhmusgs/base \
+    docker run -it -v nhm_nhm:/nhm -u root -w /nhm/gridmetetl nhmusgs/base \
 	   sh -c "wget --waitretry=3 --retry-connrefused $HRU_SOURCE ; \
 	         unzip $HRU_DATA_PKG ; \
-           chown -R nhm gridmetetl ; \
-           chmod -R 766 gridmetetl"
+           chown -R nhm nhm_hru_data_gfv11 ; \
+           chgrp -R nhm nhm_hru_data_gfv11 ; \
+           chmod -R 766 nhm_hru_data_gfv11"
 fi
 
 echo "User is $USER"
@@ -81,10 +82,11 @@ if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
       sh -c 'test -e /nhm/NHM-PRMS_CONUS_GF_1_1 ; printf $?'` = 1 ]; then
   # ... download it
   echo "PRMS data needs to be downloaded"
-  docker run -it -v nhm_nhm:/nhm -w /nhm nhmusgs/base \
+  docker run -it -v nhm_nhm:/nhm -u root -w /nhm nhmusgs/base \
 	 sh -c "wget --waitretry=3 --retry-connrefused $PRMS_SOURCE ; \
 	        unzip $PRMS_DATA_PKG ; \
           chown -R nhm NHM-PRMS_CONUS_GF_1_1 ; \
+          chgrp -R nhm NHM-PRMS_CONUS_GF_1_1 ; \
           chmod -R 766 NHM-PRMS_CONUS_GF_1_1"
 fi
 
