@@ -8,7 +8,8 @@
 #
 # File - run.sl
 #
-# Purpose - Simulate NHM run on Shifter, as might be done by Jenkins.
+# Purpose - Simulate NHM run on Docker and Shifter, as might be done
+#           by Jenkins.
 #
 # Authors - Ivan Suftin, Richard McDonald, Andrew Halper
 #
@@ -60,35 +61,6 @@ run () {
       docker-compose $COMPOSE_FILES -p nhm run --rm $svc $*	
     fi
 } # run
-
-echo "Checking if HRU data is downloaded..."
-# if the HRU shapefiles have not been downloaded yet ...
-if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
-      sh -c 'test -e /nhm/gridmetetl/nhm_hru_data_gfv11 ; printf $?'` = 1 ]; then
-    echo "HRU data needs to be downloaded"
-    docker run -it -v nhm_nhm:/nhm -u root -w /nhm/gridmetetl nhmusgs/base \
-	   sh -c "wget --waitretry=3 --retry-connrefused $HRU_SOURCE ; \
-	         unzip $HRU_DATA_PKG ; \
-           chown -R nhm nhm_hru_data_gfv11 ; \
-           chgrp -R nhm nhm_hru_data_gfv11 ; \
-           chmod -R 766 nhm_hru_data_gfv11"
-fi
-
-echo "User is $USER"
-
-echo "Checking if PRMS data is downloaded..."
-# if the PRMS data is not on the Docker volume yet ...
-if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
-      sh -c 'test -e /nhm/NHM-PRMS_CONUS_GF_1_1 ; printf $?'` = 1 ]; then
-  # ... download it
-  echo "PRMS data needs to be downloaded"
-  docker run -it -v nhm_nhm:/nhm -u root -w /nhm nhmusgs/base \
-	 sh -c "wget --waitretry=3 --retry-connrefused $PRMS_SOURCE ; \
-	        unzip $PRMS_DATA_PKG ; \
-          chown -R nhm NHM-PRMS_CONUS_GF_1_1 ; \
-          chgrp -R nhm NHM-PRMS_CONUS_GF_1_1 ; \
-          chmod -R 766 NHM-PRMS_CONUS_GF_1_1"
-fi
 
 COMPOSE_FILES="-f docker-compose.yml"
 
