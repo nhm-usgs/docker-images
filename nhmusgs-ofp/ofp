@@ -10,6 +10,27 @@
 #           Andrew Halper
 #
 
+echo "Checking if HRU data is downloaded..."
+# if the HRU shapefiles have not been downloaded yet ...
+if [ ! -e /nhm/gridmetetl/nhm_hru_data_gfv11 ]; then
+   echo "HRU data needs to be downloaded"
+   cd /nhm/gridmetetl
+   wget --waitretry=3 --retry-connrefused $HRU_SOURCE
+   unzip $HRU_DATA_PKG
+   cd
+fi
+
+echo "Checking if PRMS data is downloaded..."
+# if the PRMS data is not on the Docker volume yet ...
+if [ ! -e /nhm/NHM-PRMS_CONUS_GF_1_1 ]; then
+  # ... download it
+  echo "PRMS data needs to be downloaded"
+  cd /nhm
+  wget --waitretry=3 --retry-connrefused $PRMS_SOURCE
+  unzip $PRMS_DATA_PKG
+  cd
+fi
+
 /opt/conda/bin/python \
   -u $NHM_SOURCE_DIR/gridmetetl/gridmetetl/gridmet_etl.py \
      -t date -p $START_DATE $END_DATE \

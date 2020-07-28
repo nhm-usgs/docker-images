@@ -38,9 +38,13 @@ services:
     image: nhmusgs/ofp
     container_name: ofp
     environment:
-      - START_DATE
       - END_DATE
+      - HRU_DATA_PKG
+      - HRU_SOURCE
       - NHM_SOURCE_DIR
+      - PRMS_DATA_PKG
+      - PRMS_SOURCE
+      - START_DATE
     env_file:
       - nhm.env
     volumes:
