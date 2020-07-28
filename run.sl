@@ -81,8 +81,8 @@ if [ $hpc = 0 ]; then
   	        sed 's/^.*\///;s/\.restart$//' | \
 	   	sort | tail -1`
 else
-  # ... use minimal Docker container to mount the Docker volume and
-  # examine its contents
+  # ... use base image to mount the Docker volume and examine its
+  # contents
   RESTART_DATE=`docker run -it -v nhm_nhm:/nhm \
   		       -w /nhm/NHM-PRMS_CONUS_GF_1_1/restart \
                        -e TERM=dumb \
