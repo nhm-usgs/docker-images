@@ -15,9 +15,9 @@ docker build -t nothing - <<EOF
 FROM alpine
 CMD
 EOF
-docker container create --name dummy -v nhm_nhm:/test nothing
-docker cp dummy:/test/NHM-PRMS_CONUS/output .
-docker cp dummy:/test/NHM-PRMS_CONUS/input .
-docker cp dummy:/test/NHM-PRMS_CONUS/restart .
+docker container create --name dummy -v nhm_nhm:/nhm nothing
+docker cp dummy:/nhm/NHM-PRMS_CONUS_GF_1_1/output .
+docker cp dummy:/nhm/NHM-PRMS_CONUS_GF_1_1/input .
+docker cp dummy:/nhm/NHM-PRMS_CONUS_GF_1_1/restart .
 docker rm dummy
 

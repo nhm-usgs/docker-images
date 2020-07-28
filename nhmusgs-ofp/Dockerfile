@@ -2,12 +2,13 @@ FROM nhmusgs/base
 
 LABEL maintainer="ashalper@usgs.gov"
 
-ARG VERSION_TAG_OFP=v0.1.6
+# ARG VERSION_TAG_OFP=v0.1.6
+ARG VERSION_TAG_GMETL=v0.22
 
 # Build ONHM Fetcher Parser
-RUN git -c advice.detachedHead=false clone --depth=1 --branch $VERSION_TAG_OFP \
-    https://github.com/nhm-usgs/onhm-fetcher-parser.git $NHM_SOURCE_DIR/onhm-fetcher-parser && \
-    cd $NHM_SOURCE_DIR/onhm-fetcher-parser && \
+RUN git -c advice.detachedHead=false clone --depth=1 --branch $VERSION_TAG_GMETL \
+    https://github.com/nhm-usgs/gridmetetl.git $NHM_SOURCE_DIR/gridmetetl && \
+    cd $NHM_SOURCE_DIR/gridmetetl && \
     rm -rf .git || true && \
     rm -rf .idea || true && \
     rm .gitignore || true

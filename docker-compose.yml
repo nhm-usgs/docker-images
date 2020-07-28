@@ -10,7 +10,7 @@ services:
     build: 
       context: ./nhmusgs-base
       args:
-        insecure: ""
+        insecure: "-k"
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=Base Image"
@@ -38,8 +38,13 @@ services:
     image: nhmusgs/ofp
     container_name: ofp
     environment:
-      - START_DATE
       - END_DATE
+      - HRU_DATA_PKG
+      - HRU_SOURCE
+      - NHM_SOURCE_DIR
+      - PRMS_DATA_PKG
+      - PRMS_SOURCE
+      - START_DATE
     env_file:
       - nhm.env
     volumes:
@@ -53,6 +58,22 @@ services:
         - "gov.usgs.nhm.image.docker.type=NCF2CBH"
     image: nhmusgs/ncf2cbh
     container_name: ncf2cbh
+    env_file:
+      - nhm.env
+    volumes:
+      - nhm:/nhm
+
+  cbhfiller:
+    build:
+      context: ./nhmusgs-cbhfiller
+      labels:
+        - "gov.usgs.nhm.image.docker.application=NHM"
+        - "gov.usgs.nhm.image.docker.type=CBHFILLER"
+    image: nhmusgs/cbhfiller
+    container_name: cbhfiller
+    environment:
+        - CBH_IDIR
+        - CBH_ODIR
     env_file:
       - nhm.env
     volumes:
@@ -73,6 +94,7 @@ services:
       - START_DATE
       - START_TIME
       - RESTART_DATE
+      - VAR_SAVE_FILE
     env_file:
       - nhm.env
     volumes:

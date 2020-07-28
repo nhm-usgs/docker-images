@@ -15,4 +15,4 @@ USER $USER
 WORKDIR /home/$USER
 
 ENTRYPOINT \
-  ["/opt/conda/bin/python", "-u", "/usr/local/src/onhm-verify-eval/src/prms_verifier.py", "/nhm/NHM-PRMS_CONUS/"]
+  ["/opt/conda/bin/python", "-u", "/usr/local/src/onhm-verify-eval/src/prms_verifier.py", "/nhm/NHM-PRMS_CONUS_GF_1_1/"]
