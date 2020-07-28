@@ -116,10 +116,7 @@ fi
 
 run ofp
 run ncf2cbh
-
-#cbhfiller
 run cbhfiller
-
 
 # PRMS
 
@@ -141,7 +138,7 @@ if [ "$GRIDMET_DISABLE" != true ]; then
 fi
 
 SAVE_VARS_TO_FILE=1
-VAR_SAVE_FILE="-set var_save_file /nhm/NHM-PRMS_CONUS_GF_1_1/restart/$SAVE_RESTART_DATE.restart"
+VAR_SAVE_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/restart/$SAVE_RESTART_DATE.restart"
 
 run nhm-prms
 
