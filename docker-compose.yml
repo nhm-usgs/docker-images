@@ -90,6 +90,7 @@ services:
       - START_DATE
       - START_TIME
       - RESTART_DATE
+      - VAR_SAVE_FILE
     env_file:
       - nhm.env
     volumes:

@@ -69,8 +69,8 @@ if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
     docker run -it -v nhm_nhm:/nhm -w /nhm -w /nhm/gridmetetl nhmusgs/base \
 	   sh -c "wget --waitretry=3 --retry-connrefused $HRU_SOURCE ; \
 	         unzip $HRU_DATA_PKG ; \
-           chown -R nhm gridmetetl ; \
-           chmod -R 766 gridmetetl"
+           chown -R nhm /nhm/gridmetetl ; \
+           chmod -R 766 /nhm/gridmetetl"
 fi
 
 echo "User is $USER"
@@ -84,8 +84,8 @@ if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
   docker run -it -v nhm_nhm:/nhm -w /nhm nhmusgs/base \
 	 sh -c "wget --waitretry=3 --retry-connrefused $PRMS_SOURCE ; \
 	        unzip $PRMS_DATA_PKG ; \
-          chown -R nhm NHM-PRMS_CONUS_GF_1_1 ; \
-          chmod -R 766 NHM-PRMS_CONUS_GF_1_1"
+          chown -R nhm /nhm/NHM-PRMS_CONUS_GF_1_1 ; \
+          chmod -R 766 /nhm/NHM-PRMS_CONUS_GF_1_1"
 fi
 
 COMPOSE_FILES="-f docker-compose.yml"
@@ -167,7 +167,7 @@ if [ "$GRIDMET_DISABLE" != true ]; then
 fi
 
 SAVE_VARS_TO_FILE=1
-VAR_SAVE_FILE="-set var_save_file /nhm/NHM-PRMS_CONUS_GF_1_1/restart/$SAVE_RESTART_DATE.restart"
+VAR_SAVE_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/restart/$SAVE_RESTART_DATE.restart"
 
 run nhm-prms
 
