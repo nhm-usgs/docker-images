@@ -15,9 +15,16 @@ dir='/var/lib/nhm/NHM-PRMS_CONUS/'
 
 # calculate restart interval
 i=$(restart_interval $dir 'restart/' '59')
-
+start_date=$(interval_start $i)
+# if END_DATE variable is set (for debugging purposes)
+if [ -n "$END_DATE" ]; then
+    end_date="$END_DATE"	# override end_date
+else
+	end_date=$(interval_end $i)
+fi
+echo "Start_date = $start_date and End_date =$end_date"
 /opt/conda/bin/python -u $SOURCE_DIR/onhm-fetcher-parser/pkg/climate_etl.py \
-		      -t date -p `echo $i | sed 's/\// /'` \
+		      -t date -p $start_date $end_date \
 		      -i /var/lib/nhm/ofp/nhm_hru_data \
 		      -o $dir/input \
 		      -w /var/lib/nhm/ofp/nhm_hru_data/weights.csv
