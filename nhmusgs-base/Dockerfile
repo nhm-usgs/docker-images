@@ -24,13 +24,14 @@ RUN if [ "$insecure" = -k ]; then \
 RUN conda update -n base conda -y $insecure
 RUN conda install -n base -c defaults -c conda-forge $insecure \
     python=3.7 \
-    pandas \
-    geopandas \
-    xarray \
-    netcdf4 \
-    requests \
     dask \
-    nco 
+    geopandas \
+    nco \
+    netcdf4 \
+    pandas \
+    requests \
+    xarray \
+    xmltodict
 RUN conda clean -a
 
 ENV NHM_SOURCE_DIR=/usr/local/src
