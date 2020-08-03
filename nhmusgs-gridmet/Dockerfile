@@ -2,16 +2,17 @@ FROM nhmusgs/base
 
 LABEL maintainer="ashalper@usgs.gov"
 
-ARG VERSION_TAG_GRIDMET=v0.1.6
+ARG VERSION_TAG_GRIDMET=master
 
 # check out source from repo.
-RUN git -c advice.detachedHead=false clone --depth=1 --branch $VERSION_TAG_GRIDMET \
-    https://github.com/nhm-usgs/onhm-fetcher-parser.git \
-    $NHM_SOURCE_DIR/onhm-fetcher-parser
+RUN git -c advice.detachedHead=false clone --depth=1 \
+    --branch $VERSION_TAG_GRIDMET \
+    https://github.com/nhm-usgs/gridmetetl.git \
+    $NHM_SOURCE_DIR/gridmetetl
 
 USER $USER
 
 WORKDIR $NHM_SOURCE_DIR
 
 ENTRYPOINT \
-  ["/opt/conda/bin/python", "-u", "onhm-fetcher-parser/pkg/Gridmet_current.py"]
+  ["/opt/conda/bin/python", "-u", "gridmetetl/gridmetetl/Gridmet_current.py"]

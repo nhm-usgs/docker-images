@@ -23,22 +23,15 @@ RUN if [ "$insecure" = -k ]; then \
 # Update/upgrade Conda
 RUN conda update -n base conda -y $insecure
 RUN conda install -n base -c defaults -c conda-forge $insecure \
-      python=3.6 \
-      bottleneck=1.2.1 \
-      cartopy=0.17.0 \
-      dask=2.6.0 \
-      geopandas=0.4.1 \
-      jupyter=1.0.0 \
-      matplotlib=3.1.1 \
-      netcdf4=1.4.2 \
-      notebook=5.7.4 \
-      numpy=1.17.2 \
-      pandas=0.25.2 \
-      rasterio=1.0.21 \
-      rasterstats=0.13.1 \
-      scipy=1.3.1 \
-      xarray=0.13.0 \
-      xmltodict=0.12.0
+    python=3.7 \
+    dask \
+    geopandas \
+    nco \
+    netcdf4 \
+    pandas \
+    requests \
+    xarray \
+    xmltodict
 RUN conda clean -a
 
 ENV NHM_SOURCE_DIR=/usr/local/src
@@ -46,13 +39,13 @@ ENV NHM_SOURCE_DIR=/usr/local/src
 ARG VERSION_ONHM_RUNNERS=master
 
 RUN git -c advice.detachedHead=false clone \
-    https://github.com/nhm-usgs/onhm-runners.git \
+    https://github.com/rmcd-mscb/onhm-runners.git \
     --branch $VERSION_ONHM_RUNNERS --depth=1 $NHM_SOURCE_DIR/onhm-runners && \
     cd $NHM_SOURCE_DIR/onhm-runners && \
     rm -rf .git && \
     rm .gitignore README.md .project .pydevproject
 
-RUN mkdir -p /nhm/ofp/Output
+RUN mkdir -p /nhm/gridmetetl/Output
 
 ENV USER=nhm
 RUN useradd -ms /bin/bash $USER
