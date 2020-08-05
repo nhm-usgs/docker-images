@@ -9,7 +9,7 @@
 
 set -e
 
-# if ofp, HRU shapefiles are not present...
+# if HRU shapefiles are not present...
 if [ ! -e /nhm/gridmetetl/nhm_hru_data_gfv11 ]; then
     cd /nhm/gridmetetl
     # ...download archive
