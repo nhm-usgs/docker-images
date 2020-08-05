@@ -2,7 +2,6 @@ FROM nhmusgs/base
 
 LABEL maintainer="ashalper@usgs.gov"
 
-# ARG VERSION_TAG_OFP=v0.1.6
 ARG VERSION_TAG_GMETL=v0.22
 
 # Build ONHM Fetcher Parser
@@ -13,13 +12,13 @@ RUN git -c advice.detachedHead=false clone --depth=1 --branch $VERSION_TAG_GMETL
     rm -rf .idea || true && \
     rm .gitignore || true
 
-# ofp script
-COPY --chown=nhm ofp /usr/local/bin
+# gridmetetl script
+COPY --chown=nhm gridmetetl /usr/local/bin
 
-RUN chmod 744 /usr/local/bin/ofp
+RUN chmod 744 /usr/local/bin/gridmetetl
 
 USER $USER
 
 WORKDIR /home/$USER
 
-ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/ofp"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/gridmetetl"]
