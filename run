@@ -23,7 +23,7 @@ if uname -r | grep cray > /dev/null 2>&1 ; then
   sbatch --parsable --job-name=nhm --begin=$begin run.sl
 else
   # run on Docker
-  #docker-compose build --parallel base_image
+  docker-compose build --parallel base_image
 
   # even though run.sl is a Slurm script, it is also a Bash script, so
   # we take advantage of this by using it to run on both platforms
