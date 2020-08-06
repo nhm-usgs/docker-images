@@ -120,7 +120,7 @@ if [ "$GRIDMET_DISABLE" != true ]; then
   fi
 fi
 
-run ofp
+run gridmetetl
 run ncf2cbh
 run cbhfiller
 
