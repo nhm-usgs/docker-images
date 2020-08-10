@@ -3,8 +3,6 @@
 /.pydevproject
 /.idea
 data/*
-tmpout/
-tmpout2/
 !data/.data_files_go_here.txt
 Output
 thredds/files/config/tomcat/*.crt
