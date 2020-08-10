@@ -2,7 +2,7 @@ FROM nhmusgs/base
 
 LABEL maintainer="ashalper@usgs.gov"
 
-ARG VERSION_TAG_PRMS=5.1.0_linux
+ARG VERSION_TAG_PRMS=5.1.0.2_linux
 
 # Build PRMS
 RUN git -c advice.detachedHead=false clone \
