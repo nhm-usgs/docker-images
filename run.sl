@@ -132,7 +132,8 @@ run verifier
 
 # run PRMS service in restart mode
 
-# In operational mode end time is start date + 1 day in PRMS end_date datetime format
+# In operational mode, end time is start date + 1 day in PRMS end_date
+# datetime format.
 if [ "$GRIDMET_DISABLE" != true ]; then
     END_TIME=`date --date "$yesterday -59 days" +%Y,%m,%d,00,00,00`
 fi
