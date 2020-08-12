@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:model="http:///schemas/model/_QDqYINyzEeq7QKOeNypffA/5" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/model/_QDqYINyzEeq7QKOeNypffA/5 model.profile.uml#_QDqYIdyzEeq7QKOeNypffA">
+  <uml:Model xmi:id="_d88qINwZEeq70LRA98sSPQ" name="model">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_eBYeMNwZEeq70LRA98sSPQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Component" xmi:id="_LJ9PwNwaEeq70LRA98sSPQ" name="nhmusgs/ofp"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_W_6xINwaEeq70LRA98sSPQ" name="nhmusgs/ncf2cbh"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_bVfDMNwaEeq70LRA98sSPQ" name="nhmusgs/cbhfiller"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_h3APcNwaEeq70LRA98sSPQ" name="nhmusgs/nhm-prms"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_0BlwkNwaEeq70LRA98sSPQ" name="nhmusgs/out2ncf"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_5HFDsNwaEeq70LRA98sSPQ" name="nhmusgs/verifier"/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_zTLrQNxCEeqOFtoJNEewgQ" name="denali">
+      <nestedClassifier xmi:type="uml:ExecutionEnvironment" xmi:id="_4G2OkNxCEeqOFtoJNEewgQ" name="Shifter"/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_NroYgNytEeq7QKOeNypffA" name="run" fileName="run"/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_j8M3kNytEeq7QKOeNypffA" name="run.sl"/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_PSCjYNyyEeq7QKOeNypffA" name="nhm_nhm" fileName=""/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_eRoHkNxDEeqOFtoJNEewgQ" name="nhmusgs/gridmet" fileName=""/>
+    <packagedElement xmi:type="uml:Device" xmi:id="_oRZoINyrEeq7QKOeNypffA" name="x86 PC">
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_4gSKMNyuEeq7QKOeNypffA" name="run" fileName="run"/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_4gRjINyuEeq7QKOeNypffA" name="run.sl" fileName="run.sl"/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_B70JINyyEeq7QKOeNypffA" name="nhm_nhm" fileName=""/>
+      <nestedNode xmi:type="uml:ExecutionEnvironment" xmi:id="_v2ejINyrEeq7QKOeNypffA" name="Docker"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_2e1-QNyrEeq7QKOeNypffA" name="nhmusgs/gridmet" fileName=""/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_2zQSkNysEeq7QKOeNypffA" name="Docker Hub">
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_MoT6UNytEeq7QKOeNypffA" name="nhmusgs/gridmet"/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_CvJ8gdywEeq7QKOeNypffA" name="nhmusgs/ofp" fileName=""/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_CvJVcdywEeq7QKOeNypffA" name="nhmusgs/ncf2cbh" fileName=""/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_CvIuYNywEeq7QKOeNypffA" name="nhmusgs/cbhfiller" fileName=""/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_CvJ8gNywEeq7QKOeNypffA" name="nhmusgs/nhm-prms" fileName=""/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_CvJVctywEeq7QKOeNypffA" name="nhmusgs/out2ncf" fileName=""/>
+      <nestedClassifier xmi:type="uml:Artifact" xmi:id="_CvJVcNywEeq7QKOeNypffA" name="nhmusgs/verifier" fileName=""/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_rd5ucNytEeq7QKOeNypffA" client="_NroYgNytEeq7QKOeNypffA" supplier="_j8M3kNytEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_tfcIYNytEeq7QKOeNypffA" client="_j8M3kNytEeq7QKOeNypffA" supplier="_eRoHkNxDEeqOFtoJNEewgQ"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_-iq_4NytEeq7QKOeNypffA" name="nhmusgs/ofp"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_CsG6cNyuEeq7QKOeNypffA" name="nhmusgs/ncf2cbh"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_GCCUcNyuEeq7QKOeNypffA" name="nhmusgs/cbhfiller"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_IucQUNyuEeq7QKOeNypffA" name="nhmusgs/nhm-prms"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_K8RZ0NyuEeq7QKOeNypffA" name="nhmusgs/out2ncf"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_M7lmMNyuEeq7QKOeNypffA" name="nhmusgs/verifier"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_fCs8kNyuEeq7QKOeNypffA" name="nhmusgs/ofp" fileName=""/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_fCuKsNyuEeq7QKOeNypffA" name="nhmusgs/verifier" fileName=""/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_fCuxwNyuEeq7QKOeNypffA" name="nhmusgs/cbhfiller" fileName=""/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_fCuxwdyuEeq7QKOeNypffA" name="nhmusgs/out2ncf" fileName=""/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_fCuxwtyuEeq7QKOeNypffA" name="nhmusgs/nhm-prms" fileName=""/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_fCvY0NyuEeq7QKOeNypffA" name="nhmusgs/ncf2cbh" fileName=""/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_P4ql4NyvEeq7QKOeNypffA" client="_4gSKMNyuEeq7QKOeNypffA" supplier="_4gRjINyuEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_USEPENyvEeq7QKOeNypffA" client="_4gRjINyuEeq7QKOeNypffA" supplier="_2e1-QNyrEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_VG0s0NyvEeq7QKOeNypffA" client="_4gRjINyuEeq7QKOeNypffA" supplier="_-iq_4NytEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_WwhOgNyvEeq7QKOeNypffA" client="_4gRjINyuEeq7QKOeNypffA" supplier="_CsG6cNyuEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_XSLxINyvEeq7QKOeNypffA" client="_4gRjINyuEeq7QKOeNypffA" supplier="_GCCUcNyuEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_X2VnENyvEeq7QKOeNypffA" client="_4gRjINyuEeq7QKOeNypffA" supplier="_IucQUNyuEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_YZL1cNyvEeq7QKOeNypffA" client="_4gRjINyuEeq7QKOeNypffA" supplier="_K8RZ0NyuEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_ZRwcMNyvEeq7QKOeNypffA" client="_4gRjINyuEeq7QKOeNypffA" supplier="_M7lmMNyuEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_sVnSMNywEeq7QKOeNypffA" client="_j8M3kNytEeq7QKOeNypffA" supplier="_fCs8kNyuEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_tdHs0NywEeq7QKOeNypffA" client="_j8M3kNytEeq7QKOeNypffA" supplier="_fCvY0NyuEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_u53XoNywEeq7QKOeNypffA" client="_j8M3kNytEeq7QKOeNypffA" supplier="_fCuxwNyuEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_w4WdkNywEeq7QKOeNypffA" client="_j8M3kNytEeq7QKOeNypffA" supplier="_fCuxwtyuEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_xpY48NywEeq7QKOeNypffA" client="_j8M3kNytEeq7QKOeNypffA" supplier="_fCuxwdyuEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_ydcMENywEeq7QKOeNypffA" client="_j8M3kNytEeq7QKOeNypffA" supplier="_fCuKsNyuEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_inFFcNyyEeq7QKOeNypffA" client="_2zQSkNysEeq7QKOeNypffA" supplier="_v2ejINyrEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_pQUqUNyyEeq7QKOeNypffA" client="_4G2OkNxCEeqOFtoJNEewgQ" supplier="_2zQSkNysEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_vOWH8NyyEeq7QKOeNypffA" client="_-iq_4NytEeq7QKOeNypffA" supplier="_B70JINyyEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_wRHMgNyyEeq7QKOeNypffA" client="_CsG6cNyuEeq7QKOeNypffA" supplier="_B70JINyyEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_xQdwsNyyEeq7QKOeNypffA" client="_GCCUcNyuEeq7QKOeNypffA" supplier="_B70JINyyEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_yB_UQNyyEeq7QKOeNypffA" client="_IucQUNyuEeq7QKOeNypffA" supplier="_B70JINyyEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_ywUZ4NyyEeq7QKOeNypffA" client="_K8RZ0NyuEeq7QKOeNypffA" supplier="_B70JINyyEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_zjDeYNyyEeq7QKOeNypffA" client="_M7lmMNyuEeq7QKOeNypffA" supplier="_B70JINyyEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_Z5t3QNyzEeq7QKOeNypffA" client="_fCuKsNyuEeq7QKOeNypffA" supplier="_PSCjYNyyEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_alhNUNyzEeq7QKOeNypffA" client="_fCuxwdyuEeq7QKOeNypffA" supplier="_PSCjYNyyEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_bJSowNyzEeq7QKOeNypffA" client="_fCuxwtyuEeq7QKOeNypffA" supplier="_PSCjYNyyEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_b5q80NyzEeq7QKOeNypffA" client="_fCuxwNyuEeq7QKOeNypffA" supplier="_PSCjYNyyEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_cfY5ANyzEeq7QKOeNypffA" client="_fCvY0NyuEeq7QKOeNypffA" supplier="_PSCjYNyyEeq7QKOeNypffA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_dETj8NyzEeq7QKOeNypffA" client="_fCs8kNyuEeq7QKOeNypffA" supplier="_PSCjYNyyEeq7QKOeNypffA"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_x5zSwNwcEeq70LRA98sSPQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_SpDGANyzEeq7QKOeNypffA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SpDGAdyzEeq7QKOeNypffA" key="Version" value="0.0.6"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SpDGAtyzEeq7QKOeNypffA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SpDGA9yzEeq7QKOeNypffA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SpDGBNyzEeq7QKOeNypffA" key="Date" value="2020-08-12"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SpDGBdyzEeq7QKOeNypffA" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_x5z50NwcEeq70LRA98sSPQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="model.profile.uml#_QDqYIdyzEeq7QKOeNypffA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="model.profile.uml#_y35vMNwbEeq70LRA98sSPQ"/>
+    </profileApplication>
+  </uml:Model>
+  <model:Dockerimage xmi:id="_8hGooNwcEeq70LRA98sSPQ" base_Component="_LJ9PwNwaEeq70LRA98sSPQ"/>
+  <model:Dockerimage xmi:id="_9_lY0NwcEeq70LRA98sSPQ" base_Component="_W_6xINwaEeq70LRA98sSPQ"/>
+  <model:Dockerimage xmi:id="__PPp4NwcEeq70LRA98sSPQ" base_Component="_bVfDMNwaEeq70LRA98sSPQ"/>
+  <model:Dockerimage xmi:id="_AP-HENwdEeq70LRA98sSPQ" base_Component="_h3APcNwaEeq70LRA98sSPQ"/>
+  <model:Dockerimage xmi:id="_Be9CsNwdEeq70LRA98sSPQ" base_Component="_0BlwkNwaEeq70LRA98sSPQ"/>
+  <model:Dockerimage xmi:id="_NBPNINysEeq7QKOeNypffA" base_Artifact="_2e1-QNyrEeq7QKOeNypffA"/>
+  <model:Shifterimage xmi:id="_OXeAQNysEeq7QKOeNypffA" base_Artifact="_eRoHkNxDEeqOFtoJNEewgQ"/>
+  <model:Dockerimage xmi:id="_Rjpy8NytEeq7QKOeNypffA" base_Artifact="_MoT6UNytEeq7QKOeNypffA"/>
+  <model:Bashscript xmi:id="_hqnPcNytEeq7QKOeNypffA" base_Artifact="_NroYgNytEeq7QKOeNypffA"/>
+  <model:Bashscript xmi:id="_mfEc8NytEeq7QKOeNypffA" base_Artifact="_j8M3kNytEeq7QKOeNypffA"/>
+  <model:Slurmscript xmi:id="_mhKHoNytEeq7QKOeNypffA" base_Artifact="_j8M3kNytEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_TQnOkNyuEeq7QKOeNypffA" base_Artifact="_-iq_4NytEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_U8sV4NyuEeq7QKOeNypffA" base_Artifact="_CsG6cNyuEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_VvwKgNyuEeq7QKOeNypffA" base_Artifact="_GCCUcNyuEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_Wo5ZANyuEeq7QKOeNypffA" base_Artifact="_IucQUNyuEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_XqAQsNyuEeq7QKOeNypffA" base_Artifact="_K8RZ0NyuEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_Yq330NyuEeq7QKOeNypffA" base_Artifact="_M7lmMNyuEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_fE6jENyuEeq7QKOeNypffA" base_Artifact="_fCs8kNyuEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_fE7xMNyuEeq7QKOeNypffA" base_Artifact="_fCuKsNyuEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_fE8YQNyuEeq7QKOeNypffA" base_Artifact="_fCuxwNyuEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_fE8YQdyuEeq7QKOeNypffA" base_Artifact="_fCuxwdyuEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_fE8_UNyuEeq7QKOeNypffA" base_Artifact="_fCuxwtyuEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_fE9mYNyuEeq7QKOeNypffA" base_Artifact="_fCvY0NyuEeq7QKOeNypffA"/>
+  <model:Bashscript xmi:id="_4gWboNyuEeq7QKOeNypffA" base_Artifact="_4gRjINyuEeq7QKOeNypffA"/>
+  <model:Slurmscript xmi:id="_4gXpwNyuEeq7QKOeNypffA" base_Artifact="_4gRjINyuEeq7QKOeNypffA"/>
+  <model:Bashscript xmi:id="_4gXpwdyuEeq7QKOeNypffA" base_Artifact="_4gSKMNyuEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_CvQDINywEeq7QKOeNypffA" base_Artifact="_CvIuYNywEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_CvRRQNywEeq7QKOeNypffA" base_Artifact="_CvJ8gdywEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_CvRRQdywEeq7QKOeNypffA" base_Artifact="_CvJ8gNywEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_CvR4UNywEeq7QKOeNypffA" base_Artifact="_CvJVcdywEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_CvSfYNywEeq7QKOeNypffA" base_Artifact="_CvJVctywEeq7QKOeNypffA"/>
+  <model:Dockerimage xmi:id="_CvSfYdywEeq7QKOeNypffA" base_Artifact="_CvJVcNywEeq7QKOeNypffA"/>
+  <model:Dockervolume xmi:id="_KlpswNyyEeq7QKOeNypffA" base_Artifact="_B70JINyyEeq7QKOeNypffA"/>
+  <model:Shiftermount xmi:id="_WAnewNyzEeq7QKOeNypffA" base_Artifact="_PSCjYNyyEeq7QKOeNypffA"/>
+</xmi:XMI>

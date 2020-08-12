@@ -8,7 +8,8 @@
 #
 # File - run.sl
 #
-# Purpose - Simulate NHM run on Shifter, as might be done by Jenkins.
+# Purpose - Simulate NHM run on Docker and Shifter, as might be done
+#           by Jenkins.
 #
 # Authors - Ivan Suftin, Richard McDonald, Andrew Halper
 #
@@ -142,10 +143,7 @@ fi
 
 run ofp
 run ncf2cbh
-
-#cbhfiller
 run cbhfiller
-
 
 # PRMS
 
@@ -161,7 +159,8 @@ run verifier
 
 # run PRMS service in restart mode
 
-# In operational mode end time is start date + 1 day in PRMS end_date datetime format
+# In operational mode, end time is start date + 1 day in PRMS end_date
+# datetime format.
 if [ "$GRIDMET_DISABLE" != true ]; then
     END_TIME=`date --date "$yesterday -59 days" +%Y,%m,%d,00,00,00`
 fi

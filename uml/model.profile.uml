@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_y35vMNwbEeq70LRA98sSPQ" name="model" metaclassReference="_A8iuoNwcEeq70LRA98sSPQ _bKPDMNwfEeq70LRA98sSPQ">
+  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_fiwqANwcEeq70LRA98sSPQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bKFSMNwfEeq70LRA98sSPQ" source="PapyrusVersion">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bKFSMdwfEeq70LRA98sSPQ" key="Version" value="0.0.0"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bKFSMtwfEeq70LRA98sSPQ" key="Comment" value="&lt;undefined>"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bKFSM9wfEeq70LRA98sSPQ" key="Copyright" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bKFSNNwfEeq70LRA98sSPQ" key="Date" value=""/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bKFSNdwfEeq70LRA98sSPQ" key="Author" value="&lt;undefined>"/>
+    </eAnnotations>
+    <contents xmi:type="ecore:EPackage" xmi:id="_QDqYIdyzEeq7QKOeNypffA" name="model" nsURI="http:///schemas/model/_QDqYINyzEeq7QKOeNypffA/5" nsPrefix="model">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QDrmRNyzEeq7QKOeNypffA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QDrmRdyzEeq7QKOeNypffA" key="Version" value="0.0.6"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QDrmRtyzEeq7QKOeNypffA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QDrmR9yzEeq7QKOeNypffA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QDrmSNyzEeq7QKOeNypffA" key="Date" value="2020-08-12"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QDrmSdyzEeq7QKOeNypffA" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_QDqYItyzEeq7QKOeNypffA" name="Dockerimage">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QDqYI9yzEeq7QKOeNypffA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_b55s8NwcEeq70LRA98sSPQ">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QDqYJNyzEeq7QKOeNypffA" key="originalName" value="Docker image"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_QDqYJdyzEeq7QKOeNypffA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_QDqYJ9yzEeq7QKOeNypffA" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_QDqYKdyzEeq7QKOeNypffA" name="Bashscript">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QDqYKtyzEeq7QKOeNypffA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_KK20INwjEeq70LRA98sSPQ">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QDqYK9yzEeq7QKOeNypffA" key="originalName" value="Bash script"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_QDqYLNyzEeq7QKOeNypffA" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_QDqYLtyzEeq7QKOeNypffA" name="Slurmscript">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QDqYL9yzEeq7QKOeNypffA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_MSM7INwjEeq70LRA98sSPQ">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QDqYMNyzEeq7QKOeNypffA" key="originalName" value="Slurm script"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_QDqYMdyzEeq7QKOeNypffA" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_QDqYM9yzEeq7QKOeNypffA" name="Dockervolume">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QDqYNNyzEeq7QKOeNypffA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_jxM8MNwjEeq70LRA98sSPQ">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QDqYNdyzEeq7QKOeNypffA" key="originalName" value="Docker volume"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_QDqYNtyzEeq7QKOeNypffA" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_QDqYONyzEeq7QKOeNypffA" name="Shifterimage">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QDqYOdyzEeq7QKOeNypffA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_CJ2M0NysEeq7QKOeNypffA">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QDqYOtyzEeq7QKOeNypffA" key="originalName" value="Shifter image"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_QDqYO9yzEeq7QKOeNypffA" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_QDqYPdyzEeq7QKOeNypffA" name="Shiftermount">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QDqYPtyzEeq7QKOeNypffA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_NOrvENyzEeq7QKOeNypffA">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QDqYP9yzEeq7QKOeNypffA" key="originalName" value="Shifter mount"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_QDqYQNyzEeq7QKOeNypffA" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_GF4kkNysEeq7QKOeNypffA" name="model" nsURI="http:///schemas/model/_GF2IUNysEeq7QKOeNypffA/4" nsPrefix="model">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GF7n4tysEeq7QKOeNypffA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_GF7n49ysEeq7QKOeNypffA" key="Version" value="0.0.5"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_GF7n5NysEeq7QKOeNypffA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_GF7n5dysEeq7QKOeNypffA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_GF7n5tysEeq7QKOeNypffA" key="Date" value="2020-08-12"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_GF7n59ysEeq7QKOeNypffA" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_GF4kkdysEeq7QKOeNypffA" name="Dockerimage">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GF4kktysEeq7QKOeNypffA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_b55s8NwcEeq70LRA98sSPQ">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_GF4kk9ysEeq7QKOeNypffA" key="originalName" value="Docker image"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_GF4klNysEeq7QKOeNypffA" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_GF4kltysEeq7QKOeNypffA" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_GF4kmNysEeq7QKOeNypffA" name="Bashscript">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GF4kmdysEeq7QKOeNypffA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_KK20INwjEeq70LRA98sSPQ">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_GF4kmtysEeq7QKOeNypffA" key="originalName" value="Bash script"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_GF4km9ysEeq7QKOeNypffA" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_GF4kndysEeq7QKOeNypffA" name="Slurmscript">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GF4kntysEeq7QKOeNypffA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_MSM7INwjEeq70LRA98sSPQ">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_GF4kn9ysEeq7QKOeNypffA" key="originalName" value="Slurm script"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_GF4koNysEeq7QKOeNypffA" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_GF4kotysEeq7QKOeNypffA" name="Dockervolume">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GF4ko9ysEeq7QKOeNypffA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_jxM8MNwjEeq70LRA98sSPQ">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_GF4kpNysEeq7QKOeNypffA" key="originalName" value="Docker volume"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_GF4kpdysEeq7QKOeNypffA" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_GF4kp9ysEeq7QKOeNypffA" name="Shifterimage">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GF4kqNysEeq7QKOeNypffA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_CJ2M0NysEeq7QKOeNypffA">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_GF4kqdysEeq7QKOeNypffA" key="originalName" value="Shifter image"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_GF4kqtysEeq7QKOeNypffA" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_nKRw0dwjEeq70LRA98sSPQ" name="model" nsURI="http:///schemas/model/_nKRw0NwjEeq70LRA98sSPQ/3" nsPrefix="model">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nKSX5dwjEeq70LRA98sSPQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nKSX5twjEeq70LRA98sSPQ" key="Version" value="0.0.4"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nKSX59wjEeq70LRA98sSPQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nKSX6NwjEeq70LRA98sSPQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nKSX6dwjEeq70LRA98sSPQ" key="Date" value="2020-08-11"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nKSX6twjEeq70LRA98sSPQ" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_nKRw0twjEeq70LRA98sSPQ" name="Dockerimage">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nKRw09wjEeq70LRA98sSPQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_b55s8NwcEeq70LRA98sSPQ">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nKRw1NwjEeq70LRA98sSPQ" key="originalName" value="Docker image"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nKRw1dwjEeq70LRA98sSPQ" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nKRw19wjEeq70LRA98sSPQ" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_nKRw2dwjEeq70LRA98sSPQ" name="Bashscript">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nKRw2twjEeq70LRA98sSPQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_KK20INwjEeq70LRA98sSPQ">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nKRw29wjEeq70LRA98sSPQ" key="originalName" value="Bash script"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nKRw3NwjEeq70LRA98sSPQ" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_nKRw3twjEeq70LRA98sSPQ" name="Slurmscript">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nKRw39wjEeq70LRA98sSPQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_MSM7INwjEeq70LRA98sSPQ">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nKRw4NwjEeq70LRA98sSPQ" key="originalName" value="Slurm script"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nKRw4dwjEeq70LRA98sSPQ" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_nKRw49wjEeq70LRA98sSPQ" name="Dockervolume">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nKRw5NwjEeq70LRA98sSPQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_jxM8MNwjEeq70LRA98sSPQ">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nKRw5dwjEeq70LRA98sSPQ" key="originalName" value="Docker volume"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_nKRw5twjEeq70LRA98sSPQ" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_Q2Of8dwjEeq70LRA98sSPQ" name="model" nsURI="http:///schemas/model/_Q2Of8NwjEeq70LRA98sSPQ/2" nsPrefix="model">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Q2PHBNwjEeq70LRA98sSPQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Q2PHBdwjEeq70LRA98sSPQ" key="Version" value="0.0.3"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Q2PHBtwjEeq70LRA98sSPQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Q2PHB9wjEeq70LRA98sSPQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Q2PHCNwjEeq70LRA98sSPQ" key="Date" value="2020-08-11"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Q2PHCdwjEeq70LRA98sSPQ" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_Q2Of8twjEeq70LRA98sSPQ" name="Dockerimage">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Q2Of89wjEeq70LRA98sSPQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_b55s8NwcEeq70LRA98sSPQ">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Q2Of9NwjEeq70LRA98sSPQ" key="originalName" value="Docker image"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_Q2Of9dwjEeq70LRA98sSPQ" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_Q2Of99wjEeq70LRA98sSPQ" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_Q2Of-dwjEeq70LRA98sSPQ" name="Bashscript">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Q2Of-twjEeq70LRA98sSPQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_KK20INwjEeq70LRA98sSPQ">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Q2Of-9wjEeq70LRA98sSPQ" key="originalName" value="Bash script"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_Q2Of_NwjEeq70LRA98sSPQ" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_Q2Of_twjEeq70LRA98sSPQ" name="Slurmscript">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Q2Of_9wjEeq70LRA98sSPQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_MSM7INwjEeq70LRA98sSPQ">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Q2OgANwjEeq70LRA98sSPQ" key="originalName" value="Slurm script"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_Q2OgAdwjEeq70LRA98sSPQ" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_ehR3gNwfEeq70LRA98sSPQ" name="model" nsURI="http:///schemas/model/_ehQpYNwfEeq70LRA98sSPQ/1" nsPrefix="model">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ehSemdwfEeq70LRA98sSPQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ehSemtwfEeq70LRA98sSPQ" key="Version" value="0.0.2"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ehSem9wfEeq70LRA98sSPQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ehSenNwfEeq70LRA98sSPQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ehSendwfEeq70LRA98sSPQ" key="Date" value="2020-08-11"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ehSentwfEeq70LRA98sSPQ" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_ehSekNwfEeq70LRA98sSPQ" name="Dockerimage">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ehSekdwfEeq70LRA98sSPQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_b55s8NwcEeq70LRA98sSPQ">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ehSektwfEeq70LRA98sSPQ" key="originalName" value="Docker image"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ehSek9wfEeq70LRA98sSPQ" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_ehSeldwfEeq70LRA98sSPQ" name="base_Artifact" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_fixRENwcEeq70LRA98sSPQ" name="model" nsURI="http:///schemas/model/_fivb4NwcEeq70LRA98sSPQ/0" nsPrefix="model">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_fix4IdwcEeq70LRA98sSPQ" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fix4ItwcEeq70LRA98sSPQ" key="Version" value="0.0.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fix4I9wcEeq70LRA98sSPQ" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fix4JNwcEeq70LRA98sSPQ" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fix4JdwcEeq70LRA98sSPQ" key="Date" value="2020-08-11"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fix4JtwcEeq70LRA98sSPQ" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_fixREdwcEeq70LRA98sSPQ" name="Dockerimage">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_fixREtwcEeq70LRA98sSPQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_b55s8NwcEeq70LRA98sSPQ">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fixRE9wcEeq70LRA98sSPQ" key="originalName" value="Docker image"/>
+        </eAnnotations>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_fixRFNwcEeq70LRA98sSPQ" name="base_Component" ordered="false">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_A8iuoNwcEeq70LRA98sSPQ" alias="Component">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Component"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_bKPDMNwfEeq70LRA98sSPQ" alias="Artifact">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Artifact"/>
+  </elementImport>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_y_3YYNwbEeq70LRA98sSPQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_y_3_cNwbEeq70LRA98sSPQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_b55s8NwcEeq70LRA98sSPQ" name="Docker image">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_d8OKANwcEeq70LRA98sSPQ" name="base_Component" association="_d8MU0NwcEeq70LRA98sSPQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Component"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_d8OKAdwcEeq70LRA98sSPQ"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_cq8oANwfEeq70LRA98sSPQ" name="base_Artifact" association="_cq6y0NwfEeq70LRA98sSPQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Artifact"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cq8oAdwfEeq70LRA98sSPQ"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_d8MU0NwcEeq70LRA98sSPQ" name="E_Docker image_Component5" memberEnd="_d8Ni8NwcEeq70LRA98sSPQ _d8OKANwcEeq70LRA98sSPQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_d8Ni8NwcEeq70LRA98sSPQ" name="extension_Docker image" type="_b55s8NwcEeq70LRA98sSPQ" aggregation="composite" association="_d8MU0NwcEeq70LRA98sSPQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_cq6y0NwfEeq70LRA98sSPQ" name="E_Docker image_Artifact8" memberEnd="_cq8A8NwfEeq70LRA98sSPQ _cq8oANwfEeq70LRA98sSPQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_cq8A8NwfEeq70LRA98sSPQ" name="extension_Docker image" type="_b55s8NwcEeq70LRA98sSPQ" aggregation="composite" association="_cq6y0NwfEeq70LRA98sSPQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_KK20INwjEeq70LRA98sSPQ" name="Bash script">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_PyhnQNwjEeq70LRA98sSPQ" name="base_Artifact" association="_PyhAMNwjEeq70LRA98sSPQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Artifact"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PyhnQdwjEeq70LRA98sSPQ"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_MSM7INwjEeq70LRA98sSPQ" name="Slurm script">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_PJQn0dwjEeq70LRA98sSPQ" name="base_Artifact" association="_PJQAwNwjEeq70LRA98sSPQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Artifact"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PJQn0twjEeq70LRA98sSPQ"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_PJQAwNwjEeq70LRA98sSPQ" name="E_Slurm script_Artifact11" memberEnd="_PJQn0NwjEeq70LRA98sSPQ _PJQn0dwjEeq70LRA98sSPQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_PJQn0NwjEeq70LRA98sSPQ" name="extension_Slurm script" type="_MSM7INwjEeq70LRA98sSPQ" aggregation="composite" association="_PJQAwNwjEeq70LRA98sSPQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_PyhAMNwjEeq70LRA98sSPQ" name="E_Bash script_Artifact12" memberEnd="_PyhAMdwjEeq70LRA98sSPQ _PyhnQNwjEeq70LRA98sSPQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_PyhAMdwjEeq70LRA98sSPQ" name="extension_Bash script" type="_KK20INwjEeq70LRA98sSPQ" aggregation="composite" association="_PyhAMNwjEeq70LRA98sSPQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_jxM8MNwjEeq70LRA98sSPQ" name="Docker volume">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_lJGjQdwjEeq70LRA98sSPQ" name="base_Artifact" association="_lJF8MNwjEeq70LRA98sSPQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Artifact"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lJGjQtwjEeq70LRA98sSPQ"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_lJF8MNwjEeq70LRA98sSPQ" name="E_Docker volume_Artifact14" memberEnd="_lJGjQNwjEeq70LRA98sSPQ _lJGjQdwjEeq70LRA98sSPQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_lJGjQNwjEeq70LRA98sSPQ" name="extension_Docker volume" type="_jxM8MNwjEeq70LRA98sSPQ" aggregation="composite" association="_lJF8MNwjEeq70LRA98sSPQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_CJ2M0NysEeq7QKOeNypffA" name="Shifter image">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_D8M7QNysEeq7QKOeNypffA" name="base_Artifact" association="_D8JQ4NysEeq7QKOeNypffA">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Artifact"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_D8M7QdysEeq7QKOeNypffA"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_D8JQ4NysEeq7QKOeNypffA" name="E_Shifter image_Artifact16" memberEnd="_D8LtINysEeq7QKOeNypffA _D8M7QNysEeq7QKOeNypffA">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_D8LtINysEeq7QKOeNypffA" name="extension_Shifter image" type="_CJ2M0NysEeq7QKOeNypffA" aggregation="composite" association="_D8JQ4NysEeq7QKOeNypffA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_NOrvENyzEeq7QKOeNypffA" name="Shifter mount">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Op36sNyzEeq7QKOeNypffA" name="base_Artifact" association="_Op2skNyzEeq7QKOeNypffA">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Artifact"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Op36sdyzEeq7QKOeNypffA"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_Op2skNyzEeq7QKOeNypffA" name="E_Shifter mount_Artifact18" memberEnd="_Op3ToNyzEeq7QKOeNypffA _Op36sNyzEeq7QKOeNypffA">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Op3ToNyzEeq7QKOeNypffA" name="extension_Shifter mount" type="_NOrvENyzEeq7QKOeNypffA" aggregation="composite" association="_Op2skNyzEeq7QKOeNypffA"/>
+  </packagedElement>
+</uml:Profile>
