@@ -173,11 +173,12 @@ run nhm-prms
 # copy PRMS output from Docker volume to $OUTPUT_DIR directory on host
 echo "Pipeline has completed. Will copy output files from Docker volume."
 echo "Output files will show up in the \"$OUTPUT_DIR\" directory."
-docker build -t volume-mounter - <<EOF
+docker build -t nhmusgs/volume-mounter - <<EOF
 FROM alpine
 CMD
 EOF
-docker container create --name volume-mounter -v nhm_nhm:/nhm volume-mounter
+docker container create --name volume-mounter -v nhm_nhm:/nhm \
+       nhmusgs/volume-mounter
 docker cp volume-mounter:/nhm/ofp/Output $OUTPUT_DIR
 
 # clean up
