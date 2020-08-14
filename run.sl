@@ -65,7 +65,8 @@ run () {
 echo "Checking if HRU data is downloaded..."
 # if the HRU shapefiles have not been downloaded yet ...
 if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
-      sh -c 'test -e /nhm/gridmetetl/nhm_hru_data_gfv11 ; printf $?'` = 1 ]; then
+      sh -c 'test -e /nhm/gridmetetl/nhm_hru_data_gfv11 ; printf $?'` = 1 ]
+then
     echo "HRU data needs to be downloaded"
     docker run -it -v nhm_nhm:/nhm -w /nhm -w /nhm/gridmetetl nhmusgs/base \
 	   sh -c "wget --waitretry=3 --retry-connrefused $HRU_SOURCE ; \
@@ -167,8 +168,25 @@ fi
 
 SAVE_VARS_TO_FILE=1
 VAR_SAVE_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/restart/$SAVE_RESTART_DATE.restart"
-
 run nhm-prms
+
+# copy PRMS output from Docker volume to $OUTPUT_DIR directory on host
+echo "Pipeline has completed. Will copy output files from Docker volume."
+echo "Output files will show up in the \"$OUTPUT_DIR\" directory."
+docker build -t nhmusgs/volume-mounter - <<EOF
+FROM alpine
+CMD
+EOF
+docker container create --name volume-mounter -v nhm_nhm:/nhm \
+       nhmusgs/volume-mounter
+docker cp volume-mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/output $OUTPUT_DIR
+
+# clean up
+for d in input output; do
+  docker run -w /nhm/NHM-PRMS_CONUS_GF_1_1/$d volume-mounter rm -f *.nc
+done
+docker run -w /nhm/gridmetetl/nhm_hru_data_gfv11 volume-mounter rm -f *.nc
+docker rm volume-mounter
 
 # if on HPC ...
 if [ $hpc = 0 ]; then
