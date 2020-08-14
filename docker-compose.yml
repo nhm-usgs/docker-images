@@ -38,6 +38,7 @@ services:
     image: nhmusgs/ofp
     container_name: ofp
     environment:
+      - CBH_IDIR
       - START_DATE
       - END_DATE
       - NHM_SOURCE_DIR
