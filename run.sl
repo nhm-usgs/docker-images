@@ -167,8 +167,18 @@ fi
 
 SAVE_VARS_TO_FILE=1
 VAR_SAVE_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/restart/$SAVE_RESTART_DATE.restart"
-
 run nhm-prms
+
+# copy PRMS output from Docker volume to $OUTPUT_DIR directory on host
+echo "Pipeline has completed. Will copy output files from Docker volume."
+echo "Output files will show up in the \"$OUTPUT_DIR\" directory."
+docker build -t volume-mounter - <<EOF
+FROM alpine
+CMD
+EOF
+docker container create --name volume-mounter -v nhm_nhm:/nhm volume-mounter
+docker cp volume-mounter:/nhm/ofp/Output $OUTPUT_DIR
+docker rm volume-mounter
 
 # if on HPC ...
 if [ $hpc = 0 ]; then
