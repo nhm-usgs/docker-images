@@ -177,9 +177,9 @@ docker build -t nhmusgs/volume-mounter - <<EOF
 FROM alpine
 CMD
 EOF
-docker container create --name volume-mounter -v nhm_nhm:/nhm \
+docker container create --name volume_mounter -v nhm_nhm:/nhm \
        nhmusgs/volume-mounter
-docker cp volume-mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/output $OUTPUT_DIR
+docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/output $OUTPUT_DIR
 
 # clean up
 for d in input output; do
@@ -188,7 +188,7 @@ for d in input output; do
 done
 docker run -w /nhm/gridmetetl/nhm_hru_data_gfv11 nhmusgs/volume-mounter \
        rm -f *.nc
-docker rm nhmusgs/volume-mounter
+docker rm volume_mounter
 
 # if on HPC ...
 if [ $hpc = 0 ]; then
