@@ -65,7 +65,8 @@ run () {
 echo "Checking if HRU data is downloaded..."
 # if the HRU shapefiles have not been downloaded yet ...
 if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
-      sh -c 'test -e /nhm/gridmetetl/nhm_hru_data_gfv11 ; printf $?'` = 1 ]; then
+      sh -c 'test -e /nhm/gridmetetl/nhm_hru_data_gfv11 ; printf $?'` = 1 ]
+then
     echo "HRU data needs to be downloaded"
     docker run -it -v nhm_nhm:/nhm -w /nhm -w /nhm/gridmetetl nhmusgs/base \
 	   sh -c "wget --waitretry=3 --retry-connrefused $HRU_SOURCE ; \
@@ -178,6 +179,12 @@ CMD
 EOF
 docker container create --name volume-mounter -v nhm_nhm:/nhm volume-mounter
 docker cp volume-mounter:/nhm/ofp/Output $OUTPUT_DIR
+
+# clean up
+for d in input output; do
+  docker run -w /nhm/NHM-PRMS_CONUS_GF_1_1/$d volume-mounter rm -f *.nc
+done
+docker run -w /nhm/gridmetetl/nhm_hru_data_gfv11 volume-mounter rm -f *.nc
 docker rm volume-mounter
 
 # if on HPC ...
