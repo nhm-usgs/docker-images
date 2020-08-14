@@ -180,15 +180,15 @@ EOF
 docker container create --name volume_mounter -v nhm_nhm:/nhm \
        nhmusgs/volume-mounter
 docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/output $OUTPUT_DIR
+docker rm volume_mounter
 
 # clean up
 for d in input output; do
-  docker run -w /nhm/NHM-PRMS_CONUS_GF_1_1/$d nhmusgs/volume-mounter \
-	 rm -f *.nc
+  docker run -v nhm_nhm:/nhm -w /nhm/NHM-PRMS_CONUS_GF_1_1/$d \
+	 nhmusgs/volume-mounter sh -c 'rm -f *.nc'
 done
-docker run -w /nhm/gridmetetl/nhm_hru_data_gfv11 nhmusgs/volume-mounter \
-       rm -f *.nc
-docker rm volume_mounter
+docker run -v nhm_nhm:/nhm -w /nhm/gridmetetl/nhm_hru_data_gfv11 \
+       nhmusgs/volume-mounter sh -c 'rm -f *.nc'
 
 # if on HPC ...
 if [ $hpc = 0 ]; then
