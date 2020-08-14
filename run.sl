@@ -179,7 +179,7 @@ CMD
 EOF
 docker container create --name volume-mounter -v nhm_nhm:/nhm \
        nhmusgs/volume-mounter
-docker cp volume-mounter:/nhm/ofp/Output $OUTPUT_DIR
+docker cp volume-mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/output $OUTPUT_DIR
 
 # clean up
 for d in input output; do
