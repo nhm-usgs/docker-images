@@ -183,10 +183,12 @@ docker cp volume-mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/output $OUTPUT_DIR
 
 # clean up
 for d in input output; do
-  docker run -w /nhm/NHM-PRMS_CONUS_GF_1_1/$d volume-mounter rm -f *.nc
+  docker run -w /nhm/NHM-PRMS_CONUS_GF_1_1/$d nhmusgs/volume-mounter \
+	 rm -f *.nc
 done
-docker run -w /nhm/gridmetetl/nhm_hru_data_gfv11 volume-mounter rm -f *.nc
-docker rm volume-mounter
+docker run -w /nhm/gridmetetl/nhm_hru_data_gfv11 nhmusgs/volume-mounter \
+       rm -f *.nc
+docker rm nhmusgs/volume-mounter
 
 # if on HPC ...
 if [ $hpc = 0 ]; then
