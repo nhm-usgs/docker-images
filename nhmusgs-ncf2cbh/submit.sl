@@ -5,5 +5,7 @@
 #SBATCH -o ncf2cbh.%j.out
 #SBATCH --image=nhmusgs/ncf2cbh:latest
 
-srun -n 1 shifter --volume=$SOURCE:/nhm /opt/conda/bin/python -u $NHM_SOURCE_DIR/onhm-runners/ncf2cbh/ncf2cbh.py /nhm/NHM-PRMS_CONUS_GF_1_1/input/
+srun -n 1 shifter --volume=$SOURCE:/nhm /opt/conda/bin/python -u \
+     $NHM_SOURCE_DIR/onhm-runners/ncf2cbh/ncf2cbh.py $CBH_IDIR
+
 echo "ncf2cbh exit status was $?"
