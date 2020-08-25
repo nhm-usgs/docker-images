@@ -115,7 +115,7 @@ services:
 
   verifier:
     build:
-      context: ./nhmusgs-verifier
+      context: ./verifier
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=Verifier"
