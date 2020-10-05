@@ -18,3 +18,4 @@ thredds/files/logs/tomcat/*
 /restart
 /.env
 variable_info.json
+volume_extract.sh
