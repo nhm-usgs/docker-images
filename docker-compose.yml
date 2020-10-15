@@ -122,6 +122,8 @@ services:
       - nhm.env
     volumes:
       - nhm:/nhm
+    command:
+      - "/nhm/NHM-PRMS_CONUS_GF_1_1/"
 
   thredds:
     image: unidata/thredds-docker:4.6.13
