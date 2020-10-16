@@ -36,7 +36,7 @@ RUN conda clean -a
 
 ENV NHM_SOURCE_DIR=/usr/local/src
 
-ARG VERSION_ONHM_RUNNERS=0.1.5
+ARG VERSION_ONHM_RUNNERS=0.1.6
 
 RUN git -c advice.detachedHead=false clone \
     https://github.com/nhm-usgs/onhm-runners.git \
