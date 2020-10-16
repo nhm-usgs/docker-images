@@ -152,6 +152,7 @@ run cbhfiller
 START_TIME=`date --date $START_DATE +%Y,%m,%d,00,00,00`
 # end time is start date + 1 day in PRMS end_date datetime format
 END_TIME=`date --date $END_DATE +%Y,%m,%d,00,00,00`
+VAR_SAVE_FILE=""
 SAVE_VARS_TO_FILE=0
 
 run nhm-prms
@@ -180,15 +181,16 @@ EOF
 docker container create --name volume_mounter -v nhm_nhm:/nhm \
        nhmusgs/volume-mounter
 docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/output $OUTPUT_DIR
+docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/input $OUTPUT_DIR
 docker rm volume_mounter
 
-# clean up
-for d in input output; do
-  docker run -v nhm_nhm:/nhm -w /nhm/NHM-PRMS_CONUS_GF_1_1/$d \
-	 nhmusgs/volume-mounter sh -c 'rm -f *.nc'
-done
-docker run -v nhm_nhm:/nhm -w /nhm/gridmetetl/nhm_hru_data_gfv11 \
-       nhmusgs/volume-mounter sh -c 'rm -f *.nc'
+# # clean up
+# for d in input output; do
+#   docker run -v nhm_nhm:/nhm -w /nhm/NHM-PRMS_CONUS_GF_1_1/$d \
+# 	 nhmusgs/volume-mounter sh -c 'rm -f *.nc'
+# done
+# docker run -v nhm_nhm:/nhm -w /nhm/gridmetetl/nhm_hru_data_gfv11 \
+#        nhmusgs/volume-mounter sh -c 'rm -f *.nc'
 
 # if on HPC ...
 if [ $hpc = 0 ]; then
