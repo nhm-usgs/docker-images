@@ -152,6 +152,7 @@ run cbhfiller
 START_TIME=`date --date $START_DATE +%Y,%m,%d,00,00,00`
 # end time is start date + 1 day in PRMS end_date datetime format
 END_TIME=`date --date $END_DATE +%Y,%m,%d,00,00,00`
+VAR_SAVE_FILE=""
 SAVE_VARS_TO_FILE=0
 
 run nhm-prms
@@ -180,6 +181,7 @@ EOF
 docker container create --name volume_mounter -v nhm_nhm:/nhm \
        nhmusgs/volume-mounter
 docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/output $OUTPUT_DIR
+# docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/input $OUTPUT_DIR
 docker rm volume_mounter
 
 # clean up
