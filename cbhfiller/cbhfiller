@@ -9,11 +9,10 @@
 # Authors - Richard McDonald, Andrew Halper
 #
 
-echo "CBHFILLER IDER: $CBH_IDER"
+echo "CBH_IDIR: $CBH_IDIR"
 
-/opt/conda/bin/python \
-  -u /usr/local/src/onhm-runners/cbh_filler/cbh_filler.py \
-  /nhm/NHM-PRMS_CONUS_GF_1_1/input \
-  /nhm/NHM-PRMS_CONUS_GF_1_1/input \
-  /usr/local/src/onhm-runners/cbh_filler/nhm_id.txt \
-  /usr/local/src/onhm-runners/cbh_filler/miss_to_pres_mapping.csv
+/opt/conda/bin/python -u \
+   /usr/local/src/onhm-runners/cbh_filler/cbh_filler.py \
+   $CBH_IDIR $CBH_IDIR \
+   /usr/local/src/onhm-runners/cbh_filler/nhm_id.txt \
+   /usr/local/src/onhm-runners/cbh_filler/miss_to_pres_mapping.csv

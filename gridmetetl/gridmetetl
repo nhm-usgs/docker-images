@@ -2,39 +2,18 @@
 #
 # U.S. Geological Survey
 #
-# File - ofp
+# File - gridmetetl
 #
-# Purpose - Docker entry-point for NHM ofp container.
+# Purpose - Docker entry-point for NHM gridmetetl container.
 #
 # Authors - Ivan Suftin, Richard McDonald, Steven Markstrom,
 #           Andrew Halper
 #
 
-echo "Checking if HRU data is downloaded..."
-# if the HRU shapefiles have not been downloaded yet ...
-if [ ! -e /nhm/gridmetetl/nhm_hru_data_gfv11 ]; then
-   echo "HRU data needs to be downloaded"
-   cd /nhm/gridmetetl
-   wget --waitretry=3 --retry-connrefused $HRU_SOURCE
-   unzip $HRU_DATA_PKG
-   cd
-fi
-
-echo "Checking if PRMS data is downloaded..."
-# if the PRMS data is not on the Docker volume yet ...
-if [ ! -e /nhm/NHM-PRMS_CONUS_GF_1_1 ]; then
-  # ... download it
-  echo "PRMS data needs to be downloaded"
-  cd /nhm
-  wget --waitretry=3 --retry-connrefused $PRMS_SOURCE
-  unzip $PRMS_DATA_PKG
-  cd
-fi
-
 /opt/conda/bin/python \
   -u $NHM_SOURCE_DIR/gridmetetl/gridmetetl/gridmet_etl.py \
      -t date -p $START_DATE $END_DATE \
      -i /nhm/gridmetetl/nhm_hru_data_gfv11 \
-     -o /nhm/NHM-PRMS_CONUS_GF_1_1/input \
+     -o $CBH_IDIR \
      -w /nhm/gridmetetl/nhm_hru_data_gfv11/tmp_Gridmet_weights_hru_v1_1e.csv \
      --partial=true

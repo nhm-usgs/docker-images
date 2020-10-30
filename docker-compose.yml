@@ -38,13 +38,10 @@ services:
     image: nhmusgs/gridmetetl
     container_name: gridmetetl
     environment:
-      - END_DATE
-      - HRU_DATA_PKG
-      - HRU_SOURCE
-      - NHM_SOURCE_DIR
-      - PRMS_DATA_PKG
-      - PRMS_SOURCE
+      - CBH_IDIR
       - START_DATE
+      - END_DATE
+      - NHM_SOURCE_DIR
     env_file:
       - nhm.env
     volumes:
@@ -125,6 +122,8 @@ services:
       - nhm.env
     volumes:
       - nhm:/nhm
+    command:
+      - "/nhm/NHM-PRMS_CONUS_GF_1_1/"
 
   thredds:
     image: unidata/thredds-docker:4.6.13

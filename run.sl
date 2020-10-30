@@ -63,6 +63,34 @@ run () {
     return $?
 } # run
 
+echo "Checking if HRU data is downloaded..."
+# if the HRU shapefiles have not been downloaded yet ...
+if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
+      sh -c 'test -e /nhm/gridmetetl/nhm_hru_data_gfv11 ; printf $?'` = 1 ]
+then
+    echo "HRU data needs to be downloaded"
+    docker run -it -v nhm_nhm:/nhm -w /nhm -w /nhm/gridmetetl nhmusgs/base \
+	   sh -c "wget --waitretry=3 --retry-connrefused $HRU_SOURCE ; \
+	         unzip $HRU_DATA_PKG ; \
+           chown -R nhm /nhm/gridmetetl ; \
+           chmod -R 766 /nhm/gridmetetl"
+fi
+
+echo "User is $USER"
+
+echo "Checking if PRMS data is downloaded..."
+# if the PRMS data is not on the Docker volume yet ...
+if [ `docker run -it -v nhm_nhm:/nhm -e TERM=dumb nhmusgs/base \
+      sh -c 'test -e /nhm/NHM-PRMS_CONUS_GF_1_1 ; printf $?'` = 1 ]; then
+  # ... download it
+  echo "PRMS data needs to be downloaded"
+  docker run -it -v nhm_nhm:/nhm -w /nhm nhmusgs/base \
+	 sh -c "wget --waitretry=3 --retry-connrefused $PRMS_SOURCE ; \
+	        unzip $PRMS_DATA_PKG ; \
+          chown -R nhm /nhm/NHM-PRMS_CONUS_GF_1_1 ; \
+          chmod -R 766 /nhm/NHM-PRMS_CONUS_GF_1_1"
+fi
+
 COMPOSE_FILES="-f docker-compose.yml"
 
 if [ $hpc = 0 ]; then
@@ -130,6 +158,7 @@ run cbhfiller
 START_TIME=`date --date $START_DATE +%Y,%m,%d,00,00,00`
 # end time is start date + 1 day in PRMS end_date datetime format
 END_TIME=`date --date $END_DATE +%Y,%m,%d,00,00,00`
+VAR_SAVE_FILE=""
 SAVE_VARS_TO_FILE=0
 
 run nhm-prms
@@ -146,8 +175,28 @@ fi
 
 SAVE_VARS_TO_FILE=1
 VAR_SAVE_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/restart/$SAVE_RESTART_DATE.restart"
-
 run nhm-prms
+
+# copy PRMS output from Docker volume to $OUTPUT_DIR directory on host
+echo "Pipeline has completed. Will copy output files from Docker volume."
+echo "Output files will show up in the \"$OUTPUT_DIR\" directory."
+docker build -t nhmusgs/volume-mounter - <<EOF
+FROM alpine
+CMD
+EOF
+docker container create --name volume_mounter -v nhm_nhm:/nhm \
+       nhmusgs/volume-mounter
+docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/output $OUTPUT_DIR
+# docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/input $OUTPUT_DIR
+docker rm volume_mounter
+
+# clean up
+for d in input output; do
+  docker run -v nhm_nhm:/nhm -w /nhm/NHM-PRMS_CONUS_GF_1_1/$d \
+	 nhmusgs/volume-mounter sh -c 'rm -f *.nc'
+done
+docker run -v nhm_nhm:/nhm -w /nhm/gridmetetl/nhm_hru_data_gfv11 \
+       nhmusgs/volume-mounter sh -c 'rm -f *.nc'
 
 # if on HPC ...
 if [ $hpc = 0 ]; then
