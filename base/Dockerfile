@@ -28,7 +28,7 @@ RUN conda install -n base -c defaults -c conda-forge $insecure \
     geopandas \
     nco \
     netcdf4 \
-    pandas\
+    pandas \
     requests \
     xarray \
     xmltodict

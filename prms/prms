@@ -6,7 +6,7 @@
 #
 # Purpose - Docker entry-point for nhm-prms container.
 #
-# Authors - Andrew Halper, Steven Markstrom
+# Authors - Andrew Halper, Steven Markstrom, Richard McDonald
 #
 echo "nhm-prms service entry-point in dry-run mode:"
 echo

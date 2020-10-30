@@ -10,6 +10,6 @@
 #
 
 docker-compose build base_image
-for svc in data_loader gridmet ofp ncf2cbh nhm-prms out2ncf verifier; do
+for svc in data_loader gridmet gridmetetl ncf2cbh nhm-prms out2ncf verifier; do
   docker-compose build "$svc"
 done

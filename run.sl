@@ -60,6 +60,7 @@ run () {
     else			# ... run on Docker
       docker-compose $COMPOSE_FILES -p nhm run --rm $svc $*	
     fi
+    return $?
 } # run
 
 echo "Checking if HRU data is downloaded..."
@@ -139,10 +140,15 @@ fi
 
 # if we want to run the Gridmet service...
 if [ "$GRIDMET_DISABLE" != true ]; then
-    run gridmet
+  # TODO: if this fails, there's no point in continuing; on
+  # Slurm/Shifter, run not-background, and wait for exit status
+  run gridmet
+  if [ $? != 0 ]; then
+    exit $?
+  fi
 fi
 
-run ofp
+run gridmetetl
 run ncf2cbh
 run cbhfiller
 
