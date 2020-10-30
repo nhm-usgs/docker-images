@@ -8,7 +8,7 @@ services:
     
   base_image:
     build: 
-      context: ./nhmusgs-base
+      context: ./base
       args:
         insecure: ""
       labels:
@@ -20,7 +20,7 @@ services:
 
   gridmet:
     build:
-      context: ./nhmusgs-gridmet
+      context: ./gridmet
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=Gridmet Query"
@@ -52,7 +52,7 @@ services:
 
   ncf2cbh:
     build:
-      context: ./nhmusgs-ncf2cbh
+      context: ./ncf2cbh
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=NCF2CBH"
@@ -65,7 +65,7 @@ services:
 
   cbhfiller:
     build:
-      context: ./nhmusgs-cbhfiller
+      context: ./cbhfiller
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=CBHFILLER"
@@ -81,7 +81,7 @@ services:
 
   nhm-prms:
     build:
-      context: ./nhmusgs-nhm-prms
+      context: ./prms
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=PRMS"
@@ -102,7 +102,7 @@ services:
 
   out2ncf:
     build:
-      context: ./nhmusgs-nhm-out2ncf
+      context: ./out2ncf
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=OUT 2 NCF"
@@ -115,7 +115,7 @@ services:
 
   verifier:
     build:
-      context: ./nhmusgs-verifier
+      context: ./verifier
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=Verifier"

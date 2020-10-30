@@ -87,7 +87,7 @@ else
   RESTART_DATE=`docker run -it -v nhm_nhm:/nhm \
   		       -w /nhm/NHM-PRMS_CONUS_GF_1_1/restart \
                        -e TERM=dumb \
-		       nhmusgs/base bash -c 'ls *.restart' | \
+		       nhmusgs/base bash -c 'ls -1 *.restart' | \
 	   	sort | tail -1 | cut -f1 -d .`
 fi
 
@@ -138,7 +138,8 @@ run verifier
 
 # run PRMS service in restart mode
 
-# In operational mode end time is start date + 1 day in PRMS end_date datetime format
+# In operational mode, end time is start date + 1 day in PRMS end_date
+# datetime format.
 if [ "$GRIDMET_DISABLE" != true ]; then
     END_TIME=`date --date "$yesterday -59 days" +%Y,%m,%d,00,00,00`
 fi
