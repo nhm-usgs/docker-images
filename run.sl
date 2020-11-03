@@ -120,8 +120,8 @@ fi
 
 echo "RESTART_DATE: $RESTART_DATE"
 
-# end date is yesterday
-yesterday=`date --date yesterday --rfc-3339='date'`
+# end date is yesterday, with MST offset
+yesterday=`TZ=MST date --date yesterday --rfc-3339='date'`
 
 # if END_DATE is not set already
 if [ "$END_DATE" = "" ]; then
