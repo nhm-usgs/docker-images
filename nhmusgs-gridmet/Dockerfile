@@ -2,7 +2,7 @@ FROM nhmusgs/base
 
 LABEL maintainer="ashalper@usgs.gov"
 
-ARG VERSION_TAG_GRIDMET=v0.22
+ARG VERSION_TAG_GRIDMET=v0.23
 
 # check out source from repo.
 RUN git -c advice.detachedHead=false clone --depth=1 --branch $VERSION_TAG_GRIDMET \
