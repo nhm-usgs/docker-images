@@ -11,9 +11,8 @@
 
 # if on HPC ...
 if uname -r | grep cray > /dev/null 2>&1 ; then
-  # run as Slurm batch job at 16:45 PST
-  offset=`date +%z | tr -d 0`
-  sbatch --parsable --job-name=nhm --begin=`expr 14 + 8 + $offset`:45 run.sl
+  # run as Slurm batch job at 5:00 p.m. MST
+  TZ=MST sbatch --parsable --job-name=nhm --begin=17:00 run.sl
 else
   # run on Docker
   docker-compose build --parallel base_image
