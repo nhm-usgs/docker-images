@@ -6,10 +6,11 @@
 #
 # Purpose - Build NHM Docker containers.
 #
-# Authors -  Andrew Halper, Ivan Suftin
+# Authors -  Andrew Halper
 #
 
-docker-compose build base_image
-for svc in data_loader gridmet ofp ncf2cbh nhm-prms out2ncf verifier; do
+# this is only guaranteed to run with yq 3.2.1; yq 4.x query language
+# is different
+for svc in `yq r -p p docker-compose.yml 'services.*' | sed 's/services.//'`; do
   docker-compose build "$svc"
 done
