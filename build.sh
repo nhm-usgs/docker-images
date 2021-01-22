@@ -6,10 +6,11 @@
 #
 # Purpose - Build NHM Docker containers.
 #
-# Authors -  Andrew Halper, Ivan Suftin
+# Authors -  Andrew Halper
 #
 
-docker-compose build base_image
-for svc in data_loader gridmet ofp ncf2cbh nhm-prms out2ncf verifier; do
+. services.sh			# docker-compose.yml parser funct.
+
+for svc in `services`; do
   docker-compose build "$svc"
 done

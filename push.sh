@@ -9,7 +9,9 @@
 # Authors -  Andrew Halper
 #
 
-for image in `grep 'image: nhmusgs' docker-compose.yml | cut -d ' ' -f6`; do
-  docker push $image &
+. services.sh			# docker-compose.yml parser funct.
+
+for svc in `services`; do
+  docker push "nhmusgs/$svc" &
 done
 wait
