@@ -18,7 +18,7 @@ services:
     env_file:
       - nhm.env
 
-  data_loader:
+  data-loader:
     build:
       context: ./nhmusgs-data-loader
       labels:
