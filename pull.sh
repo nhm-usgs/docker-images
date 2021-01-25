@@ -14,7 +14,6 @@
 
 # this is only guaranteed to run with yq 3.2.1; yq 4.x query
 # language is different
-for image in `yq r docker-compose.yml 'services.*.image' | \
-    	      grep -v nhmusgs/base`; do
+for image in `yq r docker-compose.yml 'services.*.image'`; do
   shifterimg pull $image
 done
