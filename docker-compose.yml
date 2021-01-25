@@ -18,6 +18,19 @@ services:
     env_file:
       - nhm.env
 
+  data_loader:
+    build:
+      context: ./nhmusgs-data-loader
+      labels:
+        - "gov.usgs.nhm.image.docker.application=NHM"
+        - "gov.usgs.nhm.image.docker.type=Data Loader"
+    image: nhmusgs/data-loader
+    container_name: data-loader
+    env_file:
+      - nhm.env
+    volumes:
+      - nhm:/nhm
+
   gridmet:
     build:
       context: ./nhmusgs-gridmet
