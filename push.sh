@@ -9,7 +9,7 @@
 # Authors -  Andrew Halper
 #
 
-. services.sh			# docker-compose.yml parser funct.
+. services.sh			# docker-compose.yml parser function
 
 for svc in `services`; do
   docker push "nhmusgs/$svc" &
