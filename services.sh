@@ -8,7 +8,6 @@
 #
 
 services () {
-  # this is only guaranteed to run with yq 3.2.1; yq 4.x query
-  # language is different
-  yq r -p p docker-compose.yml 'services.*' | sed 's/services.//'
+  # TODO: find a yq-way to remove prefix " -" here
+  yq -M e '.services | keys' docker-compose.yml | sed 's/- //
 }

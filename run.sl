@@ -44,14 +44,14 @@ run () {
       if [ -z "$previous_jobid" ]; then
 	# ...start job with no dependency
 	jobid=$(sbatch --parsable --job-name=$svc \
-	      "`yq r docker-compose.yml services.$svc.build.context`/submit.sl")
+	      "`yq e .services.$svc.build.context docker-compose.yml`/submit.sl")
       else
 	# ...start job with the requirement that the previous job
 	# completed successfully (exit code 0)
 	jobid=$(sbatch --parsable --job-name=$svc \
 		       --dependency=afterok:$previous_jobid \
 		       --kill-on-invalid-dep=yes \
-	      "`yq r docker-compose.yml services.$svc.build.context`/submit.sl")
+	      "`yq e .services.$svc.build.context docker-compose.yml`/submit.sl")
 	
 	# set current jobid to previous_jobid to be used as a dependency
 	# by the next job

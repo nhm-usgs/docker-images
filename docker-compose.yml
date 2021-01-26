@@ -41,24 +41,6 @@ services:
     container_name: gridmet
     env_file:
       - nhm.env
-      
-  ofp:
-    build:
-      context: ./nhmusgs-ofp
-      labels:
-        - "gov.usgs.nhm.image.docker.application=NHM"
-        - "gov.usgs.nhm.image.docker.type=OFP"
-    image: nhmusgs/ofp
-    container_name: ofp
-    environment:
-      - CBH_IDIR
-      - START_DATE
-      - END_DATE
-      - NHM_SOURCE_DIR
-    env_file:
-      - nhm.env
-    volumes:
-      - nhm:/nhm
 
   ncf2cbh:
     build:
