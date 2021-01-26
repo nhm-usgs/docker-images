@@ -2,6 +2,8 @@ FROM nhmusgs/base
 
 LABEL maintainer="ashalper@usgs.gov"
 
+RUN mkdir /nhm/gridmetetl
+
 COPY --chown=nhm data-loader /usr/local/bin
 
 RUN chmod 744 /usr/local/bin/data-loader
