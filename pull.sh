@@ -12,8 +12,6 @@
 # See https://hub.docker.com/orgs/nhmusgs/repositories and
 # https://docs.nersc.gov/programming/shifter/how-to-use/ for more.
 
-# this is only guaranteed to run with yq 3.2.1; yq 4.x query
-# language is different
-for image in `yq r docker-compose.yml 'services.*.image'`; do
+for image in `yq -M e '.services.*.image'`; do
   shifterimg pull $image
 done
