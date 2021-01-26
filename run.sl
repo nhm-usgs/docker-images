@@ -109,13 +109,13 @@ if [ "$SAVE_RESTART_DATE" = "" ]; then
     SAVE_RESTART_DATE=`date --date "$yesterday -59 days" --rfc-3339='date'`
 fi
 
+run data-loader
+
 # if we want to run the Gridmet service...
 if [ "$GRIDMET_DISABLE" != true ]; then
     run gridmet
 fi
 
-run data-loader
-run gridmetetl
 run ncf2cbh
 run cbhfiller
 
