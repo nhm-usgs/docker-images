@@ -38,9 +38,10 @@ ENV NHM_SOURCE_DIR=/usr/local/src
 
 ARG VERSION_ONHM_RUNNERS=0.1.6
 
-RUN cd $NHM_SOURCE_DIR && wget \
-    https://github.com/nhm-usgs/onhm-runners/archive/$VERSION_ONHM_RUNNERS.tar.gz && \
-    tar -xzf $VERSION_ONHM_RUNNERS.tar.gz && rm $VERSION_ONHM_RUNNERS.tar.gz
+RUN wget -P $NHM_SOURCE_DIR https://github.com/nhm-usgs/onhm-runners/archive/$VERSION_ONHM_RUNNERS.tar.gz
+RUN cd $NHM_SOURCE_DIR && tar -xzf $VERSION_ONHM_RUNNERS.tar.gz
+RUN mv $NHM_SOURCE_DIR/onhm-runners-$VERSION_ONHM_RUNNERS $NHM_SOURCE_DIR/onhm-runners
+RUN rm $NHM_SOURCE_DIR/$VERSION_ONHM_RUNNERS.tar.gz
 
 RUN mkdir -p /nhm/gridmetetl/Output
 
