@@ -2,9 +2,9 @@
 #
 # U.S. Geological Survey
 #
-# File - ofp
+# File - gridmetetl
 #
-# Purpose - Docker entry-point for NHM ofp container.
+# Purpose - Docker entry-point for NHM gridmetetl container.
 #
 # Authors - Ivan Suftin, Richard McDonald, Steven Markstrom,
 #           Andrew Halper
