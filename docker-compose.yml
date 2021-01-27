@@ -31,16 +31,18 @@ services:
     volumes:
       - nhm:/nhm
 
-  gridmetpoll:
+  gridmet-current:
     build:
-      context: ./nhmusgs-gridmetpoll
+      context: ./nhmusgs-gridmet-current
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=Gridmet Query"
-    image: nhmusgs/gridmetpoll
-    container_name: gridmetpoll
+    image: nhmusgs/gridmet-current
+    container_name: gridmet-current
     env_file:
       - nhm.env
+    volumes:
+      - nhm:/nhm
       
   gridmetetl:
     build:
