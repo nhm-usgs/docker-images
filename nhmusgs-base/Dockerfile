@@ -37,11 +37,17 @@ RUN conda clean -a
 ENV NHM_SOURCE_DIR=/usr/local/src
 
 ARG VERSION_ONHM_RUNNERS=0.1.6
-
 RUN wget -P $NHM_SOURCE_DIR https://github.com/nhm-usgs/onhm-runners/archive/$VERSION_ONHM_RUNNERS.tar.gz
 RUN cd $NHM_SOURCE_DIR && tar -xzf $VERSION_ONHM_RUNNERS.tar.gz
 RUN mv $NHM_SOURCE_DIR/onhm-runners-$VERSION_ONHM_RUNNERS $NHM_SOURCE_DIR/onhm-runners
 RUN rm $NHM_SOURCE_DIR/$VERSION_ONHM_RUNNERS.tar.gz
+
+ARG VERSION_TAG_GRIDMETETL=v0.25
+RUN wget -P $NHM_SOURCE_DIR https://github.com/nhm-usgs/gridmetetl/archive/$VERSION_TAG_GRIDMETETL.tar.gz
+RUN cd $NHM_SOURCE_DIR && tar -xvzf $VERSION_TAG_GRIDMETETL.tar.gz
+# not sure why it's necessary to omit the "v" from "0.25" here, but it is
+RUN mv $NHM_SOURCE_DIR/gridmetetl-0.25 $NHM_SOURCE_DIR/gridmetetl
+RUN rm $NHM_SOURCE_DIR/$VERSION_TAG_GRIDMETETL.tar.gz
 
 RUN mkdir -p /nhm/gridmetetl/Output
 
