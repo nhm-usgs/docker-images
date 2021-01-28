@@ -114,6 +114,9 @@ run data-loader
 # if we want to run the gridmet-current service...
 if [ "$GRIDMET_CURRENT_DISABLE" != true ]; then
     run gridmet-current
+    if [ $? != 0 ]; then
+      exit $?			# no need to continue
+    fi
 fi
 
 run ncf2cbh
