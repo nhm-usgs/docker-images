@@ -12,6 +12,6 @@
 # See https://hub.docker.com/orgs/nhmusgs/repositories and
 # https://docs.nersc.gov/programming/shifter/how-to-use/ for more.
 
-for image in `yq -M e '.services.*.image'`; do
+for image in `yq -M e '.services.*.image' docker-compose.yml`; do
   shifterimg pull $image
 done
