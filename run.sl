@@ -111,9 +111,9 @@ fi
 
 run data-loader
 
-# if we want to run the Gridmet service...
-if [ "$GRIDMET_DISABLE" != true ]; then
-    run gridmet
+# if we want to run the gridmet-current service...
+if [ "$GRIDMET_CURRENT_DISABLE" != true ]; then
+    run gridmet-current
 fi
 
 run ncf2cbh
@@ -134,10 +134,10 @@ run verifier
 
 # run PRMS service in restart mode
 
-# In operational mode, end time is start date + 1 day in PRMS end_date
-# datetime format.
-if [ "$GRIDMET_DISABLE" != true ]; then
-    END_TIME=`date --date "$yesterday -59 days" +%Y,%m,%d,00,00,00`
+if [ "$GRIDMET_CURRENT_DISABLE" != true ]; then
+  # In operational mode, end time is start date + 1 day in PRMS
+  # end_date datetime format.
+  END_TIME=`date --date "$yesterday -59 days" +%Y,%m,%d,00,00,00`
 fi
 
 SAVE_VARS_TO_FILE=1
