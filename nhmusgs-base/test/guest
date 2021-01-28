@@ -55,7 +55,7 @@ if [ ! -d /usr/local/src/onhm-runners ]; then
     exit 1
 fi
 
-# /nhm/ofp/Output directory check
+# /nhm/gridmetetl/Output directory check
 if [ ! -d /nhm/gridmetetl/Output ]; then
     echo '/nhm/gridmetetl/Output existence check failed'
     exit 1
