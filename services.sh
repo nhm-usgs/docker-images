@@ -9,5 +9,5 @@
 
 services () {
   # TODO: find a yq-way to remove prefix " -" here
-  yq -M e '.services | keys' docker-compose.yml | sed 's/- //
+  yq -M e '.services | keys' docker-compose.yml | sed 's/- //'
 }
