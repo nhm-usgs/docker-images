@@ -11,13 +11,22 @@
 
 # if on HPC ...
 if uname -r | grep cray > /dev/null 2>&1 ; then
-  # run as Slurm batch job at 6:00 p.m. MST
-  TZ=MST sbatch --parsable --job-name=nhm --begin=18:00 run.sl
+    # if no first argument provided
+    if [ -z "$1" ]; then
+	# run as Slurm batch job at 6:00 p.m. MST
+	export BEGIN=18:00
+	export TZ=MST
+    else
+	# run at the time provided in the first argument
+	export BEGIN="$1"
+    fi
+    # ... run on Shifter via Slurm
+    sbatch --parsable --job-name=nhm --begin=$BEGIN run.sl
 else
-  # run on Docker
-  docker-compose build --parallel base_image
+    # ... run on Docker
+    docker-compose build --parallel base_image
 
-  # even though run.sl is a Slurm script, it is also a Bash script, so
-  # we take advantage of this by using it to run on both platforms
-  bash run.sl
+    # even though run.sl is a Slurm script, it is also a Bash script, so
+    # we take advantage of this by using it to run on both platforms
+    bash run.sl
 fi
