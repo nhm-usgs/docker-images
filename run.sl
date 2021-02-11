@@ -92,8 +92,8 @@ fi
 
 echo "RESTART_DATE: $RESTART_DATE"
 
-# end date is yesterday, with MST offset
-yesterday=`TZ=MST date --date yesterday --rfc-3339='date'`
+# end date is yesterday
+yesterday=`date --date yesterday --rfc-3339='date'`
 
 # if END_DATE is not set already
 if [ "$END_DATE" = "" ]; then
@@ -173,5 +173,5 @@ if [ $hpc = 0 ]; then
   # ... set as recurring daily job: see
   # https://www.sherlock.stanford.edu/docs/user-guide/running-jobs/#recurring-jobs
   sbatch --job-name=nhm --dependency=singleton \
-	 --begin=`date --date=tomorrow +%Y-%m-%dT16:00:00` $0
+	 --begin=`date --date=tomorrow +%Y-%m-%dT$BEGIN:00` $0
 fi
