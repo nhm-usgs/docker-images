@@ -14,6 +14,10 @@
 # Authors - Ivan Suftin, Richard McDonald, Andrew Halper
 #
 
+if [ "$X" = -x ]; then
+  shopt -s extdebug	# run in debug mode
+fi
+
 # Docker Compose (which also references nhm.env) can't cope with .env
 # files containing the shell's "export ..." syntax, so this is
 # necessary to work around that.
