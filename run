@@ -22,7 +22,7 @@ done
 # if on HPC ...
 if uname -r | grep cray > /dev/null 2>&1 ; then
     if [ "$begin" = now ]; then
-	export BEGIN=`date -d now +%H:%M`
+	export BEGIN=`date -d 'now +1 minute' +%H:%M`
     else
 	# run as Slurm batch job at 6:00 p.m. MST
 	export BEGIN=18:00
