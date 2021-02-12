@@ -11,7 +11,7 @@
 
 while getopts "nx" opt; do
     case "$opt" in
-    n)  begin=now		# begin Slurm job now
+    n)  begin=now		# begin Slurm job now (if applicable)
         ;;
     x)  shopt -s extdebug	# run scripts in debug mode
 	export X=-x

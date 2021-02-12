@@ -9,6 +9,10 @@
 #  Author - Andrew Halper
 #
 
+if [ "$X" = -x ]; then
+  shopt -s extdebug	# run in debug mode
+fi
+
 set -e
 
 if [ -f /nhm/gridmetetl/$HRU_DATA_PKG ]; then

@@ -2,6 +2,9 @@ FROM nhmusgs/base
 
 LABEL maintainer="ashalper@usgs.gov"
 
+# run in debug mode when "-x"
+ENV X=""
+
 # TODO: try to move these environment variables to ../nhm.env. They
 # are defined here because this is the only place we could find where
 # their values are reliably passed into the container.
