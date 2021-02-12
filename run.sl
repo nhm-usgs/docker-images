@@ -15,7 +15,7 @@
 #
 
 if [ "$X" = -x ]; then
-  shopt -s extdebug	# run in debug mode
+    set -x			# run in debug mode
 fi
 
 # Docker Compose (which also references nhm.env) can't cope with .env
