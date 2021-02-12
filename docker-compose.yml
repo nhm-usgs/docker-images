@@ -14,7 +14,7 @@ services:
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=Base Image"
-    image: nhmusgs/base
+    image: nhmusgs/base:1.0
     env_file:
       - nhm.env
 
@@ -24,7 +24,7 @@ services:
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=Data Loader"
-    image: nhmusgs/data-loader
+    image: nhmusgs/data-loader:1.0
     container_name: data-loader
     env_file:
       - nhm.env
@@ -37,7 +37,7 @@ services:
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=Gridmet Query"
-    image: nhmusgs/gridmet-current
+    image: nhmusgs/gridmet-current:1.0
     container_name: gridmet-current
     env_file:
       - nhm.env
@@ -50,7 +50,7 @@ services:
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=GRIDMETETL"
-    image: nhmusgs/gridmetetl
+    image: nhmusgs/gridmetetl:1.0
     container_name: gridmetetl
     environment:
       - CBH_IDIR
@@ -68,7 +68,7 @@ services:
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=NCF2CBH"
-    image: nhmusgs/ncf2cbh
+    image: nhmusgs/ncf2cbh:1.0
     container_name: ncf2cbh
     env_file:
       - nhm.env
@@ -81,7 +81,7 @@ services:
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=CBHFILLER"
-    image: nhmusgs/cbhfiller
+    image: nhmusgs/cbhfiller:1.0
     container_name: cbhfiller
     environment:
         - CBH_IDIR
@@ -97,7 +97,7 @@ services:
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=PRMS"
-    image: nhmusgs/nhm-prms
+    image: nhmusgs/nhm-prms:1.0
     container_name: nhm-prms
     environment:
       - END_TIME
@@ -118,7 +118,7 @@ services:
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=OUT 2 NCF"
-    image: nhmusgs/out2ncf
+    image: nhmusgs/out2ncf:1.0
     container_name: out2ncf
     env_file:
       - nhm.env
@@ -131,7 +131,7 @@ services:
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=Verifier"
-    image: nhmusgs/verifier
+    image: nhmusgs/verifier:1.0
     container_name: verifier
     env_file:
       - nhm.env
