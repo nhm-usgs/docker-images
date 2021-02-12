@@ -2,7 +2,7 @@
 #SBATCH -N 1
 #SBATCH -A wbeep
 #SBATCH -t 1-0:00
-#SBATCH -o verifier.%j.out
+#SBATCH -o %j.verifier.out
 #SBATCH --image=nhmusgs/verifier:latest
 
 srun -n 1 shifter --volume=$SOURCE:/nhm /opt/conda/bin/python -u \
