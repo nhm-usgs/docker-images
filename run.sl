@@ -2,7 +2,7 @@
 #SBATCH -N 1
 #SBATCH -A wbeep
 #SBATCH -t 1-0:00
-#SBATCH -o run.%j.out
+#SBATCH -o %j.run.out
 #
 # U.S. Geological Survey
 #
