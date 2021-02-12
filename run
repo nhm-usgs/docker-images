@@ -13,7 +13,7 @@ while getopts "nx" opt; do
     case "$opt" in
     n)  begin=now		# begin Slurm job now (if applicable)
         ;;
-    x)  shopt -s extdebug	# run scripts in debug mode
+    x)  set -x			# run scripts in debug mode
 	export X=-x
         ;;
     esac
@@ -29,7 +29,7 @@ if uname -r | grep cray > /dev/null 2>&1 ; then
 	export TZ=MST
     fi
     # ... run on Shifter via Slurm
-    sbatch --parsable --job-name=nhm --begin=$BEGIN run.sl
+    sbatch --parsable --job-name=nhm --begin=$BEGIN --export=ALL run.sl
 else
     # ... run on Docker
     docker-compose build --parallel base_image
