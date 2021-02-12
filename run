@@ -9,16 +9,24 @@
 # Author - Andrew Halper
 #
 
+while getopts "nx" opt; do
+    case "$opt" in
+    n)  begin=now		# begin Slurm job now
+        ;;
+    x)  shopt -s extdebug	# run scripts in debug mode
+	export X=-x
+        ;;
+    esac
+done
+
 # if on HPC ...
 if uname -r | grep cray > /dev/null 2>&1 ; then
-    # if no first argument provided
-    if [ -z "$1" ]; then
+    if [ "$begin" = now ]; then
+	export BEGIN=`date -d now +%H:%M`
+    else
 	# run as Slurm batch job at 6:00 p.m. MST
 	export BEGIN=18:00
 	export TZ=MST
-    else
-	# run at the time provided in the first argument
-	export BEGIN="$1"
     fi
     # ... run on Shifter via Slurm
     sbatch --parsable --job-name=nhm --begin=$BEGIN run.sl
@@ -28,5 +36,5 @@ else
 
     # even though run.sl is a Slurm script, it is also a Bash script, so
     # we take advantage of this by using it to run on both platforms
-    bash run.sl
+    bash "$X" run.sl
 fi
