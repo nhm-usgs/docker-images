@@ -9,9 +9,7 @@
 # Authors -  Andrew Halper
 #
 
-. services.sh			# docker-compose.yml parser function
-
-for svc in `services`; do
-  docker push "nhmusgs/$svc" &
+for image in `awk '/ image:/ { print $2 }' docker-compose.yml` ; do
+  docker push $image &
 done
 wait
