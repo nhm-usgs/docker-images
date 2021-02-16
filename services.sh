@@ -8,6 +8,5 @@
 #
 
 services () {
-  # TODO: find a yq-way to remove prefix " -" here
-  yq -M e '.services | keys' docker-compose.yml | sed 's/- //'
+    tail -n +8 docker-compose.yml | grep '^  [a-z]' | tr -d '[ :]'
 }
