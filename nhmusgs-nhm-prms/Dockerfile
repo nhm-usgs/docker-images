@@ -1,4 +1,4 @@
-FROM nhmusgs/base
+FROM nhmusgs/base:1.0
 
 LABEL maintainer="ashalper@usgs.gov"
 
