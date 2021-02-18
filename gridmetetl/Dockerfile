@@ -2,7 +2,7 @@ FROM nhmusgs/base
 
 LABEL maintainer="ashalper@usgs.gov"
 
-ARG VERSION_TAG_GMETL=v0.22
+ARG VERSION_TAG_GMETL=0.27
 
 # Build ONHM Fetcher Parser
 RUN git -c advice.detachedHead=false clone --depth=1 --branch $VERSION_TAG_GMETL \
