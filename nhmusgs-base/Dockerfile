@@ -36,7 +36,7 @@ RUN conda clean -a
 
 ENV NHM_SOURCE_DIR=/usr/local/src
 
-ARG VERSION_ONHM_RUNNERS=0.1.6
+ARG VERSION_ONHM_RUNNERS=0.1.7
 RUN wget -P $NHM_SOURCE_DIR https://github.com/nhm-usgs/onhm-runners/archive/$VERSION_ONHM_RUNNERS.tar.gz
 RUN cd $NHM_SOURCE_DIR && tar -xzf $VERSION_ONHM_RUNNERS.tar.gz
 RUN mv $NHM_SOURCE_DIR/onhm-runners-$VERSION_ONHM_RUNNERS $NHM_SOURCE_DIR/onhm-runners
