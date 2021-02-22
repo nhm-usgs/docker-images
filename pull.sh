@@ -12,6 +12,6 @@
 # See https://hub.docker.com/orgs/nhmusgs/repositories and
 # https://docs.nersc.gov/programming/shifter/how-to-use/ for more.
 
-for image in `yq -M e '.services.*.image' docker-compose.yml`; do
+for image in `awk '/ image:/ { if (match($2, "nhmusgs/base") == 0) print $2}' docker-compose.yml`; do
   shifterimg pull $image
 done
