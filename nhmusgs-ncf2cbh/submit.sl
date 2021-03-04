@@ -3,7 +3,7 @@
 #SBATCH -A wbeep
 #SBATCH -t 1-0:00
 #SBATCH -o %j.ncf2cbh.out
-#SBATCH --image=nhmusgs/ncf2cbh:latest
+#SBATCH --image=nhmusgs/ncf2cbh:1.0
 
 srun -n 1 shifter --volume=$SOURCE:/nhm /opt/conda/bin/python -u \
      $NHM_SOURCE_DIR/onhm-runners/ncf2cbh/ncf2cbh.py $CBH_IDIR
