@@ -14,7 +14,7 @@ RUN apt-get update && \
 # (e.g., on a VM).
 ARG insecure
 RUN if [ "$insecure" = -k ]; then \
-       wget http://sslhelp.doi.net/docs/DOIRootCA2.cer ; \
+       wget -nv http://sslhelp.doi.net/docs/DOIRootCA2.cer ; \
        # see
        # https://stackoverflow.com/questions/9072376/configure-git-to-accept-a-particular-self-signed-server-certificate-for-a-partic
        git config --global http.sslCAInfo DOIRootCA2.cer ; \
@@ -37,16 +37,16 @@ RUN conda clean -a
 ENV NHM_SOURCE_DIR=/usr/local/src
 
 ARG VERSION_ONHM_RUNNERS=0.1.7
-RUN wget -P $NHM_SOURCE_DIR https://github.com/nhm-usgs/onhm-runners/archive/$VERSION_ONHM_RUNNERS.tar.gz
+RUN wget -P $NHM_SOURCE_DIR -nv https://github.com/nhm-usgs/onhm-runners/archive/$VERSION_ONHM_RUNNERS.tar.gz
 RUN cd $NHM_SOURCE_DIR && tar -xzf $VERSION_ONHM_RUNNERS.tar.gz
 RUN mv $NHM_SOURCE_DIR/onhm-runners-$VERSION_ONHM_RUNNERS $NHM_SOURCE_DIR/onhm-runners
 RUN rm $NHM_SOURCE_DIR/$VERSION_ONHM_RUNNERS.tar.gz
 
 ARG VERSION_TAG_GRIDMETETL=0.29
-RUN wget -P $NHM_SOURCE_DIR https://github.com/nhm-usgs/gridmetetl/archive/$VERSION_TAG_GRIDMETETL.tar.gz
+RUN wget -P $NHM_SOURCE_DIR -nv https://github.com/nhm-usgs/gridmetetl/archive/$VERSION_TAG_GRIDMETETL.tar.gz
 RUN cd $NHM_SOURCE_DIR && tar -xvzf $VERSION_TAG_GRIDMETETL.tar.gz
 # not sure why it's necessary to omit the "v" from "0.25" here, but it is
-RUN mv $NHM_SOURCE_DIR/gridmetetl-0.25 $NHM_SOURCE_DIR/gridmetetl
+RUN mv $NHM_SOURCE_DIR/gridmetetl-$VERSION_TAG_GRIDMETETL $NHM_SOURCE_DIR/gridmetetl
 RUN rm $NHM_SOURCE_DIR/$VERSION_TAG_GRIDMETETL.tar.gz
 
 RUN mkdir -p /nhm/gridmetetl/Output
