@@ -3,12 +3,12 @@ FROM nhmusgs/base:1.0
 LABEL maintainer="ashalper@usgs.gov"
 
 ARG VERSION_TAG_PRMS=5.1.0.4_linux
-
+RUN wget -P $NHM_SOURCE_DIR -nv https://github.com/nhm-usgs/prms/archive/$VERSION_TAG_PRMS.tar.gz
+RUN cd $NHM_SOURCE_DIR && tar -xzf $VERSION_TAG_PRMS.tar.gz
+RUN mv $NHM_SOURCE_DIR/prms-$VERSION_TAG_PRMS $NHM_SOURCE_DIR/prms
+RUN rm $NHM_SOURCE_DIR/$VERSION_TAG_PRMS.tar.gz
 # Build PRMS
-RUN git -c advice.detachedHead=false clone \
-    https://github.com/nhm-usgs/prms.git --branch $VERSION_TAG_PRMS \
-    --depth=1 $NHM_SOURCE_DIR/prms && \
-    cd $NHM_SOURCE_DIR/prms && \
+RUN cd $NHM_SOURCE_DIR/prms && \
     make && \
     rm -rf .git || true && \
     rm .gitignore || true && \
