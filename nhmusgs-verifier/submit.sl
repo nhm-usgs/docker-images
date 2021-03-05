@@ -3,7 +3,7 @@
 #SBATCH -A wbeep
 #SBATCH -t 1-0:00
 #SBATCH -o %j.verifier.out
-#SBATCH --image=nhmusgs/verifier:latest
+#SBATCH --image=nhmusgs/verifier:1.0
 
 srun -n 1 shifter --volume=$SOURCE:/nhm /opt/conda/bin/python -u \
      $NHM_SOURCE_DIR/onhm-verify-eval/src/prms_verifier.py \
