@@ -22,5 +22,6 @@
 /^      context:/ {
     if (service == i) {
 	print $2;
+	exit;
     }
 }
