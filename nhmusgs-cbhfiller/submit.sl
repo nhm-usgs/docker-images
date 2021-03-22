@@ -5,5 +5,8 @@
 #SBATCH -o %j.cbhfiller.out
 #SBATCH --image=nhmusgs/cbhfiller:1.0
 
-srun -n 1 -t 0 shifter --volume=$SOURCE:/nhm /bin/bash -c /usr/local/bin/cbhfiller
+srun -n 1 -t 0 shifter \
+     --volume=/caldera/projects/usgs/water/impd/nhm:/nhm \
+     /bin/bash -c /usr/local/bin/cbhfiller
+
 echo "cbhfiller exit status was $?"
