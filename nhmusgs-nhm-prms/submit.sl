@@ -5,5 +5,8 @@
 #SBATCH -o %j.nhm-prms.out
 #SBATCH --image=nhmusgs/nhm-prms:1.0
 
-srun -n 1 -t 0 shifter --volume=$SOURCE:/nhm /bin/bash -c /usr/local/bin/prms
+srun -n 1 -t 0 shifter \
+     --volume=/caldera/projects/usgs/water/impd/nhm:/nhm \
+     /bin/bash -c /usr/local/bin/prms
+
 echo "nhm-prms exit status was $?"

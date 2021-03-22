@@ -6,4 +6,5 @@
 #SBATCH --image=nhmusgs/data-loader:1.0
 #SBATCH --export=ALL
 
-srun -n 1 shifter /bin/bash -c /usr/local/bin/data-loader
+srun -n 1 shifter --volume=/caldera/projects/usgs/water/impd/nhm:/nhm \
+     /bin/bash -c /usr/local/bin/data-loader
