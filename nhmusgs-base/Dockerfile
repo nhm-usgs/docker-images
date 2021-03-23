@@ -49,8 +49,6 @@ RUN cd $NHM_SOURCE_DIR && tar -xvzf $VERSION_TAG_GRIDMETETL.tar.gz
 RUN mv $NHM_SOURCE_DIR/gridmetetl-$VERSION_TAG_GRIDMETETL $NHM_SOURCE_DIR/gridmetetl
 RUN rm $NHM_SOURCE_DIR/$VERSION_TAG_GRIDMETETL.tar.gz
 
-RUN mkdir -p /nhm/gridmetetl/Output
-
 ENV USER=nhm
 RUN useradd -ms /bin/bash $USER
 
