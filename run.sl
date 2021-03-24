@@ -1,7 +1,6 @@
 #!/bin/bash
 #SBATCH -N 1
 #SBATCH -A wbeep
-#SBATCH -t 1-0:00
 #SBATCH -o %j.run.out
 #
 # U.S. Geological Survey
@@ -113,7 +112,11 @@ if [ "$SAVE_RESTART_DATE" = "" ]; then
     SAVE_RESTART_DATE=`date --date "$yesterday -59 days" --rfc-3339='date'`
 fi
 
-run data-loader
+# if not on HPC ...
+if [ $hpc != 0 ]; then
+    # ... download HRU and PRMS work area archive files
+    run data-loader
+fi
 
 # if we want to run the gridmet-current service...
 if [ "$GRIDMET_CURRENT_DISABLE" != true ]; then
