@@ -154,18 +154,7 @@ SAVE_VARS_TO_FILE=1
 VAR_SAVE_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/restart/$SAVE_RESTART_DATE.restart"
 run nhm-prms
 
-# copy PRMS output from Docker volume to $OUTPUT_DIR directory on host
-echo "Pipeline has completed. Will copy output files from Docker volume."
-echo "Output files will show up in the \"$OUTPUT_DIR\" directory."
-docker build -t nhmusgs/volume-mounter - <<EOF
-FROM alpine
-CMD
-EOF
-docker container create --name volume_mounter -v nhm_nhm:/nhm \
-       nhmusgs/volume-mounter
-docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/output $OUTPUT_DIR
-docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/input $OUTPUT_DIR
-docker rm volume_mounter
+# TODO: copy PRMS output from Docker volume to $OUTPUT_DIR directory on host
 
 # clean up
 for d in input output; do
