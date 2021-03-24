@@ -52,6 +52,7 @@ RUN rm $NHM_SOURCE_DIR/$VERSION_TAG_GRIDMETETL.tar.gz
 ENV USER=nhm
 RUN useradd -ms /bin/bash $USER
 
+RUN mkdir /nhm
 RUN chown -R $USER /nhm
 RUN chgrp -R $USER /nhm
 
