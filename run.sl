@@ -81,7 +81,7 @@ fi
 if [ $hpc = 0 ]; then
   # ... at the moment, it's easier to get at the Shifter volume by
   # looking in the mount source directory
-  RESTART_DATE=`ls $SOURCE/NHM-PRMS_CONUS_GF_1_1/restart/*.restart | \
+  RESTART_DATE=`ls /nhm/NHM-PRMS_CONUS_GF_1_1/restart/*.restart | \
   	        sed 's/^.*\///;s/\.restart$//' | \
 	   	sort | tail -1`
 else
