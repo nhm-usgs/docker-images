@@ -9,8 +9,6 @@ services:
   base_image:
     build: 
       context: ./nhmusgs-base
-      args:
-        insecure: "-k"
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=Base Image"
