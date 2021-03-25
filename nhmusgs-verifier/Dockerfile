@@ -4,10 +4,11 @@ LABEL maintainer="ashalper@usgs.gov"
 
 ARG VERSION_TAG_VERIFY=0.1.1
 
-# TODO: replace --no-check-certificate here with logic to work around
-# DOI SSL intercept. See
-# https://github.com/usgs/best-practices/blob/master/ssl/WorkingWithinSSLIntercept.md
-RUN wget --no-check-certificate -P $NHM_SOURCE_DIR -nv \
+# TODO: value of this needs to be computed and passed in; see also base
+# image Dockerfile.
+ARG certificate='--no-check-certificate'
+
+RUN wget $certificate -P $NHM_SOURCE_DIR -nv \
     https://github.com/nhm-usgs/onhm-verify-eval/archive/$VERSION_TAG_VERIFY.tar.gz 
 
 RUN cd $NHM_SOURCE_DIR && tar -xzf $VERSION_TAG_VERIFY.tar.gz
