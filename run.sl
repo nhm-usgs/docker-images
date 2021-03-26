@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 #SBATCH -N 1
 #SBATCH -A wbeep
 #SBATCH -o %j.run.out
@@ -86,7 +86,12 @@ if [ $hpc = 0 ]; then
 else
   # ... use base image to mount the Docker volume and examine its
   # contents
-  # TODO: this won't work on Git bash on Windows because it's not a TTY
+  #
+  # TODO: this won't work on Git bash on Windows because it's not a
+  # TTY; see https://github.com/docker/for-win/issues/1588
+  #
+  # Also: the "-v" argument here won't work on Windows; see
+  # https://stackoverflow.com/questions/35767929/using-docker-via-windows-console-includes-invalid-characters-pwd-for-a-local-v  
   RESTART_DATE=`docker run -it -v nhm_nhm:/nhm \
   		       -w /nhm/NHM-PRMS_CONUS_GF_1_1/restart \
                        -e TERM=dumb \
