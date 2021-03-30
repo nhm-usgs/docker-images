@@ -160,15 +160,8 @@ SAVE_VARS_TO_FILE=1
 VAR_SAVE_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/restart/$SAVE_RESTART_DATE.restart"
 run nhm-prms
 
-# TODO: copy PRMS output from Docker volume to $OUTPUT_DIR directory on host
-
-# clean up
-for d in input output; do
-  docker run -v nhm_nhm:/nhm -w /nhm/NHM-PRMS_CONUS_GF_1_1/$d \
-	 nhmusgs/volume-mounter sh -c 'rm -f *.nc'
-done
-docker run -v nhm_nhm:/nhm -w /nhm/gridmetetl/nhm_hru_data_gfv11 \
-       nhmusgs/volume-mounter sh -c 'rm -f *.nc'
+# TODO: On Docker (i.e., not Shifter) copy PRMS output from Docker
+# volume to $OUTPUT_DIR directory on host
 
 # if on HPC ...
 if [ $hpc = 0 ]; then
