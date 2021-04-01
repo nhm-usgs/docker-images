@@ -2,12 +2,12 @@ FROM nhmusgs/base:1.0
 
 LABEL maintainer="ashalper@usgs.gov"
 
-COPY --chown=nhm cbhfiller /usr/local/bin
-
-RUN chmod 744 /usr/local/bin/cbhfiller
-
 USER $USER
 
 WORKDIR /home/$USER
 
-ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/cbhfiller"]
+ENTRYPOINT /opt/conda/bin/python -u \
+   /usr/local/src/onhm-runners/cbh_filler/cbh_filler.py \
+   "$CBH_IDIR" "$CBH_IDIR" \
+   /usr/local/src/onhm-runners/cbh_filler/nhm_id.txt \
+   /usr/local/src/onhm-runners/cbh_filler/miss_to_pres_mapping.csv
