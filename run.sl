@@ -182,6 +182,7 @@ docker container create --name volume_mounter -v nhm_nhm:/nhm \
        nhmusgs/volume-mounter
 docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/output $OUTPUT_DIR
 docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/input $OUTPUT_DIR
+docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/restart $OUTPUT_DIR
 docker rm volume_mounter
 
 # clean up
