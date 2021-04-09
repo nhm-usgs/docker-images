@@ -1,0 +1,16 @@
+#! /bin/bash
+#
+#  U.S. Geological Survey
+#
+#  File - cbhfiller
+#
+#  Purpose - Docker/Shifter entry-point script for cbhfiller service.
+#
+#  Author - Andrew Halper <ashalper@usgs.gov>
+#
+
+/opt/conda/bin/python -u \
+   /usr/local/src/onhm-runners/cbh_filler/cbh_filler.py \
+   $CBH_IDIR $CBH_IDIR \
+   /usr/local/src/onhm-runners/cbh_filler/nhm_id.txt \
+   /usr/local/src/onhm-runners/cbh_filler/miss_to_pres_mapping.csv
