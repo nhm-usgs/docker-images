@@ -1,8 +1,8 @@
-#!/bin/bash
+#! /bin/bash
 #SBATCH -N 1
 #SBATCH -A wbeep
 #SBATCH -t 1-0:00
-#SBATCH -o %j.data-loader.out
+#SBATCH -o data-loader.%j.out
 #SBATCH --image=nhmusgs/data-loader:1.0
 #SBATCH --export=ALL
 

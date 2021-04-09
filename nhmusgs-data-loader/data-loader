@@ -4,9 +4,9 @@
 #
 #  File - data-loader
 #
-#  Purpose - Docker entry-point for data-loader container.
+#  Purpose - Docker/Shifter entry-point for data-loader service.
 #
-#  Author - Andrew Halper
+#  Author - Andrew Halper <ashalper@usgs.gov>
 #
 
 if [ "$X" = -x ]; then

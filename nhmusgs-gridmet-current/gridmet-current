@@ -1,0 +1,13 @@
+#! /bin/bash
+#
+#  U.S. Geological Survey
+#
+#  File - gridmet-current
+#
+#  Purpose - Docker/Shifter entry-point script for gridmet-current service.
+#
+#  Author - Andrew Halper <ashalper@usgs.gov>
+#
+
+/opt/conda/bin/python -u \
+   /usr/local/src/gridmetetl/gridmetetl/Gridmet_current.py

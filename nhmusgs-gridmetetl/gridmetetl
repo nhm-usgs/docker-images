@@ -4,7 +4,7 @@
 #
 # File - gridmetetl
 #
-# Purpose - Docker entry-point for NHM gridmetetl container.
+# Purpose - Docker entry-point for NHM gridmetetl service.
 #
 # Authors - Ivan Suftin, Richard McDonald, Steven Markstrom,
 #           Andrew Halper

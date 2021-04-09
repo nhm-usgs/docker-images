@@ -18,11 +18,10 @@ ENV PRMS_DATA_PKG=NHM-PRMS_CONUS_GF_1_1_v5.1.0.4.zip
 ENV PRMS_SOURCE=ftp://ftpext.usgs.gov/pub/cr/co/denver/BRR-CR/pub/rmcd/${PRMS_DATA_PKG}
 
 COPY --chown=nhm data-loader /usr/local/bin
-
 RUN chmod 744 /usr/local/bin/data-loader
 
 USER $USER
 
 WORKDIR /home/$USER
 
-ENTRYPOINT /usr/local/bin/data-loader
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/data-loader"]

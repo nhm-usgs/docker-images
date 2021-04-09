@@ -1,0 +1,13 @@
+#! /bin/bash
+#
+# U.S. Geological Survey
+#
+# File - verifier
+#
+# Purpose - Docker/Shifter entry-point for verifier service.
+#
+# Authors - Andrew Halper <ashalper@usgs.gov>
+#
+
+/opt/conda/bin/python -u \
+   /usr/local/src/onhm-verify-eval/src/prms_verifier.py
