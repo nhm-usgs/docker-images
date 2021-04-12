@@ -2,13 +2,12 @@ FROM nhmusgs/base:1.0
 
 LABEL maintainer="ashalper@usgs.gov"
 
+COPY --chown=nhm verifier /usr/local/bin
+RUN chmod 744 /usr/local/bin/verifier
+
 ARG VERSION_TAG_VERIFY=0.1.1
 
-# TODO: value of this needs to be computed and passed in; see also base
-# image Dockerfile.
-ARG certificate='--no-check-certificate'
-
-RUN wget $certificate -P $NHM_SOURCE_DIR -nv \
+RUN wget --no-check-certificate -P $NHM_SOURCE_DIR -nv \
     https://github.com/nhm-usgs/onhm-verify-eval/archive/$VERSION_TAG_VERIFY.tar.gz 
 
 RUN cd $NHM_SOURCE_DIR && tar -xzf $VERSION_TAG_VERIFY.tar.gz
