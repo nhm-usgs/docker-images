@@ -1,7 +1,7 @@
 #! /bin/bash
 #SBATCH -N 1
 #SBATCH -A wbeep
-#SBATCH -t 1-0:00
+#SBATCH -t 01:00:00
 #SBATCH -o nhm-prms.%j.out
 #SBATCH --image=nhmusgs/nhm-prms:1.0
 

@@ -1,7 +1,7 @@
 #! /bin/bash
 #SBATCH -N 1
 #SBATCH -A wbeep
-#SBATCH -t 1-0:00
+#SBATCH -t 01:00:00
 #SBATCH -o out2ncf.%j.out
 #SBATCH --image=nhmusgs/out2ncf:1.0
 
