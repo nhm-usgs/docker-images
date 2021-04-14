@@ -1,9 +1,9 @@
 #! /bin/bash
 #SBATCH -N 1
 #SBATCH -A wbeep
-#SBATCH -t 1-0:00
+#SBATCH -t 01:00:00
 #SBATCH -o cbhfiller.%j.out
-#SBATCH --image=nhmusgs/cbhfiller:1.0
+#SBATCH --image=nhmusgs/cbhfiller:1.1
 
 # the volume here is specific to denali; it would need to
 # be updated to run on another system
