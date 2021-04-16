@@ -2,10 +2,11 @@ FROM nhmusgs/base:1.1
 
 LABEL maintainer="ashalper@usgs.gov"
 
+COPY --chown=nhm out2ncf /usr/local/bin
+RUN chmod 744 /usr/local/bin/out2ncf
+
 USER $USER
 
 WORKDIR /home/$USER
 
-ENTRYPOINT /opt/conda/bin/python -u \
-           /usr/local/src/onhm-runners/out2ncf/prms_outputs2a_ncf.py \
-           /nhm/NHM-PRMS_CONUS_GF_1_1/
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/out2ncf"]
