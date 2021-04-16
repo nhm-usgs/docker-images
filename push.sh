@@ -9,7 +9,8 @@
 # Authors -  Andrew Halper
 #
 
-for image in `awk '/ image:/ { print $2 }' docker-compose.yml` ; do
+for image in `awk '/ image: / { if (!match($2, "nhmusgs/base:")) \
+                                   print $2 }' docker-compose.yml` ; do
   docker push $image &
 done
 wait
