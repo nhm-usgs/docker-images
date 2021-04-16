@@ -9,6 +9,11 @@ LABEL maintainer="ashalper@usgs.gov"
 # https://unix.stackexchange.com/questions/96215/feeding-input-values-to-dpkg-reconfigure-in-a-non-interactive-way
 # for how to use DOI SSL intercept certificate properly.
 
+# install additional packages
+RUN apt-get update && \
+    apt-get -y install dialog file gcc gfortran make procps unzip && \
+    apt-get autoclean && apt-get purge
+
 # Update/upgrade Conda
 RUN conda update -n base conda -y -k
 RUN conda install -n base -c defaults -c conda-forge -k \
