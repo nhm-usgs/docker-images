@@ -34,7 +34,25 @@ else
     # ... run on Docker
     docker-compose build --parallel base_image
 
-    # even though run.sl is a Slurm script, it is also a Bash script, so
-    # we take advantage of this by using it to run on both platforms
-    bash "$X" run.sl
+    # ... use base image to mount the Docker volume and examine its
+    # contents
+    #
+    # TODO: this won't work on Git bash on Windows because it's not a
+    # TTY; see https://github.com/docker/for-win/issues/1588
+    #
+    # Also: the "-v" argument here won't work on Windows; see
+    # https://stackoverflow.com/questions/35767929/using-docker-via-windows-console-includes-invalid-characters-pwd-for-a-local-v  
+    RESTART_DATE=`docker run -it -v nhm_nhm:/nhm \
+    			     -w /nhm/NHM-PRMS_CONUS_GF_1_1/restart \
+    		             -e TERM=dumb \
+		       	     nhmusgs/base bash -c 'ls -1 *.restart' | \
+		  sort | tail -1 | cut -f1 -d .`
+
+    # TODO: calculate start/end dates here; see run.sl
+
+    # ... download HRU and PRMS work area archive files
+    run data-loader
+
+    # TODO: On Docker (i.e., not Shifter) copy PRMS output from Docker
+    # volume to $OUTPUT_DIR directory on host
 fi
