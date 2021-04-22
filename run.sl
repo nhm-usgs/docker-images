@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -N 1
 #SBATCH -A wbeep
-#SBATCH -o %j.run.out
+#SBATCH -o run.%j.out
 #
 # U.S. Geological Survey
 #
@@ -76,33 +76,20 @@ if [ $hpc = 0 ]; then
 fi
 
 # start date is the base name of the last restart file;
-# if on HPC ...
-if [ $hpc = 0 ]; then
-  # ... at the moment, it's easier to get at the Shifter volume by
-  # looking in the mount source directory
-  RESTART_DATE=`ls /caldera/projects/usgs/water/impd/nhm/NHM-PRMS_CONUS_GF_1_1/restart/*.restart | \
-  	        sed 's/^.*\///;s/\.restart$//' | \
-	   	sort | tail -1`
-else
-  # ... use base image to mount the Docker volume and examine its
-  # contents
-  #
-  # TODO: this won't work on Git bash on Windows because it's not a
-  # TTY; see https://github.com/docker/for-win/issues/1588
-  #
-  # Also: the "-v" argument here won't work on Windows; see
-  # https://stackoverflow.com/questions/35767929/using-docker-via-windows-console-includes-invalid-characters-pwd-for-a-local-v  
-  RESTART_DATE=`docker run -it -v nhm_nhm:/nhm \
-  		       -w /nhm/NHM-PRMS_CONUS_GF_1_1/restart \
-                       -e TERM=dumb \
-		       nhmusgs/base bash -c 'ls -1 *.restart' | \
-	   	sort | tail -1 | cut -f1 -d .`
+# at the moment, it's easier to get at the Shifter volume by
+# looking in the mount source directory
+RESTART_DATE=`ls /caldera/projects/usgs/water/impd/nhm/NHM-PRMS_CONUS_GF_1_1/restart/*.restart | \
+	      sed 's/^.*\///;s/\.restart$//' | \
+	      sort | tail -1`
+
+if [ "$X" = -x ]; then
+    echo "RESTART_DATE: $RESTART_DATE"
 fi
 
-echo "RESTART_DATE: $RESTART_DATE"
+# TODO: put this section in common scriptlet?
 
-# end date is yesterday
-yesterday=`date --date yesterday --rfc-3339='date'`
+# end date is yesterday, MST
+yesterday=`date --date='TZ="America/Phoenix" yesterday' --rfc-3339='date'`
 
 # if END_DATE is not set already
 if [ "$END_DATE" = "" ]; then
@@ -118,24 +105,24 @@ if [ "$SAVE_RESTART_DATE" = "" ]; then
     SAVE_RESTART_DATE=`date --date "$yesterday -59 days" --rfc-3339='date'`
 fi
 
-# if not on HPC ...
-if [ $hpc != 0 ]; then
-    # ... download HRU and PRMS work area archive files
-    run data-loader
-fi
-
-# if we want to run the gridmet-current service...
+# if we want to run the gridmet-current service ...
 if [ "$GRIDMET_CURRENT_DISABLE" != true ]; then
-    run gridmet-current
-    if [ $? != 0 ]; then
-      exit $?			# no need to continue
-    fi
+    sbatch --parsable --job-name=gridmet-current \
+	   nhmusgs-gridmet-current/submit.sl
 fi
 
-run ncf2cbh
-run cbhfiller
+gridmetetl_id=$(sbatch --parsable --job-name=gridmetetl \
+		       nhmusgs-gridmetetl/submit.sl)
+
+ncf2cbh_id=$(sbatch --parsable -d $gridmetetl_id --job-name=ncf2cbh \
+		    nhmusgs-ncf2cbh/submit.sl)
+
+cbhfiller_id=$(sbatch --parsable -d $ncf2cbh_id --job-name=cbhfiller \
+		      nhmusgs-cbhfiller/submit.sl)
 
 # PRMS
+
+# TODO: more stuff to put in external scriptlet?
 
 # start time is $START_DATE in PRMS start_date datetime format
 START_TIME=`date --date $START_DATE +%Y,%m,%d,00,00,00`
@@ -144,9 +131,12 @@ END_TIME=`date --date $END_DATE +%Y,%m,%d,00,00,00`
 VAR_SAVE_FILE=""
 SAVE_VARS_TO_FILE=0
 
-run nhm-prms
-run out2ncf
-run verifier
+prms_id=$(sbatch --parsable -d $cbhfiller_id --job-name=nhm-prms \
+		 nhmusgs-nhm-prms/submit.sl)
+out2ncf_id=$(sbatch --parsable -d $prms_id --job-name=out2ncf \
+                    nhmusgs-nhm-out2ncf/submit.sl)
+verifier_id=$(sbatch --parsable -d $out2ncf_id --job-name=verifier \
+                     nhmusgs-verifier/submit.sl)
 
 # run PRMS service in restart mode
 
@@ -158,15 +148,11 @@ fi
 
 SAVE_VARS_TO_FILE=1
 VAR_SAVE_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/restart/$SAVE_RESTART_DATE.restart"
-run nhm-prms
 
-# TODO: On Docker (i.e., not Shifter) copy PRMS output from Docker
-# volume to $OUTPUT_DIR directory on host
+sbatch --parsable -d $verifier_id  --job-name=nhm-prms \
+       nhmusgs-nhm-prms/submit.sl
 
-# if on HPC ...
-if [ $hpc = 0 ]; then
-  # ... set as recurring daily job: see
-  # https://www.sherlock.stanford.edu/docs/user-guide/running-jobs/#recurring-jobs
-  sbatch --job-name=nhm --dependency=singleton \
-	 --begin=`date --date=tomorrow +%Y-%m-%dT$BEGIN:00` $0
-fi
+# ... set as recurring daily job: see
+# https://www.sherlock.stanford.edu/docs/user-guide/running-jobs/#recurring-jobs
+sbatch --job-name=nhm --dependency=singleton \
+       --begin=`date --date=tomorrow +%Y-%m-%dT$BEGIN:00` $0
