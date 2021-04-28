@@ -131,6 +131,8 @@ services:
         - "gov.usgs.nhm.image.docker.type=Verifier"
     image: nhmusgs/verifier:1.1
     container_name: verifier
+    environment:
+      - VERIFIER_WORK_DIR
     env_file:
       - nhm.env
     volumes:
