@@ -10,4 +10,5 @@
 #
 
 /opt/conda/bin/python -u \
-   /usr/local/src/onhm-verify-eval/src/prms_verifier.py
+   /usr/local/src/onhm-verify-eval/src/prms_verifier.py \
+   $VERIFIER_WORK_DIR
