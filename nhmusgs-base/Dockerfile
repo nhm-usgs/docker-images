@@ -22,21 +22,23 @@ RUN if [ "$insecure" = -k ]; then \
 
 # Update/upgrade Conda
 RUN conda update -n base conda -y $insecure
-RUN conda install -n base -c defaults -c conda-forge $insecure \
-    python=3.7 \
-    dask \
-    geopandas \
-    nco \
-    netcdf4 \
-    pandas\
-    requests \
-    xarray \
-    xmltodict
+RUN conda install -n base -c conda-forge $insecure \
+    python=3.8 \
+    dask=2021.4.1\
+    bottleneck=1.3.2 \
+    geopandas=0.9.0 \
+    nco=4.9.8 \
+    netcdf4=1.5.6 \
+    pandas=1.2.4 \
+    requests=2.25.1 \
+    xarray=0.17.0 \
+    xmltodict=0.12.0
 RUN conda clean -a
 
 ENV NHM_SOURCE_DIR=/usr/local/src
 
-ARG VERSION_ONHM_RUNNERS=0.1.7
+ARG VERSION_ONHM_RUNNERS=0.2.0
+# ARG VERSION_ONHM_RUNNERS=master
 
 RUN git -c advice.detachedHead=false clone \
     https://github.com/nhm-usgs/onhm-runners.git \

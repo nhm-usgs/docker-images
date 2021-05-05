@@ -9,9 +9,11 @@
 # Authors - Richard McDonald, Steven Markstrom,
 #           Andrew Halper
 #
-
+echo "Input Dir is $NCF_IDIR"
+echo "Date tag is $NCF_DATE"
+echo "File prefix is $NCF_PREFIX"
 /opt/conda/bin/python \
-    -u $NHM_SOURCE_DIR/onhm-runners/ncf2cbh/ncf2cbh_gfv11.py \
-    /nhm/NHM-PRMS_CONUS_GF_1_1/input/ \
-    $END_DATE
-    
+    -u $NHM_SOURCE_DIR/onhm-runners/ncf2cbh/ncf2cbh_gfv11a.py \
+    $NCF_IDIR \
+    $NCF_DATE \
+    $NCF_PREFIX

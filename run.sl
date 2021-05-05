@@ -33,7 +33,7 @@ run () {
 
     echo ""
     echo "Running $svc..."
-    
+
     # the "yq" command below is here to map service names in
     # docker-compose.yml to sub-directory names; unfortunately they
     # don't have the same names
@@ -52,13 +52,13 @@ run () {
 		       --dependency=afterok:$previous_jobid \
 		       --kill-on-invalid-dep=yes \
 	      "`yq r docker-compose.yml services.$svc.build.context`/submit.sl")
-	
+
 	# set current jobid to previous_jobid to be used as a dependency
 	# by the next job
 	previous_jobid=$jobid
       fi
     else			# ... run on Docker
-      docker-compose $COMPOSE_FILES -p nhm run --rm $svc $*	
+      docker-compose $COMPOSE_FILES -p nhm run --rm $svc $*
     fi
 } # run
 
@@ -142,8 +142,28 @@ if [ "$GRIDMET_DISABLE" != true ]; then
     run gridmet
 fi
 
-run ofp
+# # Create Forecast Input files
+# S2S_DATE=$END_DATE
+# run gridmets2s
+
+# NCF_IDIR=$S2S_NCF_IDIR
+# NCF_DATE=$END_DATE
+# NCF_PREFIX=$S2S_NCF_PREFIX
+# run ncf2cbh
+
+# CBH_IDIR=$S2S_CBH_IDIR
+# CBH_ODIR=$S2S_CBH_ODIR
+# run cbhfiller
+
+# Create daily operation input files
+run gridmetetl
+NCF_IDIR=$OP_NCF_IDIR
+NCF_PREFIX=$OP_NCF_PREFIX
+NCF_DATE=$END_DATE
 run ncf2cbh
+
+CBH_IDIR=$OP_CBH_IDIR
+CBH_ODIR=$OP_CBH_ODIR
 run cbhfiller
 
 # PRMS
@@ -152,10 +172,19 @@ run cbhfiller
 START_TIME=`date --date $START_DATE +%Y,%m,%d,00,00,00`
 # end time is start date + 1 day in PRMS end_date datetime format
 END_TIME=`date --date $END_DATE +%Y,%m,%d,00,00,00`
-VAR_SAVE_FILE=""
-SAVE_VARS_TO_FILE=0
+# VAR_SAVE_FILE=""
+# SAVE_VARS_TO_FILE=0
+
+PRMS_START_TIME=$START_TIME
+PRMS_END_TIME=$END_TIME
+PRMS_INIT_VARS_FROM_FILE=1
+PRMS_RESTART_DATE=$RESTART_DATE
+PRMS_SAVE_VARS_TO_FILE=1
+PRMS_VAR_SAVE_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/forecast/restart/$END_DATE.restart"
 
 run nhm-prms
+
+ONCF_DIR=$OP_DIR
 run out2ncf
 run verifier
 
@@ -167,8 +196,12 @@ if [ "$GRIDMET_DISABLE" != true ]; then
     END_TIME=`date --date "$yesterday -59 days" +%Y,%m,%d,00,00,00`
 fi
 
-SAVE_VARS_TO_FILE=1
-VAR_SAVE_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/restart/$SAVE_RESTART_DATE.restart"
+# SAVE_VARS_TO_FILE=1
+# VAR_SAVE_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/restart/$SAVE_RESTART_DATE.restart"
+
+PRMS_END_TIME=$END_TIME
+PRMS_SAVE_VARS_TO_FILE=1
+PRMS_VAR_SAVE_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/restart/$SAVE_RESTART_DATE.restart"
 run nhm-prms
 
 # copy PRMS output from Docker volume to $OUTPUT_DIR directory on host
@@ -183,6 +216,7 @@ docker container create --name volume_mounter -v nhm_nhm:/nhm \
 docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/output $OUTPUT_DIR
 docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/input $OUTPUT_DIR
 docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/restart $OUTPUT_DIR
+docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/forecast/input $FRCST_DIR
 docker rm volume_mounter
 
 # clean up

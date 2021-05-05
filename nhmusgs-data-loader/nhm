@@ -31,3 +31,12 @@ if [ ! -e /nhm/NHM-PRMS_CONUS_GF_1_1 ]; then
 else
     echo "PRMS workspace already loaded"
 fi
+
+if [ ! -e /nhm/NHM-PRMS_CONUS_GF_1_1/forecast ]; then
+    cd /nhm/NHM-PRMS_CONUS_GF_1_1
+    mkdir -p forecast/input
+    mkdir -p forecast/output
+    mkdir -p forecast/restart
+else
+    echo "Forecast directories already defined"
+fi

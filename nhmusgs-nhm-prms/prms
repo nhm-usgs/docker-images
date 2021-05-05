@@ -8,27 +8,25 @@
 #
 # Authors - Andrew Halper, Steven Markstrom
 #
-echo "nhm-prms service entry-point in dry-run mode:"
+echo "nhm-prms service entry-point:"
 echo
-echo "   END_TIME: $END_TIME"
 echo "   NHM_SOURCE_DIR: $NHM_SOURCE_DIR"
-echo "   SAVE_VARS_TO_FILE: $SAVE_VARS_TO_FILE"
-echo "   START_DATE: $START_DATE"
-echo "   START_TIME: $START_TIME"
-echo "   VAR_SAVE_FILE: $VAR_SAVE_FILE"
-echo "   RESTART_DATE: $RESTART_DATE"
-if [ "$NHM_DRY_RUN" = true ]; then
-	exit 0
-fi
+echo "   END_TIME: $PRMS_END_TIME"
+echo "   START_TIME: $PRMS_START_TIME"
+echo "   INIT_VARS_FROM_FILE: $PRMS_INIT_VARS_FROM_FILE"
+echo "   VAR_INIT_FILE: $PRMS_VAR_INIT_FILE"
+echo "   RESTART_DATE: $PRMS_RESTART_DATE"
+echo "   PRMS_VAR_SAVE_FILE: $PRMS_VAR_SAVE_FILE"
+echo "   SAVE_VARS_TO_FILE: $PRMS_SAVE_VARS_TO_FILE"
 
 # PRMS needs to be run in a directory relative to its data files (in
 # subdirectories)
 cd /nhm/NHM-PRMS_CONUS_GF_1_1
 
 $NHM_SOURCE_DIR/prms/prms/prms \
-  -set start_time $START_TIME -set end_time $END_TIME \
-  -set init_vars_from_file 1 \
-  -set var_init_file /nhm/NHM-PRMS_CONUS_GF_1_1/restart/$RESTART_DATE.restart \
-  -set save_vars_to_file $SAVE_VARS_TO_FILE \
-  -set var_save_file $VAR_SAVE_FILE \
+  -set start_time $PRMS_START_TIME -set end_time $PRMS_END_TIME \
+  -set init_vars_from_file $PRMS_INIT_VARS_FROM_FILE \
+  -set var_init_file $PRMS_VAR_INIT_FILE \
+  -set save_vars_to_file $PRMS_SAVE_VARS_TO_FILE \
+  -set var_save_file $PRMS_VAR_SAVE_FILE \
   -C /nhm/NHM-PRMS_CONUS_GF_1_1/NHM-PRMS.control

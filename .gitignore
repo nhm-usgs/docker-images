@@ -17,6 +17,7 @@ thredds/files/logs/tomcat/*
 /output
 /test
 /restart
+/forecast
 /.env
 variable_info.json
 volume_extract.sh

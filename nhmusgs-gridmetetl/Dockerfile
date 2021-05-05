@@ -14,12 +14,12 @@ RUN git -c advice.detachedHead=false clone --depth=1 --branch $VERSION_TAG_GMETL
     rm .gitignore || true
 
 # ofp script
-COPY --chown=nhm ofp /usr/local/bin
+COPY --chown=nhm gridmetetl /usr/local/bin
 
-RUN chmod 744 /usr/local/bin/ofp
+RUN chmod 744 /usr/local/bin/gridmetetl
 
 USER $USER
 
 WORKDIR /home/$USER
 
-ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/ofp"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/gridmetetl"]
