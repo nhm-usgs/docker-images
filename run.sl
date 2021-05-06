@@ -137,6 +137,10 @@ if [ "$SAVE_RESTART_DATE" = "" ]; then
     SAVE_RESTART_DATE=`date --date "$yesterday -59 days" --rfc-3339='date'`
 fi
 
+if [ "$FRCST_END_DATE" = "" ]; then
+    FRCST_END_DATE=`date --date "$yesterday +30 days" --rfc-3339='date'`
+fi
+
 # if we want to run the Gridmet service...
 if [ "$GRIDMET_DISABLE" != true ]; then
     run gridmet
@@ -194,8 +198,9 @@ run verifier
 
 if ["$FORECAST_ENABLE" == true]; then
   # run PRMS forecast
+  F_END_TIME = `date --date $FRCST_END_DATE +%Y,%m,%d,00,00,00`
   PRMS_START_TIME=$START_TIME
-  PRMS_END_TIME=$END_TIME
+  PRMS_END_TIME=$F_END_TIME
   PRMS_INIT_VARS_FROM_FILE=1
   PRMS_RESTART_DATE=$RESTART_DATE
   PRMS_VAR_INIT_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/forecast/restart/$END_DATE.restart"

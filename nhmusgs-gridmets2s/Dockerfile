@@ -41,9 +41,9 @@ ARG VERSION_GRIDMETETL_S2S=0.2.0
 RUN pip --trusted-host pypi.org --trusted-host files.pythonhosted.org install git+https://github.com/rmcd-mscb/gridmet_cfsv2.git@$VERSION_GRIDMETETL_S2S#egg=gridmet_cfsv2
 
 #download and install grid2shp
-ARG VERSION_GRD2SHP=0.2.3
-# RUN pip --trusted-host pypi.org --trusted-host files.pythonhosted.org install git+https://github.com/nhm-usgs/grd2shp.git@$VERSION_GRD2SHP#egg=grd2shp
-RUN pip --trusted-host pypi.org --trusted-host files.pythonhosted.org install git+https://github.com/nhm-usgs/grd2shp.git@datetag
+ARG VERSION_GRD2SHP=0.2.1
+RUN pip --trusted-host pypi.org --trusted-host files.pythonhosted.org install git+https://github.com/nhm-usgs/grd2shp.git@$VERSION_GRD2SHP#egg=grd2shp
+# RUN pip --trusted-host pypi.org --trusted-host files.pythonhosted.org install git+https://github.com/nhm-usgs/grd2shp.git@datetag
 
 
 COPY --chown=nhm gmetl_cfsv2 /usr/local/bin
