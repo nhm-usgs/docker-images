@@ -18,6 +18,7 @@ echo "   VAR_INIT_FILE: $PRMS_VAR_INIT_FILE"
 echo "   RESTART_DATE: $PRMS_RESTART_DATE"
 echo "   PRMS_VAR_SAVE_FILE: $PRMS_VAR_SAVE_FILE"
 echo "   SAVE_VARS_TO_FILE: $PRMS_SAVE_VARS_TO_FILE"
+echo "   PRMS_CONTROL_FILE: $PRMS_CONTROL_FILE"
 
 # PRMS needs to be run in a directory relative to its data files (in
 # subdirectories)
@@ -29,4 +30,4 @@ $NHM_SOURCE_DIR/prms/prms/prms \
   -set var_init_file $PRMS_VAR_INIT_FILE \
   -set save_vars_to_file $PRMS_SAVE_VARS_TO_FILE \
   -set var_save_file $PRMS_VAR_SAVE_FILE \
-  -C /nhm/NHM-PRMS_CONUS_GF_1_1/NHM-PRMS.control
+  -C $PRMS_CONTROL_FILE

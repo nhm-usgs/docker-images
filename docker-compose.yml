@@ -13,7 +13,7 @@ services:
         insecure: "-k"
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
-        - "gov.usgs.nhm.image.docker.type=Base Image"
+        - "gov.usgs.nhm.image.docker.type=Base_Image"
     image: nhmusgs/base
     env_file:
       - nhm.env
@@ -23,7 +23,7 @@ services:
       context: ./nhmusgs-gridmet
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
-        - "gov.usgs.nhm.image.docker.type=Gridmet Query"
+        - "gov.usgs.nhm.image.docker.type=Gridmet_Query"
     image: nhmusgs/gridmet
     container_name: gridmet
     env_file:
@@ -34,7 +34,7 @@ services:
       context: ./nhmusgs-gridmetetl
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
-        - "gov.usgs.nhm.image.docker.type=GRIDMET ETL"
+        - "gov.usgs.nhm.image.docker.type=GRIDMET_ETL"
     image: nhmusgs/gridmetetl
     container_name: gridmetetl
     environment:
@@ -119,6 +119,7 @@ services:
       - PRMS_SAVE_VARS_TO_FILE
       - PRMS_VAR_SAVE_FILE
       - PRMS_RESTART_DATE
+      - PRMS_CONTROL_FILE
       - START_DATE
       - RESTART_DATE
       - NHM_SOURCE_DIR
@@ -132,7 +133,7 @@ services:
       context: ./nhmusgs-nhm-out2ncf
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
-        - "gov.usgs.nhm.image.docker.type=OUT 2 NCF"
+        - "gov.usgs.nhm.image.docker.type=OUT2NCF"
     image: nhmusgs/out2ncf
     container_name: out2ncf
     environment:
@@ -157,22 +158,22 @@ services:
     command:
       - "/nhm/NHM-PRMS_CONUS_GF_1_1/"
 
-  thredds:
-    image: unidata/thredds-docker:4.6.13
-    ports:
-      - "443:8443"
-    container_name: thredds
-    volumes:
-      - ./thredds/files/logs/tomcat/:/usr/local/tomcat/logs/
-      - ./thredds/files/logs/thredds/:/usr/local/tomcat/content/thredds/logs/
-      - ./thredds/files/config/tomcat/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
-      - ./thredds/files/config/tomcat/server.xml:/usr/local/tomcat/conf/server.xml
-      - ./thredds/files/config/tomcat/ssl.crt:/usr/local/tomcat/conf/ssl.crt
-      - ./thredds/files/config/tomcat/ssl.key:/usr/local/tomcat/conf/ssl.key
-      - ./thredds/files/config/thredds/threddsConfig.xml:/usr/local/tomcat/content/thredds/threddsConfig.xml
-      - ./thredds/files/config/thredds/enhancedCatalog.xml:/usr/local/tomcat/content/thredds/enhancedCatalog.xml
-      - ./thredds/files/config/thredds/wmsConfig.xml:/usr/local/tomcat/content/thredds/wmsConfig.xml
-      - ./thredds/files/contents/thredds/cache/:/usr/local/tomcat/content/thredds/cache/
-      - ./output/Output/:/usr/local/tomcat/content/thredds/nhmdata/
-    env_file:
-      - "./thredds/compose.env"
+  # thredds:
+  #   image: unidata/thredds-docker:4.6.13
+  #   ports:
+  #     - "443:8443"
+  #   container_name: thredds
+  #   volumes:
+  #     - ./thredds/files/logs/tomcat/:/usr/local/tomcat/logs/
+  #     - ./thredds/files/logs/thredds/:/usr/local/tomcat/content/thredds/logs/
+  #     - ./thredds/files/config/tomcat/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
+  #     - ./thredds/files/config/tomcat/server.xml:/usr/local/tomcat/conf/server.xml
+  #     - ./thredds/files/config/tomcat/ssl.crt:/usr/local/tomcat/conf/ssl.crt
+  #     - ./thredds/files/config/tomcat/ssl.key:/usr/local/tomcat/conf/ssl.key
+  #     - ./thredds/files/config/thredds/threddsConfig.xml:/usr/local/tomcat/content/thredds/threddsConfig.xml
+  #     - ./thredds/files/config/thredds/enhancedCatalog.xml:/usr/local/tomcat/content/thredds/enhancedCatalog.xml
+  #     - ./thredds/files/config/thredds/wmsConfig.xml:/usr/local/tomcat/content/thredds/wmsConfig.xml
+  #     - ./thredds/files/contents/thredds/cache/:/usr/local/tomcat/content/thredds/cache/
+  #     - ./output/Output/:/usr/local/tomcat/content/thredds/nhmdata/
+  #   env_file:
+  #     - "./thredds/compose.env"

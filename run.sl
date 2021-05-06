@@ -142,18 +142,20 @@ if [ "$GRIDMET_DISABLE" != true ]; then
     run gridmet
 fi
 
-# # Create Forecast Input files
-# S2S_DATE=$END_DATE
-# run gridmets2s
+if ["$FORECAST_ENABLE" == true]; then
+  # Create Forecast Input files
+  S2S_DATE=$END_DATE
+  run gridmets2s
 
-# NCF_IDIR=$S2S_NCF_IDIR
-# NCF_DATE=$END_DATE
-# NCF_PREFIX=$S2S_NCF_PREFIX
-# run ncf2cbh
+  NCF_IDIR=$S2S_NCF_IDIR
+  NCF_DATE=$END_DATE
+  NCF_PREFIX=$S2S_NCF_PREFIX
+  run ncf2cbh
 
-# CBH_IDIR=$S2S_CBH_IDIR
-# CBH_ODIR=$S2S_CBH_ODIR
-# run cbhfiller
+  CBH_IDIR=$S2S_CBH_IDIR
+  CBH_ODIR=$S2S_CBH_ODIR
+  run cbhfiller
+fi
 
 # Create daily operation input files
 run gridmetetl
@@ -179,29 +181,49 @@ PRMS_START_TIME=$START_TIME
 PRMS_END_TIME=$END_TIME
 PRMS_INIT_VARS_FROM_FILE=1
 PRMS_RESTART_DATE=$RESTART_DATE
+PRMS_VAR_INIT_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/restart/$RESTART_DATE.restart"
 PRMS_SAVE_VARS_TO_FILE=1
 PRMS_VAR_SAVE_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/forecast/restart/$END_DATE.restart"
+PRMS_CONTROL_FILE=$OP_PRMS_CONTROL_FILE
 
 run nhm-prms
 
-ONCF_DIR=$OP_DIR
+OUT_NCF_DIR=$OP_DIR
 run out2ncf
 run verifier
 
-# run PRMS service in restart mode
+if ["$FORECAST_ENABLE" == true]; then
+  # run PRMS forecast
+  PRMS_START_TIME=$START_TIME
+  PRMS_END_TIME=$END_TIME
+  PRMS_INIT_VARS_FROM_FILE=1
+  PRMS_RESTART_DATE=$RESTART_DATE
+  PRMS_VAR_INIT_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/forecast/restart/$END_DATE.restart"
+  PRMS_SAVE_VARS_TO_FILE=0
+  PRMS_VAR_SAVE_FILE=""
+  PRMS_CONTROL_FILE=$S2S_PRMS_CONTROL_FILE
 
+  run nhm-prms
+  OUT_NCF_DIR=$S2S_DIR
+  run out2ncf
+fi
+
+# run PRMS service in restart mode
+# Run PRMS to increment the operational restart file by +1 day
 # In operational mode, end time is start date + 1 day in PRMS end_date
 # datetime format.
 if [ "$GRIDMET_DISABLE" != true ]; then
     END_TIME=`date --date "$yesterday -59 days" +%Y,%m,%d,00,00,00`
 fi
 
-# SAVE_VARS_TO_FILE=1
-# VAR_SAVE_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/restart/$SAVE_RESTART_DATE.restart"
-
+PRMS_START_TIME=$START_TIME
 PRMS_END_TIME=$END_TIME
+PRMS_INIT_VARS_FROM_FILE=1
+PRMS_VAR_INIT_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/restart/$RESTART_DATE.restart"
 PRMS_SAVE_VARS_TO_FILE=1
 PRMS_VAR_SAVE_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/restart/$SAVE_RESTART_DATE.restart"
+PRMS_CONTROL_FILE=$OP_PRMS_CONTROL_FILE
+
 run nhm-prms
 
 # copy PRMS output from Docker volume to $OUTPUT_DIR directory on host
@@ -217,11 +239,17 @@ docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/output $OUTPUT_DIR
 docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/input $OUTPUT_DIR
 docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/restart $OUTPUT_DIR
 docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/forecast/input $FRCST_DIR
+docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/forecast/output $FRCST_DIR
+docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/forecast/restart $FRCST_DIR
 docker rm volume_mounter
 
 # clean up
 for d in input output; do
   docker run -v nhm_nhm:/nhm -w /nhm/NHM-PRMS_CONUS_GF_1_1/$d \
+	 nhmusgs/volume-mounter sh -c 'rm -f *.nc'
+done
+for d in input output; do
+  docker run -v nhm_nhm:/nhm -w /nhm/NHM-PRMS_CONUS_GF_1_1/forecast/$d \
 	 nhmusgs/volume-mounter sh -c 'rm -f *.nc'
 done
 docker run -v nhm_nhm:/nhm -w /nhm/gridmetetl/nhm_hru_data_gfv11 \
