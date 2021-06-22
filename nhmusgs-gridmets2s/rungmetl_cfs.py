@@ -135,7 +135,7 @@ def main():
                    var_output=vout,
                    opath=opth,
                    fileprefix='f_')
-    for i in range(2):
+    for i in range(30):
         g2s.run_weights()
 
     g2s.write_file(elev_file=elevf, punits=1, datetag=datetag)

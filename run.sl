@@ -146,7 +146,7 @@ if [ "$GRIDMET_DISABLE" != true ]; then
     run gridmet
 fi
 
-if ["$FORECAST_ENABLE" == true]; then
+if [ "$FORECAST_ENABLE" != false ]; then
   # Create Forecast Input files
   S2S_DATE=$END_DATE
   run gridmets2s
@@ -196,7 +196,7 @@ OUT_NCF_DIR=$OP_DIR
 run out2ncf
 run verifier
 
-if ["$FORECAST_ENABLE" == true]; then
+if [ "$FORECAST_ENABLE" != false]; then
   # run PRMS forecast
   F_END_TIME = `date --date $FRCST_END_DATE +%Y,%m,%d,00,00,00`
   PRMS_START_TIME=$START_TIME
@@ -248,17 +248,17 @@ docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/forecast/output $FRCST_DIR
 docker cp volume_mounter:/nhm/NHM-PRMS_CONUS_GF_1_1/forecast/restart $FRCST_DIR
 docker rm volume_mounter
 
-# clean up
-for d in input output; do
-  docker run -v nhm_nhm:/nhm -w /nhm/NHM-PRMS_CONUS_GF_1_1/$d \
-	 nhmusgs/volume-mounter sh -c 'rm -f *.nc'
-done
-for d in input output; do
-  docker run -v nhm_nhm:/nhm -w /nhm/NHM-PRMS_CONUS_GF_1_1/forecast/$d \
-	 nhmusgs/volume-mounter sh -c 'rm -f *.nc'
-done
-docker run -v nhm_nhm:/nhm -w /nhm/gridmetetl/nhm_hru_data_gfv11 \
-       nhmusgs/volume-mounter sh -c 'rm -f *.nc'
+# # clean up
+# for d in input output; do
+#   docker run -v nhm_nhm:/nhm -w /nhm/NHM-PRMS_CONUS_GF_1_1/$d \
+# 	 nhmusgs/volume-mounter sh -c 'rm -f *.nc'
+# done
+# for d in input output; do
+#   docker run -v nhm_nhm:/nhm -w /nhm/NHM-PRMS_CONUS_GF_1_1/forecast/$d \
+# 	 nhmusgs/volume-mounter sh -c 'rm -f *.nc'
+# done
+# docker run -v nhm_nhm:/nhm -w /nhm/gridmetetl/nhm_hru_data_gfv11 \
+#        nhmusgs/volume-mounter sh -c 'rm -f *.nc'
 
 # if on HPC ...
 if [ $hpc = 0 ]; then
