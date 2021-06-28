@@ -141,6 +141,8 @@ if [ "$FRCST_END_DATE" = "" ]; then
     FRCST_END_DATE=`date --date "$yesterday +30 days" --rfc-3339='date'`
 fi
 
+echo "FORECAST_END_DATE: $FRCST_END_DATE"
+
 # if we want to run the Gridmet service...
 if [ "$GRIDMET_DISABLE" != true ]; then
     run gridmet
@@ -178,6 +180,10 @@ run cbhfiller
 START_TIME=`date --date $START_DATE +%Y,%m,%d,00,00,00`
 # end time is start date + 1 day in PRMS end_date datetime format
 END_TIME=`date --date $END_DATE +%Y,%m,%d,00,00,00`
+
+F_END_TIME = `date --date $FRCST_END_DATE +%Y,%m,%d,00,00,00`
+
+echo "FORECAST_END_TIME: $F_END_TIME"
 # VAR_SAVE_FILE=""
 # SAVE_VARS_TO_FILE=0
 
@@ -196,13 +202,12 @@ OUT_NCF_DIR=$OP_DIR
 run out2ncf
 run verifier
 
-if [ "$FORECAST_ENABLE" != false]; then
+if [ "$FORECAST_ENABLE" != false ]; then
   # run PRMS forecast
-  F_END_TIME = `date --date $FRCST_END_DATE +%Y,%m,%d,00,00,00`
-  PRMS_START_TIME=$START_TIME
+  PRMS_START_TIME=$END_TIME
   PRMS_END_TIME=$F_END_TIME
   PRMS_INIT_VARS_FROM_FILE=1
-  PRMS_RESTART_DATE=$RESTART_DATE
+  PRMS_RESTART_DATE=$END_DATE
   PRMS_VAR_INIT_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/forecast/restart/$END_DATE.restart"
   PRMS_SAVE_VARS_TO_FILE=0
   PRMS_VAR_SAVE_FILE=""
