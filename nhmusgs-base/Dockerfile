@@ -5,7 +5,8 @@ LABEL maintainer="ashalper@usgs.gov"
 
 # install additional packages
 RUN apt-get update && \
-    apt-get -y install dialog file gcc gfortran make procps unzip && \
+    apt-get -y install dialog file gcc gfortran libhdf5-mpich-dev \
+	    libnetcdf-dev libnetcdff-dev make procps unzip && \
     apt-get autoclean && apt-get purge
 
 # It should only be necessary to set this to "-k" (the
