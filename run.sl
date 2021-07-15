@@ -199,10 +199,11 @@ PRMS_SAVE_VARS_TO_FILE=1
 PRMS_VAR_SAVE_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/forecast/restart/$END_DATE.restart"
 PRMS_CONTROL_FILE=$OP_PRMS_CONTROL_FILE
 
+PRMS_RUN_TYPE=0
 run nhm-prms
 
 OUT_NCF_DIR=$OP_DIR
-run out2ncf
+# run out2ncf
 run verifier
 
 if [ "$FORECAST_ENABLE" != false ]; then
@@ -215,10 +216,10 @@ if [ "$FORECAST_ENABLE" != false ]; then
   PRMS_SAVE_VARS_TO_FILE=0
   PRMS_VAR_SAVE_FILE="None"
   PRMS_CONTROL_FILE=$S2S_PRMS_CONTROL_FILE
-
+  PRMS_RUN_TYPE=1
   run nhm-prms
   OUT_NCF_DIR=$S2S_DIR
-  run out2ncf
+  # run out2ncf
 fi
 
 # run PRMS service in restart mode
@@ -237,6 +238,7 @@ PRMS_SAVE_VARS_TO_FILE=1
 PRMS_VAR_SAVE_FILE="/nhm/NHM-PRMS_CONUS_GF_1_1/restart/$SAVE_RESTART_DATE.restart"
 PRMS_CONTROL_FILE=$OP_PRMS_CONTROL_FILE
 
+PRMS_RUN_TYPE=0
 run nhm-prms
 
 # copy PRMS output from Docker volume to $OUTPUT_DIR directory on host

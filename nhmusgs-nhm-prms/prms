@@ -22,9 +22,13 @@ echo "   PRMS_CONTROL_FILE: $PRMS_CONTROL_FILE"
 
 # PRMS needs to be run in a directory relative to its data files (in
 # subdirectories)
-cd /nhm/NHM-PRMS_CONUS_GF_1_1
+if [ $PRMS_RUN_TYPE = 0 ]; then
+  cd /nhm/NHM-PRMS_CONUS_GF_1_1
+else
+  cd /nhm/NHM-PRMS_CONUS_GF_1_1/forecast
+fi
 
-$NHM_SOURCE_DIR/prms/prms/prms \
+$NHM_SOURCE_DIR/prms/prms/prms_hpc \
   -set start_time $PRMS_START_TIME -set end_time $PRMS_END_TIME \
   -set init_vars_from_file $PRMS_INIT_VARS_FROM_FILE \
   -set var_init_file $PRMS_VAR_INIT_FILE \

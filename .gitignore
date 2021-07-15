@@ -3,6 +3,8 @@
 /.pydevproject
 /.idea
 data/*
+*.zip
+testout_f/
 cronout.txt
 !data/.data_files_go_here.txt
 Output

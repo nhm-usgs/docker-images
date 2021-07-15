@@ -120,6 +120,7 @@ services:
       - PRMS_VAR_SAVE_FILE
       - PRMS_RESTART_DATE
       - PRMS_CONTROL_FILE
+      - PRMS_RUN_TYPE
       - START_DATE
       - RESTART_DATE
       - NHM_SOURCE_DIR

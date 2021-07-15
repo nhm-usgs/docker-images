@@ -1,5 +1,5 @@
 # using Miniconda 3 as the base image...
-FROM continuumio/miniconda3:4.7.12
+FROM continuumio/miniconda3:4.9.2
 
 LABEL maintainer="ashalper@usgs.gov"
 
