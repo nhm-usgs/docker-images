@@ -1,0 +1,24 @@
+#! /bin/bash
+#
+# U.S. Geological Survey
+#
+# File - ofp
+#
+# Purpose - Docker entry-point for NHM ofp container.
+#
+# Authors - Ivan Suftin, Richard McDonald, Steven Markstrom,
+#           Andrew Halper
+#
+
+echo "NHM_SOURCE_DIR is $NHM_SOURCE_DIR"
+echo "START DATE is $START_DATE"
+echo "END DATE is $END_DATE"
+echo "OUTPATH is $OP_CBH_IDIR"
+
+/opt/conda/bin/python \
+  -u $NHM_SOURCE_DIR/gridmetetl/gridmetetl/gridmet_etl.py \
+     -t date -p $START_DATE $END_DATE \
+     -i /nhm/gridmetetl/nhm_hru_data_gfv11 \
+     -o $OP_CBH_IDIR \
+     -w /nhm/gridmetetl/nhm_hru_data_gfv11/tmp_Gridmet_weights_hru_v1_1e.csv \
+     --partial=true

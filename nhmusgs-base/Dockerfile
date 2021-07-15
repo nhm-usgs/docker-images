@@ -1,59 +1,61 @@
 # using Miniconda 3 as the base image...
-FROM continuumio/miniconda3:latest
+FROM continuumio/miniconda3:4.9.2
 
 LABEL maintainer="ashalper@usgs.gov"
 
-# ...check for any Debian, installed packages updates, upgrade them and install
-# additional packages
-RUN apt-get update && apt-get -y upgrade && \
-    apt-get -y install dialog file gcc gfortran make procps unzip && \
+# install additional packages
+RUN apt-get update && \
+    apt-get -y install dialog file gcc gfortran libhdf5-mpich-dev \
+	    libnetcdf-dev libnetcdff-dev make procps unzip && \
     apt-get autoclean && apt-get purge
 
+# It should only be necessary to set this to "-k" (the
+# "conda update/install ..." option) at certain installations in
+# .usgs.gov where the DOI root SSL certificate has not been installed
+# (e.g., on a VM).
+ARG insecure
+RUN if [ "$insecure" = -k ]; then \
+       wget http://sslhelp.doi.net/docs/DOIRootCA2.cer ; \
+       # see
+       # https://stackoverflow.com/questions/9072376/configure-git-to-accept-a-particular-self-signed-server-certificate-for-a-partic
+       git config --global http.sslCAInfo DOIRootCA2.cer ; \
+    fi
+
 # Update/upgrade Conda
-RUN conda update -n base conda -y 
-RUN conda install -n base -c defaults -c conda-forge \
-    python=3.6 \
-    bottleneck \
-    cartopy \
-    dask \
-    geopandas \
-    jupyter \
-    matplotlib \
-    netcdf4 \
-    notebook=5.7.4 \
-    numpy \
-    pandas \
-    rasterio \
-    rasterstats \
-    scipy \
-    xarray \
-    xmltodict
+RUN conda update -n base conda -y $insecure
+RUN conda install -n base -c conda-forge $insecure \
+    python=3.8 \
+    dask=2021.4.1\
+    bottleneck=1.3.2 \
+    geopandas=0.9.0 \
+    nco=4.9.8 \
+    netcdf4=1.5.6 \
+    pandas=1.2.4 \
+    requests=2.25.1 \
+    xarray=0.17.0 \
+    xmltodict=0.12.0
 RUN conda clean -a
 
-ENV SOURCE_DIR=/usr/local/src
+ENV NHM_SOURCE_DIR=/usr/local/src
 
-ARG VERSION_ONHM_RUNNERS=0.1.3
+ARG VERSION_ONHM_RUNNERS=0.2.0
+# ARG VERSION_ONHM_RUNNERS=master
 
-RUN git clone https://github.com/nhm-usgs/onhm-runners.git --branch $VERSION_ONHM_RUNNERS --depth=1 $SOURCE_DIR/onhm-runners && \
-    cd $SOURCE_DIR/onhm-runners && \
-    rm -rf .git || true && \
-    rm .gitignore || true
+RUN git -c advice.detachedHead=false clone \
+    https://github.com/nhm-usgs/onhm-runners.git \
+    --branch $VERSION_ONHM_RUNNERS --depth=1 $NHM_SOURCE_DIR/onhm-runners && \
+    cd $NHM_SOURCE_DIR/onhm-runners && \
+    rm -rf .git && \
+    rm .gitignore README.md .project .pydevproject
 
-RUN mkdir -p /var/lib/nhm/ofp/Output
+RUN mkdir -p /nhm/gridmetetl/Output
 
 ENV USER=nhm
-
 RUN useradd -ms /bin/bash $USER
 
-RUN chown -R $USER /var/lib/nhm
-RUN chgrp -R $USER /var/lib/nhm
-
-# shell functions used by more than one entry-point script
-RUN mkdir -p /usr/local/share/nhm
-RUN chown -R $USER /usr/local/share/nhm
-COPY --chown=$USER nhm.sh /usr/local/share/nhm
-RUN chmod 744 /usr/local/share/nhm/nhm.sh
+RUN chown -R $USER /nhm
+RUN chgrp -R $USER /nhm
 
 ENV HOMEDIR=/home/$USER
 
-VOLUME ["/var/lib/nhm"]
+VOLUME ["/nhm"]

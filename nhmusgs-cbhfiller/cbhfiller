@@ -1,0 +1,19 @@
+#! /bin/bash
+#
+# U.S. Geological Survey
+#
+# File - cbhfiller
+#
+# Purpose - Docker entry-point for NHM cbhfiller container.
+#
+# Authors - Richard McDonald, Andrew Halper
+#
+
+echo "CBH_IDIR: $CBH_IDIR"
+
+/opt/conda/bin/python -u \
+   /usr/local/src/onhm-runners/cbh_filler/cbh_filler.py \
+   $CBH_IDIR \
+   $CBH_ODIR \
+   /usr/local/src/onhm-runners/cbh_filler/nhm_id.txt \
+   /usr/local/src/onhm-runners/cbh_filler/miss_to_pres_mapping.csv
