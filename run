@@ -1,0 +1,31 @@
+#! /bin/bash
+#
+# U.S. Geological Survey
+#
+# File - run
+#
+# Purpose - Simulate NHM run on Shifter, as might be done by Jenkins.
+#
+# Author - Andrew Halper
+#
+
+# if on HPC ...
+if uname -r | grep cray > /dev/null 2>&1 ; then
+  # if it's before 2:00 p.m. ...
+  if [ `date -u +%k` -lt 21 ]; then
+    # ... schedule for 2:00 today
+    begin=`date +%Y-%m-%dT16:00:00`
+  else
+    # ... schedule for 2:00 p.m. tomorrow
+    begin=`date --date=tomorrow +%Y-%m-%dT16:00:00`
+  fi
+  # run as Slurm batch job
+  sbatch --parsable --job-name=nhm --begin=$begin run.sl
+else
+  # run on Docker
+  docker-compose build --parallel base_image
+
+  # even though run.sl is a Slurm script, it is also a Bash script, so
+  # we take advantage of this by using it to run on both platforms
+  bash run.sl
+fi

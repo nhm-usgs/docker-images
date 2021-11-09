@@ -7,79 +7,31 @@
 # Purpose - Docker entry-point for nhm-prms container.
 #
 # Authors - Andrew Halper, Steven Markstrom
+#
+echo "nhm-prms service entry-point:"
+echo
+echo "   NHM_SOURCE_DIR: $NHM_SOURCE_DIR"
+echo "   END_TIME: $PRMS_END_TIME"
+echo "   START_TIME: $PRMS_START_TIME"
+echo "   INIT_VARS_FROM_FILE: $PRMS_INIT_VARS_FROM_FILE"
+echo "   VAR_INIT_FILE: $PRMS_VAR_INIT_FILE"
+echo "   RESTART_DATE: $PRMS_RESTART_DATE"
+echo "   PRMS_VAR_SAVE_FILE: $PRMS_VAR_SAVE_FILE"
+echo "   SAVE_VARS_TO_FILE: $PRMS_SAVE_VARS_TO_FILE"
+echo "   PRMS_CONTROL_FILE: $PRMS_CONTROL_FILE"
 
-pgm=`basename $0`
-if [ 1 -lt $# ]; then
-    echo "$pgm: too many operands"
-    echo "Try '$pgm --help' for more information."
-    exit 1
-fi
-if [ "$1" = -h -o "$1" = --help ]; then
-    echo "Usage: $pgm [-r]"
-    echo "  -r                           run container in restart mode"
-    exit
-fi
-echo "RESTART = $RESTART"
-# restart_interval(), interval_start(), and interval_end() functions
-# are in here:
-. /usr/local/share/nhm/nhm.sh
-
-dir='/var/lib/nhm/NHM-PRMS_CONUS/'
-restart_dir='restart/'
-gridmet_provisional_days=59
-i=$(restart_interval $dir 'restart/' $gridmet_provisional_days)
-start_date=$(interval_start $i)
-
-# if in restart mode
-if [ "$RESTART" = true ]; then
-    yesterday=`date --date "$today -1 days" --rfc-3339='date'`
-    end_date=`date --date "$yesterday -$gridmet_provisional_days days" \
-    	      --rfc-3339='date'`
+# PRMS needs to be run in a directory relative to its data files (in
+# subdirectories)
+if [ $PRMS_RUN_TYPE = 0 ]; then
+  cd /nhm/NHM-PRMS_CONUS_GF_1_1
 else
-    end_date=$(interval_end $i)
+  cd /nhm/NHM-PRMS_CONUS_GF_1_1/forecast
 fi
 
-# if END_DATE variable is set (for debugging purposes)
-if [ -n "$END_DATE" ]; then
-    end_date="$END_DATE"	# override end_date
-fi
-# end_date=2019-07-15
-# Remove the verification file before running PRMS.
-rm -f "$dirPRMS_VERIFIED_*"
-
-# find last simulation date
-# TODO: need to find how this is used in PRMS. See onhm.py.
-t=$(last_simulation_date $dir $restart_dir)
-
-start_args=" -set start_time `echo $start_date | sed 's/-/,/g'`,0,0,0"
-end_args=" -set end_time `echo $end_date | sed 's/-/,/g'`,0,0,0"
-
-init_vars_from_file=' -set init_vars_from_file 1'
-var_init_file=" -set var_init_file $restart_dir$t.restart"
-
-save_vars_to_file=' -set save_vars_to_file 0'
-vars_save_file='restart/'$end_date'.restart'
-
-# TODO: SOURCE_DIR should ultimately be changed to the permanent PRMS
-# install location prefix; likely /usr/local/bin
-
-cd $dir
-# if in restart mode
-if [ "$RESTART" = true ]; then
-    # run PRMS to make the updated restart file
-    init_vars_from_file=' -set init_vars_from_file 1'
-    save_vars_to_file=' -set save_vars_to_file 1'
-    var_save_file=" -set var_save_file $vars_save_file"
-    $SOURCE_DIR/prms/prms/prms $start_args $end_args \
-			        $init_vars_from_file $var_init_file \
-			        $save_vars_to_file $var_save_file\
-			       -C ./NHM-PRMS.control
-else
-    # run PRMS for the prescribed period
-    $SOURCE_DIR/prms/prms/prms $start_args $end_args \
-    			       $init_vars_from_file $var_init_file \
-    			       $save_vars_to_file \
-			       -C ./NHM-PRMS.control
-fi
-
-# TODO: (optionally?) send output to log file? See onhm.py.
+$NHM_SOURCE_DIR/prms/prms/prms_hpc \
+  -set start_time $PRMS_START_TIME -set end_time $PRMS_END_TIME \
+  -set init_vars_from_file $PRMS_INIT_VARS_FROM_FILE \
+  -set var_init_file $PRMS_VAR_INIT_FILE \
+  -set save_vars_to_file $PRMS_SAVE_VARS_TO_FILE \
+  -set var_save_file $PRMS_VAR_SAVE_FILE \
+  -C $PRMS_CONTROL_FILE

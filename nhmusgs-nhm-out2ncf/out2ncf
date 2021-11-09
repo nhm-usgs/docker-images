@@ -1,0 +1,16 @@
+#! /bin/bash
+#
+# U.S. Geological Survey
+#
+# File - out2ncf
+#
+# Purpose - Docker entry-point for out2ncf container.
+#
+# Authors - Richard McDonald, Steven Markstrom,
+#           Andrew Halper
+#
+echo "Input Dir is $OUT_NCF_DIR"
+
+/opt/conda/bin/python \
+  -u /usr/local/src/onhm-runners/out2ncf/prms_outputs2a_ncf.py \
+  $OUT_NCF_DIR

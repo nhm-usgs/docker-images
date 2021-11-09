@@ -1,0 +1,20 @@
+#! /bin/bash
+#
+# U.S. Geological Survey
+#
+# File - gmetl_cfsv2
+#
+# Purpose - Docker entry-point for NHM gmetl_cfsv2 container.
+#
+# Authors - Richard McDonald, Andrew Halper
+#
+
+/opt/conda/bin/python \
+  -u /usr/local/bin/rungmetl_cfs.py \
+     -t $S2S_GMTYPE \
+     -s $S2S_MODELSHAPE\
+     -w $S2S_MODELWGHTS \
+     -o $S2S_OPATH \
+     -e $S2S_ELEVFILE \
+     -i $S2S_INTERPTYPE \
+     -d $S2S_DATE
