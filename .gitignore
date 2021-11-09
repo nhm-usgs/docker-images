@@ -1,7 +1,11 @@
+*~
 /.project
 /.pydevproject
 /.idea
 data/*
+*.zip
+testout_f/
+cronout.txt
 !data/.data_files_go_here.txt
 Output
 thredds/files/config/tomcat/*.crt
@@ -15,3 +19,7 @@ thredds/files/logs/tomcat/*
 /output
 /test
 /restart
+/forecast
+/.env
+variable_info.json
+volume_extract.sh

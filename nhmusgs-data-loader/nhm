@@ -10,24 +10,33 @@
 set -e
 
 # if ofp, HRU shapefiles are not present...
-if [ ! -d /var/lib/nhm/ofp/nhm_hru_data ]; then
-    cd /var/lib/nhm/ofp
+if [ ! -e /nhm/gridmetetl/nhm_hru_data_gfv11 ]; then
+    cd /nhm/gridmetetl
     # ...download archive
     wget --waitretry=3 --retry-connrefused "$HRU_SOURCE"
     # uncompress archive
-    tar -xvzf "$HRU_DATA_PKG"
+    unzip -o  "$HRU_DATA_PKG"
     rm -f "$HRU_DATA_PKG"
 else
     echo "HRU shapefiles already loaded"
 fi
 
 # if PRMS workspace is not present...
-if [ ! -d /var/lib/nhm/NHM-PRMS_CONUS ]; then
-    cd /var/lib/nhm
+if [ ! -e /nhm/NHM-PRMS_CONUS_GF_1_1 ]; then
+    cd /nhm
     # ...download it
     wget --waitretry=3 --retry-connrefused "$PRMS_SOURCE"
     unzip -o `basename $PRMS_DATA_PKG .zip`
     rm -f "$PRMS_DATA_PKG"
 else
     echo "PRMS workspace already loaded"
+fi
+
+if [ ! -e /nhm/NHM-PRMS_CONUS_GF_1_1/forecast ]; then
+    cd /nhm/NHM-PRMS_CONUS_GF_1_1
+    mkdir -p forecast/input
+    mkdir -p forecast/output
+    mkdir -p forecast/restart
+else
+    echo "Forecast directories already defined"
 fi
