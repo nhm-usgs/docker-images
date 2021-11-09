@@ -4,59 +4,71 @@ volumes:
   nhm:
     driver: local
 
-networks:
-  nhmnet:
-
 services:
-    
+
   base_image:
-    build: 
+    build:
       context: ./nhmusgs-base
       args:
         insecure: ""
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
-        - "gov.usgs.nhm.image.docker.type=Base Image"
+        - "gov.usgs.nhm.image.docker.type=Base_Image"
     image: nhmusgs/base
-
-  data_loader:
-    build:
-      context: ./nhmusgs-data-loader
-      labels:
-        - "gov.usgs.nhm.image.docker.application=NHM"
-        - "gov.usgs.nhm.image.docker.type=Data Loader"
-    image: nhmusgs/data-loader
-    container_name: data-loader
-    networks:
-      nhmnet:
     env_file:
       - nhm.env
-    volumes:
-      - nhm:/var/lib/nhm
 
   gridmet:
     build:
       context: ./nhmusgs-gridmet
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
-        - "gov.usgs.nhm.image.docker.type=Gridmet Query"
+        - "gov.usgs.nhm.image.docker.type=Gridmet_Query"
     image: nhmusgs/gridmet
     container_name: gridmet
-      
-  ofp:
+    env_file:
+      - nhm.env
+
+  gridmetetl:
     build:
-      context: ./nhmusgs-ofp
+      context: ./nhmusgs-gridmetetl
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
-        - "gov.usgs.nhm.image.docker.type=OFP"
-    image: nhmusgs/ofp
-    container_name: ofp
+        - "gov.usgs.nhm.image.docker.type=GRIDMET_ETL"
+    image: nhmusgs/gridmetetl
+    container_name: gridmetetl
     environment:
-      - NUMDAYS=${NUMDAYS-60}
-      - START_DATE=${START_DATE-2019-01-01}
-      - END_DATE=${END_DATE-2019-01-02}
+      - CBH_IDIR
+      - START_DATE
+      - END_DATE
+      - NHM_SOURCE_DIR
+    env_file:
+      - nhm.env
     volumes:
-      - nhm:/var/lib/nhm
+      - nhm:/nhm
+
+  gridmets2s:
+    build:
+      context: ./nhmusgs-gridmets2s
+      args:
+        insecure: "-k"
+      labels:
+        - "gov.usgs.nhm.image.docker.application=NHM"
+        - "gov.usgs.nhm.image.docker.type=GRIDMETETL_S2S"
+    image: nhmusgs/gridmets2s
+    container_name: gridmets2s
+    environment:
+      - S2S_GMTYPE
+      - S2S_MODELSHAPE
+      - S2S_MODELWGHTS
+      - S2S_OPATH
+      - S2S_ELEVFILE
+      - S2S_INTERPTYPE
+      - S2S_DATE
+    env_file:
+      - nhm.env
+    volumes:
+      - nhm:/nhm
 
   ncf2cbh:
     build:
@@ -66,8 +78,30 @@ services:
         - "gov.usgs.nhm.image.docker.type=NCF2CBH"
     image: nhmusgs/ncf2cbh
     container_name: ncf2cbh
+    environment:
+      - NCF_IDIR
+      - NCF_DATE
+      - NCF_PREFIX
+    env_file:
+      - nhm.env
     volumes:
-      - nhm:/var/lib/nhm
+      - nhm:/nhm
+
+  cbhfiller:
+    build:
+      context: ./nhmusgs-cbhfiller
+      labels:
+        - "gov.usgs.nhm.image.docker.application=NHM"
+        - "gov.usgs.nhm.image.docker.type=CBHFILLER"
+    image: nhmusgs/cbhfiller
+    container_name: cbhfiller
+    environment:
+        - CBH_IDIR
+        - CBH_ODIR
+    env_file:
+      - nhm.env
+    volumes:
+      - nhm:/nhm
 
   nhm-prms:
     build:
@@ -78,20 +112,37 @@ services:
     image: nhmusgs/nhm-prms
     container_name: nhm-prms
     environment:
-      - RESTART=${RESTART-false}
+      - PRMS_START_TIME
+      - PRMS_END_TIME
+      - PRMS_INIT_VARS_FROM_FILE
+      - PRMS_VAR_INIT_FILE
+      - PRMS_SAVE_VARS_TO_FILE
+      - PRMS_VAR_SAVE_FILE
+      - PRMS_RESTART_DATE
+      - PRMS_CONTROL_FILE
+      - PRMS_RUN_TYPE
+      - START_DATE
+      - RESTART_DATE
+      - NHM_SOURCE_DIR
+    env_file:
+      - nhm.env
     volumes:
-      - nhm:/var/lib/nhm
+      - nhm:/nhm
 
   out2ncf:
     build:
       context: ./nhmusgs-nhm-out2ncf
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
-        - "gov.usgs.nhm.image.docker.type=OUT 2 NCF"
+        - "gov.usgs.nhm.image.docker.type=OUT2NCF"
     image: nhmusgs/out2ncf
     container_name: out2ncf
+    environment:
+      - OUT_NCF_DIR
+    env_file:
+      - nhm.env
     volumes:
-      - nhm:/var/lib/nhm
+      - nhm:/nhm
 
   verifier:
     build:
@@ -101,25 +152,29 @@ services:
         - "gov.usgs.nhm.image.docker.type=Verifier"
     image: nhmusgs/verifier
     container_name: verifier
-    volumes:
-      - nhm:/var/lib/nhm
-
-  thredds:
-    image: unidata/thredds-docker:4.6.13
-    ports:
-      - "443:8443"
-    container_name: thredds
-    volumes:
-      - ./thredds/files/logs/tomcat/:/usr/local/tomcat/logs/
-      - ./thredds/files/logs/thredds/:/usr/local/tomcat/content/thredds/logs/
-      - ./thredds/files/config/tomcat/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
-      - ./thredds/files/config/tomcat/server.xml:/usr/local/tomcat/conf/server.xml
-      - ./thredds/files/config/tomcat/ssl.crt:/usr/local/tomcat/conf/ssl.crt
-      - ./thredds/files/config/tomcat/ssl.key:/usr/local/tomcat/conf/ssl.key
-      - ./thredds/files/config/thredds/threddsConfig.xml:/usr/local/tomcat/content/thredds/threddsConfig.xml
-      - ./thredds/files/config/thredds/enhancedCatalog.xml:/usr/local/tomcat/content/thredds/enhancedCatalog.xml
-      - ./thredds/files/config/thredds/wmsConfig.xml:/usr/local/tomcat/content/thredds/wmsConfig.xml
-      - ./thredds/files/contents/thredds/cache/:/usr/local/tomcat/content/thredds/cache/
-      - ./output/Output/:/usr/local/tomcat/content/thredds/nhmdata/
     env_file:
-      - "./thredds/compose.env"
+      - nhm.env
+    volumes:
+      - nhm:/nhm
+    command:
+      - "/nhm/NHM-PRMS_CONUS_GF_1_1/"
+
+  # thredds:
+  #   image: unidata/thredds-docker:4.6.13
+  #   ports:
+  #     - "443:8443"
+  #   container_name: thredds
+  #   volumes:
+  #     - ./thredds/files/logs/tomcat/:/usr/local/tomcat/logs/
+  #     - ./thredds/files/logs/thredds/:/usr/local/tomcat/content/thredds/logs/
+  #     - ./thredds/files/config/tomcat/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
+  #     - ./thredds/files/config/tomcat/server.xml:/usr/local/tomcat/conf/server.xml
+  #     - ./thredds/files/config/tomcat/ssl.crt:/usr/local/tomcat/conf/ssl.crt
+  #     - ./thredds/files/config/tomcat/ssl.key:/usr/local/tomcat/conf/ssl.key
+  #     - ./thredds/files/config/thredds/threddsConfig.xml:/usr/local/tomcat/content/thredds/threddsConfig.xml
+  #     - ./thredds/files/config/thredds/enhancedCatalog.xml:/usr/local/tomcat/content/thredds/enhancedCatalog.xml
+  #     - ./thredds/files/config/thredds/wmsConfig.xml:/usr/local/tomcat/content/thredds/wmsConfig.xml
+  #     - ./thredds/files/contents/thredds/cache/:/usr/local/tomcat/content/thredds/cache/
+  #     - ./output/Output/:/usr/local/tomcat/content/thredds/nhmdata/
+  #   env_file:
+  #     - "./thredds/compose.env"
