@@ -8,17 +8,6 @@
 #
 # Authors - Andrew Halper, Steven Markstrom
 #
-echo "nhm-prms service entry-point:"
-echo
-echo "   NHM_SOURCE_DIR: $NHM_SOURCE_DIR"
-echo "   END_TIME: $PRMS_END_TIME"
-echo "   START_TIME: $PRMS_START_TIME"
-echo "   INIT_VARS_FROM_FILE: $PRMS_INIT_VARS_FROM_FILE"
-echo "   VAR_INIT_FILE: $PRMS_VAR_INIT_FILE"
-echo "   RESTART_DATE: $PRMS_RESTART_DATE"
-echo "   PRMS_VAR_SAVE_FILE: $PRMS_VAR_SAVE_FILE"
-echo "   SAVE_VARS_TO_FILE: $PRMS_SAVE_VARS_TO_FILE"
-echo "   PRMS_CONTROL_FILE: $PRMS_CONTROL_FILE"
 
 # PRMS needs to be run in a directory relative to its data files (in
 # subdirectories)
