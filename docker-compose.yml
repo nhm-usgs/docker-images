@@ -48,8 +48,6 @@ services:
   gridmets2s:
     build:
       context: ./nhmusgs-gridmets2s
-      args:
-        insecure: "-k"
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=GRIDMETETL_S2S"
