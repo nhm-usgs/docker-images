@@ -17,8 +17,8 @@ RUN if wget http://sslhelp.doi.net/docs/DOIRootCA2.cer ; then \
     fi
 
 # Update/upgrade Conda
-RUN conda update -n base conda -y $insecure
-RUN conda install -n base -c conda-forge $insecure \
+RUN conda update -n base conda -y
+RUN conda install -n base -c conda-forge \
     python=3.8 \
     dask=2021.4.1\
     bottleneck=1.3.2 \
