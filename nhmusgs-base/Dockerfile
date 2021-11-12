@@ -1,29 +1,24 @@
 # using Miniconda 3 as the base image...
-FROM continuumio/miniconda3:4.9.2
+FROM continuumio/miniconda3:4.10.3p0
 
 LABEL maintainer="ashalper@usgs.gov"
 
 # install additional packages
 RUN apt-get update && \
-    apt-get -y install dialog file gcc gfortran libhdf5-mpich-dev \
+    apt-get -y install ca-certificates dialog file gcc gfortran libhdf5-mpich-dev \
 	    libnetcdf-dev libnetcdff-dev make procps unzip && \
     apt-get autoclean && apt-get purge
 
-# It should only be necessary to set this to "-k" (the
-# "conda update/install ..." option) at certain installations in
-# .usgs.gov where the DOI root SSL certificate has not been installed
-# (e.g., on a VM).
-ARG insecure
-RUN if [ "$insecure" = -k ]; then \
-       wget http://sslhelp.doi.net/docs/DOIRootCA2.cer ; \
-       # see
-       # https://stackoverflow.com/questions/9072376/configure-git-to-accept-a-particular-self-signed-server-certificate-for-a-partic
-       git config --global http.sslCAInfo DOIRootCA2.cer ; \
+# install DOI SSL intercept root certificate if reachable
+RUN if wget http://sslhelp.doi.net/docs/DOIRootCA2.cer ; then \
+        mkdir -p /usr/local/share/ca-certificates ; \
+        mv DOIRootCA2.cer /usr/local/share/ca-certificates/DOIRootCA2.crt ; \
+        update-ca-certificates ; \
     fi
 
 # Update/upgrade Conda
-RUN conda update -n base conda -y $insecure
-RUN conda install -n base -c conda-forge $insecure \
+RUN conda update -n base conda -y
+RUN conda install -n base -c conda-forge \
     python=3.8 \
     dask=2021.4.1\
     bottleneck=1.3.2 \
@@ -39,7 +34,6 @@ RUN conda clean -a
 ENV NHM_SOURCE_DIR=/usr/local/src
 
 ARG VERSION_ONHM_RUNNERS=0.2.0
-# ARG VERSION_ONHM_RUNNERS=master
 
 RUN git -c advice.detachedHead=false clone \
     https://github.com/nhm-usgs/onhm-runners.git \

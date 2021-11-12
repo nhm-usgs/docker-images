@@ -9,8 +9,6 @@ services:
   base_image:
     build:
       context: ./nhmusgs-base
-      args:
-        insecure: ""
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=Base_Image"
@@ -50,8 +48,6 @@ services:
   gridmets2s:
     build:
       context: ./nhmusgs-gridmets2s
-      args:
-        insecure: "-k"
       labels:
         - "gov.usgs.nhm.image.docker.application=NHM"
         - "gov.usgs.nhm.image.docker.type=GRIDMETETL_S2S"
@@ -112,18 +108,18 @@ services:
     image: nhmusgs/nhm-prms
     container_name: nhm-prms
     environment:
-      - PRMS_START_TIME
+      - NHM_SOURCE_DIR
+      - PRMS_CONTROL_FILE
       - PRMS_END_TIME
       - PRMS_INIT_VARS_FROM_FILE
-      - PRMS_VAR_INIT_FILE
-      - PRMS_SAVE_VARS_TO_FILE
-      - PRMS_VAR_SAVE_FILE
       - PRMS_RESTART_DATE
-      - PRMS_CONTROL_FILE
       - PRMS_RUN_TYPE
-      - START_DATE
+      - PRMS_SAVE_VARS_TO_FILE
+      - PRMS_START_TIME
+      - PRMS_VAR_INIT_FILE
+      - PRMS_VAR_SAVE_FILE
       - RESTART_DATE
-      - NHM_SOURCE_DIR
+      - START_DATE
     env_file:
       - nhm.env
     volumes:
@@ -158,23 +154,3 @@ services:
       - nhm:/nhm
     command:
       - "/nhm/NHM-PRMS_CONUS_GF_1_1/"
-
-  # thredds:
-  #   image: unidata/thredds-docker:4.6.13
-  #   ports:
-  #     - "443:8443"
-  #   container_name: thredds
-  #   volumes:
-  #     - ./thredds/files/logs/tomcat/:/usr/local/tomcat/logs/
-  #     - ./thredds/files/logs/thredds/:/usr/local/tomcat/content/thredds/logs/
-  #     - ./thredds/files/config/tomcat/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
-  #     - ./thredds/files/config/tomcat/server.xml:/usr/local/tomcat/conf/server.xml
-  #     - ./thredds/files/config/tomcat/ssl.crt:/usr/local/tomcat/conf/ssl.crt
-  #     - ./thredds/files/config/tomcat/ssl.key:/usr/local/tomcat/conf/ssl.key
-  #     - ./thredds/files/config/thredds/threddsConfig.xml:/usr/local/tomcat/content/thredds/threddsConfig.xml
-  #     - ./thredds/files/config/thredds/enhancedCatalog.xml:/usr/local/tomcat/content/thredds/enhancedCatalog.xml
-  #     - ./thredds/files/config/thredds/wmsConfig.xml:/usr/local/tomcat/content/thredds/wmsConfig.xml
-  #     - ./thredds/files/contents/thredds/cache/:/usr/local/tomcat/content/thredds/cache/
-  #     - ./output/Output/:/usr/local/tomcat/content/thredds/nhmdata/
-  #   env_file:
-  #     - "./thredds/compose.env"
